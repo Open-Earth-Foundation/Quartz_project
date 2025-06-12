@@ -1,0 +1,75 @@
+{
+  "type": "object",
+  "properties": {
+    "overall_assessment_notes": {
+      "type": "string",
+      "description": "Overall assessment notes of the structured data provided. A concise summary of your findings, highlighting key strengths and weaknesses."
+    },
+
+    "URL": {
+      "type": "string",
+      "description": "URL of the website being reviewed."
+    },
+    "subsector": {
+      "type": "string",
+      "description": "Subsector of the data being reviewed."
+    },
+    "relevance_score": {
+      "type": "string",
+      "enum": ["High", "Medium", "Low"],
+      "description": "Relevance score of the data. Choose from the following options: High, Medium, Low reasoning about specific aspects of the data and target country."
+    },
+    "relevance_reasoning": {
+      "type": "string",
+      "description": "Reasoning for the relevance score."
+    },
+    "credibility_score": {
+      "type": "string",
+      "enum": ["High", "Medium", "Low"],
+      "description": "Credibility score of the data. Explain briefly, referencing specific sources or document types."
+    },
+    "credibility_reasoning": {
+      "type": "string",
+      "description": "Reasoning for the credibility score."
+    },
+    "completeness_score": {
+      "type": "string",
+      "enum": ["High", "Medium", "Low"],
+      "description": "Completeness score of the data. Explain briefly regarding the structured data fields and their content."
+    },
+    "completeness_reasoning": {
+      "type": "string",
+      "description": "Reasoning for the completeness score."
+    },
+    "overall_confidence": {
+      "type": "string",
+      "enum": ["High", "Medium", "Low"],
+      "description": "Overall confidence in the data."
+    },
+    "suggested_action": {
+      "type": "string",
+      "enum": ["accept", "reject"],
+      "description": "Suggested next action. After a deep dive has been performed, you must make a final decision to either accept or reject the data."
+    },
+    "action_reasoning": {
+      "type": "string",
+      "description": "Reasoning for the suggested action. Provide a concise justification for accepting or rejecting the data based on your assessment."
+    },
+    "refinement_details": {
+      "type": ["string", "null"],
+      "description": "Details for refinement if action is 'reject' and plan needs changes. For example, 'Refine search plan: Focus search on national statistical office website for {target_country_name} using keywords for National Inventory Report'."
+    }
+  },
+  "required": [
+    "overall_assessment_notes",
+    "relevance_score",
+    "relevance_reasoning",
+    "credibility_score",
+    "credibility_reasoning",
+    "completeness_score",
+    "completeness_reasoning",
+    "overall_confidence",
+    "suggested_action",
+    "action_reasoning"
+  ]
+}

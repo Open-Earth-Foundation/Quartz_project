@@ -1,0 +1,38 @@
+{
+  "name": "DeepDiveAction",
+  "description": "Schema for the action decided by the DeepDiveProcessorLLM",
+  "strict": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action_type": {
+        "type": "string",
+        "enum": ["scrape", "crawl", "terminate_deep_dive"],
+        "description": "The type of action to take: scrape (single URL), crawl (entire website/domain), or terminate"
+      },
+      "target": {
+        "type": ["string", "null"],
+        "description": "URL for scrape/crawl action. Must be null if terminating."
+      },
+      "justification": {
+        "type": "string",
+        "description": "Clear reasoning for the chosen action"
+      },
+      "max_pages": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 50,
+        "description": "For crawl action: maximum pages to crawl (default: 10, max: 50)"
+      },
+      "exclude_patterns": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "For crawl action: URL patterns to exclude (e.g., ['blog/*', 'admin/*'])"
+      }
+    },
+    "required": ["action_type", "justification"],
+    "additionalProperties": false
+  }
+}

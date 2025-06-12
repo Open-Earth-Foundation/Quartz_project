@@ -1,0 +1,75 @@
+{
+  "title": "SearchPlanSchema",
+  "type": "object",
+  "properties": {
+    "search_queries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The search query string."
+          },
+          "language": {
+            "type": "string",
+            "description": "The language of the query."
+          },
+          "priority": {
+            "type": "string",
+            "description": "Priority of the query (e.g., high, medium, low)."
+          },
+          "target_type": {
+            "type": "string",
+            "description": "Type of target document or data (e.g., report, database)."
+          }
+        },
+        "required": ["query", "language", "priority", "target_type"]
+      },
+      "description": "List of search queries to execute."
+    },
+    "target_country_locode": {
+      "type": "string",
+      "description": "UN LOCODE for the target country."
+    },
+    "primary_languages": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Primary languages relevant to the search."
+    },
+    "key_institutions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key institutions for the target country."
+    },
+    "international_sources": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "International sources relevant to the search."
+    },
+    "document_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Types of documents to look for."
+    },
+    "confidence": {
+      "type": "string",
+      "description": "Confidence level in the plan."
+    },
+    "challenges": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Potential challenges or limitations."
+    }
+  },
+  "required": [
+    "search_queries",
+    "target_country_locode",
+    "primary_languages",
+    "key_institutions",
+    "international_sources",
+    "document_types",
+    "confidence",
+    "challenges"
+  ]
+}
