@@ -1,18 +1,8 @@
 """
-Main entry point for the GHGI Dataset Discovery Agent.
+# CLI Usage Examples
 
-This script provides a command-line interface for running automated greenhouse gas inventory (GHGI) 
-data discovery research. The agent can operate in two primary modes: city-based research and 
-country/sector-based research.
-
-## CLI Usage Examples
-
-### City-Based Research
-The agent can research GHGI data for specific cities, with optional sector focus:
-
-    # City-only research (all sectors)
-    python main.py --city "Kraków"
-    python main.py --city "San Francisco"
+## City-Based Research
+The agent can research GHGI data for specific cities, with sector focus:
     
     # City + specific sector research  
     python main.py --city "Kraków" --sector stationary_energy
@@ -20,10 +10,10 @@ The agent can research GHGI data for specific cities, with optional sector focus
     python main.py --city "Tokyo" --sector waste
     
     # City research with English-only sources
-    python main.py --city "Kraków" --english
+    python main.py --city "Kraków" --sector stationary_energy --english
     python main.py --city "Kraków" --sector afolu --english
 
-### Country/Sector Research (Original Mode)
+## Country/Sector Research
 Traditional country-level research requires both country and sector:
 
     # Country + sector research
@@ -33,52 +23,45 @@ Traditional country-level research requires both country and sector:
     # Country research with English-only sources
     python main.py --country "Poland" --sector afolu --english
 
-## Available Sectors
+# Available Sectors
 - `afolu` - Agriculture, Forestry & Other Land Use
 - `ippu` - Industrial Processes & Product Use  
 - `stationary_energy` - Stationary Energy (buildings, industry, power plants)
 - `transportation` - Transportation (road, rail, aviation, shipping)
 - `waste` - Waste Management
 
-## CLI Arguments
+# CLI Arguments
 
-### Primary Mode Selection
+## Primary Mode Selection
 - `--city CITY_NAME`: Target city for research (can be combined with --sector)
 - `--country COUNTRY_NAME`: Target country for research (requires --sector)
 - `--sector SECTOR_NAME`: GHGI sector to focus on (choices: afolu, ippu, stationary_energy, transportation, waste)
 
-### Options
+## Options
 - `--english`: Use English-only search mode (focuses on English-language sources)
 - `--log-level LEVEL`: Set logging level (DEBUG, INFO, WARNING, ERROR). Default: INFO
 - `--log-dir DIR`: Directory for log files. Default: logs
 - `--max-iterations N`: Override maximum iterations for agent run
 
-### Validation Rules
+## Validation Rules
 - Valid: City only, City+Sector, Country+Sector
-- Invalid: City+Country, Country without Sector
+- Invalid: City+Country, Country without Sector, city without sector
 
-## Research Modes Explained
+# Research Modes Explained
 
-### City + Sector Mode  
+## City + Sector Mode  
 When using `--city` with `--sector`:
 1. Uses specialized city+sector prompt templates (e.g., `stationary_energy_city.md`)
 2. Focuses queries on sector-specific city data (e.g., district heating for stationary energy)
 3. Applies sector expertise to city-level research
 4. Combines municipal focus with GHGI sector knowledge
 
-### Country + Sector Mode
+## Country + Sector Mode
 When using `--country` with `--sector`:
 1. Uses traditional sector-specific prompts (e.g., `stationary_energy.md`)
 2. Focuses on national-level GHGI data with subnational context
 3. Follows established country/sector research patterns
 
-
-## Examples with Multi-word Names
-Use quotes for cities/countries with spaces:
-
-    python main.py --city San Francisco --sector transportation
-    python main.py --country United States --sector stationary_energy
-    python main.py --country United Arab Emirates --sector afolu --english
 
 """
 import logging
