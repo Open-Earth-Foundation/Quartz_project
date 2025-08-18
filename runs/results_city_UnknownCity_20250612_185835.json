@@ -1,0 +1,1091 @@
+{
+    "research_mode": "city",
+    "target_country": null,
+    "target_country_locode": "PL",
+    "target_sector": "stationary_energy",
+    "target_city": null,
+    "start_time": "2025-06-12T18:45:06.318245",
+    "end_time": "2025-06-12T18:58:35.171062",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 10,
+    "structured_data": [
+        {
+            "name": "ENERGY SITUATION IN POLAND - DOMESTIC ENERGY BALANCE",
+            "method_of_access": "Downloadable electronic version, also available for purchase in online store",
+            "sector": "stationary_energy",
+            "subsector": "Energy Industries",
+            "description": "The quarterly publication contains balances of basic energy carriers in Poland and synthetic balances of primary energy in the format used in Poland and by the International Energy Agency. For each energy carrier, information is provided on production, import, export, stock changes, and consumption in natural units and TJ. The bulletin includes quarterly data, cumulative data, and indicators of the dynamics of changes in the presented balance positions. Published since 1992.",
+            "granularity": "national",
+            "url": "https://www.are.waw.pl/badania-statystyczne/wynikowe-informacje-statystyczne",
+            "country": null,
+            "country_locode": "PL"
+        },
+        {
+            "name": "Zużycie paliw i nośników energii w 2023 roku",
+            "method_of_access": "web interface query, downloadable PDF",
+            "sector": "stationary_energy",
+            "data_format": "PDF",
+            "description": "Analysis of the consumption of selected fuels and energy carriers: hard coal, natural gas, liquefied gas, light fuel oil, heavy fuel oil, heat, and electricity. Provided by stat.gov.pl. Covers 2023.",
+            "url": "https://stat.gov.pl/wyszukiwarka/?query=tag:zu%C5%BCycie+energii",
+            "country": null,
+            "country_locode": "PL"
+        },
+        {
+            "name": "European primary emissions of criteria pollutants and greenhouse gases in 2020 modulated by the COVID-19 pandemic disruptions",
+            "method_of_access": "Downloadable files (https://doi.org/10.24380/k966-3957 and https://doi.org/10.24380/eptm-kn40)",
+            "sector": "transportation",
+            "subsector": "aviation",
+            "description": "A European dataset of daily sector-, pollutant- and country-dependent emission adjustment factors associated with COVID-19 mobility restrictions for the year 2020. It covers nine emission sectors including road transport, energy industry, manufacturing industry, residential and commercial combustion, aviation, shipping, off-road transport, use of solvents, and fugitive emissions from transportation and distribution of fossil fuels. The dataset is designed to be combined with the Copernicus CAMS-REG_v5.1 2020 business-as-usual (BAU) inventory to quantify spatially and temporally resolved reductions in primary emissions from criteria pollutants and greenhouse gases (CO2 fossil fuel, CO2 biofuel, and CH4). The data was produced in support of air quality modelling studies.",
+            "granularity": "European (EU27 + UK) and country-level (Italy, France, Spain, United Kingdom, Germany)",
+            "url": "https://essd.copernicus.org/articles/14/2521/2022/",
+            "country": null,
+            "country_locode": "PL"
+        },
+        {
+            "name": "Analysis of Residential Buildings in Poland for Potential Energy Renovation toward Zero-Emission Construction",
+            "method_of_access": "Web interface query, potentially downloadable article (PDF)",
+            "sector": "stationary_energy",
+            "subsector": "Residential Buildings",
+            "description": "This document appears to be an academic article titled 'Analysis of Residential Buildings in Poland for Potential Energy Renovation toward Zero-Emission Construction' published by MDPI. It focuses on residential buildings in Poland and their potential for energy renovation.",
+            "granularity": "national",
+            "url": "https://www.mdpi.com/1996-1073/15/24/9327",
+            "country": null,
+            "country_locode": "PL"
+        },
+        {
+            "name": "Energy statistics - an overview",
+            "method_of_access": "Web interface query, downloadable Excel files (implied)",
+            "sector": "stationary_energy",
+            "data_format": "Excel (implied), table",
+            "description": "This article provides an overview of the energy economy in the European Union (EU) in 2023, based on annual data from each EU country. It provides trends for the main energy commodities for primary energy production, imports and exports, gross available energy and final energy consumption. Data extracted in May 2025, with no planned article update. Source: Eurostat (online data code: nrg_bal_c).",
+            "granularity": "national",
+            "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php/Energy_statistics_-_an_overview",
+            "country": null,
+            "country_locode": "PL"
+        },
+        {
+            "name": "Total final energy consumption in Poland",
+            "method_of_access": "Downloadable CSV files, .Stat Data Explorer",
+            "sector": "transportation",
+            "subsector": "On-road Transportation",
+            "data_format": "CSV",
+            "description": "This dataset from IEA provides information on the evolution of total final energy consumption in Poland since 2000, broken down by sectors such as Industry, Transport, Residential, Commercial and Public Services, Agriculture / Forestry, Fishing, and Non-energy use. Data is available up to 2023.",
+            "granularity": "national",
+            "url": "https://www.iea.org/countries/poland/efficiency-demand",
+            "country": null,
+            "country_locode": "PL"
+        },
+        {
+            "name": "Zużycie paliw i nośników energii",
+            "method_of_access": "web interface query, downloadable PDF (implied)",
+            "sector": "stationary_energy",
+            "subsector": "Residential Buildings",
+            "description": "The content describes a series of annual reports from the Polish Statistical Office (stat.gov.pl) on the consumption of fuels and energy carriers, including coal, natural gas, LPG, heating oil, heavy fuel oil, heat, and electricity. Reports are available for years 2017-2023. There are also reports on 'Energy management and gas industry' for 2020 and 2021, and 'Municipal infrastructure' for 2017, which include data on gas consumption.",
+            "granularity": "national",
+            "url": "https://stat.gov.pl/wyszukiwarka/?query=tag:zu%C5%BCycie+gazu",
+            "country": null,
+            "country_locode": "PL"
+        },
+        {
+            "name": "Zużycie paliw i nośników energii w 2023 roku",
+            "method_of_access": "web interface query, downloadable PDF",
+            "sector": "stationary_energy",
+            "data_format": "PDF",
+            "description": "Analysis of the consumption of selected fuels and energy carriers: hard coal, natural gas, liquefied gas, light fuel oil, heavy fuel oil, heat, and electricity in 2023. Provided by stat.gov.pl.",
+            "granularity": "national",
+            "url": "https://stat.gov.pl/wyszukiwarka/szukaj.html?query=energetyczny",
+            "country": null,
+            "country_locode": "PL"
+        },
+        {
+            "name": "The District Heating Sector in Numbers",
+            "method_of_access": "Downloadable report (PDF implied)",
+            "sector": "stationary_energy",
+            "subsector": "Energy Industries",
+            "data_format": "PDF",
+            "description": "A comprehensive overview of the district heating sector in Poland for 2021, provided by the Energy Regulatory Office (URE). It includes data collected from over 400 licensed district heating companies, focusing on transformation directions, challenges like rising CO2 emission allowances and fuel costs, and the sector's profitability.",
+            "granularity": "national",
+            "url": "https://www.ure.gov.pl/en/communication/news/339,District-heating-sector-in-numbers-latest-URE-report.html",
+            "country": null,
+            "country_locode": "PL"
+        },
+        {
+            "name": "Heating in Poland. Edition 2019",
+            "method_of_access": "downloadable file (PDF)",
+            "sector": "stationary_energy",
+            "subsector": "Residential Buildings",
+            "data_format": "PDF",
+            "description": "The report 'Heating in Poland. Edition 2019' by Forum Energii provides data and analysis on the heating sector in Poland, highlighting issues like smog, the prevalence of individual heating installations (76% of heat generated), and the significant CO2 emissions from the domestic heating sector (68 million tonnes annually, 1/4 of national CO2 emissions). It covers data from various sources including the Central Statistical Office, Energy Market Agency, and Eurostat, and was published on December 16, 2019. The report emphasizes the lack of comprehensive and consistent data as a barrier to energy transition and effective smog reduction.",
+            "granularity": "national",
+            "url": "https://www.forum-energii.eu/en/heating-in-poland-2019-edition",
+            "country": null,
+            "country_locode": "PL"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "city": "Kraków",
+            "sector": "stationary_energy",
+            "research_mode": "city",
+            "english_only_mode": true
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "Plan for None with 105 structured queries.",
+            "target_country_locode": "PL",
+            "primary_languages": [
+                "Polish"
+            ],
+            "parsed_keywords_count": 105,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Kraków residential natural gas consumption CO₂ emissions",
+                "Kraków household heating oil use activity data",
+                "Kraków district heating energy consumption statistics",
+                "Kraków residential biomass fuel use CH₄ N₂O",
+                "City-scale residential electricity consumption Kraków",
+                "Poland building energy use by fuel type",
+                "Polska zużycie energii w budynkach mieszkalnych",
+                "Gmina Kraków emisje CO₂ z ogrzewania mieszkań gazem",
+                "Gmina Kraków zużycie oleju opałowego w gospodarstwach domowych",
+                "Powiat Kraków zużycie energii elektrycznej w sektorze mieszkaniowym"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 8,
+            "new_data_items": 8
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-06-12T18:51:10.618095",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 6,
+            "summary": "This batch of documents is highly promising for Unknown Country's stationary energy sector GHGI data. Several documents from official statistical offices and energy agencies directly mention energy balances, fuel consumption, and electricity generation, often with specific years and units. The IEA document also provides relevant energy consumption breakdowns. The scientific papers, while potentially useful, are less direct for raw data extraction compared to the statistical reports.",
+            "reasoning": "Multiple documents from official statistical and energy agencies contain direct references to energy consumption, production, and balances, which are crucial for stationary energy GHGI. The IEA and Eurostat documents also offer valuable data. These sources are highly likely to contain structured data for extraction."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 8,
+            "new_data_items_extracted": 8,
+            "total_structured_items": 8
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-06-12T18:51:36.219996",
+            "action": "structured_review_completed",
+            "suggested_action": "deep_dive",
+            "overall_confidence": "Medium",
+            "summary": "The extracted data includes several promising sources from the Polish Statistical Office (stat.gov.pl) and the Agency for Energy Market (ARE), which are highly credible national sources for energy statistics. While the current search plan focused on Kraków, the extracted data is primarily national level, which is acceptable for GHGI purposes. The documents indicate availability of data on fuel and energy carrier consumption, including natural gas and heating oil, which are relevant to the initial queries. However, the granularity for specific residential consumption or district heating might require deeper investigation within these identified sources.",
+            "reasoning": "The identified sources, particularly from stat.gov.pl and are.waw.pl, are highly credible and very likely contain the necessary national-level activity data for GHGI. A 'deep_dive' is required to navigate these websites, download the relevant reports (e.g., PDFs mentioned), and extract the specific data points for residential natural gas consumption, heating oil use, and district heating energy consumption. The current descriptions are promising but lack the specific detail needed for direct extraction without further exploration of the documents themselves.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        },
+        {
+            "agent": "DeepDiveProcessor",
+            "action": "crawl",
+            "target": "https://stat.gov.pl/tematy/srodowisko-energia/energia/",
+            "justification": "The refinement prioritizes 'Zużycie paliw i nośników energii' reports (2017-2023) from stat.gov.pl. Crawling the Polish-language energy section will systematically discover annual reports and datasets containing national-level residential gas, heating oil, and district heating consumption data. Exclusions avoid non-relevant pages like news or search results.",
+            "refinement_details_processed": "Deep dive into the documents from stat.gov.pl (e.g., 'Zużycie paliw i nośników energii' reports for 2017-2023) and are.waw.pl ('ENERGY SITUATION IN POLAND - DOMESTIC ENERGY BALANCE') to extract specific data on: 1) Residential natural gas consumption (activity data), 2) Residential heating oil consumption (activity data), and 3) District heating energy consumption. Focus on national-level data, as it is sufficient for GHGI. If sub-national data for Kraków is found incidentally, it can be noted, but the primary focus should be on national data from these credible sources.",
+            "actions_this_cycle": 1,
+            "current_websites_considered": "www.are.waw.pl, ec.europa.eu, stat.gov.pl, essd.copernicus.org, www.mdpi.com, www.iea.org",
+            "timestamp": "2025-06-12T18:53:03.893955"
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Powiat Kraków emisje CH₄ N₂O z kotłów węglowych",
+                "Powiat Kraków ogrzewanie sieciowe statystyki zużycia",
+                "Województwo Małopolskie zużycie biomasy w budynkach",
+                "Województwo Małopolskie emisje CO₂ z sektora mieszkaniowego",
+                "Województwo Małopolskie zużycie LPG w mieszkalnictwie N₂O",
+                "Kraków commercial electricity consumption data",
+                "Kraków hospital natural gas use CO₂ emissions",
+                "Kraków office buildings district heating demand",
+                "Kraków institutional fuel oil consumption CH₄",
+                "City-scale service sector energy use Kraków"
+            ],
+            "urls_collected": 81,
+            "relevant_urls_for_scraping": 3,
+            "new_data_items": 3
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-06-12T18:58:25.605630",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 8,
+            "summary": "This batch of documents is highly promising for stationary energy sector GHGI data for Poland. Several documents from official statistical offices and energy agencies directly mention energy balances, fuel consumption, and even CO2 emissions, with links to downloadable reports and data. The IEA and Eurostat documents also provide valuable, structured energy consumption data.",
+            "reasoning": "The documents provide direct access or strong leads to official statistical reports, energy balances, and detailed consumption data for the stationary energy sector in Poland. Many include specific figures, tables, and downloadable files, making them excellent candidates for data extraction. The scientific paper is also relevant for emissions data."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 10,
+            "new_data_items_extracted": 2,
+            "total_structured_items": 10
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-06-12T18:58:35.068670",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted data provides a good foundation for GHGI research in Poland, particularly for the stationary energy sector. Multiple sources from the Polish Statistical Office (stat.gov.pl) and other official bodies (URE, ARE) offer national-level data on fuel and energy consumption, including natural gas, heating oil, and district heating. While specific Kraków-level data was not found, the national data is highly relevant for GHGI purposes. The credibility of the sources is high, as they are official government or reputable research institutions. Completeness is medium, as direct CO2 emissions for residential natural gas consumption are not explicitly stated, but activity data for fuel consumption is available, from which emissions can be calculated using appropriate emission factors.",
+            "reasoning": "Sufficient national-level activity data from credible government sources has been identified for the target sector and relevant emission categories. This data can be used to estimate GHGI for Poland, even without specific city-level data for Kraków. The initial search queries have been adequately addressed at the national level, which is acceptable for GHGI purposes.",
+            "final_decision_mode": true,
+            "consecutive_deep_dive_count": 1
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "Kraków residential natural gas consumption CO₂ emissions",
+            "language": "English",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Kraków household heating oil use activity data",
+            "language": "English",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Kraków district heating energy consumption statistics",
+            "language": "English",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Kraków residential biomass fuel use CH₄ N₂O",
+            "language": "English",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "City-scale residential electricity consumption Kraków",
+            "language": "English",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Poland building energy use by fuel type",
+            "language": "English",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Polska zużycie energii w budynkach mieszkalnych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Gmina Kraków emisje CO₂ z ogrzewania mieszkań gazem",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Gmina Kraków zużycie oleju opałowego w gospodarstwach domowych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Powiat Kraków zużycie energii elektrycznej w sektorze mieszkaniowym",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Powiat Kraków emisje CH₄ N₂O z kotłów węglowych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Powiat Kraków ogrzewanie sieciowe statystyki zużycia",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Województwo Małopolskie zużycie biomasy w budynkach",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Województwo Małopolskie emisje CO₂ z sektora mieszkaniowego",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Województwo Małopolskie zużycie LPG w mieszkalnictwie N₂O",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Kraków commercial electricity consumption data",
+            "language": "English",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Kraków hospital natural gas use CO₂ emissions",
+            "language": "English",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Kraków office buildings district heating demand",
+            "language": "English",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Kraków institutional fuel oil consumption CH₄",
+            "language": "English",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "City-scale service sector energy use Kraków",
+            "language": "English",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Kraków schools energy audits GHG data",
+            "language": "English",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków zużycie gazu ziemnego w biurowcach",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków emisje CO₂ z obiektów handlowych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków szpitale zużycie energii elektrycznej",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków ogrzewanie sieciowe w instytucjach publicznych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków emisje N₂O z zużycia oleju opałowego",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków zużycie energii w obiektach edukacyjnych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie bilans energetyczny sektora usługowego",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie emisje CH₄ z budynków komercyjnych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie zużycie LPG w instytucjach",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków industrial natural gas consumption CO₂",
+            "language": "English",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków manufacturing coal use activity data",
+            "language": "English",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "City-scale industrial electricity demand Kraków",
+            "language": "English",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków construction sector LPG emissions CH₄ N₂O",
+            "language": "English",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków factory energy audits GHG inventory",
+            "language": "English",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków industrial fuel oil consumption statistics",
+            "language": "English",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków zużycie węgla w zakładach produkcyjnych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków emisje CO₂ z sektora budowlanego",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków zużycie gazu w przemyśle N₂O",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków energia elektryczna w fabrykach statystyki",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków emisje CH₄ z procesów przemysłowych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków zużycie oleju opałowego w produkcji",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie zużycie LPG w przemyśle",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie emisje CO₂ CH₄ z manufaktur",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie bilans paliw przemysłowych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków power plant coal consumption CO₂",
+            "language": "English",
+            "priority": "medium",
+            "rank": 46,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków electricity generation emissions data",
+            "language": "English",
+            "priority": "medium",
+            "rank": 47,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "City-scale energy transmission losses Kraków",
+            "language": "English",
+            "priority": "medium",
+            "rank": 48,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków district heating production CH₄ N₂O",
+            "language": "English",
+            "priority": "medium",
+            "rank": 49,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków natural gas power generation stats",
+            "language": "English",
+            "priority": "medium",
+            "rank": 50,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków energy sector fuel consumption by type",
+            "language": "English",
+            "priority": "medium",
+            "rank": 51,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków zużycie węgla w elektrociepłowniach",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 52,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków emisje CO₂ z wytwarzania energii",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 53,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków straty przesyłowe energii elektrycznej",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 54,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków produkcja ciepła systemowego statystyki",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 55,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków emisje CH₄ z dystrybucji gazu",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 56,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków zużycie biomasy w energetyce N₂O",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 57,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie bilans energetyczny województwa",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 58,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie emisje CO₂ z elektrowni",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 59,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie zużycie gazu w energetyce CH₄",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 60,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków agricultural diesel consumption CO₂",
+            "language": "English",
+            "priority": "medium",
+            "rank": 61,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków farming electricity use statistics",
+            "language": "English",
+            "priority": "medium",
+            "rank": 62,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "City-scale greenhouse energy demand Kraków",
+            "language": "English",
+            "priority": "medium",
+            "rank": 63,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków agricultural LPG use emissions CH₄ N₂O",
+            "language": "English",
+            "priority": "medium",
+            "rank": 64,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków forestry machinery fuel consumption",
+            "language": "English",
+            "priority": "medium",
+            "rank": 65,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków fishing sector energy use data",
+            "language": "English",
+            "priority": "medium",
+            "rank": 66,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków zużycie oleju napędowego w rolnictwie",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 67,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków emisje CO₂ z gospodarstw rolnych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 68,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków zużycie energii elektrycznej w szklarniach",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 69,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków zużycie LPG w rolnictwie statystyki",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 70,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków emisje CH₄ z działalności leśnej",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 71,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków zużycie paliw w rybołówstwie N₂O",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 72,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie bilans energii w rolnictwie",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 73,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie emisje CO₂ CH₄ z upraw",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 74,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie zużycie gazu w gospodarstwach",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 75,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków coal storage fugitive CH₄ emissions",
+            "language": "English",
+            "priority": "medium",
+            "rank": 76,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków coal handling activity data CO₂",
+            "language": "English",
+            "priority": "medium",
+            "rank": 77,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "City-scale coal transportation losses Kraków",
+            "language": "English",
+            "priority": "medium",
+            "rank": 78,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków coal processing N₂O emissions",
+            "language": "English",
+            "priority": "medium",
+            "rank": 79,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków mining infrastructure fugitive GHG",
+            "language": "English",
+            "priority": "medium",
+            "rank": 80,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków coal terminal emissions inventory",
+            "language": "English",
+            "priority": "medium",
+            "rank": 81,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków emisje fugitywne CH₄ z magazynów węgla",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 82,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków straty przy transporcie węgla CO₂",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 83,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków przetwórstwo węgla emisje N₂O",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 84,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków obsługa węgla statystyki emisji",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 85,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków emisje fugitywne z kopalń CH₄",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 86,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków składowanie węgla dane aktywności",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 87,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie bilans emisji z węgla",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 88,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie emisje CO₂ z transportu węgla",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 89,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie przetwarzanie węgla N₂O CH₄",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 90,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków gas pipeline leaks CH₄ emissions",
+            "language": "English",
+            "priority": "medium",
+            "rank": 91,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków LNG storage fugitive N₂O",
+            "language": "English",
+            "priority": "medium",
+            "rank": 92,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "City-scale natural gas distribution losses Kraków",
+            "language": "English",
+            "priority": "medium",
+            "rank": 93,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków oil processing emissions CO₂ CH₄",
+            "language": "English",
+            "priority": "medium",
+            "rank": 94,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków compressor station GHG data",
+            "language": "English",
+            "priority": "medium",
+            "rank": 95,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kraków fuel terminal fugitive emissions",
+            "language": "English",
+            "priority": "medium",
+            "rank": 96,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków emisje fugitywne CH₄ z rurociągów",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 97,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków składowanie gazu ziemnego N₂O",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 98,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gmina Kraków dystrybucja gazu straty statystyki",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 99,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków przetwórstwo ropy emisje CO₂",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 100,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków stacje kompresorowe dane emisji",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 101,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Powiat Kraków terminale paliw emisje fugitywne CH₄",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 102,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie bilans emisji z systemów gazowych",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 103,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie przecieki ropociągów N₂O",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 104,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Województwo Małopolskie emisje CO₂ z przetwórstwa ropy",
+            "language": "Polish",
+            "priority": "medium",
+            "rank": 105,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}
