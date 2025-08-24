@@ -107,8 +107,8 @@ def test_utility_function_city_mode():
     state = create_initial_state(mode_name="hazards", which_name="heatwave", city_name="TestCity")
     assert state.target_city == "TestCity"
     assert state.target_country is None
-    assert state.target_which is None
-    assert state.prompt == "City: TestCity"
+    assert state.target_which == "heatwave"
+    assert state.prompt == "CCRA Mode: hazards, Type: heatwave, City: TestCity"
     assert state.research_mode == "city"
     
 def test_utility_function_validation():
