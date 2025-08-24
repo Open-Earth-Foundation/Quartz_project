@@ -11,27 +11,19 @@ from pathlib import Path # Added for robust path handling
 
 # Try importing Firecrawl and set flag
 try:
-    from firecrawl.firecrawl import FirecrawlApp, AsyncFirecrawlApp # type: ignore
+    from firecrawl import FirecrawlApp # type: ignore
     FIRECRAWL_AVAILABLE = True
 except ImportError:
     FIRECRAWL_AVAILABLE = False
-    # Create dummy classes for type hints if Firecrawl is not installed
-    class AsyncFirecrawlApp:
-        def __init__(self, api_key):
-            pass
-        async def search(self, *args, **kwargs):
-            raise NotImplementedError("Firecrawl is not installed")
-        # Add scrape_url method to dummy AsyncFirecrawlApp
-        async def scrape_url(self, *args, **kwargs):
-            raise NotImplementedError("Firecrawl is not installed")
-            
+    # Create dummy class for type hints if Firecrawl is not installed
     class FirecrawlApp:
         def __init__(self, api_key):
              pass
         def search(self, *args, **kwargs):
             raise NotImplementedError("Firecrawl is not installed")
-        # Add scrape_url method to dummy FirecrawlApp
         def scrape_url(self, *args, **kwargs):
+            raise NotImplementedError("Firecrawl is not installed")
+        def crawl_url(self, *args, **kwargs):
             raise NotImplementedError("Firecrawl is not installed")
 
 # Import project modules AFTER firecrawl attempt to avoid circular dependencies if utils imports config
@@ -160,7 +152,7 @@ def scrape_urls_sync(urls: List[str], state: Optional[AgentState] = None) -> Lis
             response_data = response
             if isinstance(response, dict) and 'data' in response:
                 response_data = response['data']
-            elif hasattr(response, 'data'):
+            elif response is not None and hasattr(response, 'data'):
                 response_data = response.data
                 
             # Extract content from response_data
@@ -261,7 +253,7 @@ async def scrape_urls_async(urls: List[str], state: Optional[AgentState] = None)
             response_data = response
             if isinstance(response, dict) and 'data' in response:
                 response_data = response['data']
-            elif hasattr(response, 'data'):
+            elif response is not None and hasattr(response, 'data'):
                 response_data = response.data
                 
             # Extract content from response_data
@@ -291,6 +283,12 @@ async def scrape_urls_async(urls: List[str], state: Optional[AgentState] = None)
                 logger.info(f"[Async Scrape] Successfully scraped {url_to_scrape}")
                 if agent_state and hasattr(agent_state, 'api_calls_succeeded'):
                     agent_state.api_calls_succeeded = getattr(agent_state, 'api_calls_succeeded', 0) + 1
+                
+                # Add delay to reduce rate limiting
+                scrape_delay = getattr(config, 'SCRAPE_DELAY', 2.0)
+                if scrape_delay > 0:
+                    await asyncio.sleep(scrape_delay)
+                
                 return document
             else:
                 err_msg = 'No markdown content found after scrape'

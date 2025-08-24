@@ -55,13 +55,13 @@ class TestCityFunctionality(unittest.TestCase):
     def test_agent_state_creation_city_mode(self):
         """Test that AgentState is properly created for city mode."""
         # Test city-only mode
-        state = create_initial_state(city_name=self.test_city)
+        state = create_initial_state(mode_name="hazards", which_name="heatwave", city_name=self.test_city)
         
         self.assertEqual(state.target_city, self.test_city)
         self.assertEqual(state.research_mode, "city")
         self.assertEqual(state.prompt, f"City: {self.test_city}")
         self.assertIsNone(state.target_country)
-        self.assertIsNone(state.target_sector)
+        self.assertIsNone(state.target_which)
         
         # Check metadata
         self.assertEqual(state.metadata.get("research_mode"), "city")
@@ -76,10 +76,10 @@ class TestCityFunctionality(unittest.TestCase):
     def test_agent_state_creation_city_plus_sector_mode(self):
         """Test that AgentState is properly created for city+sector mode."""
         # Test city+sector mode
-        state = create_initial_state(city_name=self.test_city, sector_name="afolu")
+        state = create_initial_state(mode_name="emissions", which_name="afolu", city_name=self.test_city)
         
         self.assertEqual(state.target_city, self.test_city)
-        self.assertEqual(state.target_sector, "afolu")
+        self.assertEqual(state.target_which, "afolu")
         self.assertEqual(state.research_mode, "city")
         self.assertEqual(state.prompt, f"City: {self.test_city}, Sector: afolu")
         self.assertIsNone(state.target_country)

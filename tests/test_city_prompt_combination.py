@@ -37,10 +37,10 @@ class TestCityPromptCombination(unittest.TestCase):
 
     def test_city_only_state_creation(self):
         """Test creating state for city-only mode."""
-        state = create_initial_state(city_name="Berlin")
+        state = create_initial_state(mode_name="hazards", which_name="heatwave", city_name="Berlin")
         
         self.assertEqual(state.target_city, "Berlin")
-        self.assertIsNone(state.target_sector)
+        self.assertIsNone(state.target_which)
         self.assertEqual(state.research_mode, "city")
         self.assertEqual(state.prompt, "City: Berlin")
         
@@ -48,14 +48,14 @@ class TestCityPromptCombination(unittest.TestCase):
         print(f"Prompt: {state.prompt}")
         print(f"Research Mode: {state.research_mode}")
         print(f"Target City: {state.target_city}")
-        print(f"Target Sector: {state.target_sector}")
+        print(f"Target Type: {state.target_which}")
 
     def test_city_plus_sector_state_creation(self):
         """Test creating state for city+sector mode."""
-        state = create_initial_state(city_name="Berlin", sector_name="stationary_energy")
+        state = create_initial_state(mode_name="emissions", which_name="stationary_energy", city_name="Berlin")
         
         self.assertEqual(state.target_city, "Berlin")
-        self.assertEqual(state.target_sector, "stationary_energy")
+        self.assertEqual(state.target_which, "stationary_energy")
         self.assertEqual(state.research_mode, "city")
         self.assertEqual(state.prompt, "City: Berlin, Sector: stationary_energy")
         
@@ -63,7 +63,7 @@ class TestCityPromptCombination(unittest.TestCase):
         print(f"Prompt: {state.prompt}")
         print(f"Research Mode: {state.research_mode}")
         print(f"Target City: {state.target_city}")
-        print(f"Target Sector: {state.target_sector}")
+        print(f"Target Type: {state.target_which}")
 
     def test_prompt_loading_logic(self):
         """Test that the correct prompts are loaded for different modes."""
@@ -88,11 +88,11 @@ class TestCityPromptCombination(unittest.TestCase):
         MockOpenAI.return_value.chat.completions.create.return_value = mock_response
         
         # Test city+sector state
-        city_sector_state = create_initial_state(city_name="Kraków", sector_name="stationary_energy")
+        city_sector_state = create_initial_state(mode_name="emissions", which_name="stationary_energy", city_name="Kraków")
         
         print(f"\n--- Testing City + Sector Prompt Combination ---")
         print(f"City: {city_sector_state.target_city}")
-        print(f"Sector: {city_sector_state.target_sector}")
+        print(f"Type: {city_sector_state.target_which}")
         print(f"Research Mode: {city_sector_state.research_mode}")
         
         # Load the actual prompts to show what would be combined
@@ -129,27 +129,27 @@ class TestCityPromptCombination(unittest.TestCase):
     def test_city_sector_validation(self):
         """Test validation rules for city+sector combinations."""
         # Valid: City only
-        state1 = create_initial_state(city_name="Warsaw")
+        state1 = create_initial_state(mode_name="hazards", which_name="heatwave", city_name="Warsaw")
         self.assertEqual(state1.research_mode, "city")
-        self.assertIsNone(state1.target_sector)
+        self.assertIsNone(state1.target_which)
         
         # Valid: City + Sector
-        state2 = create_initial_state(city_name="Warsaw", sector_name="afolu")
+        state2 = create_initial_state(mode_name="emissions", which_name="afolu", city_name="Warsaw")
         self.assertEqual(state2.research_mode, "city")
-        self.assertEqual(state2.target_sector, "afolu")
+        self.assertEqual(state2.target_which, "afolu")
         
         # Valid: Country + Sector
-        state3 = create_initial_state(country_name="Poland", sector_name="afolu")
+        state3 = create_initial_state(mode_name="emissions", which_name="afolu", country_name="Poland")
         self.assertEqual(state3.research_mode, "country")
-        self.assertEqual(state3.target_sector, "afolu")
+        self.assertEqual(state3.target_which, "afolu")
         
         # Invalid: City + Country
         with self.assertRaises(ValueError):
-            create_initial_state(city_name="Warsaw", country_name="Poland")
+            create_initial_state(mode_name="hazards", which_name="heatwave", city_name="Warsaw", country_name="Poland")
         
         # Invalid: Country without sector
         with self.assertRaises(ValueError):
-            create_initial_state(country_name="Poland")
+            create_initial_state(mode_name="hazards", which_name="heatwave", country_name="Poland")
 
     def print_cli_usage_examples(self):
         """Print usage examples for the new functionality."""

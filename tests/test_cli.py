@@ -220,7 +220,7 @@ class TestCLI(unittest.TestCase):
         # Ensure the command includes the new --sector argument
         with patch('main.run_agent', new_callable=AsyncMock) as mock_run_agent:
             # Setup mock return values
-            mock_state = create_initial_state(country_name, sector_name) # Pass sector
+            mock_state = create_initial_state(mode_name="emissions", which_name=sector_name, country_name=country_name) # Pass sector
             mock_state.metadata["next_step_after_review"] = "accept" # Simulate accept for saving
             mock_state.structured_data = [{"mock": "data"}] # Add dummy data
             mock_state.decision_log.append({"agent": "Test", "action": "mock_end"})

@@ -279,7 +279,7 @@ class TestGraphIntegration(unittest.IsolatedAsyncioTestCase):
             mock_researcher_google.side_effect = initial_research_results + deep_dive_research_results
 
             logger.info(f"TEST_DEBUG: About to run_agent. config.MAX_ITERATIONS = {config.MAX_ITERATIONS}")
-            final_state = await run_agent(country_name=self.test_country, sector_name="stationary_energy", cli_config_overrides=None)
+            final_state = await run_agent(mode_name="emissions", which_name="stationary_energy", country_name=self.test_country, cli_config_overrides=None)
 
         # --- MOVED Assertions to be FIRST --- #
         logger.info(f"TEST_DEBUG: run_agent finished. final_state.current_iteration = {final_state.current_iteration}")
@@ -461,7 +461,7 @@ class TestGraphIntegration(unittest.IsolatedAsyncioTestCase):
         mock_reviewer_openai_instance.create.side_effect = [mock_raw_review_completion, mock_structured_review_completion]
 
         # Provide a default sector for the test run
-        final_state = await run_agent(country_name=self.test_country, sector_name="stationary_energy", cli_config_overrides=None)
+        final_state = await run_agent(mode_name="emissions", which_name="stationary_energy", country_name=self.test_country, cli_config_overrides=None)
 
         logger.info(f"TEST_GRAPH_ACCEPT: final_state.current_iteration = {final_state.current_iteration}") # Added logging
         self.assertEqual(final_state.current_iteration, 1, "Graph accepted on first pass, planner runs once, iteration should be 1.")

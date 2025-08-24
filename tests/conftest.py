@@ -37,7 +37,7 @@ def sample_state():
     """Fixture providing a sample AgentState for testing."""
     from agent_state import create_initial_state
     # Provide a default country and sector for the fixture
-    return create_initial_state(country_name="Test Country Fixture", sector_name="stationary_energy")
+    return create_initial_state(mode_name="emissions", which_name="stationary_energy", country_name="Test Country Fixture")
 
 @pytest.fixture
 def api_keys_available():

@@ -61,7 +61,7 @@ class TestRawContentReviewerNode(unittest.TestCase):
     def setUp(self):
         self.test_country = "RawTestlandia"
         self.test_sector = "raw_sector"
-        self.initial_state = create_initial_state(country_name=self.test_country, sector_name=self.test_sector)
+        self.initial_state = create_initial_state(mode_name="emissions", which_name=self.test_sector, country_name=self.test_country)
         
         # Setup for raw content reviewer: needs scraped_data
         self.initial_state.scraped_data = [
@@ -177,7 +177,7 @@ class TestStructuredDataReviewerNode(unittest.TestCase):
     def setUp(self):
         self.test_country = "Testlandia"
         self.test_sector = "stationary_energy"
-        self.initial_state = create_initial_state(country_name=self.test_country, sector_name=self.test_sector)
+        self.initial_state = create_initial_state(mode_name="emissions", which_name=self.test_sector, country_name=self.test_country)
         
         mock_structured_item = StructuredDataItem(
             name="Test Data Item Structured", url="http://example.com/structured.csv", method_of_access="download",
@@ -265,7 +265,7 @@ class TestStructuredDataReviewerNode(unittest.TestCase):
     def test_structured_reviewer_final_decision_after_deep_dive(self):
         """Test that reviewer must make final decision (accept/reject) after one deep dive."""
         # Use a copy of the initial state but set consecutive_deep_dive_count to 1
-        state = create_initial_state(country_name=self.test_country, sector_name=self.test_sector)
+        state = create_initial_state(mode_name="emissions", which_name=self.test_sector, country_name=self.test_country)
         state.structured_data = self.initial_state.structured_data.copy()
         state.search_plan = self.initial_state.search_plan.copy()
         state.target_country_locode = "TL"
@@ -318,7 +318,7 @@ class TestStructuredDataReviewerNode(unittest.TestCase):
     def test_structured_reviewer_initial_review_allows_deep_dive(self):
         """Test that initial review (no deep dives yet) allows deep_dive option."""
         # Use a copy of the initial state but ensure consecutive_deep_dive_count is 0
-        state = create_initial_state(country_name=self.test_country, sector_name=self.test_sector)
+        state = create_initial_state(mode_name="emissions", which_name=self.test_sector, country_name=self.test_country)
         state.structured_data = self.initial_state.structured_data.copy()
         state.search_plan = self.initial_state.search_plan.copy()
         state.target_country_locode = "TL"

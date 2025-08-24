@@ -18,8 +18,8 @@ from agents.schemas import RawReviewerLLMResponse, StructuredDataItem, ReviewerL
 
 # Setup logging
 logger = logging.getLogger(__name__)
-RAW_PROMPT_FILE_PATH = os.path.join(os.path.dirname(__file__), "prompts", "agent4_reviewer.md")
-STRUCTURED_PROMPT_FILE_PATH = os.path.join(os.path.dirname(__file__), "prompts", "agent4_reviewer_structured.md")
+RAW_PROMPT_FILE_PATH = os.path.join(os.path.dirname(__file__), "prompts", "ccra_reviewer.md")
+STRUCTURED_PROMPT_FILE_PATH = os.path.join(os.path.dirname(__file__), "prompts", "ccra_reviewer_structured.md")
 STRUCTURED_REVIEWER_OUTPUT_SCHEMA_PATH = os.path.join(os.path.dirname(__file__), "prompts", "reviewer_structured_output.json")
 STRUCTURED_REVIEWER_FINAL_DECISION_SCHEMA_PATH = os.path.join(os.path.dirname(__file__), "prompts", "reviewer_structured_output_final_decision.json")
 
@@ -92,8 +92,8 @@ def reviewer_node(state: AgentState) -> AgentState:
         current_state_dict.setdefault("metadata", {})["next_step_after_review"] = "end"
         return AgentState(**current_state_dict)
 
-    target_country = state.target_country
-    target_sector = state.target_sector or "Any"
+    target_location = state.target_country or state.target_city or "Global"
+    ccra_context = f"{state.target_mode} {state.target_which}" if state.target_mode and state.target_which else "climate risk assessment"
 
     if not state.scraped_data:
         logger.info("No scraped data found to review. Skipping reviewer action, suggesting END.")
@@ -127,11 +127,13 @@ def reviewer_node(state: AgentState) -> AgentState:
         
     scraped_documents_json_str = json.dumps(scraped_documents_for_prompt, indent=2)
 
-    formatted_user_prompt = prompt_template.replace("{target_country_name}", target_country or "Unknown Country")
-    formatted_user_prompt = formatted_user_prompt.replace("{target_sector}", target_sector or "N/A")
+    formatted_user_prompt = prompt_template.replace("{target_country_name}", target_location or "Unknown Location")
+    formatted_user_prompt = formatted_user_prompt.replace("{target_sector}", ccra_context or "climate risk assessment")
+    formatted_user_prompt = formatted_user_prompt.replace("{ccra_mode}", state.target_mode or "Unknown Mode")
+    formatted_user_prompt = formatted_user_prompt.replace("{ccra_type}", state.target_which or "Unknown Type")
     formatted_user_prompt = formatted_user_prompt.replace("{scraped_documents_json}", scraped_documents_json_str)
     
-    system_prompt = "You are a helpful AI assistant designed to review documents and identify relevant information according to user instructions. Output JSON conforming to the provided schema."
+    system_prompt = f"You are a helpful AI assistant designed to review climate risk assessment documents and identify relevant {ccra_context} datasets according to user instructions. Output JSON conforming to the provided schema."
     
     llm_response_parsed: Optional[RawReviewerLLMResponse] = None
     llm_raw_output = ""
@@ -305,8 +307,9 @@ def structured_data_reviewer_node(state: AgentState) -> AgentState:
         current_state_dict.setdefault("metadata", {})["next_step_after_structured_review"] = "reject"
         return AgentState(**current_state_dict)
 
-    target_country = state.target_country
+    target_location = state.target_country or state.target_city or "Global"
     target_locode = state.target_country_locode or "N/A"
+    ccra_context = f"{state.target_mode} {state.target_which}" if state.target_mode and state.target_which else "climate risk assessment"
 
     if not state.structured_data:
         logger.info("No structured data found to review. Suggesting reject as no data is available.")
@@ -356,8 +359,11 @@ def structured_data_reviewer_node(state: AgentState) -> AgentState:
         # Specific try-except for the format call itself
         try:
             user_prompt = user_prompt_template_str.format(
-                target_country_name=target_country or "Unknown Country",
+                target_country_name=target_location or "Unknown Location",
                 target_country_locode=target_locode,
+                ccra_mode=state.target_mode or "Unknown Mode",
+                ccra_type=state.target_which or "Unknown Type",
+                ccra_context=ccra_context,
                 search_plan_snippet=search_plan_snippet_str,
                 documents_summary_json=documents_summary_json_str,
                 structured_data_json=structured_data_json_str,
@@ -383,12 +389,12 @@ def structured_data_reviewer_node(state: AgentState) -> AgentState:
         # This code path leads to the LLM call potentially being skipped if formatting fails and error is not re-raised by inner block
         # However, the inner block now re-raises, so this outer `except` might mostly catch things *before* the inner try.
 
-    system_prompt = "You are an AI assistant performing critical review of structured data for GHGI research. Output your response in the specified JSON format, adhering to the schema provided by the system."
+    system_prompt = f"You are an AI assistant performing critical review of structured data for Climate Change Risk Assessment (CCRA) research, specifically focusing on {ccra_context} datasets. Output your response in the specified JSON format, adhering to the schema provided by the system."
 
     llm_response_parsed: Optional[ReviewerLLMResponse] = None
     llm_raw_output = ""
 
-    logger.info(f"Sending structured data review request to {config.STRUCTURED_MODEL} for {target_country or 'data'}. Final decision mode: {is_final_decision}")
+    logger.info(f"Sending structured data review request to {config.STRUCTURED_MODEL} for {ccra_context} in {target_location}. Final decision mode: {is_final_decision}")
 
     try:
         client = OpenAI(base_url=config.OPENROUTER_BASE_URL, api_key=config.OPENROUTER_API_KEY)
@@ -508,21 +514,23 @@ if __name__ == '__main__':
     logger.info("Testing reviewer_node basic execution...")
 
     test_country_main = "Testlandia"
-    test_sector_main = "waste"
-    initial_state_test = create_initial_state(country_name=test_country_main, sector_name=test_sector_main)
+    test_mode_main = "hazards"
+    test_type_main = "heatwave"
+    initial_state_test = create_initial_state(country_name=test_country_main, mode_name=test_mode_main, which_name=test_type_main)
     
     mock_structured_item = StructuredDataItem(
-        name="Test Dataset Alpha", url="http://example.com/test_alpha.pdf", method_of_access="download",
-        sector="Energy", subsector="Electricity Generation", data_format="PDF",
-        description="A test dataset about energy in Testlandia.",
-        granularity="National", status="new", country=test_country_main, country_locode="TL",
-        year=[2022, 2023], value="1000 TWh", unit="TWh",
+        name="Test Heatwave Dataset Alpha", url="http://example.com/test_alpha.pdf", method_of_access="download",
+        ccra_mode="hazards", ccra_type="heatwave", data_format="PDF",
+        description="A test dataset about heatwave hazards in Testlandia.",
+        spatial_resolution="National", temporal_coverage="2020-2023", status="new",
+        country=test_country_main, country_locode="TL",
+        value="Temperature data 35-45°C",
         confidence_score=None,
         raw_text_snippet=None
     )
     initial_state_test.structured_data = [mock_structured_item.model_dump()]
     initial_state_test.search_plan = [
-        {"query": "Testlandia energy stats", "priority": "high", "target_type": "statistics"}
+        {"query": "Testlandia heatwave climate data", "priority": "high", "target_type": "climate_data"}
     ]
     initial_state_test.scraped_data = [
         {"url": "http://example.com/test_alpha.pdf", "status": "scraped_success", 

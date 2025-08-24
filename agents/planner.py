@@ -1,5 +1,5 @@
 """
-Agent 1: Query Formulation & Strategic Planner
+CCRA Planner Agent: Query Formulation & Strategic Planner for Climate Risk Assessment
 """
 import logging
 import os
@@ -44,7 +44,7 @@ PROMPT_DIR = Path(__file__).parent / "prompts"
 
 async def planner_node(state: AgentState) -> AgentState:
     """Generates a research plan based on the initial prompt and country context."""
-    logger.info(f"PLANNER_NODE: Entered. Current iteration: {state.current_iteration}, Target Country: {state.target_country}, Sector: {state.target_sector}")
+    logger.info(f"PLANNER_NODE: Entered. Current iteration: {state.current_iteration}, CCRA Mode: {state.target_mode}, Type: {state.target_which}, Geographic Scope: {state.research_mode}")
     # REMOVED check for PLANNER_PROMPT_TEMPLATE
 
     # --- MODIFIED: Increment iteration count on a dictionary copy that will be used throughout --- #
@@ -56,7 +56,7 @@ async def planner_node(state: AgentState) -> AgentState:
     current_state_dict["consecutive_deep_dive_count"] = 0
     logger.info("Resetting consecutive_deep_dive_count to 0 since planner node is being called (non-deep_dive action)")
 
-    logger.info(f"Starting iteration {current_state_dict['current_iteration']} for sector {state.target_sector}...")
+    logger.info(f"Starting iteration {current_state_dict['current_iteration']} for CCRA mode {state.target_mode}, type {state.target_which}...")
 
     if not OPENAI_AVAILABLE or not config.OPENROUTER_API_KEY:
         msg = "OpenAI library not installed." if not OPENAI_AVAILABLE else "OpenRouter API key not configured."
@@ -65,63 +65,50 @@ async def planner_node(state: AgentState) -> AgentState:
         if not OPENAI_AVAILABLE:
             current_search_plan = list(current_state_dict.get("search_plan", []))
             current_search_plan.append(
-                {"query": f"{state.target_country} GHGI data", "language": "en", "priority": "high", "status": "pending", "target_type": "generic_fallback_no_openai"}
+                {"query": f"{state.target_mode} {state.target_which} climate data", "language": "en", "priority": "high", "status": "pending", "target_type": "generic_fallback_no_openai"}
             )
             current_state_dict["search_plan"] = current_search_plan
         return AgentState(**current_state_dict)
 
-    # --- Load Planner Prompt based on Mode and Sector --- #
-    research_mode = state.metadata.get("research_mode", "country")
+    # --- Load CCRA Planner Prompt based on Mode and Type --- #
+    research_mode = state.metadata.get("research_mode", "global")
     
-    if research_mode == "city":
-        # City mode - use city-specific prompt, or city+sector combined prompt
-        if not state.target_city:
-            logger.error("City mode specified but target_city is not set. Aborting planner.")
-            current_state_dict["decision_log"].append({"agent": "Planner", "action": "error_early_exit", "message": "City mode specified but target_city not set."})
-            return AgentState(**current_state_dict)
-        
-        # Select appropriate prompt file based on whether sector is specified
-        if state.target_sector:
-            # Use sector-specific city prompt: {sector}_city.md
-            city_sector_prompt_path = PROMPT_DIR / f"{state.target_sector.lower()}_city.md"
-            if city_sector_prompt_path.exists():
-                base_prompt_path = city_sector_prompt_path
-                logger.info(f"Using city+sector specific prompt: {base_prompt_path}")
-            else:
-                # Fallback to generic city prompt
-                base_prompt_path = PROMPT_DIR / "agent1_planner_city.md"
-                logger.info(f"City+sector prompt not found, using generic city prompt: {base_prompt_path}")
-                logger.warning(f"Consider creating {city_sector_prompt_path} for better city+sector integration")
-        else:
-            # City-only mode
-            base_prompt_path = PROMPT_DIR / "agent1_planner_city.md"
-            logger.info(f"Using city-only prompt: {base_prompt_path}")
-        
-        placeholder = "{city_name_from_AgentState}"
-        target_name = state.target_city
-        
-    else:
-        # Country mode - existing logic
-        sector = state.target_sector.lower() if state.target_sector else ""
-        if not sector:
-            logger.error("Target sector is not specified. Cannot determine planner prompt. Aborting planner.")
-            current_state_dict["decision_log"].append({"agent": "Planner", "action": "error_early_exit", "message": "Target sector not specified."})
-            return AgentState(**current_state_dict)
+    # Validate CCRA parameters
+    if not state.target_mode or not state.target_which:
+        logger.error("CCRA mode or type is not specified. Cannot determine planner prompt. Aborting planner.")
+        current_state_dict["decision_log"].append({"agent": "Planner", "action": "error_early_exit", "message": "CCRA mode or type not specified."})
+        return AgentState(**current_state_dict)
 
-        # Check if English-only mode is enabled
-        english_only_mode = state.metadata.get("english_only_mode", False)
-        
-        if english_only_mode:
-            # Use the English-only version of the planner prompt
-            base_prompt_path = PROMPT_DIR / "agent1_planner_english.md"
-            logger.info(f"Using English-only planner prompt: {base_prompt_path}")
-        else:
-            # Use the sector-specific prompt (original behavior)
-            base_prompt_path = PROMPT_DIR / f"{sector}.md"
-            logger.info(f"Using sector-specific planner prompt: {base_prompt_path}")
-        
-        placeholder = "{country_name_from_AgentState}"
-        target_name = state.target_country
+    # Try to find specific CCRA prompt first, then fall back to generic
+    ccra_mode = state.target_mode.lower()
+    ccra_type = state.target_which.lower()
+    
+    # Try mode_type specific prompt first (e.g., hazards_heatwave.md)
+    specific_prompt_path = PROMPT_DIR / f"{ccra_mode}_{ccra_type}.md"
+    
+    if specific_prompt_path.exists():
+        base_prompt_path = specific_prompt_path
+        logger.info(f"Using specific CCRA prompt: {base_prompt_path}")
+    else:
+        # Fall back to generic CCRA planner prompt
+        base_prompt_path = PROMPT_DIR / "ccra_planner.md"
+        logger.info(f"Specific CCRA prompt not found, using generic CCRA planner: {base_prompt_path}")
+        logger.info(f"Consider creating {specific_prompt_path} for better {ccra_mode}+{ccra_type} integration")
+    
+    # Set up placeholders based on research mode
+    placeholders = {
+        "{ccra_mode_from_AgentState}": state.target_mode,
+        "{ccra_type_from_AgentState}": state.target_which,
+        "{geographic_scope_from_AgentState}": research_mode.title(),
+        "{target_location_from_AgentState}": ""
+    }
+    
+    if research_mode == "city" and state.target_city:
+        placeholders["{target_location_from_AgentState}"] = state.target_city
+    elif research_mode == "country" and state.target_country:
+        placeholders["{target_location_from_AgentState}"] = state.target_country
+    else:
+        placeholders["{target_location_from_AgentState}"] = "Global"
     
     prompt_template = "" # Initialize prompt_template
 
@@ -136,26 +123,24 @@ async def planner_node(state: AgentState) -> AgentState:
         # Return state, decision log will be updated in the next check
     # --- END Load Prompt --- #
 
-    if not target_name or not prompt_template:
-        msg = f"Target {research_mode} missing." if not target_name else "Failed to load prompt template."
+    if not prompt_template:
+        msg = "Failed to load prompt template."
         logger.error(f"{msg} Aborting planner.")
         current_state_dict["decision_log"].append({"agent": "Planner", "action": "error_early_exit", "message": msg})
         return AgentState(**current_state_dict)
 
-    if placeholder not in prompt_template:
-        logger.error(f"Placeholder '{placeholder}' not found. Aborting planner.")
-        current_state_dict["decision_log"].append({"agent": "Planner", "action": "error", "message": f"Placeholder '{placeholder}' missing."})
-        return AgentState(**current_state_dict)
-
-    # --- Prompt formatting and splitting (adapt if prompts change structure) --- #
-    full_user_content = prompt_template.replace(placeholder, target_name)
+    # --- Prompt formatting with multiple placeholders --- #
+    full_user_content = prompt_template
+    for placeholder, value in placeholders.items():
+        full_user_content = full_user_content.replace(placeholder, value)
     
     # Log the complete combined prompt for debugging
     logger.info(f"=== COMBINED PROMPT DEBUG ===")
     logger.info(f"Research Mode: {research_mode}")
-    logger.info(f"Target: {target_name}")
-    logger.info(f"Sector: {state.target_sector}")
-    logger.info(f"Placeholder used: {placeholder}")
+    logger.info(f"CCRA Mode: {state.target_mode}")
+    logger.info(f"CCRA Type: {state.target_which}")
+    logger.info(f"Target Location: {placeholders['{target_location_from_AgentState}']}")
+    logger.info(f"Placeholders used: {list(placeholders.keys())}")
     logger.info(f"Prompt file used: {base_prompt_path}")
     logger.info(f"Total prompt length: {len(prompt_template)} chars")
     
@@ -167,10 +152,7 @@ async def planner_node(state: AgentState) -> AgentState:
     logger.info(f"=== END PROMPT DEBUG ===")
     
     lines = full_user_content.split('\n', 1)
-    if research_mode == "city":
-        system_msg = "You are an expert research assistant tasked with formulating a city-specific research plan for Greenhouse Gas Inventory (GHGI) data."
-    else:
-        system_msg = "You are an expert research assistant tasked with formulating a sector-specific research plan for Greenhouse Gas Inventory (GHGI) data."
+    system_msg = f"You are an expert research assistant tasked with formulating a research plan for Climate Change Risk Assessment (CCRA) {state.target_mode} datasets, specifically focusing on {state.target_which} data."
     user_content = full_user_content
     if len(lines) > 0 and "System Prompt:" in lines[0]:
         system_msg = lines[0].replace("System Prompt:", "").strip()
@@ -185,10 +167,14 @@ async def planner_node(state: AgentState) -> AgentState:
             raise ImportError("OpenAI class is not available due to import failure.")
             
         client = OpenAI(base_url=config.OPENROUTER_BASE_URL, api_key=config.OPENROUTER_API_KEY)
+        scope_desc = f"{research_mode}"
         if research_mode == "city":
-            logger.info(f"Sending initial planning prompt to {config.THINKING_MODEL} for city: {state.target_city}")
+            scope_desc += f": {state.target_city}"
+        elif research_mode == "country":
+            scope_desc += f": {state.target_country}"
         else:
-            logger.info(f"Sending initial planning prompt to {config.THINKING_MODEL} for country: {state.target_country}")
+            scope_desc = "global"
+        logger.info(f"Sending initial CCRA planning prompt to {config.THINKING_MODEL} for {state.target_mode}/{state.target_which}, scope: {scope_desc}")
         logger.debug(f"Planner User Content Snippet for THINKING_MODEL: {user_content[:200]}...")
         
         response_raw_text = client.chat.completions.create(
@@ -208,12 +194,10 @@ async def planner_node(state: AgentState) -> AgentState:
                 log_dir = os.path.join(os.getcwd(), "logs", "planner_outputs")
                 os.makedirs(log_dir, exist_ok=True)
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                if research_mode == "city":
-                    target_name_sanitized = re.sub(r'[^\w\-_]', '_', state.target_city or "UnknownCity")
-                    filename = f"planner_output_raw_city_{target_name_sanitized}_{timestamp}.md"
-                else:
-                    target_name_sanitized = re.sub(r'[^\w\-_]', '_', state.target_country or "UnknownCountry")
-                    filename = f"planner_output_raw_{target_name_sanitized}_{timestamp}.md"
+                mode_sanitized = re.sub(r'[^\w\-_]', '_', state.target_mode or "UnknownMode")
+                type_sanitized = re.sub(r'[^\w\-_]', '_', state.target_which or "UnknownType")
+                scope_sanitized = re.sub(r'[^\w\-_]', '_', research_mode or "UnknownScope")
+                filename = f"planner_output_raw_{mode_sanitized}_{type_sanitized}_{scope_sanitized}_{timestamp}.md"
                 filepath = os.path.join(log_dir, filename)
                 with open(filepath, "w", encoding="utf-8") as f:
                     f.write(llm_raw_output)
@@ -225,14 +209,15 @@ async def planner_node(state: AgentState) -> AgentState:
             logger.warning(f"{config.THINKING_MODEL} returned empty response.")
             current_state_dict["decision_log"].append({"agent": "Planner", "action": "warning", "message": f"{config.THINKING_MODEL} returned empty response."})
             current_search_plan_fallback = list(current_state_dict.get("search_plan", []))
-            if research_mode == "city":
-                current_search_plan_fallback.append(
-                    {"query": f"{state.target_city} greenhouse gas emissions data", "language": "en", "priority": "high", "status": "pending", "target_type": "fallback_generic_city"}
-                )
-            else:
-                current_search_plan_fallback.append(
-                    {"query": f"{state.target_country} greenhouse gas inventory data", "language": "en", "priority": "high", "status": "pending", "target_type": "fallback_generic"}
-                )
+            fallback_query = f"{state.target_mode} {state.target_which} climate data"
+            if research_mode == "city" and state.target_city:
+                fallback_query = f"{state.target_city} {fallback_query}"
+            elif research_mode == "country" and state.target_country:
+                fallback_query = f"{state.target_country} {fallback_query}"
+            
+            current_search_plan_fallback.append(
+                {"query": fallback_query, "language": "en", "priority": "high", "status": "pending", "target_type": f"fallback_generic_{research_mode}"}
+            )
             current_state_dict["search_plan"] = current_search_plan_fallback
             logger.info(f"PLANNER_NODE: Returning from empty LLM response. Iteration: {current_state_dict.get('current_iteration')}")
             return AgentState(**current_state_dict)
@@ -343,11 +328,12 @@ async def planner_node(state: AgentState) -> AgentState:
                 log_dir = os.path.join(os.getcwd(), "logs", "planner_outputs")
                 os.makedirs(log_dir, exist_ok=True) # Ensure directory exists
 
-                country_name_sanitized = re.sub(r'[^\w\-_]', '_', state.target_country or "UnknownCountry")
-                sector_name_sanitized = re.sub(r'[^\w\-_]', '_', state.target_sector or "General")
+                mode_sanitized = re.sub(r'[^\w\-_]', '_', state.target_mode or "UnknownMode")
+                type_sanitized = re.sub(r'[^\w\-_]', '_', state.target_which or "UnknownType")
+                scope_sanitized = re.sub(r'[^\w\-_]', '_', research_mode or "UnknownScope")
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                 
-                filename_structured = f"structured_output_{country_name_sanitized}_{sector_name_sanitized}_{timestamp}.json"
+                filename_structured = f"structured_output_{mode_sanitized}_{type_sanitized}_{scope_sanitized}_{timestamp}.json"
                 filepath_structured = os.path.join(log_dir, filename_structured)
                 with open(filepath_structured, "w", encoding="utf-8") as f:
                     f.write(structured_output_str)
@@ -355,16 +341,18 @@ async def planner_node(state: AgentState) -> AgentState:
             except Exception as e:
                 logger.error(f"Failed to save structured planner LLM output: {e}")
             
-            log_summary = f"Plan for {state.target_country} with {len(new_plan_items)} structured queries."
+            location_desc = placeholders["{target_location_from_AgentState}"]
+            log_summary = f"CCRA plan for {state.target_mode}/{state.target_which} ({location_desc}) with {len(new_plan_items)} structured queries."
             parsed_keywords_count = len(new_plan_items)
         else: 
             logger.warning(f"Failed to get structured plan from {config.STRUCTURED_MODEL}. Using fallback query.")
             current_search_plan_fallback_structured = list(current_state_dict.get("search_plan", []))
+            fallback_query = f"{state.target_mode} {state.target_which} climate data (structured fallback)"
             current_search_plan_fallback_structured.append(
-                {"query": f"{state.target_country} GHGI data (structured fallback)", "language": "en", "priority": "high", "status": "pending", "target_type": "generic_fallback"}
+                {"query": fallback_query, "language": "en", "priority": "high", "status": "pending", "target_type": "generic_fallback"}
             )
             current_state_dict["search_plan"] = current_search_plan_fallback_structured
-            log_summary = f"Fallback plan for {state.target_country} due to structured parsing error."
+            log_summary = f"Fallback CCRA plan for {state.target_mode}/{state.target_which} due to structured parsing error."
             parsed_keywords_count = 1
             primary_langs = current_state_dict.get("metadata", {}).get("primary_languages", [])
 
@@ -386,15 +374,16 @@ async def planner_node(state: AgentState) -> AgentState:
 
     except Exception as e:
         logger.error(f"Exception caught in planner_node: {type(e).__name__} - {e}", exc_info=True)
-        logger.error(f"Planner state at time of error: country={state.target_country}")
+        logger.error(f"Planner state at time of error: mode={state.target_mode}, type={state.target_which}, scope={research_mode}")
         if llm_raw_output:
             logger.error(f"LLM Output (snippet) before error: {llm_raw_output[:500]}...")
         else:
             logger.error("LLM Output (snippet) before error: Not available or call did not complete.")
 
         error_search_plan = list(current_state_dict.get("search_plan", []))
+        fallback_query = f"{state.target_mode} {state.target_which} climate data (exception fallback)"
         error_search_plan.append(
-            {"query": f"{state.target_country} greenhouse gas inventory data (exception fallback)", "language": "en", "priority": "high", "status": "pending", "target_type": "exception_fallback"}
+            {"query": fallback_query, "language": "en", "priority": "high", "status": "pending", "target_type": "exception_fallback"}
         )
         current_state_dict["search_plan"] = error_search_plan
 
@@ -412,12 +401,14 @@ if __name__ == '__main__':
     if not config.OPENROUTER_API_KEY: 
         logger.warning("OPENROUTER_API_KEY not set; mock/fallback may be used depending on OPENAI_AVAILABLE.")
     
+    test_mode = "hazards"
+    test_type = "heatwave"
     test_country = "Germany"
-    test_sector = "stationary_energy"
-    test_state = create_initial_state(country_name=test_country, sector_name=test_sector)
-    logger.info(f"Initial State: Country={test_state.target_country}, Sector={test_state.target_sector}, OPENAI_AVAILABLE={OPENAI_AVAILABLE}, STRUCTURED_MODEL={config.STRUCTURED_MODEL}")
+    test_state = create_initial_state(mode_name=test_mode, which_name=test_type, country_name=test_country)
+    logger.info(f"Initial State: Mode={test_state.target_mode}, Type={test_state.target_which}, Country={test_state.target_country}, OPENAI_AVAILABLE={OPENAI_AVAILABLE}, STRUCTURED_MODEL={config.STRUCTURED_MODEL}")
     
-    updated_state = planner_node(test_state)
+    import asyncio
+    updated_state = asyncio.run(planner_node(test_state))
     logger.info("Planner node test executed.")
 
     if updated_state:
@@ -425,7 +416,7 @@ if __name__ == '__main__':
             logger.info(f"Decision log: {json.dumps(updated_state.decision_log, indent=2)}")
         except TypeError: logger.info(f"Decision log (raw): {updated_state.decision_log}")
         
-        logger.info(f"State: Country={updated_state.target_country} ({updated_state.target_country_locode}) P-Langs: {updated_state.metadata.get('primary_languages')}")
+        logger.info(f"State: Mode={updated_state.target_mode}, Type={updated_state.target_which}, Country={updated_state.target_country} ({updated_state.target_country_locode}) P-Langs: {updated_state.metadata.get('primary_languages')}")
         logger.info(f"Search Plan Items: {len(updated_state.search_plan)}")
         
         try:

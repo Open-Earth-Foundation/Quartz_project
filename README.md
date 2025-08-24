@@ -1,157 +1,403 @@
-# LangGraph-Powered GHGI Dataset Discovery Agent
+# LangGraph-Powered CCRA Dataset Discovery Agent
 
-A sophisticated agent system for discovering and retrieving greenhouse gas inventory (GHGI) datasets from Polish government sources.
+A sophisticated multi-agent system for discovering and retrieving Climate Change Risk Assessment (CCRA) datasets from global sources. The system specializes in finding hazard, exposure, and vulnerability datasets for climate risk analysis.
+
+## Overview
+
+This agent system helps researchers and practitioners discover climate risk assessment datasets by:
+
+- **Hazards**: Climate events and phenomena (heatwaves, floods, droughts, landslides)
+- **Exposure**: Assets and systems at risk (people, buildings, infrastructure, agriculture, economy)
+- **Vulnerability**: Susceptibility factors (socioeconomic conditions)
+
+The system uses a multi-agent architecture with specialized agents for planning, research, review, extraction, and deep-dive analysis.
+
+### Current Implementation Status
+
+| Mode              | Status                   | Available Types | Implementation                               |
+| ----------------- | ------------------------ | --------------- | -------------------------------------------- |
+| **Hazards**       | ✅ Fully Implemented     | 4/4             | Individual prompts for each hazard type      |
+| **Exposure**      | ✅ Implemented           | 5/5             | Unified prompt covering all exposure types   |
+| **Vulnerability** | ⚠️ Partially Implemented | 1/5             | Only socioeconomic vulnerability implemented |
+
+**✅ Fully Working**: 4 hazard types, 5 exposure types
+**⚠️ Limited**: Only socioeconomic vulnerability
+**❌ Not Available**: Health, access_to_services, environmental_buffers, governance vulnerability types
+
+## What the System Can Do Now
+
+### 🔍 **Hazard Discovery** (4 Types Available)
+
+The system can discover comprehensive datasets for:
+
+- **Heatwaves**: Temperature extremes, heat indices (HWMId, WBGT, UTCI), heat stress indicators, climate projections
+- **Droughts**: Precipitation deficits, soil moisture, evapotranspiration, drought indices (SPI, SPEI, PDSI), water balance
+- **Floods**: Precipitation intensity, hydrological factors, soil moisture, flood inundation, flood risk components
+- **Landslides**: Geological factors, hydrological triggers, geotechnical properties, susceptibility mapping
+
+Each hazard type has specialized search strategies, data format priorities, and geographic scope optimization.
+
+### 📍 **Exposure Assessment** (5 Types Available)
+
+Comprehensive exposure analysis covering:
+
+- **People**: Population density, demographics, gridded population data
+- **Buildings**: Built-up areas, urban extent, building footprints, impervious surfaces
+- **Infrastructure**: Critical facilities, hospitals, schools, transportation networks
+- **Agriculture**: Cropland, pasture, livestock, agricultural land use
+- **Economy**: Property values, business activity, economic assets
+
+Unified system covering 15+ exposure categories with geospatial focus.
+
+### 🎯 **Vulnerability Analysis** (1 Type Available)
+
+Currently focuses on socioeconomic vulnerability:
+
+- **Socioeconomic**: Income distribution, education levels, employment patterns, housing conditions, social capital
+
+## 🔮 **Future Development Roadmap**
+
+### Planned Vulnerability Types
+
+- **Health**: Disease burden, healthcare access, health infrastructure
+- **Access to Services**: Utility access, transportation, communication networks
+- **Environmental Buffers**: Natural protection, ecosystem services, biodiversity
+- **Governance**: Institutional capacity, disaster response, policy frameworks
+
+### Potential Enhancements
+
+- **Additional Hazard Types**: Wildfire, coastal erosion, extreme precipitation
+- **Type-specific Exposure Prompts**: Individual prompts for each exposure type
+- **Multi-language Support**: Enhanced local language search capabilities
+- **Real-time Data Integration**: Live monitoring and early warning systems
+- **Risk Calculation**: Automated risk assessment combining H×E×V components
+
+## Quick Start
+
+### Basic Usage
+
+```bash
+# Activate virtual environment
+.venv\Scripts\activate  # Windows
+source .venv/bin/activate  # Linux/Mac
+
+# Search for heatwave hazard data in Germany
+python main.py --mode hazards --which heatwave --country Germany
+
+# Search for building exposure data in New York
+python main.py --mode exposure --which buildings --city "New York"
+
+# Search for socioeconomic vulnerability data globally
+python main.py --mode vulnerability --which socioeconomic
+
+# Use English-only sources
+python main.py --mode hazards --which flood --country France --english
+
+# Note: Only socioeconomic vulnerability is currently implemented
+# Other vulnerability types (health, access_to_services, etc.) are planned but not yet available
+```
+
+### CCRA Modes and Types
+
+**Hazards** (Climate events):
+
+- `heatwave`, `drought`, `flood`, `landslide`
+
+**Exposure** (Assets at risk):
+
+- `people`, `buildings`, `infrastructure`, `agriculture`, `economy`
+
+**Vulnerability** (Susceptibility factors):
+
+- ✅ `socioeconomic` - Income, education, employment, housing conditions
+- ❌ `health` - Not implemented
+- ❌ `access_to_services` - Not implemented
+- ❌ `environmental_buffers` - Not implemented
+- ❌ `governance` - Not implemented
 
 ## Project Structure
 
 ```
-automatic_research/
+Quartz_project/
 ├── .venv/                    # Python virtual environment
-├── knowledge_base/           # Static knowledge sources (data, prompts)
-├── agent_state.py            # Core state management for LangGraph
-├── config.py                 # Configuration and environment variables
-├── implementation_plan.md    # Detailed project plan with tasks
-├── requirements.txt          # Python dependencies
-├── settings.toml             # Configuration settings
-├── test_*.py                 # Various test scripts
+├── agents/                   # Multi-agent system components
+│   ├── planner.py           # Query formulation & strategic planning
+│   ├── researcher.py        # Search and data collection
+│   ├── reviewer.py          # Content quality assessment
+│   ├── extractor.py         # Structured data extraction
+│   ├── deep_diver.py        # Deep analysis and follow-up
+│   ├── schemas.py           # Data models and validation
+│   └── prompts/             # CCRA-specific prompt templates
+│       ├── hazards_drought.md      # Drought hazard discovery
+│       ├── hazards_flood.md        # Flood hazard discovery
+│       ├── hazards_heatwave.md     # Heatwave hazard discovery
+│       ├── hazards_landslide.md    # Landslide hazard discovery
+│       ├── exposure.md             # All exposure types (unified)
+│       ├── vulnerability_socioeconomic.md  # Socioeconomic vulnerability
+│       ├── ccra_planner.md         # Search planning
+│       ├── ccra_reviewer.md        # Content review
+│       └── extractor_prompt.md     # Data extraction
+├── knowledge_base/          # CCRA framework and reference data
+│   └── ccra_framework.md    # Comprehensive CCRA methodology
+├── agent_state.py           # Core state management for LangGraph
+├── config.py                # Configuration and environment variables
+├── main.py                  # CLI interface and orchestration
+├── requirements.txt         # Python dependencies
+└── settings.toml            # Configuration settings
 ```
 
-## Current Implementation Status
+## Architecture
 
-- ✅ Environment setup with Python venv
-- ✅ Configuration and API key management
-- ✅ Basic smoke tests for all dependencies (Firecrawl, LangGraph, OpenRouter)
-- ✅ AgentState definition with full fields and reducers
-- ✅ Settings management via TOML file
-- ✅ Researcher Agent with async search and prioritization of relevant domains
-- ✅ Data Extraction Agent with PDF processing and structured data output
-- ✅ Automated testing with pytest and mock objects
+### Multi-Agent Workflow
 
-## Next Steps
+1. **Planner Agent**: Generates CCRA-specific search strategies
+2. **Researcher Agent**: Executes searches and collects climate data URLs
+3. **Reviewer Agent**: Assesses content relevance and quality
+4. **Extractor Agent**: Extracts structured CCRA metadata
+5. **Deep Diver Agent**: Performs targeted follow-up searches
 
-1. Implement Agent 1 (Query Formulation & Strategic Planner)
-2. Build knowledge base YAML of Polish data sources
-3. Create prompt templates for agent interactions
-4. Implement remaining agent (Reviewer)
+### State Management
 
-## Running Tests
+The system uses a central `AgentState` dataclass that maintains:
 
-You can run all tests with a single command:
-
-```bash
-python run_tests.py
-```
-
-Or use pytest directly:
-
-```bash
-pytest tests/
-```
-
-Individual test files can also be run directly:
-
-```bash
-python tests/test_keys.py     # Test API key loading
-python tests/test_firecrawl.py # Test Firecrawl integration
-python tests/test_langgraph.py # Test LangGraph functionality
-python tests/test_openrouter.py # Test OpenRouter/LLM access
-python tests/test_state.py     # Test state management
-```
+- CCRA mode and type context
+- Geographic scope (global, country, city)
+- Search plans and discovered URLs
+- Extracted climate dataset metadata
+- Decision logs and confidence scores
 
 ## Configuration
 
-Configuration is managed through:
+### Environment Setup
 
-1. `.env` file - API keys and credentials
-2. `settings.toml` - Application settings
-3. `config.py` - Runtime configuration management
+1. **Create `.env` file** with API keys:
 
-## State Management
+```bash
+OPENROUTER_API_KEY=your_openrouter_key_here
+GOOGLE_API_KEY=your_google_api_key_here
+GOOGLE_CSE_ID=your_custom_search_engine_id
+```
 
-The agent system uses a central `AgentState` dataclass for maintaining context and information. This state is passed between agents and includes:
+2. **Install dependencies**:
 
-- User's original query (prompt)
-- Search plans and strategies
-- URLs discovered during research
-- Document content and extracted data
+```bash
+pip install -r requirements.txt
+```
+
+3. **Configure settings** in `settings.toml`:
+
+```toml
+[general]
+app_name = "CCRA Dataset Discovery Agent"
+version = "2.0.0"
+
+[models]
+thinking_model = "deepseek/deepseek-r1-0528:free"
+structured_model = "google/gemini-2.5-flash-preview-05-20"
+
+[search]
+max_results_per_query = 10
+max_google_queries_per_run = 50
+```
+
+## CLI Reference
+
+### Required Parameters
+
+- `--mode`: CCRA component (`hazards`, `exposure`, `vulnerability`)
+- `--which`: Specific type within the mode
+
+### Optional Parameters
+
+- `--country`: Target country for country-specific datasets
+- `--city`: Target city for city-specific datasets
+- `--english`: Use English-only search mode
+- `--log-level`: Set logging level (`DEBUG`, `INFO`, `WARNING`, `ERROR`)
+- `--max-iterations`: Override maximum iterations
+
+### Examples
+
+```bash
+# Comprehensive heatwave analysis for Germany
+python main.py --mode hazards --which heatwave --country Germany --log-level DEBUG
+
+# Global drought hazard datasets
+python main.py --mode hazards --which drought
+
+# Urban building exposure in London
+python main.py --mode exposure --which buildings --city London
+
+# Note: Only socioeconomic vulnerability is currently available
+# python main.py --mode vulnerability --which health --country Japan --english  # Not implemented
+
+# Quick test run (1 iteration only)
+python main.py --mode hazards --which flood --country Netherlands --max-iterations 1
+```
+
+## CCRA Framework
+
+The system implements a comprehensive Climate Change Risk Assessment framework:
+
+**Risk = Hazard × Exposure × Vulnerability**
+
+### Hazards
+
+Climate events and phenomena that can cause harm:
+
+- **Temperature extremes**: Heatwaves, cold spells
+- **Precipitation extremes**: Floods, droughts, extreme precipitation
+- **Wind events**: Windstorms, tropical cyclones
+- **Compound events**: Multi-hazard scenarios
+
+### Exposure
+
+Assets, systems, and populations at risk:
+
+- **Human systems**: Population, communities, settlements
+- **Built environment**: Buildings, infrastructure, transportation
+- **Natural systems**: Ecosystems, agriculture, water resources
+- **Economic systems**: GDP, economic activities, supply chains
+
+### Vulnerability
+
+Susceptibility and adaptive capacity factors:
+
+- **Social vulnerability**: Demographics, income, education
+- **Health vulnerability**: Disease burden, healthcare access
+- **Institutional vulnerability**: Governance, planning capacity
+- **Environmental vulnerability**: Ecosystem degradation, resource availability
+
+## Output and Results
+
+### Structured Data Schema
+
+The system extracts climate datasets with standardized metadata:
+
+```json
+{
+  "name": "European Heat Risk Atlas",
+  "url": "https://example.com/heat-atlas",
+  "ccra_mode": "hazards",
+  "ccra_type": "heatwave",
+  "spatial_resolution": "1km grid",
+  "temporal_coverage": "1981-2020",
+  "climate_scenario": "RCP4.5, RCP8.5",
+  "data_format": "NetCDF",
+  "description": "High-resolution heat stress indicators for Europe",
+  "country": "Germany"
+}
+```
+
+### Result Files
+
+Results are saved in the `runs/` directory:
+
+- `results_hazards_heatwave_Germany_YYYYMMDD_HHMMSS.json`
+- Structured metadata for discovered datasets
 - Decision logs and confidence scores
-
-## Components
-
-### Researcher Agent
-
-The Researcher Agent (Phase 5) handles iterative research and retrieval:
-
-- Performs broad searches based on the user's query
-- Prioritizes promising sources (gov.pl domains, KOBIZE, etc.)
-- Implements adaptive search strategies when initial results are poor
-- Uses specialized scraping methods for JS-heavy pages and documents
-- Enriches the agent state with discovered URLs and document content
-
-### Data Extraction Agent
-
-The Data Extraction Agent (Phase 6) processes and structures data:
-
-- Extracts text from various document formats (PDF, HTML)
-- Parses tables and structured data from documents
-- Organizes information according to the GHGI sector schema
-- Uses LLMs for intelligent extraction of key data points
-- Produces standardized JSON outputs with consistent schema
+- Search strategies and URLs processed
 
 ## Testing
 
-This project includes both unit tests (with mocks) and integration tests (with real API calls).
-
-### Running Unit Tests
-
-Unit tests use mocks and stubs to avoid external API calls:
+### Running Tests
 
 ```bash
-# Run all unit tests (excluding integration tests)
-python -m pytest -m "not integration"
-
-# Run specific test files
-python -m pytest tests/test_deep_diver.py -m "not integration"
-python -m pytest tests/test_researcher.py -m "not integration"
-```
-
-### Running Integration Tests
-
-Integration tests make real API calls with strict safety limits:
-
-- **Crawl tests**: Limited to 2 pages maximum
-- **Scrape tests**: Limited to 1 URL per test
-- **Timeout**: 1 minute maximum per test
-
-```bash
-# Set required environment variables
-export FIRECRAWL_API_KEY="your_key_here"  # Required for integration tests
-export OPENROUTER_API_KEY="your_key_here"  # Required for LLM tests (optional for some)
-
-# Run integration tests only
-python -m pytest -m integration
-
-# Run specific integration test
-python -m pytest tests/test_deep_diver.py::test_deep_diver_real_crawl_safety_limits -m integration
-```
-
-**Integration Test Safety Features:**
-
-- 🔒 **Hard limits**: Never exceeds 2 pages for crawl tests, 1 URL for scrape tests
-- ⏱️ **Timeouts**: 1-minute maximum per crawl operation
-- 🎯 **Safe targets**: Uses httpbin.org for testing (safe, lightweight)
-- 🚫 **Exclusions**: Automatically excludes heavy sections (admin, docs, status endpoints)
-- ⚡ **Quick skip**: Automatically skips if API keys not available
-
-### Running All Tests
-
-```bash
-# Run everything (unit + integration)
+# Run all tests
 python -m pytest
 
-# Run with verbose output
-python -m pytest -v
+# Run unit tests only (no API calls)
+python -m pytest -m "not integration"
 
-# Run with coverage
-python -m pytest --cov=agents
+# Run integration tests (requires API keys)
+python -m pytest -m integration
+
+# Test specific components
+python -m pytest tests/test_planner.py
+python -m pytest tests/test_researcher.py
+```
+
+### Test Categories
+
+- **Unit tests**: Mock-based testing of agent logic
+- **Integration tests**: Real API calls with safety limits
+- **CLI tests**: Command-line interface validation
+- **CCRA tests**: Framework-specific functionality
+
+## Development
+
+### Adding New CCRA Types
+
+To implement missing vulnerability types or new hazard types:
+
+1. **Create prompt template** in `agents/prompts/` (follow existing pattern)
+2. **Update main.py** hazard_types/exposure_types/vulnerability_types lists
+3. **Update README.md** to reflect new capabilities
+4. **Add tests** in `tests/` directory
+
+**Current Priority**: Implement missing vulnerability types (health, access_to_services, environmental_buffers, governance)
+
+### Extending Geographic Scope
+
+The system supports multiple geographic scopes:
+
+- **Global**: Worldwide datasets and indicators
+- **Country**: National-level climate data
+- **City**: Urban-specific risk assessments
+
+### Custom Models
+
+Configure different LLM models in `settings.toml`:
+
+- `thinking_model`: For reasoning and planning
+- `structured_model`: For data extraction
+- `relevance_check_model`: For content filtering
+
+## Troubleshooting
+
+### Common Issues
+
+1. **API Key Errors**: Ensure `.env` file contains valid keys
+2. **Model Not Found**: Check model availability on OpenRouter
+3. **No Results**: Try broader search terms or different geographic scope
+4. **Rate Limits**: Reduce `max_google_queries_per_run` in settings
+
+### Debug Mode
+
+Enable detailed logging:
+
+```bash
+python main.py --mode hazards --which heatwave --country Germany --log-level DEBUG
+```
+
+### Log Files
+
+Logs are saved in `logs/` directory:
+
+- `ccra_agent_YYYYMMDD_HHMMSS.log`: Main application log
+- `planner_outputs/`: LLM planning responses
+- `researcher_outputs/`: Search and scraping results
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Update documentation
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Citation
+
+If you use this system in your research, please cite:
+
+```bibtex
+@software{ccra_discovery_agent,
+  title={CCRA Dataset Discovery Agent},
+  author={Climate Risk Research Team},
+  year={2025},
+  url={https://github.com/your-org/ccra-discovery-agent}
+}
 ```

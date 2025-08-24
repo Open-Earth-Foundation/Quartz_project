@@ -33,7 +33,7 @@ def load_toml_settings(settings_file: str = DEFAULT_SETTINGS_FILE) -> Dict[str, 
 _toml_settings = load_toml_settings()
 
 # --- General Settings --- 
-APP_NAME: str = _toml_settings.get("general", {}).get("app_name", "GHGI Dataset Discovery Agent")
+APP_NAME: str = _toml_settings.get("general", {}).get("app_name", "CCRA Dataset Discovery Agent")
 APP_VERSION: str = _toml_settings.get("general", {}).get("version", "2.0.0")
 
 # --- Search Settings --- 
@@ -47,16 +47,16 @@ MAX_GOOGLE_QUERIES_PER_RUN: int = int(_toml_settings.get("search", {}).get("max_
 # --- Model Settings --- 
 THINKING_MODEL: str = _toml_settings.get("models", {}).get("thinking_model", "deepseek/deepseek-r1-0528:free")
 NORMAL_MODEL: str = _toml_settings.get("models", {}).get("normal_model", "deepseek/deepseek-r1-0528:free")
-STRUCTURED_MODEL: str = _toml_settings.get("models", {}).get("structured_model", "google/gemini-2.5-flash-preview-05-20")
-STRUCTURED_MODEL_THINKING: str = _toml_settings.get("models", {}).get("structured_model_for_review", "google/gemini-2.5-flash-preview-05-20:thinking")
-RELEVANCE_CHECK_MODEL: Optional[str] = _toml_settings.get("models", {}).get("relevance_check_model", "google/gemini-2.5-flash-preview-05-20:thinking")
+STRUCTURED_MODEL: str = _toml_settings.get("models", {}).get("structured_model", "deepseek/deepseek-r1-0528:free")
+STRUCTURED_MODEL_THINKING: str = _toml_settings.get("models", {}).get("structured_model_for_review", "deepseek/deepseek-r1-0528:free")
+RELEVANCE_CHECK_MODEL: Optional[str] = _toml_settings.get("models", {}).get("relevance_check_model", "deepseek/deepseek-r1-0528:free")
 DEFAULT_TEMPERATURE: float = _toml_settings.get("models", {}).get("default_temperature", 0.2)
 MAX_TOKENS: int = _toml_settings.get("models", {}).get("max_tokens", 100000)
 
 # --- OpenRouter API specific configuration (still from .env for base URL, but could be toml) ---
 OPENROUTER_BASE_URL: str = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1") 
 HTTP_REFERER: str = os.getenv("HTTP_REFERER", "https://github.com/automatic_research")
-SITE_NAME: str = os.getenv("SITE_NAME", "GHGI Dataset Discovery Agent")
+SITE_NAME: str = os.getenv("SITE_NAME", "CCRA Dataset Discovery Agent")
 
 # --- Retry Settings --- 
 MAX_RETRY_ATTEMPTS: int = _toml_settings.get("retry", {}).get("max_attempts", 3)
@@ -65,6 +65,7 @@ MAX_RETRY_DELAY: float = _toml_settings.get("retry", {}).get("max_delay", 60.0)
 
 # --- Scraping Settings ---
 CONCURRENT_SCRAPE_LIMIT: int = _toml_settings.get("scraping", {}).get("concurrent_scrape_limit", 4)
+SCRAPE_DELAY: float = _toml_settings.get("scraping", {}).get("scrape_delay", 2.0)
 
 # --- Agent Settings --- 
 MAX_ITERATIONS: int = _toml_settings.get("agent", {}).get("max_iterations", 10)

@@ -1,0 +1,796 @@
+{
+    "research_mode": "country",
+    "target_country": "Germany",
+    "target_country_locode": "DE",
+    "target_mode": "hazards",
+    "target_which": "heatwave",
+    "target_city": null,
+    "start_time": "2025-08-20T00:01:59.904180",
+    "end_time": "2025-08-20T00:08:40.984752",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 4,
+    "structured_data": [
+        {
+            "name": "CCKP Geospatial Data (NetCDF files)",
+            "method_of_access": "Downloadable NetCDF files via AWS Registry of Open Data or directly through CCKP interface; API access for spatially aggregated data",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "data_format": "NetCDF, Excel, API",
+            "description": "The World Bank Climate Change Knowledge Portal (CCKP) offers spatially aggregated climate data for land at country, subnational, and watershed levels, and ocean data for EEZs and ocean basins. Geospatial data is available as global gridded NetCDF files. The data can be accessed via AWS or directly from CCKP. It includes variables like tas, tasmax, tasmin, txx, tnn, with various aggregation periods, statistics, and time periods. The portal is cited as World Bank, Climate Change Knowledge Portal (2025).",
+            "spatial_resolution": "Global gridded (e.g., CMIP6-x0.25, cru-x0.5, era5-x0.25, pop-x1), country or territory level, subnational first level, watershed level, Exclusive Economic Zones (EEZs), ocean basins.",
+            "temporal_coverage": "Examples include 1950-2014, 2015-2100, 2020-2039 for time periods; annual, seasonal, monthly for aggregation periods.",
+            "climate_scenario": "Examples include ensemble-all-historical, access-cm2-r1i1p1f1-historical, access-cm2-r1i1p1f1-ssp126, ensemble-all-ssp126.",
+            "url": "https://climateknowledgeportal.worldbank.org/download-data",
+            "country": "Germany",
+            "country_locode": "DE"
+        },
+        {
+            "name": "GDO DCHP (Green Data Oasis – Downscaled Climate and Hydrology Projections)",
+            "method_of_access": "Web interface query, FTP link sent to requestor for data retrieval",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "data_format": "ASCII/CSV, netCDF",
+            "description": "Download tool providing access to point and area-averaged data from multiple downscaled CMIP5 datasets (LOCA, BCCAv2, BCSD) for climate and hydrology variables. Provided by Lawrence Livermore National Laboratory (LLNL), Reclamation, U.S. Army Corps of Engineers, and partners. Data retrieval can have a lag time of minutes to hours.",
+            "spatial_resolution": "Point and area-averaged data, selection of areas (watershed of any scale, rectangular area)",
+            "temporal_coverage": "Daily data (LOCA), no monthly-averaged option for daily datasets mentioned for CMIP5. Release of LOCA2 (CMIP6) pending as of July 2025.",
+            "climate_scenario": "CMIP5: RCP4.5, 8.5 (LOCA climate/hydrology); RCP2.6, 4.5, 6.0, 8.5 (BCSD climate/hydrology, BCCAv2 climate)",
+            "url": "https://www.agci.org/projects/climate-portal-guide/portals-for-downloading",
+            "country": "Germany",
+            "country_locode": "DE"
+        },
+        {
+            "name": "Klimadaten zum direkten Download (Climate Data Center - CDC)",
+            "method_of_access": "Direct download via FTP/HTTPS from CDC-OpenData area",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "data_format": "ZIP (containing data and metadata)",
+            "description": "Free access to various climate data from the Climate Data Center (CDC) of the German Weather Service (Deutscher Wetterdienst - DWD). It primarily contains measured parameters and derived datasets for the past, updated in many cases up to the previous day. Includes historical and current meteorological data for numerous parameters like air temperature, humidity, soil temperature, precipitation, pressure, wind speed/direction, visibility, solar radiation, sunshine duration, and cloud cover.",
+            "spatial_resolution": "Station-level data for Germany (approx. 400 active climate stations), also includes raster fields for Germany and Europe, and regional averages for German states and Germany as a whole.",
+            "temporal_coverage": "10-minute, hourly, daily, monthly, and multi-year averages (e.g., 1961-1990, 1971-2000, 1981-2010). Data is updated in many cases up to the previous day.",
+            "url": "https://www.dwd.de/DE/leistungen/cdc/cdc_ueberblick-klimadaten.html",
+            "country": "Germany",
+            "country_locode": "DE"
+        },
+        {
+            "name": "Aktuelle Lage der Gasversorgung in Deutschland",
+            "method_of_access": "Web interface with interactive graphics and daily data updates",
+            "data_format": "Interactive graphics, implied underlying data in a structured format (e.g., CSV, database) for daily updates",
+            "description": "The Bundesnetzagentur publishes an assessment of the gas supply situation in Germany. It also provides key data on gas flows, storage levels, gas consumption, and price development as interactive graphics. The data is updated daily.",
+            "spatial_resolution": "National (Germany)",
+            "temporal_coverage": "Daily data, with last updates mentioned as 19.08.2025",
+            "url": "https://www.bundesnetzagentur.de/DE/Gasversorgung/aktuelle_gasversorgung/start.html",
+            "country": "Germany",
+            "country_locode": "DE",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "hazards",
+            "which": "heatwave",
+            "country": "Germany",
+            "research_mode": "country",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for hazards/heatwave (Germany) with 75 structured queries.",
+            "target_country_locode": "DE",
+            "primary_languages": [
+                "en",
+                "de"
+            ],
+            "parsed_keywords_count": 75,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Germany daily maximum temperature time series data",
+                "German temperature percentiles 90th 95th 99th data",
+                "Absolute maximum temperatures Germany historical data",
+                "Temperature anomalies Germany baseline 1981-2010",
+                "Gridded Tmax data Germany NetCDF",
+                "Extreme heat events Germany observational data",
+                "Deutschland tägliche Höchsttemperatur Zeitreihen Daten",
+                "Deutsche Temperatur Perzentile 90. 95. 99. Daten",
+                "Absolute Maximaltemperaturen Deutschland historische Daten",
+                "Temperaturanomalien Deutschland Basislinie 1981-2010"
+            ],
+            "urls_collected": 91,
+            "relevant_urls_for_scraping": 4,
+            "new_data_items": 4
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-08-20T00:05:30.289413",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 3,
+            "summary": "Reviewed 4 documents. The World Bank Climate Change Knowledge Portal and the AGCI Climate Portal Guide are highly promising as they explicitly mention data catalogs, download options for climate projections (including temperature variables relevant to heatwaves), and authoritative sources. The DWD (German Weather Service) site is also very relevant for historical climate data, especially for Germany. The Bundesnetzagentur document is irrelevant as it focuses on gas supply, not climate data.",
+            "reasoning": "Identified multiple credible sources that offer direct access to climate data, including temperature variables and climate projections, which are crucial for heatwave hazard assessment. The World Bank and AGCI portals provide access to global and regional climate model data, while DWD offers historical data for Germany. The gas supply document was irrelevant."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 4,
+            "new_data_items_extracted": 4,
+            "total_structured_items": 4
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-08-20T00:05:44.850952",
+            "action": "structured_review_completed",
+            "suggested_action": "deep_dive",
+            "overall_confidence": "High",
+            "summary": "The extracted data includes highly relevant sources for heatwave hazard assessment in Germany. The World Bank CCKP and DWD's CDC are particularly strong candidates, offering historical and projected temperature data at appropriate spatial and temporal resolutions. The GDO DCHP also provides relevant downscaled climate data. The Bundesnetzagentur data is irrelevant for heatwave hazards.",
+            "reasoning": "The identified sources (CCKP, DWD CDC, GDO DCHP) are highly relevant and credible for heatwave hazard assessment in Germany. However, a 'deep_dive' is necessary to confirm the direct availability of heatwave-specific indices (like percentile-based thresholds) or to understand the exact process for deriving them from the available temperature time series data. This will ensure the most efficient data acquisition for the next steps of the CCRA.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        },
+        {
+            "agent": "DeepDiveProcessor",
+            "action": "scrape",
+            "target": "https://climateknowledgeportal.worldbank.org/country/germany/climate-data-historical",
+            "justification": "This URL directly navigates to the historical climate data section for Germany within the World Bank Climate Knowledge Portal, which is the most likely place to find daily maximum temperature time series data or pre-calculated indices for Germany. This aligns with the request to find data for Germany.",
+            "refinement_details_processed": "Investigate the World Bank CCKP and DWD CDC portals more deeply to identify if pre-calculated heatwave indices or percentile-based temperature thresholds for Germany are directly available. If not, confirm the ease of downloading daily maximum temperature time series data at a suitable resolution to calculate these indices. Specifically, look for data that supports the calculation of 90th, 95th, and 99th percentiles of daily maximum temperature for Germany.",
+            "actions_this_cycle": 1,
+            "current_websites_considered": "www.dwd.de, www.bundesnetzagentur.de, www.agci.org, climateknowledgeportal.worldbank.org",
+            "timestamp": "2025-08-20T00:05:48.392524"
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Gitterdaten Tmax Deutschland NetCDF",
+                "Extreme Hitzeereignisse Deutschland Beobachtungsdaten",
+                "Hitzetage Deutschland Daten DWD",
+                "Temperaturrekorde Deutschland Klimadaten",
+                "Deutschland Hitzewellen Temperaturdaten",
+                "Heat Wave Magnitude Index Germany data",
+                "Warm Spell Duration Index Germany WSDI data",
+                "Germany heat wave frequency duration data",
+                "Consecutive hot days count Germany dataset",
+                "Heat wave indices Germany historical projections"
+            ],
+            "urls_collected": 90,
+            "relevant_urls_for_scraping": 0,
+            "new_data_items": 0
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-08-20T00:08:34.402071",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 3,
+            "summary": "Reviewed 4 documents. The World Bank Climate Change Knowledge Portal and the AGCI Climate Portal Guide are highly promising as they explicitly offer access to climate projection data, including temperature variables relevant to heatwaves. The DWD (German Weather Service) site is also very relevant for historical climate data for Germany. The Bundesnetzagentur document is irrelevant as it focuses on gas supply, not climate data.",
+            "reasoning": "Identified multiple authoritative sources that provide direct access to climate data, including temperature variables and projections, which are crucial for heatwave hazard assessment. The DWD site is particularly relevant for historical data for Germany. The gas supply document was correctly identified as irrelevant."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 4,
+            "new_data_items_extracted": 0,
+            "total_structured_items": 4
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-08-20T00:08:40.954839",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted data sources provide highly relevant and credible information for heatwave hazard assessment in Germany. The DWD Climate Data Center (CDC) is a primary national source for historical and current meteorological data, including temperature, at station and gridded levels, which is crucial for defining heatwave events and calculating relevant metrics (e.g., percentiles, absolute maximums). The World Bank CCKP offers global gridded climate projection data (CMIP6) that can be downscaled or used for future heatwave scenarios, complementing the historical data. While GDO DCHP also offers downscaled climate data, its primary focus appears to be on CMIP5, and its relevance is slightly less direct than CCKP for future projections given the mention of LOCA2 (CMIP6) pending. The Bundesnetzagentur data on gas supply is irrelevant to heatwave hazard assessment and should be disregarded.",
+            "reasoning": "The identified data sources (DWD CDC and World Bank CCKP) are highly relevant, credible, and provide sufficiently complete data for assessing heatwave hazards in Germany. They cover both historical observations and future projections of key temperature variables at appropriate spatial and temporal resolutions. The initial search plan queries are well-addressed by these sources. The irrelevant gas supply data can be easily filtered out.",
+            "final_decision_mode": true,
+            "consecutive_deep_dive_count": 1
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "Germany daily maximum temperature time series data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "German temperature percentiles 90th 95th 99th data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Absolute maximum temperatures Germany historical data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Temperature anomalies Germany baseline 1981-2010",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Gridded Tmax data Germany NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Extreme heat events Germany observational data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Deutschland tägliche Höchsttemperatur Zeitreihen Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Deutsche Temperatur Perzentile 90. 95. 99. Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Absolute Maximaltemperaturen Deutschland historische Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Temperaturanomalien Deutschland Basislinie 1981-2010",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Gitterdaten Tmax Deutschland NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Extreme Hitzeereignisse Deutschland Beobachtungsdaten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Hitzetage Deutschland Daten DWD",
+            "language": "en",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Temperaturrekorde Deutschland Klimadaten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Deutschland Hitzewellen Temperaturdaten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Heat Wave Magnitude Index Germany data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Warm Spell Duration Index Germany WSDI data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Germany heat wave frequency duration data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Consecutive hot days count Germany dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Heat wave indices Germany historical projections",
+            "language": "en",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "ETCCDI heatwave indices Germany",
+            "language": "en",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Hitzewellen Magnitude Index Deutschland Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Warm Spell Duration Index Deutschland WSDI Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Deutschland Hitzewellen Häufigkeit Dauer Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Anzahl aufeinanderfolgender heißer Tage Deutschland Datensatz",
+            "language": "en",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Hitzewellenindizes Deutschland historische Projektionen",
+            "language": "en",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "ETCCDI Hitzewellenindizes Deutschland",
+            "language": "en",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Hitzewellen Definition Deutschland DWD",
+            "language": "en",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Hitzewellen Analyse Deutschland Klimawandel",
+            "language": "en",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Deutschland Hitzewellen Intensität Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Heat Index calculations Germany data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Wet Bulb Globe Temperature Germany WBGT data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Apparent temperature Germany dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Universal Thermal Climate Index Germany UTCI data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Human thermal comfort data Germany",
+            "language": "en",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Heat stress indicators Germany climate risk",
+            "language": "en",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Hitzeindex Berechnungen Deutschland Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Feuchtkugeltemperatur Deutschland WBGT Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gefühlte Temperatur Deutschland Datensatz",
+            "language": "en",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Universal Thermal Climate Index Deutschland UTCI Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Menschlicher thermischer Komfort Daten Deutschland",
+            "language": "en",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Hitzestress Indikatoren Deutschland Klimarisiko",
+            "language": "en",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Bioklima Deutschland Hitzebelastung",
+            "language": "en",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Hitzestresskarten Deutschland",
+            "language": "en",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Deutschland Hitzebelastung Bevölkerung Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Future temperature projections Germany RCP SSP scenarios",
+            "language": "en",
+            "priority": "medium",
+            "rank": 46,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Heat wave frequency projections Germany climate models",
+            "language": "en",
+            "priority": "medium",
+            "rank": 47,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Temperature change scenarios Germany 2050 2080",
+            "language": "en",
+            "priority": "medium",
+            "rank": 48,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Extreme heat return periods Germany projections",
+            "language": "en",
+            "priority": "medium",
+            "rank": 49,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Germany climate change heatwave projections",
+            "language": "en",
+            "priority": "medium",
+            "rank": 50,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Regional climate model Germany extreme heat",
+            "language": "en",
+            "priority": "medium",
+            "rank": 51,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Zukünftige Temperaturprojektionen Deutschland RCP SSP Szenarien",
+            "language": "en",
+            "priority": "medium",
+            "rank": 52,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Hitzewellen Häufigkeit Projektionen Deutschland Klimamodelle",
+            "language": "en",
+            "priority": "medium",
+            "rank": 53,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Temperaturänderung Szenarien Deutschland 2050 2080",
+            "language": "en",
+            "priority": "medium",
+            "rank": 54,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Extremhitze Wiederkehrperioden Deutschland Projektionen",
+            "language": "en",
+            "priority": "medium",
+            "rank": 55,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Deutschland Klimawandel Hitzewellen Projektionen",
+            "language": "en",
+            "priority": "medium",
+            "rank": 56,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Regionale Klimamodelle Deutschland Extremhitze",
+            "language": "en",
+            "priority": "medium",
+            "rank": 57,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Klimaprojektionen Deutschland Hitzewellen DWD",
+            "language": "en",
+            "priority": "medium",
+            "rank": 58,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Deutschland Hitzewellen Zukunftsszenarien",
+            "language": "en",
+            "priority": "medium",
+            "rank": 59,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Extremwetter Deutschland Klimaprojektionen",
+            "language": "en",
+            "priority": "medium",
+            "rank": 60,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Weather station temperature records Germany daily",
+            "language": "en",
+            "priority": "medium",
+            "rank": 61,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gridded temperature datasets Germany ERA5",
+            "language": "en",
+            "priority": "medium",
+            "rank": 62,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Reanalysis temperature data Germany historical",
+            "language": "en",
+            "priority": "medium",
+            "rank": 63,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Satellite-derived temperature Germany data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 64,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "DWD temperature data Germany API",
+            "language": "en",
+            "priority": "medium",
+            "rank": 65,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Germany daily temperature observations NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 66,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Wetterstations Temperaturaufzeichnungen Deutschland täglich",
+            "language": "en",
+            "priority": "medium",
+            "rank": 67,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gittertemperaturdatensätze Deutschland ERA5",
+            "language": "en",
+            "priority": "medium",
+            "rank": 68,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Reanalyse Temperaturdaten Deutschland historisch",
+            "language": "en",
+            "priority": "medium",
+            "rank": 69,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Satellitengestützte Temperatur Deutschland Daten",
+            "language": "en",
+            "priority": "medium",
+            "rank": 70,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "DWD Temperaturdaten Deutschland API",
+            "language": "en",
+            "priority": "medium",
+            "rank": 71,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Deutschland tägliche Temperaturbeobachtungen NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 72,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Klimadaten Deutschland DWD Temperatur",
+            "language": "en",
+            "priority": "medium",
+            "rank": 73,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Deutschland Wetterdaten Temperatur Archiv",
+            "language": "en",
+            "priority": "medium",
+            "rank": 74,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gridded Temperaturdaten Deutschland Copernicus",
+            "language": "en",
+            "priority": "medium",
+            "rank": 75,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

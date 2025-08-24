@@ -1,11 +1,11 @@
 """
-Researcher Agent - Responsible for iterative research and retrieval.
+CCRA Researcher Agent - Responsible for iterative research and retrieval of climate risk data.
 
 This agent:
-1. Performs broad searches based on the query
-2. Prioritizes promising sources using country context
+1. Performs broad searches based on CCRA queries (hazards, exposure, vulnerability)
+2. Prioritizes promising climate data sources using geographic context
 3. Adapts search strategy if initial results are poor
-4. Extracts and collects relevant URLs and document content
+4. Extracts and collects relevant URLs and climate dataset content
 """
 import asyncio
 import logging
@@ -141,7 +141,10 @@ async def researcher_node(state: AgentState) -> AgentState:
 
     start_time_researcher = datetime.now()
     research_summary = {
-        "target_country": state.target_country,
+        "ccra_mode": state.target_mode,
+        "ccra_type": state.target_which,
+        "target_location": state.target_country or state.target_city or "Global",
+        "research_scope": state.metadata.get("research_mode", "global"),
         "queries_processed_this_cycle": [],
         "urls_collected_this_cycle": 0,
         "relevant_urls_for_scraping_this_cycle": 0,
@@ -169,11 +172,13 @@ async def researcher_node(state: AgentState) -> AgentState:
             continue
 
         logger.info(f"Processing search query: '{plan_item.query}' (Priority: {plan_item.priority}, Lang: {plan_item.language})")
+        # Determine location name for search context
+        location_name = state.target_country or state.target_city or "Global"
+        
         search_results_for_query = await collect_search_results(
             query=plan_item.query,
-            country_name=state.target_country or "UnknownCountry",
+            country_name=location_name,
             max_results=config.MAX_RESULTS_PER_QUERY,
-            # use_google=True, # REMOVED - no longer an option
             save_raw_results=True,
             save_dir=SEARCH_API_OUTPUT_DIR
         )
@@ -269,30 +274,37 @@ async def researcher_node(state: AgentState) -> AgentState:
     relevant_urls_to_scrape: List[str] = []
     if config.ENABLE_PRE_SCRAPE_RELEVANCE_CHECK and unique_urls_to_consider_filtered:
         logger.info(f"Performing pre-scrape relevance check for {len(unique_urls_to_consider_filtered)} unique URLs.")
-        relevance_check_tasks = [
-            check_url_relevance_async(
-                search_results_by_url.get(url, {"url": url, "title": "", "snippet": ""}),
-                state.target_country or "UnknownCountry",
-                state.target_sector or "Any",
-                client,
-            )
-            for url in unique_urls_to_consider_filtered  # Use the filtered list
-        ]
-        relevance_results = await asyncio.gather(*relevance_check_tasks, return_exceptions=True)
+        # Prepare CCRA context for relevance checking
+        location_context = state.target_country or state.target_city or "Global"
+        ccra_context = f"{state.target_mode} {state.target_which}" if state.target_mode and state.target_which else "climate risk assessment"
         
-        for i, url in enumerate(unique_urls_to_consider_filtered): # Use the filtered list
-            result_item = relevance_results[i]
-            if isinstance(result_item, Exception):
-                # MODIFIED LOGGING for better diagnostics
-                logger.error(f"Relevance check failed for {url}. Error: {result_item!r}, Type: {type(result_item)}. Skipping.")
-            elif isinstance(result_item, RelevanceCheckOutput): # Check if it's the Pydantic model
-                if result_item.is_relevant:
-                    relevant_urls_to_scrape.append(url)
-                    logger.info(f"URL marked as RELEVANT for scraping: {url}. Reason: '{result_item.reason}'")
+        # Process relevance checks sequentially to avoid rate limiting
+        relevance_delay = 1.0  # 1 second delay between checks
+        logger.info(f"Processing relevance checks sequentially with {relevance_delay}s delay to avoid rate limits.")
+        
+        for i, url in enumerate(unique_urls_to_consider_filtered):
+            try:
+                # Add progressive delay - first few are faster, then slower
+                current_delay = relevance_delay if i > 0 else 0
+                result_item = await check_url_relevance_async(
+                    search_results_by_url.get(url, {"url": url, "title": "", "snippet": ""}),
+                    location_context,
+                    ccra_context,
+                    client,
+                    delay_seconds=current_delay
+                )
+                
+                if isinstance(result_item, RelevanceCheckOutput):
+                    if result_item.is_relevant:
+                        relevant_urls_to_scrape.append(url)
+                        logger.info(f"URL marked as RELEVANT for scraping: {url}. Reason: '{result_item.reason}'")
+                    else:
+                        logger.info(f"URL marked as NOT RELEVANT for scraping: {url}. Reason: '{result_item.reason}' (Raw bool: {result_item.is_relevant})")
                 else:
-                    logger.info(f"URL marked as NOT RELEVANT for scraping: {url}. Reason: '{result_item.reason}' (Raw bool: {result_item.is_relevant})")
-            else: # Should not happen if relevance_checker.py is correct, but good to have a fallback
-                logger.warning(f"URL relevance check for {url} returned an unexpected type: {type(result_item)}. Value: {result_item!r}. Assuming NOT RELEVANT.")
+                    logger.warning(f"URL relevance check for {url} returned an unexpected type: {type(result_item)}. Value: {result_item!r}. Assuming NOT RELEVANT.")
+                    
+            except Exception as e:
+                logger.error(f"Relevance check failed for {url}. Error: {e!r}, Type: {type(e)}. Skipping.")
     else:
         logger.info("Pre-scrape relevance check is disabled or no URLs to check. Proceeding with all unique URLs for scraping.")
         relevant_urls_to_scrape = unique_urls_to_consider_filtered # Use the filtered list here as well
@@ -314,8 +326,10 @@ async def researcher_node(state: AgentState) -> AgentState:
         # After scraping, save the HTML content to the new directory structure
         successful_html_saves = 0
         if scraped_data_results: # Check if there are any results to process
-            # MODIFIED: Access state attributes directly
-            current_sector = state.target_sector or "unknown_sector"
+            # MODIFIED: Use CCRA mode and type for directory structure
+            current_mode = state.target_mode or "unknown_mode"
+            current_type = state.target_which or "unknown_type"
+            current_ccra_context = f"{current_mode}_{current_type}"
             
             # Use state.start_time for run_id, and sanitize it
             raw_run_id = state.start_time 
@@ -327,7 +341,8 @@ async def researcher_node(state: AgentState) -> AgentState:
                 current_run_id = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_fallback")
                 logger.warning(f"run_id derived from start_time was empty, generated fallback: {current_run_id}")
 
-            country_name_for_path = state.target_country or "UnknownCountry"
+            # Use appropriate location name for path
+            location_name_for_path = state.target_country or state.target_city or "Global"
 
             for item in scraped_data_results:
                 if item.get("success") and item.get("html_content") and item.get("url"):
@@ -343,9 +358,9 @@ async def researcher_node(state: AgentState) -> AgentState:
                     try:
                         saved_path = save_scrape_to_file(
                             data=html_content_to_save,
-                            country_name=country_name_for_path,
+                            country_name=location_name_for_path,
                             filename=scraped_filename,
-                            sector=current_sector,
+                            sector=current_ccra_context,
                             run_id=current_run_id
                         )
                         if saved_path:
@@ -360,7 +375,7 @@ async def researcher_node(state: AgentState) -> AgentState:
                                 item["saved_html_filepath"] = None # Indicate save failure
                             research_summary["errors_this_cycle"].append(f"Save HTML error for {original_url}: save_scrape_to_file returned None")
                     except Exception as e_save_html:
-                        logger.error(f"Exception saving HTML for {original_url} in dir {current_sector}_{current_run_id}: {e_save_html}", exc_info=True)
+                        logger.error(f"Exception saving HTML for {original_url} in dir {current_ccra_context}_{current_run_id}: {e_save_html}", exc_info=True)
                         if isinstance(item, dict):
                             item["saved_html_filepath"] = None # Indicate save failure due to exception
                         research_summary["errors_this_cycle"].append(f"Exception saving HTML for {original_url}: {e_save_html}")
@@ -388,8 +403,11 @@ async def researcher_node(state: AgentState) -> AgentState:
 
     # Save research summary
     timestamp = start_time_researcher.strftime("%Y%m%d_%H%M%S")
-    country_name_sanitized = re.sub(r'[^\\w_.)( -]', '', state.target_country or "UnknownCountry").strip().replace(' ', '_')
-    summary_filename = os.path.join(RESEARCHER_OUTPUT_DIR, f"researcher_cycle_output_{country_name_sanitized}_{timestamp}.json")
+    # Create sanitized filename components for CCRA context
+    mode_sanitized = re.sub(r'[^\\w_.)( -]', '', state.target_mode or "UnknownMode").strip().replace(' ', '_')
+    type_sanitized = re.sub(r'[^\\w_.)( -]', '', state.target_which or "UnknownType").strip().replace(' ', '_')
+    location_sanitized = re.sub(r'[^\\w_.)( -]', '', (state.target_country or state.target_city or "Global")).strip().replace(' ', '_')
+    summary_filename = os.path.join(RESEARCHER_OUTPUT_DIR, f"researcher_cycle_output_{mode_sanitized}_{type_sanitized}_{location_sanitized}_{timestamp}.json")
     try:
         os.makedirs(RESEARCHER_OUTPUT_DIR, exist_ok=True)
         with open(summary_filename, "w", encoding="utf-8") as f:
@@ -411,18 +429,21 @@ async def researcher_node(state: AgentState) -> AgentState:
         prompt=state.prompt,
         search_plan=state.search_plan, # Pass the updated plan (with statuses)
         urls=state.urls, # Consider if this should be updated or if scraped_data is enough
-        scraped_data=updated_scraped_data, 
+        scraped_data=updated_scraped_data,
         structured_data=state.structured_data,
         decision_log=state.decision_log,
         confidence_scores=state.confidence_scores,
-        iteration_count=state.iteration_count, 
+        iteration_count=state.iteration_count,
         start_time=state.start_time,
         metadata=state.metadata,
         target_country=state.target_country,
         target_country_locode=state.target_country_locode,
+        target_city=state.target_city,
+        target_mode=state.target_mode,
+        target_which=state.target_which,
+        research_mode=state.research_mode,
         searches_conducted_count=state.searches_conducted_count + processed_query_count,
         current_iteration=state.current_iteration, # Researcher node does not increment main iteration count
-        target_sector=state.target_sector,
         consecutive_deep_dive_count=state.consecutive_deep_dive_count
     )
 

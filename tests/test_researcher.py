@@ -154,7 +154,7 @@ class TestResearcherNode(unittest.IsolatedAsyncioTestCase):
         # Setup that needs to run before each async test
         self.test_country = "Testlandia"
         self.test_sector = "stationary_energy"
-        self.initial_state = create_initial_state(country_name=self.test_country, sector_name=self.test_sector)
+        self.initial_state = create_initial_state(mode_name="emissions", which_name=self.test_sector, country_name=self.test_country)
         self.initial_state.target_country_locode = "TL"
         # Update search_plan items to include 'rank'
         self.initial_state.search_plan = [
@@ -391,7 +391,7 @@ class TestResearcherNode(unittest.IsolatedAsyncioTestCase):
         # 4. Initial state setup
         self.initial_state.search_plan = [{ "query": "Search that finds Polish stats", "priority": "high", "status": "pending", "rank": 1 }]
         self.initial_state.target_country = "Poland"
-        self.initial_state.target_sector = "Stationary Energy"
+        self.initial_state.target_which = "stationary_energy"
         if not self.initial_state.start_time:
              self.initial_state.start_time = datetime.now(timezone.utc).isoformat()
 
@@ -562,7 +562,7 @@ class TestResearcherIntegration(unittest.IsolatedAsyncioTestCase):
             pytest.skip("FIRECRAWL_API_KEY not set - skipping integration test")
         
         # Create initial state with crawl action
-        initial_state = create_initial_state(country_name=self.test_country, sector_name=self.test_sector)
+        initial_state = create_initial_state(mode_name="emissions", which_name=self.test_sector, country_name=self.test_country)
         initial_state.metadata["deep_dive_action"] = {
             "action_type": "crawl",
             "target": "https://httpbin.org",  # Safe test site
@@ -616,7 +616,7 @@ class TestResearcherIntegration(unittest.IsolatedAsyncioTestCase):
             pytest.skip("FIRECRAWL_API_KEY not set - skipping integration test")
         
         # Create initial state with scrape action
-        initial_state = create_initial_state(country_name=self.test_country, sector_name=self.test_sector)
+        initial_state = create_initial_state(mode_name="emissions", which_name=self.test_sector, country_name=self.test_country)
         initial_state.metadata["deep_dive_action"] = {
             "action_type": "scrape",
             "target": "https://httpbin.org/html"  # Simple test endpoint

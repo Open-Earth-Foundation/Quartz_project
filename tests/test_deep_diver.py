@@ -24,7 +24,7 @@ def _create_test_state(
     refinement_details: str = "Default refinement details",
     current_actions: int = 0
 ) -> AgentState:
-    state = create_initial_state(country_name="Testlandia", sector_name="Energy")
+    state = create_initial_state(mode_name="hazards", which_name="heatwave", country_name="Testlandia")
     state.metadata = {}
     if refinement_details:
         state.metadata["refinement_details"] = refinement_details

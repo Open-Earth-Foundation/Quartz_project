@@ -1,5 +1,5 @@
 """
-AgentState definition for the LangGraph-powered GHGI Dataset Discovery Agent.
+AgentState definition for the LangGraph-powered CCRA Dataset Discovery Agent.
 This module defines the structure for storing state across agent interactions.
 """
 from typing import Dict, List, Any, Optional
@@ -57,8 +57,9 @@ class AgentState:
     api_calls_succeeded: int = 0
     api_calls_failed: int = 0
 
-    # === ADDED: Target sector ===
-    target_sector: Optional[str] = None
+    # === CCRA: Target mode and type ===
+    target_mode: Optional[str] = None  # hazards, exposure, vulnerability
+    target_which: Optional[str] = None  # specific type within mode
 
     # === ADDED: Counter for consecutive deep dives ===
     consecutive_deep_dive_count: int = 0
@@ -72,7 +73,7 @@ class AgentState:
 
     # === ADDED: City-based research support ===
     target_city: Optional[str] = None
-    research_mode: str = "country"  # "country" or "city"
+    research_mode: str = "global"  # "global", "country", or "city"
 
 # Define reducer functions for merging states
 def reduce_list_field(field_name: str):
@@ -143,36 +144,57 @@ def reduce_target_country_locode(state1: AgentState, state2: AgentState) -> Opti
     return state2.target_country_locode if state2.target_country_locode is not None else state1.target_country_locode
 
 # Utility function to create a new state with default values
-def create_initial_state(country_name: Optional[str] = None, sector_name: Optional[str] = None, city_name: Optional[str] = None, english_only_mode: bool = False) -> AgentState:
+def create_initial_state(mode_name: str, which_name: str, country_name: Optional[str] = None, city_name: Optional[str] = None, english_only_mode: bool = False) -> AgentState:
     """
-    Create a new AgentState with default values, supporting city, country, and city+sector modes.
+    Create a new AgentState with default values for CCRA dataset discovery.
 
     Args:
-        country_name: The target country name for the research (for country mode).
-        sector_name: The target sector name for the research (e.g., 'afolu', 'ippu'). Can be used with city or country.
-        city_name: The target city name for the research (for city mode).
+        mode_name: The CCRA mode ('hazards', 'exposure', 'vulnerability').
+        which_name: The specific type within the mode (e.g., 'heatwave', 'buildings', 'socioeconomic').
+        country_name: The target country name for country-specific research (optional).
+        city_name: The target city name for city-specific research (optional).
         english_only_mode: Whether to focus exclusively on English-language sources.
 
     Returns:
         A new AgentState instance
     """
-    # Determine research mode and validate inputs
+    # Validate inputs
+    if city_name and country_name:
+        raise ValueError("Cannot specify both city_name and country_name. Choose either city-specific, country-specific, or global research.")
+    
+    # Determine research mode and create prompt
     if city_name:
-        if country_name:
-            raise ValueError("Cannot specify both city_name and country_name. Choose either city or country mode.")
         research_mode = "city"
-        if sector_name:
-            prompt = f"City: {city_name}, Sector: {sector_name}"
-            decision_log_entry = {"action": "init", "city": city_name, "sector": sector_name, "research_mode": "city", "english_only_mode": english_only_mode}
-        else:
-            prompt = f"City: {city_name}"
-            decision_log_entry = {"action": "init", "city": city_name, "research_mode": "city", "english_only_mode": english_only_mode}
-    elif country_name and sector_name:
+        prompt = f"CCRA Mode: {mode_name}, Type: {which_name}, City: {city_name}"
+        decision_log_entry = {
+            "action": "init",
+            "mode": mode_name,
+            "which": which_name,
+            "city": city_name,
+            "research_mode": "city",
+            "english_only_mode": english_only_mode
+        }
+    elif country_name:
         research_mode = "country"
-        prompt = f"Country: {country_name}, Sector: {sector_name}"
-        decision_log_entry = {"action": "init", "country": country_name, "sector": sector_name, "research_mode": "country", "english_only_mode": english_only_mode}
+        prompt = f"CCRA Mode: {mode_name}, Type: {which_name}, Country: {country_name}"
+        decision_log_entry = {
+            "action": "init",
+            "mode": mode_name,
+            "which": which_name,
+            "country": country_name,
+            "research_mode": "country",
+            "english_only_mode": english_only_mode
+        }
     else:
-        raise ValueError("Must specify either city_name OR both country_name and sector_name")
+        research_mode = "global"
+        prompt = f"CCRA Mode: {mode_name}, Type: {which_name}, Scope: Global"
+        decision_log_entry = {
+            "action": "init",
+            "mode": mode_name,
+            "which": which_name,
+            "research_mode": "global",
+            "english_only_mode": english_only_mode
+        }
 
     # Optional: Implement a simple country name to LOCODE lookup here if desired
     target_locode = None # Keep it simple for now
@@ -188,12 +210,13 @@ def create_initial_state(country_name: Optional[str] = None, sector_name: Option
         iteration_count=0, # Obsolete? Keep for now.
         metadata={"status": "initialized", "english_only_mode": english_only_mode, "research_mode": research_mode}, # Store mode in metadata
         target_country=country_name,
-        target_sector=sector_name, # Store the sector (can be used with city or country)
-        target_city=city_name, # Store the city (None for country mode)
+        target_mode=mode_name, # Store the CCRA mode
+        target_which=which_name, # Store the specific type
+        target_city=city_name, # Store the city (None for country/global mode)
         research_mode=research_mode,
         target_country_locode=target_locode,
         searches_conducted_count=0,
         current_iteration=0,
         consecutive_deep_dive_count=0,
         selected_for_extraction=[] # Initialize as empty list
-    ) 
+    )

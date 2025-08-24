@@ -1,0 +1,777 @@
+{
+    "research_mode": "global",
+    "target_country": null,
+    "target_country_locode": "GLOBAL",
+    "target_mode": "hazards",
+    "target_which": "drought",
+    "target_city": null,
+    "start_time": "2025-08-21T17:15:17.264466",
+    "end_time": "2025-08-21T17:23:09.935567",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 29,
+    "structured_data": [
+        {
+            "name": "Meteorological drought lacunarity around the world and its classification",
+            "method_of_access": "The dataset is publicly available at https://doi.org/10.5281/zenodo.3247041",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "description": "This dataset provides a climatic classification of drought duration around the world based on its similarity to the voids of the Cantor set. It measures dryness time structure using the n index, related to the Gini index and a Cantor-based exponent. The study used the global gridded daily Multi-Source Weighted-Ensemble Precipitation (MSWEP) dataset. The dataset covers the years 1979–2016 and has a spatial resolution of 0.5 degrees.",
+            "spatial_resolution": "0.5 degrees",
+            "temporal_coverage": "1979–2016",
+            "url": "https://essd.copernicus.org/articles/12/741/2020/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "CHIRPS (Climate Hazards Group InfraRed Precipitation with Station data)",
+            "method_of_access": "Downloadable files, Google Earth Engine, Climateserv, FEWS NET",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Quasi-global (50°S-50°N, all longitudes)",
+            "description": "CHIRPS is a 35+ year quasi-global rainfall dataset developed by USGS and CHC scientists. It incorporates CHPclim, 0.05° resolution satellite imagery, and in-situ station data to create gridded rainfall time series for trend analysis and seasonal drought monitoring. It supports drought monitoring efforts by USAID Famine Early Warning Systems Network (FEWS NET).",
+            "spatial_resolution": "0.05°",
+            "temporal_coverage": "1981 to near-present",
+            "url": "https://www.chc.ucsb.edu/data/chirps",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Global Drought Observatory (GDO) - Risk of Drought Impact for Agriculture",
+            "method_of_access": "Web interface query",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "sector": "AFOLU",
+            "subsector": "Agriculture",
+            "granularity": "Global, with country-level details available",
+            "description": "The Global Drought Observatory (GDO) provides data on the Risk of Drought Impact for Agriculture. The data is provided by the European Union, 2025, CC BY 4.0. It includes indicators such as Risk of Drought Impact for Agriculture and Meteorological Drought Tracking. The computation of the Risk of Drought Impact for Agriculture (RDrI-Agri) uses Soil Moisture Index Anomaly from July 21, 2024 onwards, and Ensemble Soil Moisture Anomaly for data before this date.",
+            "spatial_resolution": "50 km grid, with country-level details",
+            "temporal_coverage": "Current data for 2025-08-01 to 2025-08-10, with historical data from at least July 2024.",
+            "url": "https://drought.emergency.copernicus.eu/tumbo/gdo/map/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Global soil moisture data derived through machine learning trained with in-situ measurements (SoMo.ml)",
+            "method_of_access": "Downloadable PDF, machine-accessible metadata file (Figshare DOI)",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "PDF, potentially NetCDF/GeoTIFF (implied by typical CCRA hazard data formats and 'machine-accessible metadata file')",
+            "description": "A global, long-term dataset of multi-layer soil moisture (0–10 cm, 10–30 cm, and 30–50 cm) derived through machine learning (LSTM model) trained with in-situ measurements from over 1,000 stations. The dataset, named SoMo.ml, provides daily soil moisture dynamics and is particularly useful for applications requiring time-varying soil moisture, such as anomaly detection and memory analyses. It complements existing modelled and satellite-based datasets.",
+            "spatial_resolution": "0.25° spatial resolution",
+            "temporal_coverage": "2000–2019 (daily temporal resolution)",
+            "url": "https://www.nature.com/articles/s41597-021-00964-1",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "CPC Soil Moisture V2",
+            "method_of_access": "Web interface query and download via Thredds Catalog",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "description": "Monthly Gridded CPC Soil Moisture from a model from 1948 to present. The dataset is model-calculated and not measured directly. It is provided by the NOAA PSL and updated monthly.",
+            "spatial_resolution": "0.5 degree latitude x 0.5 degree longitude global grid (720x360), 89.75N - 89.75S, 0.25E - 359.75E",
+            "temporal_coverage": "Monthly Means: 1948/01 through 2025/07; Long term monthly means derived from 1981-2010 data.",
+            "url": "https://psl.noaa.gov/data/gridded/data.cpcsoil.html",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Global 1km daily soil moisture product from 2000 to 2020 using ensemble learning (GLASS SM)",
+            "method_of_access": "Downloadable files via Zenodo and GLASS website",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "description": "A global 1km daily spatiotemporally continuous soil moisture product (GLASS SM) generated from 2000 to 2020 using an ensemble learning model (eXtreme Gradient Boosting – XGBoost). The model integrates multiple datasets including albedo, land surface temperature, leaf area index from GLASS, ERA5-Land soil moisture, ISMN in situ data, and auxiliary datasets (MERIT DEM, SoilGrids). The product aims to address the lack of long-term global soil moisture products with high spatial and temporal resolutions.",
+            "spatial_resolution": "1km",
+            "temporal_coverage": "2000-2020 (daily)",
+            "url": "https://essd.copernicus.org/articles/15/2055/2023/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "TerraClimate: Monthly Climate and Climatic Water Balance for Global Terrestrial Surfaces, University of Idaho",
+            "method_of_access": "Earth Engine Snippet (API)",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "description": "TerraClimate is a dataset of monthly climate and climatic water balance for global terrestrial surfaces. It uses climatically aided interpolation, combining high-spatial resolution climatological normals from the WorldClim dataset, with coarser spatial resolution, but time-varying data from CRU Ts4.0 and the Japanese 55-year Reanalysis (JRA55). Temporal information is inherited from CRU Ts4.0 for most global land surfaces for temperature, precipitation, and vapor pressure, with JRA55 used for regions where CRU data had zero climate stations. JRA55 was exclusively used for solar radiation and wind speeds. The dataset additionally produces monthly surface water balance datasets using a water balance model. The dataset is provided by the University of California Merced and covers the period from 1958-01-01 to 2024-12-01, with a monthly cadence.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "1958-01-01 to 2024-12-01, monthly",
+            "url": "https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "ESA CCI Soil Moisture Dataset (version 09.1)",
+            "method_of_access": "Free and open access via CEDA catalogue download",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "NetCDF-4 classic",
+            "description": "The ESA CCI Soil Moisture Dataset (version 09.1) is an upgraded iteration of the ESA Climate Change Initiative’s (CCI) soil moisture data product, derived by merging data from multiple satellite missions. It provides a globally consistent daily record of surface soil moisture. The Passive and Combined products span 1978-2023, while the Active dataset covers 1991-2023. It includes an end-to-end uncertainty budget and is used for climate studies, assessments, and applications like drought monitoring, heatwave and flood forecasting, and assessing changes in agricultural productivity.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "1978-2023 (Passive and Combined products), 1991-2023 (Active dataset)",
+            "url": "https://climate.esa.int/en/news-events/New-upgrade-to-ESACCI-SoilMoisture-Dataset-v091/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Palmer Drought Severity Index Map Archives",
+            "method_of_access": "Web interface with links to archived images",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "GIF images (implied from .gif extension)",
+            "description": "Archives of the Palmer Drought Severity Index maps provided by the Climate Prediction Center (CPC) of NOAA/NWS. The content implies historical data is available through these archives.",
+            "spatial_resolution": "Global (implied from 'Global' country context, though specific maps might be regional)",
+            "temporal_coverage": "Archived data (specific range not provided)",
+            "url": "https://www.cpc.ncep.noaa.gov/products/MD_index.shtml",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Temperature and precipitation gridded data for global and regional domains derived from in-situ and satellite observations",
+            "method_of_access": "Web interface query (Copernicus Climate Data Store)",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "global and regional domains",
+            "data_format": "gridded data",
+            "description": "This dataset provides high-resolution gridded temperature and precipitation observations from a selection of sources, including GISTEMP, Berkeley Earth, CPC, and CPC-CONUS. It also contains daily global average near-surface temperature anomalies. The datasets are regularly updated to incorporate recent observations.",
+            "spatial_resolution": "high-resolution gridded",
+            "temporal_coverage": "daily or monthly frequency, regularly updated",
+            "url": "https://www.copernicus.eu/en/access-data/copernicus-services-catalogue/temperature-and-precipitation-gridded-data-global-and",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "A database for characteristics and variations of global compound dry and hot events",
+            "method_of_access": "Downloadable PDF, potentially data files associated with the database mentioned in the abstract",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global land areas",
+            "data_format": "PDF (for the article), implied database format for the actual data (not specified)",
+            "description": "This study provides a database for different characteristics, including frequency, severity, duration, and magnitude, and their variations of Compound Dry and Hot Events (CDHEs) for the period 1951–2012 over global land areas. The database evaluates changes in these characteristics, showing temporal increases over global land areas. Remarkable increases are observed in regions such as central Africa, Europe, Mediterranean regions, and northern parts of East Asia.",
+            "spatial_resolution": "Global land areas",
+            "temporal_coverage": "1951–2012",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2212094720303121",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Observation-constrained projections reveal longer-than-expected dry spells",
+            "method_of_access": "Downloadable PDF",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "PDF",
+            "description": "This article presents observation-constrained projections that reveal a longer-than-expected increase in dry spells globally. It uses a newly proposed emergent constraint (EC) to reduce uncertainty in predictions of the longest annual dry spell (LAD), showing that the increase in LAD will be 42–44% greater than current 'mid-range' or 'high-end' future forcing scenarios indicate. By the end of the century, the global mean land-only LAD could be 10 days longer than expected. The study also identifies global regions where historical LAD biases affect projected increases and explores the role of land-atmosphere feedbacks.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "Projections to the end of this century",
+            "climate_scenario": "Mid-range and high-end future forcing scenarios",
+            "url": "https://www.nature.com/articles/s41586-024-07887-y",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Temperature and precipitation gridded data for global and regional domains derived from in-situ and satellite observations",
+            "method_of_access": "Downloadable files (NetCDF-4)",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global, quasi-global, Africa and contiguous United States (CONUS)",
+            "data_format": "NetCDF-4",
+            "description": "This dataset provides high-resolution gridded temperature and precipitation observations from a selection of sources (GISTEMP, Berkeley Earth, CPC, CPC-CONUS, CHIRPS, IMERG, CMORPH, GPCC, CRU). It also contains daily global average near-surface temperature anomalies. The data is suitable for analysis of weather extremes and climate trends, and for rapid study of recently occurred phenomena or events. The dataset is no longer supported by data providers, and no expected updates.",
+            "spatial_resolution": "Depends on the model: 0.1 x 0.1, 0.25 x 0.25, 0.2 x 0.2, 0.5 x 0.5, 1 x 1, 2.5 x 2.5 and Horizontal average.",
+            "temporal_coverage": "Depends on the model; Monthly and daily frequency.",
+            "url": "https://cds.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Drought deciles index for spatial and temporal assessment of satellite-based precipitation datasets",
+            "method_of_access": "Purchase PDF, Access through organization",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global (implied by satellite data, though study focuses on Iraq)",
+            "description": "This study assesses the performance of four gridded precipitation products (GPDs): APHRODITE (1983–2007), CHIRPS (1983–2017), PERSIANN (1983–2017), and TRMM, for drought monitoring using the Drought Deciles Index (DDI) at multiple time scales (1-month, 3-month, 6-month, 12-month, and 24-month) across 22 ground stations in semi-arid Iraq during 1970–2018. The study reveals the potential of GPDs for drought monitoring, with stronger performance for shorter time scales.",
+            "spatial_resolution": "Gridded precipitation products (GPDs) evaluated, specific resolution not stated but implied by satellite data.",
+            "temporal_coverage": "APHRODITE (1983–2007), CHIRPS (1983–2017), PERSIANN (1983–2017), TRMM (period not specified but evaluated alongside others); DDI analysis for 1970–2018.",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S1474706524000822",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Global Forecast Drought Tool",
+            "method_of_access": "Web interface query",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global, Africa, Asia, Australia, Europe, Middle East, North America, Central America, South America, Caribbean, Pacific",
+            "description": "A Global Forecast Drought Tool provided by the World Bank, offering drought risk and severity maps. It includes options for viewing Normal, Severe Wetness, Intermediate Wetness, Moderate Wetness, Normal, Moderate Dryness, Intermediate Dryness, Severe Dryness levels, and Probability of Drier Conditions. Data available from May 2016 to December 2020.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "May 2016 - Dec 2020",
+            "url": "https://iridl.ldeo.columbia.edu/maproom/Global/World_Bank/Drought_Monitor/index3.html",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "European and Global Drought Observatories (EDO and GDO)",
+            "method_of_access": "Web interface query (Mapviewers), downloadable reports (PDF implied)",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global, Europe",
+            "data_format": "Maps (visualizations), reports",
+            "description": "The European and Global Drought Observatories (EDO and GDO), part of the Copernicus Emergency Management Service, provide drought-relevant information and early-warning for Europe and globally. They offer drought forecasting and monitoring maps, analysis tools, and periodical reports based on key drought indicators derived from satellite observations, hydro-meteorological models, and in-situ data.",
+            "spatial_resolution": "Global, Europe",
+            "temporal_coverage": "Current drought situation, forecasting, periodical reports (e.g., 2024, 2025 dates mentioned for news)",
+            "url": "https://joint-research-centre.ec.europa.eu/european-and-global-drought-observatories_en",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Mapping global patterns of drought risk: An empirical framework based on sub-national estimates of hazard, exposure and vulnerability",
+            "method_of_access": "PDF download available from ScienceDirect",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "sub-national administrative level",
+            "data_format": "PDF",
+            "description": "A global map of drought risk elaborated at the sub-national administrative level for the period 2000-2014. Drought risk is assessed based on hazard, exposure, and vulnerability. Drought hazard is derived from a non-parametric analysis of historical precipitation deficits at 0.5°, exposure from aggregation of population, livestock, crop cover, and water stress indicators, and vulnerability from social, economic, and infrastructural indicators.",
+            "spatial_resolution": "0.5° for hazard; sub-national administrative level for risk mapping",
+            "temporal_coverage": "2000-2014",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0959378016300565",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Global-scale drought risk assessment for agricultural systems",
+            "method_of_access": "Downloadable article (PDF, HTML) and supplementary assets are implied through the provided links.",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "sector": "AFOLU",
+            "subsector": "Agriculture",
+            "granularity": "Global",
+            "description": "This research article presents an integrated assessment of drought risk for both irrigated and rainfed agricultural systems at the global scale. It calculates composite hazard indicators using different drought indices based on historical climate conditions (1980–2016). Exposure was analyzed for irrigated and non-irrigated crops, and vulnerability was assessed through a socioecological-system (SES) perspective, using socioecological susceptibility and lack of coping-capacity indicators weighted by drought experts. The analysis shows heterogeneous drought risk patterns globally, with higher risk in southeastern Europe, northern, and southern Africa. The study aims to support the identification of tailored measures to reduce drought risk and increase the resilience of agricultural systems.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "1980-2016 (historical climate conditions)",
+            "url": "https://nhess.copernicus.org/articles/20/695/2020/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Global Precipitation Climatology Project (GPCP) Monthly Precipitation Climate Data Record (CDR)",
+            "method_of_access": "web interface query",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global, by hemisphere, by regions, by land and ocean surface components",
+            "description": "Precipitation data from The Global Precipitation Climatology Project (GPCP) Monthly Precipitation Climate Data Record (CDR), provided by NOAA's NCEI. This tool provides near real-time analysis of monthly precipitation for the globe and is intended for the study of climate variability. Recent data are preliminary and may be modified after appropriate quality control has been performed.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "Monthly, near real-time",
+            "url": "https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/data-info",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Journal of Climate - Volume 24 (2011): Issue 20 (Oct 2011)",
+            "method_of_access": "Web interface query, journal articles are typically accessible via subscription or purchase.",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "sector": "null",
+            "subsector": "null",
+            "granularity": "Global",
+            "data_format": "null",
+            "description": "The content provided is a journal page for the Journal of Climate, specifically Volume 24, Issue 20, published in October 2011. It lists various volumes and issues of the journal, indicating a publication of scientific articles related to climate. No specific dataset for drought is directly mentioned or described as being available for download.",
+            "spatial_resolution": "null",
+            "temporal_coverage": "2011 (for the specific issue mentioned), with other volumes listed from 2007 to 2025.",
+            "climate_scenario": "null",
+            "url": "https://journals.ametsoc.org/view/journals/clim/24/20/2011jcli3979.1.xml",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Soil Moisture Data Sets: Overview & Comparison Tables",
+            "method_of_access": "Embedded tables and descriptive text; links to specific datasets are mentioned in 'Expert Guidance' tab but not provided in the analyzed content.",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "Table format (implied for comparison tables), descriptive text",
+            "description": "This document provides an overview and comparison of various soil moisture data sets, including ground observations, satellite observations, blended observations, LSM-based analyses, and reanalyses. It discusses their strengths and limitations, and their relevance for understanding water and energy cycles, weather and climate forecasting, and changing feedbacks in a changing climate. The content was contributed by Dr. Paul Dirmeyer.",
+            "spatial_resolution": "Global (for satellite, blended, LSM-based, and reanalyses); Point measurements (for ground observations)",
+            "temporal_coverage": "Long-term (implied for soil moisture data sets)",
+            "url": "https://climatedataguide.ucar.edu/climate-data/soil-moisture-data-sets-overview-comparison-tables",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Soil Moisture Data (NASA SPoRT-LIS, Crop-CASMA, NASA GRACE)",
+            "method_of_access": "Web interface query, implied data access through linked tools",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "sector": "AFOLU",
+            "subsector": "Agriculture",
+            "granularity": "Global (implied by CONUS, Alaska, Hawaiʻi, PR/USVI options)",
+            "description": "This dataset provides current soil moisture conditions, specifically the moisture content of the top 1 meter of soil. It includes data from NASA's Short-term Prediction and Transition Center – Land Information System (SPoRT-LIS), NASA's Crop Condition and Soil Moisture Analytics tool (Crop-CASMA), and the GRACE-Based Root Zone Soil Moisture Drought Indicator. SPoRT-LIS compares current conditions to historical data from 1981–2013. Crop-CASMA shows deviation from average soil moisture conditions from 2015–present. GRACE data describes wet or dry conditions as a percentile within the period of record from 1948 to 2012. The data is provided by NASA, USDA, George Mason University, and the National Drought Mitigation Center.",
+            "spatial_resolution": "Global (implied by CONUS, Alaska, Hawaiʻi, PR/USVI options), top 1 meter of soil",
+            "temporal_coverage": "SPoRT-LIS: compared to 1981–2013; Crop-CASMA: compared to 2015–present; GRACE: percentile within 1948–2012",
+            "url": "https://www.drought.gov/topics/soil-moisture",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Global Precipitation Climatology Centre (GPCC) monthly precipitation dataset",
+            "method_of_access": "Downloadable files (Thredds Catalog, FTP), Plot/Subset web interface",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "description": "The GPCC Global Precipitation Climatology Centre monthly precipitation dataset is calculated from global station data. It includes a monitoring product (1982-present), a Full Data Product V2020 (1891-2019) based on 67,200 stations, and a first guess product (2012-present). Provided by NOAA PSL, it offers various spatial resolutions.",
+            "spatial_resolution": "0.25 degree latitude x 0.25 degree longitude global grid (1440x360), 0.5 degree latitude x 0.5 degree longitude global grid (720x180), 1.0 degree latitude x 1.0 degree longitude global grid (360x180), 2.5 degree latitude x 2.5 degree longitude global grid (144x72)",
+            "temporal_coverage": "Monthly values 1891/01 through 2019/12 (full V2020); Monthly values 1982/01 through 2025/07 (monitoring); Monthly values 2012/01 through 2025/07 (first guess)",
+            "url": "https://psl.noaa.gov/data/gridded/data.gpcc.html",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "SPL4SMGP.008 SMAP L4 Global 3-hourly 9-km Surface and Root Zone Soil Moisture",
+            "method_of_access": "API (Google Earth Engine snippet provided)",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "GeoTIFF (implied by Earth Engine ingestion after transformation)",
+            "description": "The SMAP Level-4 (L4) Soil Moisture product, formally known as the SMAP L4 Global 3-hourly 9 km EASE-Grid Surface and Root Zone Soil Moisture Geophysical Data (SPL4SMGP), includes surface soil moisture (0-5 cm vertical average), root-zone soil moisture (0-100 cm vertical average), and additional research products. It provides uninterrupted soil moisture data, with outages of the SMAP instrument handled by land model simulations. Data are provided by Google and NSIDC.",
+            "spatial_resolution": "9 km (EASE-Grid 2.0), Pixel Size: 11000 meters",
+            "temporal_coverage": "2015-03-31T00:00:00Z–2025-08-18T22:30:00Z, Cadence: 3 Hours",
+            "url": "https://developers.google.com/earth-engine/datasets/catalog/NASA_SMAP_SPL4SMGP_008",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Climate extreme indices and heat stress indicators derived from CMIP6 global climate projections",
+            "method_of_access": "Downloadable files (NetCDF-4)",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "NetCDF-4",
+            "description": "This dataset provides climate extreme indices related to temperature and precipitation as defined by the Expert Team on Climate Change Detection and Indices (ETCCDI), as well as selected heat stress indicators (HSI). The indices are provided for historical and future climate projections (SSP1-2.6, SSP2-4.5, SSP3-7.0, SSP5-8.5) included in the Coupled Model Intercomparison Project Phase 6 (CMIP6) and used in the 6th Assessment Report of the Intergovernmental Panel on Climate Change (IPCC). It was produced on behalf of the Copernicus Climate Change Service. The dataset has no expected updates.",
+            "spatial_resolution": "From 0.5° x 0.5° to 2.8125° x 2.8125° depending on the model",
+            "temporal_coverage": "From 1850 to 2300 for the whole dataset. Shorter for most of the models and products. Temporal resolution: Yearly, monthly, daily.",
+            "climate_scenario": "SSP1-2.6, SSP2-4.5, SSP3-7.0, SSP5-8.5",
+            "url": "https://cds.climate.copernicus.eu/datasets/sis-extreme-indices-cmip6",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Soil moisture gridded data from 1978 to present",
+            "method_of_access": "Downloadable files (NetCDF-4)",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "NetCDF-4",
+            "description": "This dataset provides estimates of surface soil moisture over the globe from a large set of satellite sensors. It is based on the methodology developed in the ESA Climate Change Initiative for Soil Moisture and represents the current state-of-the-art for satellite-based soil moisture climate data record production. It is produced on behalf of the Copernicus Climate Change Service (C3S). The ICDR is updated on a 10-day cycle with a 10-day latency, and the CDR is annually updated.",
+            "spatial_resolution": "0.25° x 0.25°",
+            "temporal_coverage": "1978 to present (Daily, 10-day, Monthly)",
+            "url": "https://cds.climate.copernicus.eu/datasets/satellite-soil-moisture?tab=overview",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Observed Land Surface Precipitation Data: 1850-1995 (Dai et al. 1997)",
+            "method_of_access": "Downloadable files (netCDF, binary) via HTTP links.",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "netCDF, binary",
+            "description": "This dataset contains monthly and annual anomaly precipitation analyses. Dataset 1 covers 1900-1988, and Dataset 2 covers 1850-1995. Anomalies are calculated relative to the 1951-1979 period, with values in millimeters. The data is provided by NASA GISS, based on research by Dai et al. (1997). The most recent update for Dataset 2 is 1998-03-17.",
+            "spatial_resolution": "2.5° × 2.5° longitude-latitude grid",
+            "temporal_coverage": "1850-1995 (Dataset 2), 1900-1988 (Dataset 1)",
+            "url": "https://data.giss.nasa.gov/precip_dai/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "CMAP Precipitation",
+            "method_of_access": "Web interface (OPeNDAP Catalog)",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "Gridded data",
+            "description": "Monthly and pentad global gridded precipitation means. It includes a standard and enhanced version (with NCEP Reanalysis) from 1979 to near the present.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "1979 to near present (monthly and pentad)",
+            "url": "https://psl.noaa.gov/data/gridded/tables/precipitation.html",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Global Gridded Standardized Precipitation Index (SPI) from CMORPH Daily",
+            "method_of_access": "Downloadable GeoTIFF and XYZ Tiles, interactive map",
+            "ccra_mode": "hazards",
+            "ccra_type": "drought",
+            "granularity": "Global",
+            "data_format": "netcdf-4, GeoTIFF, PNG (for XYZ Tiles)",
+            "description": "The Global Gridded Standardized Precipitation Index (SPI) from CMORPH Daily dataset captures how observed precipitation deviates from the climatological average over given time periods (1, 2, 3, 6, 9 and 12 months). It is derived from the NOAA CMORPH dataset using the Climate Engine tool and is provided by the National Oceanic and Atmospheric Administration's (NOAA) Climate Prediction Center (CPC). The dataset is also archived and managed through the NOAA Climate Data Record program at NOAA's National Centers for Environmental Information (NCEI). It does not detect snow effectively.",
+            "spatial_resolution": "Gridded",
+            "temporal_coverage": "1998 to Present",
+            "url": "https://www.drought.gov/data-maps-tools/global-gridded-standardized-precipitation-index-spi-cmorph-daily",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "hazards",
+            "which": "drought",
+            "research_mode": "global",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for hazards/drought (Global) with 36 structured queries.",
+            "target_country_locode": "GLOBAL",
+            "primary_languages": [
+                "en"
+            ],
+            "parsed_keywords_count": 36,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "global gridded precipitation anomaly dataset",
+                "rainfall percentile geospatial data drought",
+                "dry spell duration frequency global dataset",
+                "precipitation deciles gridded climate data",
+                "global drought rainfall deficit maps",
+                "historical precipitation anomalies NetCDF",
+                "global soil moisture content gridded data",
+                "root zone soil moisture geospatial dataset",
+                "ESA CCI soil moisture anomaly NetCDF",
+                "agricultural drought indicators global maps"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 29,
+            "new_data_items": 29
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-08-21T17:21:44.309266",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 15,
+            "summary": "This batch of documents is highly promising for drought hazard data. Several documents directly link to or describe global, high-resolution datasets for precipitation and soil moisture, which are critical for drought monitoring and assessment. The sources are authoritative (Copernicus, NOAA, ESA, Nature, Google Earth Engine, Columbia University).",
+            "reasoning": "All documents appear highly relevant to drought hazard data, providing access to or describing global precipitation, soil moisture, and drought indices datasets from reputable scientific and climate monitoring organizations. These are excellent candidates for detailed data extraction."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 29,
+            "new_data_items_extracted": 29,
+            "total_structured_items": 29
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-08-21T17:23:09.821937",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted data provides a comprehensive overview of global drought-related datasets, primarily focusing on meteorological and hydrological drought indicators (precipitation, soil moisture, drought indices). Many datasets are from highly credible sources (NOAA, ESA, Copernicus, NASA, academic institutions) and offer global coverage with varying spatial and temporal resolutions. While the search was for 'hazards drought', several entries also touch upon drought risk and impact, which is valuable. The datasets cover a good range of drought-related parameters, from raw precipitation and soil moisture to derived indices like SPI and PDSI, and even some future projections of dry spells. However, the current search plan was broad, and the results reflect this, providing many relevant hazard datasets but not necessarily specific 'exposure' indicators, which was part of the evaluation criteria provided. Given the 'hazards' CCRA mode, the focus on hazard data is appropriate.",
+            "reasoning": "The extracted data provides a robust foundation for assessing global drought hazards. The datasets are highly relevant, come from credible sources, and offer good completeness for the 'hazards' component. No further deep dive is immediately necessary for these specific hazard datasets. The next step would be to integrate these into a CCRA framework or to initiate searches for other CCRA components (e.g., exposure, vulnerability) if they haven't been covered yet.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "global gridded precipitation anomaly dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "rainfall percentile geospatial data drought",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "dry spell duration frequency global dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "precipitation deciles gridded climate data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global drought rainfall deficit maps",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "historical precipitation anomalies NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global soil moisture content gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "root zone soil moisture geospatial dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "ESA CCI soil moisture anomaly NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "agricultural drought indicators global maps",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "SMAP SMOS soil moisture data global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "gridded soil moisture historical observations",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global actual evapotranspiration gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "potential evapotranspiration PET dataset global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "evaporative demand geospatial data drought",
+            "language": "en",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "aridity indices global climate data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "MODIS evapotranspiration products drought",
+            "language": "en",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global AET PET climate change projections",
+            "language": "en",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global Standardized Precipitation Index SPI dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "SPEI gridded data global drought monitoring",
+            "language": "en",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Palmer Drought Severity Index PDSI NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Crop Moisture Index CMI global geospatial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "drought indices historical gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "WMO drought indices global repository",
+            "language": "en",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global water balance components dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "groundwater levels gridded data global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "river discharge data global hydrological models",
+            "language": "en",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "reservoir storage levels global database",
+            "language": "en",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "water balance indicators geospatial drought",
+            "language": "en",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global hydrological drought monitoring data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global dry day counts gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "consecutive dry days geospatial dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "precipitation concentration index global maps",
+            "language": "en",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "drought duration intensity global dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "meteorological drought indicators gridded",
+            "language": "en",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global drought early warning system data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 """
-Agent responsible for processing deep dive requests from the reviewer.
-Decides on the next concrete action (scrape or terminate) to dive deeper into existing websites.
+CCRA Deep Diver Agent - Responsible for processing deep dive requests from the reviewer.
+Decides on the next concrete action (scrape or terminate) to dive deeper into existing climate data websites.
 """
 import logging
 from typing import Dict, Any, Set, Optional
@@ -79,12 +79,12 @@ def extract_current_websites(state: AgentState) -> Set[str]:
 
 async def deep_dive_processor_node(state: AgentState) -> AgentState:
     """
-    Processes a deep dive request.
+    Processes a CCRA deep dive request.
     Uses an LLM to determine the next action (scrape or terminate)
     based on refinement_details provided by the reviewer.
-    Focuses on finding additional URLs within existing websites.
+    Focuses on finding additional climate risk assessment URLs within existing websites.
     """
-    logger.info("Deep Dive Processor node activated.")
+    logger.info(f"CCRA Deep Dive Processor node activated for {state.target_mode}/{state.target_which}.")
 
     # Update state counters at the beginning of deep dive processing
     state.consecutive_deep_dive_count += 1
@@ -132,10 +132,14 @@ async def deep_dive_processor_node(state: AgentState) -> AgentState:
     websites_list = list(current_websites)[:10]  # Limit to first 10 for prompt
     websites_str = ", ".join(websites_list) if websites_list else "None identified yet"
 
+    # Determine target location for CCRA context
+    target_location = state.target_country or state.target_city or "Global"
+    ccra_context = f"{state.target_mode} {state.target_which}" if state.target_mode and state.target_which else "climate risk assessment"
+    
     # Format the prompt
     formatted_prompt = prompt_template.format(
         refinement_details=refinement_details,
-        target_country=state.target_country or "Unknown",
+        target_country=target_location,
         current_websites=websites_str,
         max_actions=config.MAX_ACTIONS_PER_DEEP_DIVE_CYCLE,
         actions_performed=state.current_deep_dive_actions_count
@@ -158,7 +162,7 @@ async def deep_dive_processor_node(state: AgentState) -> AgentState:
         thinking_response = client.chat.completions.create(
             model=thinking_model_to_use,
             messages=[
-                {"role": "system", "content": "You are an AI assistant that analyzes websites to find additional specific URLs within the same domain for deeper data extraction. Focus on website navigation and structure."},
+                {"role": "system", "content": f"You are an AI assistant that analyzes climate data websites to find additional specific URLs within the same domain for deeper {ccra_context} data extraction. Focus on website navigation and structure for climate risk assessment datasets."},
                 {"role": "user", "content": formatted_prompt}
             ],
             # No specific response_format, allow free text for reasoning + JSON
@@ -176,8 +180,8 @@ async def deep_dive_processor_node(state: AgentState) -> AgentState:
         if not structured_model_to_use:
             raise ValueError("No STRUCTURED_MODEL configured for Deep Dive Processor JSON extraction.")
 
-        extraction_system_prompt = "You are an AI assistant that extracts structured JSON data from text. Given a text that contains reasoning and a JSON object, extract *only* the JSON object. The JSON object must conform to the provided schema. Do not include any explanations or conversational text in your output, only the JSON object itself."
-        extraction_user_prompt = f"""Extract the JSON object from the following text. The JSON should represent a deep dive action with 'action_type' (either 'scrape', 'crawl', or 'terminate_deep_dive'), 'target' (URL for scrape/crawl, null for terminate), 'justification', and optional 'max_pages' and 'exclude_patterns' for crawl actions.
+        extraction_system_prompt = f"You are an AI assistant that extracts structured JSON data from text for Climate Change Risk Assessment (CCRA) deep dive actions. Given a text that contains reasoning and a JSON object, extract *only* the JSON object. The JSON object must conform to the provided schema. Do not include any explanations or conversational text in your output, only the JSON object itself."
+        extraction_user_prompt = f"""Extract the JSON object from the following text. The JSON should represent a CCRA deep dive action with 'action_type' (either 'scrape', 'crawl', or 'terminate_deep_dive'), 'target' (URL for scrape/crawl, null for terminate), 'justification', and optional 'max_pages' and 'exclude_patterns' for crawl actions.
 
             Text:
             ```

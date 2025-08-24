@@ -25,7 +25,11 @@ def test_extractor_output_schema():
     # Add more assertions for other fields if necessary based on ExtractorOutputSchema
 
     # Test creation with minimally required fields (all are optional in ExtractorOutputSchema)
-    item = ExtractorOutputSchema()
+    item = ExtractorOutputSchema(
+        name=None, url=None, method_of_access=None, ccra_mode=None, ccra_type=None,
+        sector=None, subsector=None, granularity=None, data_format=None, description=None,
+        spatial_resolution=None, temporal_coverage=None, climate_scenario=None, country=None, country_locode=None
+    )
     assert item.name is None
 
     # Test with some fields
@@ -33,11 +37,16 @@ def test_extractor_output_schema():
         name="Full Dataset",
         url="http://example.com/full",
         method_of_access="api",
+        ccra_mode="emissions",
+        ccra_type="energy",
         sector="Energy",
         subsector="Electricity",
+        granularity="regional",
         data_format="JSON",
         description="Detailed energy data.",
-        granularity="regional",
+        spatial_resolution="regional",
+        temporal_coverage="annual",
+        climate_scenario="baseline",
         country="Testlandia",
         country_locode="TA"
     )
@@ -59,7 +68,7 @@ def test_extract_from_document():
         "content": "This is a test document with some greenhouse gas inventory data."
     }
     
-    extracted_data = extract_from_document(test_document, target_country="Poland", target_locode="PL")
+    extracted_data = extract_from_document(test_document, target_location="Poland", target_locode="PL", ccra_mode="hazards", ccra_type="heatwave")
     
     assert extracted_data["url"] == "https://example.com/ghgi-data"
     assert extracted_data["country"] == "Poland"
@@ -95,7 +104,7 @@ def test_extract_with_llm_successful(mock_openai):
         "content": "Annual energy statistics report for Poland covering fuel combustion in the energy sector."
     }
     
-    extracted_data = extract_with_llm(test_document, target_country="Poland", target_locode="PL")
+    extracted_data = extract_with_llm(test_document, target_location="Poland", target_locode="PL", ccra_mode="emissions", ccra_type="energy")
     
     assert extracted_data is not None, "extract_with_llm returned None on success"
     assert extracted_data["name"] == "Polish Energy Statistics"
@@ -127,7 +136,7 @@ class TestExtractWithLLMVariations:
         test_document = {"url": "http://example.com/malformed", "content": "Some content"}
         # Capture logs to check for error logging
         with patch('logging.Logger.error') as mock_log_error:
-            extracted_data = extract_with_llm(test_document, "Testland", "TL")
+            extracted_data = extract_with_llm(test_document, target_location="Testland", target_locode="TL", ccra_mode="hazards", ccra_type="heatwave")
             assert extracted_data is None
             mock_log_error.assert_called_with(ANY, exc_info=True) # Check that an error was logged with exception info
 
@@ -146,7 +155,7 @@ class TestExtractWithLLMVariations:
         
         test_document = {"url": "http://example.com/empty_resp", "content": "Some content"}
         with patch('logging.Logger.warning') as mock_log_warning:
-            extracted_data = extract_with_llm(test_document, "Testland", "TL")
+            extracted_data = extract_with_llm(test_document, target_location="Testland", target_locode="TL", ccra_mode="hazards", ccra_type="heatwave")
             assert extracted_data is None
             mock_log_warning.assert_called_with(ANY)
 
@@ -157,7 +166,7 @@ class TestExtractWithLLMVariations:
         # extract_with_llm should return None before trying to call OpenAI
         mock_client_instance = mock_openai.return_value
         with patch('logging.Logger.warning') as mock_log_warning:
-            extracted_data = extract_with_llm(test_document, "Testland", "TL")
+            extracted_data = extract_with_llm(test_document, target_location="Testland", target_locode="TL", ccra_mode="hazards", ccra_type="heatwave")
             assert extracted_data is None
             mock_client_instance.chat.completions.create.assert_not_called()
             mock_log_warning.assert_called_with("No content found in document for URL: http://example.com/empty_content. Skipping LLM extraction.")
@@ -169,7 +178,7 @@ class TestExtractWithLLMVariations:
         test_document = {"url": "http://example.com/missing_prompt", "content": "Some data"}
         mock_client_instance = mock_openai.return_value
         with patch('logging.Logger.error') as mock_log_error:
-            extracted_data = extract_with_llm(test_document, "Testland", "TL")
+            extracted_data = extract_with_llm(test_document, target_location="Testland", target_locode="TL", ccra_mode="hazards", ccra_type="heatwave")
             assert extracted_data is None
             mock_client_instance.chat.completions.create.assert_not_called()
             mock_log_error.assert_called_with("Extractor prompt template failed to load. Aborting LLM extraction.")
@@ -189,7 +198,7 @@ def test_extractor_node(mock_extract_with_llm):
     }
     
     # Create initial state with test documents and sector
-    initial_state = create_initial_state(country_name="Poland", sector_name="energy")
+    initial_state = create_initial_state(mode_name="emissions", which_name="energy", country_name="Poland")
     initial_state.scraped_data = [
         {"url": "https://example.com/ghgi", "content": "Carbon dioxide emissions from energy sector..."}
     ]

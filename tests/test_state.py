@@ -17,10 +17,10 @@ from agent_state import (
 def test_agent_state_creation(sample_state):
     """Test basic creation of an AgentState instance."""
     # Test the fixture-provided state
-    expected_prompt = "Country: Test Country Fixture, Sector: stationary_energy"
+    expected_prompt = "CCRA Mode: emissions, Type: stationary_energy, Country: Test Country Fixture"
     assert sample_state.prompt == expected_prompt, f"Prompt should be '{expected_prompt}' based on fixture"
     assert sample_state.target_country == "Test Country Fixture"
-    assert sample_state.target_sector == "stationary_energy"
+    assert sample_state.target_which == "stationary_energy"
     assert isinstance(sample_state.start_time, str), "Start time should be a string"
     assert sample_state.search_plan == [], "Search plan should start empty"
     assert sample_state.iteration_count == 0, "Iteration count should start at 0"
@@ -95,19 +95,19 @@ def test_iteration_count_reducer():
 def test_utility_function():
     """Test the create_initial_state utility function."""
     # Test country mode
-    state = create_initial_state(country_name="TestCountry", sector_name="TestSector")
+    state = create_initial_state(mode_name="emissions", which_name="TestSector", country_name="TestCountry")
     assert state.target_country == "TestCountry"
-    assert state.target_sector == "TestSector"
-    assert state.prompt == "Country: TestCountry, Sector: TestSector"
+    assert state.target_which == "TestSector"
+    assert state.prompt == "CCRA Mode: emissions, Type: TestSector, Country: TestCountry"
     assert state.research_mode == "country"
     assert state.target_city is None
 
 def test_utility_function_city_mode():
     """Test the create_initial_state utility function for city mode."""
-    state = create_initial_state(city_name="TestCity")
+    state = create_initial_state(mode_name="hazards", which_name="heatwave", city_name="TestCity")
     assert state.target_city == "TestCity"
     assert state.target_country is None
-    assert state.target_sector is None
+    assert state.target_which is None
     assert state.prompt == "City: TestCity"
     assert state.research_mode == "city"
     
@@ -115,28 +115,28 @@ def test_utility_function_validation():
     """Test that create_initial_state validates input combinations."""
     # Test mixed mode rejection
     try:
-        create_initial_state(city_name="TestCity", country_name="TestCountry", sector_name="TestSector")
+        create_initial_state(mode_name="emissions", which_name="TestSector", city_name="TestCity", country_name="TestCountry")
         assert False, "Should have raised ValueError for mixed modes"
     except ValueError as e:
         assert "Cannot specify both city_name and country_name" in str(e)
     
     # Test missing parameters rejection
     try:
-        create_initial_state()
+        create_initial_state(mode_name="hazards", which_name="heatwave")
         assert False, "Should have raised ValueError for missing parameters"
     except ValueError as e:
         assert "Must specify either city_name OR both country_name and sector_name" in str(e)
     
     # Test incomplete country mode
     try:
-        create_initial_state(country_name="TestCountry")
+        create_initial_state(mode_name="hazards", which_name="heatwave", country_name="TestCountry")
         assert False, "Should have raised ValueError for incomplete country mode"
     except ValueError as e:
         assert "Must specify either city_name OR both country_name and sector_name" in str(e)
 
 def test_serialization():
     """Test that we can serialize the state to JSON."""
-    state = create_initial_state(country_name="TestSerializeCountry", sector_name="TestSerializeSector")
+    state = create_initial_state(mode_name="emissions", which_name="TestSerializeSector", country_name="TestSerializeCountry")
     try:
         json_state = json.dumps(asdict(state))
         # Test deserialization

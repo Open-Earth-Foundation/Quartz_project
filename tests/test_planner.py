@@ -87,7 +87,7 @@ class TestPlannerNode(unittest.TestCase):
         """Setup common test variables."""
         self.test_country = "Testlandia"
         self.test_sector = "stationary_energy"
-        self.initial_state = create_initial_state(country_name=self.test_country, sector_name=self.test_sector)
+        self.initial_state = create_initial_state(mode_name="emissions", which_name=self.test_sector, country_name=self.test_country)
         # Ensure critical configs are set for the test, even if defaults
         config.OPENROUTER_API_KEY = config.OPENROUTER_API_KEY or "test_key_if_not_set"
         config.THINKING_MODEL = config.THINKING_MODEL or "test_model_planner_think"

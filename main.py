@@ -1,41 +1,78 @@
 """
 # CLI Usage Examples
 
-## City-Based Research
-The agent can research GHGI data for specific cities, with sector focus:
-    
-    # City + specific sector research  
-    python main.py --city "Kraków" --sector stationary_energy
-    python main.py --city "Berlin" --sector transportation
-    python main.py --city "Tokyo" --sector waste
-    
-    # City research with English-only sources
-    python main.py --city "Kraków" --sector stationary_energy --english
-    python main.py --city "Kraków" --sector afolu --english
+## CCRA Dataset Discovery
+The agent discovers Climate Change Risk Assessment (CCRA) datasets across three main modes:
 
-## Country/Sector Research
-Traditional country-level research requires both country and sector:
-
-    # Country + sector research
-    python main.py --country "Poland" --sector stationary_energy
-    python main.py --country "Germany" --sector transportation
+## Hazards Mode
+Discover climate hazard datasets:
     
-    # Country research with English-only sources
-    python main.py --country "Poland" --sector afolu --english
+    # Global hazard datasets
+    python main.py --mode hazards --which heatwave
+    python main.py --mode hazards --which drought
+    python main.py --mode hazards --which flood
+    
+    # Country-specific hazard datasets
+    python main.py --mode hazards --which heatwave --country Poland
+    python main.py --mode hazards --which landslide --country Australia
+    
+    # City-specific hazard datasets
+    python main.py --mode hazards --which flood --city "New York"
 
-# Available Sectors
-- `afolu` - Agriculture, Forestry & Other Land Use
-- `ippu` - Industrial Processes & Product Use  
-- `stationary_energy` - Stationary Energy (buildings, industry, power plants)
-- `transportation` - Transportation (road, rail, aviation, shipping)
-- `waste` - Waste Management
+## Exposure Mode
+Discover exposure datasets (what's at risk):
+
+    # Global exposure datasets
+    python main.py --mode exposure --which people
+    python main.py --mode exposure --which buildings
+    python main.py --mode exposure --which infrastructure
+    
+    # Country-specific exposure datasets
+    python main.py --mode exposure --which agriculture --country Germany
+    python main.py --mode exposure --which economy --country Japan
+
+## Vulnerability Mode
+Discover vulnerability datasets (susceptibility factors):
+
+    # Global vulnerability datasets
+    python main.py --mode vulnerability --which socioeconomic
+    python main.py --mode vulnerability --which health
+    
+    # Country-specific vulnerability datasets
+    python main.py --mode vulnerability --which access_to_services --country Brazil
+    python main.py --mode vulnerability --which governance --country India
+
+# Available CCRA Modes and Types
+
+## Hazards
+- `heatwave` - Extreme heat events and heat stress indicators
+- `drought` - Water scarcity and drought indices (SPI, SPEI, soil moisture)
+- `flood` - Riverine, pluvial, and coastal flooding datasets
+- `landslide` - Mass movement susceptibility and trigger data
+
+## Exposure
+- `people` - Population grids and demographic data
+- `buildings` - Building footprints and property exposure
+- `infrastructure` - Critical infrastructure (energy, transport, water, digital, health)
+- `agriculture` - Agricultural assets and land use
+- `economy` - Economic activity and asset values
+
+## Vulnerability
+- `socioeconomic` - Income, poverty, education, employment indicators
+- `health` - Health status, age structure, disability rates
+- `access_to_services` - Distance to hospitals, emergency services, markets
+- `environmental_buffers` - Green space, natural protection features
+- `governance` - Adaptive capacity and institutional strength
 
 # CLI Arguments
 
 ## Primary Mode Selection
-- `--city CITY_NAME`: Target city for research (can be combined with --sector)
-- `--country COUNTRY_NAME`: Target country for research (requires --sector)
-- `--sector SECTOR_NAME`: GHGI sector to focus on (choices: afolu, ippu, stationary_energy, transportation, waste)
+- `--mode MODE_NAME`: CCRA mode (choices: hazards, exposure, vulnerability)
+- `--which TYPE_NAME`: Specific hazard/exposure/vulnerability type within the mode
+
+## Geographic Scope
+- `--country COUNTRY_NAME`: Target country for research (optional - omit for global datasets)
+- `--city CITY_NAME`: Target city for research (optional - for urban-specific datasets)
 
 ## Options
 - `--english`: Use English-only search mode (focuses on English-language sources)
@@ -44,23 +81,29 @@ Traditional country-level research requires both country and sector:
 - `--max-iterations N`: Override maximum iterations for agent run
 
 ## Validation Rules
-- Valid: City only, City+Sector, Country+Sector
-- Invalid: City+Country, Country without Sector, city without sector
+- Required: --mode and --which must always be specified
+- Optional: --country or --city for geographic filtering
+- Invalid: Cannot use both --country and --city together
 
 # Research Modes Explained
 
-## City + Sector Mode  
-When using `--city` with `--sector`:
-1. Uses specialized city+sector prompt templates (e.g., `stationary_energy_city.md`)
-2. Focuses queries on sector-specific city data (e.g., district heating for stationary energy)
-3. Applies sector expertise to city-level research
-4. Combines municipal focus with GHGI sector knowledge
+## Global Mode
+When using `--mode` and `--which` without geographic filters:
+1. Searches for global and multi-country datasets
+2. Focuses on international repositories (UNFCCC, IPCC, World Bank, etc.)
+3. Prioritizes datasets with global coverage or multi-country comparisons
 
-## Country + Sector Mode
-When using `--country` with `--sector`:
-1. Uses traditional sector-specific prompts (e.g., `stationary_energy.md`)
-2. Focuses on national-level GHGI data with subnational context
-3. Follows established country/sector research patterns
+## Country-Specific Mode
+When adding `--country`:
+1. Searches for country-specific datasets and national repositories
+2. Includes national meteorological services and government data portals
+3. Combines global datasets with national/subnational data sources
+
+## City-Specific Mode
+When adding `--city`:
+1. Focuses on urban-scale datasets and municipal data sources
+2. Prioritizes high-resolution spatial data suitable for city-level analysis
+3. Includes local government portals and urban observatories
 
 
 """
@@ -100,7 +143,7 @@ def setup_logging(log_level: str = "INFO", log_dir: str = "logs") -> None:
     
     # Generate timestamped log filename
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    log_filename = os.path.join(log_dir, f"ghgi_agent_{timestamp}.log")
+    log_filename = os.path.join(log_dir, f"ccra_agent_{timestamp}.log")
     
     # Clear any existing handlers
     root_logger = logging.getLogger()
@@ -299,7 +342,7 @@ workflow.add_conditional_edges(
 logger.info("Compiling the research workflow graph.")
 # Compile the workflow graph
 ghgi_graph = workflow.compile()
-logger.info("GHGI Agent graph compiled successfully.")
+logger.info("CCRA Agent graph compiled successfully.")
 
 # --- Save Results Function ---
 def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optional[str]:
@@ -326,8 +369,9 @@ def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optiona
         else:
             # Country mode filename
             country_name_sanitized = re.sub(r'[^\w\-_\.]', '_', state.target_country or "UnknownCountry")
-            sector_sanitized = re.sub(r'[^\w\-_\.]', '_', state.target_sector or "UnknownSector")
-            filename = f"results_{country_name_sanitized}_{sector_sanitized}_{timestamp}.json"
+            mode_sanitized = re.sub(r'[^\w\-_\.]', '_', state.target_mode or "UnknownMode")
+            which_sanitized = re.sub(r'[^\w\-_\.]', '_', state.target_which or "UnknownType")
+            filename = f"results_{country_name_sanitized}_{mode_sanitized}_{which_sanitized}_{timestamp}.json"
         
         filepath = os.path.join(output_dir, filename)
 
@@ -336,7 +380,8 @@ def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optiona
             "research_mode": research_mode,
             "target_country": state.target_country,
             "target_country_locode": state.target_country_locode,
-            "target_sector": state.target_sector,
+            "target_mode": state.target_mode,
+            "target_which": state.target_which,
             "target_city": state.target_city,
             "start_time": state.start_time,
             "end_time": datetime.now().isoformat(),
@@ -358,9 +403,9 @@ def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optiona
         return None
 
 # --- Main Execution Logic ---
-async def run_agent(country_name: Optional[str] = None, sector_name: Optional[str] = None, city_name: Optional[str] = None, english_only_mode: bool = False, cli_config_overrides: Optional[Dict[str, Any]] = None) -> AgentState:
+async def run_agent(mode_name: str, which_name: str, country_name: Optional[str] = None, city_name: Optional[str] = None, english_only_mode: bool = False, cli_config_overrides: Optional[Dict[str, Any]] = None) -> AgentState:
     """
-    Initializes and runs the agent for either country/sector or city research.
+    Initializes and runs the agent for CCRA dataset discovery.
     Applies temporary config overrides if provided either directly or from CLI.
     """
     initial_config_values = {}
@@ -373,16 +418,16 @@ async def run_agent(country_name: Optional[str] = None, sector_name: Optional[st
             else:
                 logger.warning(f"Config key '{key}' not found in config.py, cannot apply CLI override.")
 
-    # Create initial state based on mode
+    # Create initial state based on CCRA mode
     if city_name:
-        initial_state = create_initial_state(city_name=city_name, sector_name=sector_name, english_only_mode=english_only_mode)
-        if sector_name:
-            logger.info(f"Starting agent for city: {city_name}, sector: {sector_name}, English-only mode: {english_only_mode}")
-        else:
-            logger.info(f"Starting agent for city: {city_name}, English-only mode: {english_only_mode}")
+        initial_state = create_initial_state(mode_name=mode_name, which_name=which_name, city_name=city_name, english_only_mode=english_only_mode)
+        logger.info(f"Starting CCRA agent for city: {city_name}, mode: {mode_name}, which: {which_name}, English-only mode: {english_only_mode}")
+    elif country_name:
+        initial_state = create_initial_state(mode_name=mode_name, which_name=which_name, country_name=country_name, english_only_mode=english_only_mode)
+        logger.info(f"Starting CCRA agent for country: {country_name}, mode: {mode_name}, which: {which_name}, English-only mode: {english_only_mode}")
     else:
-        initial_state = create_initial_state(country_name=country_name, sector_name=sector_name, english_only_mode=english_only_mode)
-        logger.info(f"Starting agent for country: {country_name}, Sector: {sector_name}, English-only mode: {english_only_mode}")
+        initial_state = create_initial_state(mode_name=mode_name, which_name=which_name, english_only_mode=english_only_mode)
+        logger.info(f"Starting CCRA agent for global datasets, mode: {mode_name}, which: {which_name}, English-only mode: {english_only_mode}")
     
     logger.debug(f"Initial state passed to graph.ainvoke: {initial_state}")
     
@@ -429,20 +474,21 @@ async def run_agent(country_name: Optional[str] = None, sector_name: Optional[st
     if not isinstance(raw_final_state_dict, dict):
         logger.error(f"Could not extract or reconstruct AgentState from graph output. Output was: {raw_final_state_dict}")
         if city_name:
-            final_state = create_initial_state(city_name=city_name, sector_name=sector_name, english_only_mode=english_only_mode)
+            final_state = create_initial_state(mode_name=mode_name, which_name=which_name, city_name=city_name, english_only_mode=english_only_mode)
+        elif country_name:
+            final_state = create_initial_state(mode_name=mode_name, which_name=which_name, country_name=country_name, english_only_mode=english_only_mode)
         else:
-            final_state = create_initial_state(country_name=country_name, sector_name=sector_name, english_only_mode=english_only_mode)
+            final_state = create_initial_state(mode_name=mode_name, which_name=which_name, english_only_mode=english_only_mode)
     else:
         final_state = AgentState(**raw_final_state_dict)
 
     # Log completion message based on mode
     if city_name:
-        if sector_name:
-            logger.info(f"Agent run completed for city: {city_name}, sector: {sector_name}.")
-        else:
-            logger.info(f"Agent run completed for city: {city_name}.")
+        logger.info(f"CCRA agent run completed for city: {city_name}, mode: {mode_name}, which: {which_name}.")
+    elif country_name:
+        logger.info(f"CCRA agent run completed for country: {country_name}, mode: {mode_name}, which: {which_name}.")
     else:
-        logger.info(f"Agent run completed for country: {country_name}, Sector: {sector_name}.")
+        logger.info(f"CCRA agent run completed for global datasets, mode: {mode_name}, which: {which_name}.")
     
     if isinstance(final_state, AgentState):
         logger.info(f"Final decision log: {json.dumps(final_state.decision_log, indent=2)}")
@@ -457,29 +503,91 @@ async def run_agent(country_name: Optional[str] = None, sector_name: Optional[st
 
 async def main_async(args, cli_config_overrides: Optional[Dict[str, Any]] = None):
     """Asynchronous main function to run the agent and print summary."""
-    # Determine which mode to run in
-    if hasattr(args, 'city') and args.city:
-        # City mode (with optional sector)
-        sector_name = getattr(args, 'sector', None)
-        final_state = await run_agent(city_name=args.city, sector_name=sector_name, english_only_mode=args.english, cli_config_overrides=cli_config_overrides)
-    else:
-        # Country mode (sector is required)
-        final_state = await run_agent(country_name=args.country, sector_name=args.sector, english_only_mode=args.english, cli_config_overrides=cli_config_overrides)
+    # Handle all_exposure case - run all exposure types sequentially
+    if args.mode == 'exposure' and args.which == 'all_exposure':
+        exposure_types = ['people', 'buildings', 'infrastructure', 'agriculture', 'economy']
+        all_final_states = []
+
+        for exposure_type in exposure_types:
+            print(f"\n{'='*80}")
+            print(f"RUNNING EXPOSURE TYPE: {exposure_type.upper()}")
+            print(f"{'='*80}")
+
+            # Run agent for this specific exposure type
+            final_state = await run_agent(
+                mode_name=args.mode,
+                which_name=exposure_type,
+                country_name=getattr(args, 'country', None),
+                city_name=getattr(args, 'city', None),
+                english_only_mode=args.english,
+                cli_config_overrides=cli_config_overrides
+            )
+            all_final_states.append(final_state)
+
+        # Print summary for all exposure types
+        print(f"\n{'='*80}")
+        print("ALL EXPOSURE TYPES COMPLETED")
+        print(f"{'='*80}")
+
+        for i, final_state in enumerate(all_final_states):
+            exposure_types = ['people', 'buildings', 'infrastructure', 'agriculture', 'economy']
+            exposure_type = exposure_types[i]
+
+            print(f"\n--- {exposure_type.upper()} Summary ---")
+            research_mode = final_state.metadata.get("research_mode", "unknown")
+            print(f"CCRA Mode:               {final_state.target_mode}")
+            print(f"Target Type:             {final_state.target_which}")
+
+            if research_mode == "city":
+                print(f"Target City:             {final_state.target_city}")
+                print(f"Research Scope:          City-specific")
+            elif research_mode == "country":
+                print(f"Target Country:          {final_state.target_country}")
+                print(f"Research Scope:          Country-specific")
+            else:
+                print(f"Research Scope:          Global/Multi-country")
+
+            print(f"English-only Mode:       {final_state.metadata.get('english_only_mode', False)}")
+            print(f"Start Time:              {final_state.start_time}")
+            print(f"End Time:                {datetime.now().isoformat()}")
+            print(f"Total Iterations:        {final_state.current_iteration}")
+            print(f"Searches Conducted:      {final_state.searches_conducted_count}")
+
+            # Data output
+            num_structured_items = len(final_state.structured_data)
+            print(f"Structured Items Found:  {num_structured_items}")
+
+            if final_state.metadata.get("next_step_after_structured_review", "N/A") == "accept" and num_structured_items > 0:
+                print(f"Results Saved:           Yes")
+            else:
+                print(f"Results Saved:           No")
+
+        return all_final_states[0]  # Return the first state for compatibility
+
+    # Run CCRA agent with mode and which parameters (normal case)
+    final_state = await run_agent(
+        mode_name=args.mode,
+        which_name=args.which,
+        country_name=getattr(args, 'country', None),
+        city_name=getattr(args, 'city', None),
+        english_only_mode=args.english,
+        cli_config_overrides=cli_config_overrides
+    )
     
     # Print summary based on mode
-    print("\n--- Agent Run Summary ---")
+    print("\n--- CCRA Agent Run Summary ---")
     research_mode = final_state.metadata.get("research_mode", "unknown")
+    print(f"CCRA Mode:               {final_state.target_mode}")
+    print(f"Target Type:             {final_state.target_which}")
+    
     if research_mode == "city":
         print(f"Target City:             {final_state.target_city}")
-        if final_state.target_sector:
-            print(f"Target Sector:           {final_state.target_sector}")
-            print(f"Research Mode:           City + Sector-based")
-        else:
-            print(f"Research Mode:           City-based (all sectors)")
-    else:
+        print(f"Research Scope:          City-specific")
+    elif research_mode == "country":
         print(f"Target Country:          {final_state.target_country}")
-        print(f"Target Sector:           {final_state.target_sector}")
-        print(f"Research Mode:           Country/Sector-based")
+        print(f"Research Scope:          Country-specific")
+    else:
+        print(f"Research Scope:          Global/Multi-country")
     
     print(f"English-only Mode:       {final_state.metadata.get('english_only_mode', False)}")
     print(f"LOCODE:                  {final_state.target_country_locode}")
@@ -519,12 +627,26 @@ async def main_async(args, cli_config_overrides: Optional[Dict[str, Any]] = None
         print(f"- {log_entry.get('timestamp', 'N/A')} [{log_entry.get('agent', 'System')}] {log_entry.get('action', 'log')}: {log_entry.get('message', '')[:100]}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run the GHGI Dataset Discovery Agent.")
+    parser = argparse.ArgumentParser(description="Run the CCRA Dataset Discovery Agent.")
     
-    # Primary mode selection
-    parser.add_argument("--city", type=str, help="The target city name for research. Use quotes for multi-word names like 'San Francisco'. Can be combined with --sector for sector-specific city research.")
-    parser.add_argument("--country", type=str, help="The target country name for the research. Use quotes for multi-word names or separate words will be joined automatically. Cannot be used with --city.")
-    parser.add_argument("--sector", type=str, choices=['afolu', 'ippu', 'stationary_energy', 'transportation', 'waste'], help="The target GHGI sector. Can be used with either --city or --country.")
+    # Primary mode selection - CCRA modes
+    parser.add_argument("--mode", type=str, required=True,
+                       choices=['hazards', 'exposure', 'vulnerability'],
+                       help="CCRA mode: hazards (climate events), exposure (assets at risk), or vulnerability (susceptibility factors)")
+    
+    # Hazard/exposure/vulnerability type specification
+    hazard_types = ['heatwave', 'drought', 'flood', 'landslide']
+    exposure_types = ['people', 'buildings', 'infrastructure', 'agriculture', 'economy', 'all_exposure', 'comprehensive_exposure']
+    vulnerability_types = ['socioeconomic', 'health', 'access_to_services', 'environmental_buffers', 'governance']
+    all_types = hazard_types + exposure_types + vulnerability_types
+    
+    parser.add_argument("--which", type=str, required=False,
+                       choices=all_types,
+                       help="Specific type within the mode. Hazards: heatwave, drought, flood, landslide. Exposure: people, buildings, infrastructure, agriculture, economy, all_exposure, comprehensive_exposure (or omit for comprehensive_exposure). Vulnerability: socioeconomic, health, access_to_services, environmental_buffers, governance")
+    
+    # Geographic scope (optional)
+    parser.add_argument("--country", type=str, help="Target country name for country-specific datasets. Use quotes for multi-word names. Cannot be used with --city.")
+    parser.add_argument("--city", type=str, help="Target city name for city-specific datasets. Use quotes for multi-word names like 'New York'. Cannot be used with --country.")
     
     parser.add_argument("--english", action="store_true", help="Use English-only search mode. This will focus exclusively on English-language sources and documentation.")
     parser.add_argument("--log-level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="Set the logging level.")
@@ -535,14 +657,33 @@ if __name__ == "__main__":
     known_args, unknown_args = parser.parse_known_args()
     
     # Validate argument combinations
-    if not known_args.city and not known_args.country:
-        parser.error("Either --city or --country must be provided.")
-    
     if known_args.city and known_args.country:
-        parser.error("Cannot use both --city and --country. Choose either city mode or country mode.")
+        parser.error("Cannot use both --city and --country. Choose either city-specific or country-specific research, or omit both for global datasets.")
     
-    if known_args.country and not known_args.sector:
-        parser.error("--country requires --sector to be specified.")
+    # Validate mode and which combinations
+    mode = known_args.mode
+    which = known_args.which
+
+    # Auto-set comprehensive_exposure for exposure mode when --which is omitted
+    if mode == 'exposure' and which is None:
+        which = 'comprehensive_exposure'
+        known_args.which = 'comprehensive_exposure'  # Update the args object
+        logger_temp = logging.getLogger(__name__)
+        logger_temp.info(f"Auto-setting --which to 'comprehensive_exposure' for exposure mode - searching all exposure datasets at once")
+
+    if mode == 'hazards' and which not in hazard_types:
+        parser.error(f"--which '{which}' is not valid for --mode 'hazards'. Valid hazard types: {', '.join(hazard_types)}")
+    elif mode == 'exposure' and which not in exposure_types:
+        parser.error(f"--which '{which}' is not valid for --mode 'exposure'. Valid exposure types: {', '.join(exposure_types)}")
+    elif mode == 'vulnerability' and which not in vulnerability_types:
+        parser.error(f"--which '{which}' is not valid for --mode 'vulnerability'. Valid vulnerability types: {', '.join(vulnerability_types)}")
+
+    # Handle all_exposure case - run all exposure types
+    if mode == 'exposure' and which == 'all_exposure':
+        exposure_types_to_run = ['people', 'buildings', 'infrastructure', 'agriculture', 'economy']
+        logger_temp = logging.getLogger(__name__)
+        logger_temp.info(f"Running all exposure types: {exposure_types_to_run}")
+        # We'll handle this in the main_async function
     
     # If there are unknown args, they're likely part of a multi-word name
     if unknown_args:
@@ -564,13 +705,13 @@ if __name__ == "__main__":
     setup_logging(log_level=args.log_level, log_dir=args.log_dir)
     
     # Now we can safely use the logger
+    scope = "global"
     if args.city:
-        if args.sector:
-            logger.info(f"Starting GHGI Agent for city: {args.city}, sector: {args.sector} with log level: {args.log_level}")
-        else:
-            logger.info(f"Starting GHGI Agent for city: {args.city} (all sectors) with log level: {args.log_level}")
-    else:
-        logger.info(f"Starting GHGI Agent for country: {args.country}, sector: {args.sector} with log level: {args.log_level}")
+        scope = f"city: {args.city}"
+    elif args.country:
+        scope = f"country: {args.country}"
+    
+    logger.info(f"Starting CCRA Agent for {scope}, mode: {args.mode}, which: {args.which} with log level: {args.log_level}")
     
     if args.english:
         logger.info("English-only mode enabled: Will focus exclusively on English-language sources")
