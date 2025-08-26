@@ -144,7 +144,7 @@ def reduce_target_country_locode(state1: AgentState, state2: AgentState) -> Opti
     return state2.target_country_locode if state2.target_country_locode is not None else state1.target_country_locode
 
 # Utility function to create a new state with default values
-def create_initial_state(mode_name: str, which_name: str, country_name: Optional[str] = None, city_name: Optional[str] = None, english_only_mode: bool = False) -> AgentState:
+def create_initial_state(mode_name: str, which_name: Optional[str] = None, country_name: Optional[str] = None, city_name: Optional[str] = None, english_only_mode: bool = False) -> AgentState:
     """
     Create a new AgentState with default values for CCRA dataset discovery.
 
@@ -165,7 +165,10 @@ def create_initial_state(mode_name: str, which_name: str, country_name: Optional
     # Determine research mode and create prompt
     if city_name:
         research_mode = "city"
-        prompt = f"CCRA Mode: {mode_name}, Type: {which_name}, City: {city_name}"
+        if which_name:
+            prompt = f"CCRA Mode: {mode_name}, Type: {which_name}, City: {city_name}"
+        else:
+            prompt = f"CCRA Mode: {mode_name}, City: {city_name}"
         decision_log_entry = {
             "action": "init",
             "mode": mode_name,
@@ -176,7 +179,10 @@ def create_initial_state(mode_name: str, which_name: str, country_name: Optional
         }
     elif country_name:
         research_mode = "country"
-        prompt = f"CCRA Mode: {mode_name}, Type: {which_name}, Country: {country_name}"
+        if which_name:
+            prompt = f"CCRA Mode: {mode_name}, Type: {which_name}, Country: {country_name}"
+        else:
+            prompt = f"CCRA Mode: {mode_name}, Country: {country_name}"
         decision_log_entry = {
             "action": "init",
             "mode": mode_name,
@@ -187,7 +193,10 @@ def create_initial_state(mode_name: str, which_name: str, country_name: Optional
         }
     else:
         research_mode = "global"
-        prompt = f"CCRA Mode: {mode_name}, Type: {which_name}, Scope: Global"
+        if which_name:
+            prompt = f"CCRA Mode: {mode_name}, Type: {which_name}, Scope: Global"
+        else:
+            prompt = f"CCRA Mode: {mode_name}, Scope: Global"
         decision_log_entry = {
             "action": "init",
             "mode": mode_name,

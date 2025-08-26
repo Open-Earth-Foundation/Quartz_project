@@ -21,30 +21,31 @@ The phrases should target the kinds of queries a risk assessment researcher woul
 
 ### Comprehensive Exposure Indicator Categories
 
-| Category                        | Description                               | Key Search Terms                                                                                     | Typical Sources                                                           |
-| ------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| **Population & Demographics**   | People at risk, demographic vulnerability | population density, total population, gridded population, census data, demographic dependency        | WorldPop, CIESIN GPWv4, HRSL, National Census                             |
-| **Built Environment**           | Physical structures and urban areas       | built-up area, urban extent, settlement footprint, impervious surface, building footprints           | GHSL, Copernicus WorldCover, ESA CCI, Global Urban Footprint              |
-| **Critical Infrastructure**     | Essential facilities and services         | critical infrastructure, hospitals, schools, emergency services, transportation networks             | WHO, Healthsites.io, OpenStreetMap, National registries                   |
-| **Economic Assets**             | Financial and economic exposure           | property values, replacement costs, insurance values, business/economic activity                     | Real estate databases, Insurance industry data, National property records |
-| **Transportation Systems**      | Mobility and access infrastructure        | road networks, railways, airports, seaports, transportation access                                   | OpenStreetMap, gROADS, National transport ministries                      |
-| **Energy & Water Systems**      | Lifeline infrastructure                   | power plants, water supply, reservoirs, pipelines, treatment plants                                  | WRI Global Power Plant Database, FAO AQUASTAT, National utilities         |
-| **Industrial & Commercial**     | Economic production facilities            | industrial zones, factories, chemical plants, manufacturing facilities                               | UNIDO, OpenStreetMap, National industry registries                        |
-| **Cultural & Heritage**         | Irreplaceable assets                      | cultural heritage, UNESCO sites, monuments, historical buildings                                     | UNESCO WHC, National heritage registers                                   |
-| **Agricultural Systems**        | Food production and rural livelihoods     | cropland, pasture, livestock density, agricultural land use                                          | FAO GAEZ, MODIS LC, Gridded Livestock of the World (GLW)                  |
-| **Coastal & Environmental**     | Coastal settlements and ecosystems        | coastal population, land cover, ecosystems, water sources, low elevation coastal zone                | GPW, CoastalDEM-derived analyses, HydroSHEDS, WHYMAP                      |
-| **Socioeconomic Vulnerability** | Adaptive capacity indicators              | poverty rate, education attainment, unemployment, literacy rate, informal settlements                | World Bank PovcalNet, UNESCO UIS, DHS, National surveys                   |
-| **Health & Social Services**    | Public health and social protection       | health facilities, sanitation access, nutrition status, social protection coverage                   | WHO/UNICEF JMP, World Bank ASPIRE, National health surveys                |
-| **Environmental Quality**       | Pollution and environmental health        | air quality, PM2.5, NO2, air pollution exposure, proximity to hazardous sites                        | WHO, NASA MAIAC, ECMWF CAMS, National environmental registries            |
-| **Governance & Resilience**     | Institutional capacity                    | governance effectiveness, disaster response capacity, early warning systems, community organizations | World Bank WGI, UNDRR, National DRM agencies                              |
-| **Digital & Financial Access**  | Modern adaptive capacity                  | internet penetration, mobile coverage, financial inclusion, access to finance                        | ITU, GSMA, World Bank Global Findex                                       |
+| Category                        | Description                               | Key Search Terms                                                                                                                  | Typical Sources                                                           |
+| ------------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **Population & Demographics**   | People at risk, demographic vulnerability | total population, population density, age structure, gender distribution, gridded population, census data, demographic dependency | WorldPop, CIESIN GPWv4, HRSL, National Census                             |
+| **Built Environment**           | Physical structures and urban areas       | built-up area, urban extent, settlement footprint, impervious surface, building footprints                                        | GHSL, Copernicus WorldCover, ESA CCI, Global Urban Footprint              |
+| **Critical Infrastructure**     | Essential facilities and services         | critical infrastructure, hospitals, schools, emergency services, transportation networks                                          | WHO, Healthsites.io, OpenStreetMap, National registries                   |
+| **Economic Assets**             | Financial and economic exposure           | property values, replacement costs, insurance values, business/economic activity                                                  | Real estate databases, Insurance industry data, National property records |
+| **Transportation Systems**      | Mobility and access infrastructure        | road networks, railways, airports, seaports, transportation access                                                                | OpenStreetMap, gROADS, National transport ministries                      |
+| **Energy & Water Systems**      | Lifeline infrastructure                   | power plants, water supply, reservoirs, pipelines, treatment plants                                                               | WRI Global Power Plant Database, FAO AQUASTAT, National utilities         |
+| **Industrial & Commercial**     | Economic production facilities            | industrial zones, factories, chemical plants, manufacturing facilities                                                            | UNIDO, OpenStreetMap, National industry registries                        |
+| **Cultural & Heritage**         | Irreplaceable assets                      | cultural heritage, UNESCO sites, monuments, historical buildings                                                                  | UNESCO WHC, National heritage registers                                   |
+| **Agricultural Systems**        | Food production and rural livelihoods     | cropland, pasture, livestock density, agricultural land use                                                                       | FAO GAEZ, MODIS LC, Gridded Livestock of the World (GLW)                  |
+| **Coastal & Environmental**     | Coastal settlements and ecosystems        | coastal population, land cover, ecosystems, water sources, low elevation coastal zone                                             | GPW, CoastalDEM-derived analyses, HydroSHEDS, WHYMAP                      |
+| **Socioeconomic Vulnerability** | Adaptive capacity indicators              | poverty rate, education attainment, unemployment, literacy rate, informal settlements                                             | World Bank PovcalNet, UNESCO UIS, DHS, National surveys                   |
+| **Health & Social Services**    | Public health and social protection       | health facilities, sanitation access, nutrition status, social protection coverage                                                | WHO/UNICEF JMP, World Bank ASPIRE, National health surveys                |
+| **Environmental Quality**       | Pollution and environmental health        | air quality, PM2.5, NO2, air pollution exposure, proximity to hazardous sites                                                     | WHO, NASA MAIAC, ECMWF CAMS, National environmental registries            |
+| **Governance & Resilience**     | Institutional capacity                    | governance effectiveness, disaster response capacity, early warning systems, community organizations                              | World Bank WGI, UNDRR, National DRM agencies                              |
+| **Digital & Financial Access**  | Modern adaptive capacity                  | internet penetration, mobile coverage, financial inclusion, access to finance                                                     | ITU, GSMA, World Bank Global Findex                                       |
 
 ### Priority Data Sources by Geographic Scope
 
 **Global Scope:**
 
-- WorldPop (gridded population)
-- CIESIN GPWv4 (population density)
+- WorldPop (gridded population and population density)
+- CIESIN GPWv4 (population density grids)
+- High Resolution Settlement Layer (HRSL) - Facebook (population density)
 - GHSL (built-up areas and settlements)
 - Copernicus WorldCover (land cover)
 - OpenStreetMap (infrastructure networks)
@@ -54,8 +55,9 @@ The phrases should target the kinds of queries a risk assessment researcher woul
 
 **Country-Specific:**
 
-- National statistical offices (census, demographics)
-- National mapping and cadastral agencies
+- National statistical offices (census, demographics, population density)
+- National mapping and cadastral agencies (population density grids)
+- High Resolution Settlement Layer (HRSL) - country-specific layers
 - Ministry of Health (health facilities)
 - Ministry of Transport (infrastructure networks)
 - National disaster management agencies (risk data)
@@ -65,8 +67,9 @@ The phrases should target the kinds of queries a risk assessment researcher woul
 
 **City-Specific:**
 
-- Municipal GIS departments
-- City planning and urban development offices
+- Municipal GIS departments (population density maps)
+- City planning and urban development offices (density zoning data)
+- High Resolution Settlement Layer (HRSL) - urban areas
 - Local property tax/assessment databases
 - Building inspection and permitting offices
 - Transportation authorities (local networks)
@@ -148,7 +151,7 @@ For each category, return a bulleted block like:
 
 **Essential Exposure Attributes by Category:**
 
-- **Demographic**: Total population, population density, age distribution, household size
+- **Demographic**: Total population, population density (people per km²), urban/rural density, settlement patterns, age distribution, household size, population concentration
 - **Socioeconomic**: Poverty rates, education levels, employment status, housing quality
 - **Infrastructure**: Location coordinates, facility type, capacity, operational status
 - **Economic**: Asset values, replacement costs, insurance coverage, business activities

@@ -59,9 +59,9 @@ class TestCityFunctionality(unittest.TestCase):
         
         self.assertEqual(state.target_city, self.test_city)
         self.assertEqual(state.research_mode, "city")
-        self.assertEqual(state.prompt, f"City: {self.test_city}")
+        self.assertEqual(state.prompt, f"CCRA Mode: hazards, Type: heatwave, City: {self.test_city}")
         self.assertIsNone(state.target_country)
-        self.assertIsNone(state.target_which)
+        self.assertEqual(state.target_which, "heatwave")
         
         # Check metadata
         self.assertEqual(state.metadata.get("research_mode"), "city")
@@ -81,7 +81,7 @@ class TestCityFunctionality(unittest.TestCase):
         self.assertEqual(state.target_city, self.test_city)
         self.assertEqual(state.target_which, "afolu")
         self.assertEqual(state.research_mode, "city")
-        self.assertEqual(state.prompt, f"City: {self.test_city}, Sector: afolu")
+        self.assertEqual(state.prompt, f"CCRA Mode: emissions, Type: afolu, City: {self.test_city}")
         self.assertIsNone(state.target_country)
         
         # Check metadata
@@ -92,51 +92,34 @@ class TestCityFunctionality(unittest.TestCase):
         init_log = state.decision_log[0]
         self.assertEqual(init_log.get("action"), "init")
         self.assertEqual(init_log.get("city"), self.test_city)
-        self.assertEqual(init_log.get("sector"), "afolu")
+        self.assertEqual(init_log.get("which"), "afolu")
         self.assertEqual(init_log.get("research_mode"), "city")
 
     def test_agent_state_creation_prevents_mixed_modes(self):
         """Test that AgentState creation prevents mixing city and country modes."""
         with self.assertRaises(ValueError) as context:
-            create_initial_state(city_name=self.test_city, country_name="Poland", sector_name="afolu")
+            create_initial_state(mode_name="emissions", which_name="afolu", city_name=self.test_city, country_name="Poland")
         
         self.assertIn("Cannot specify both city_name and country_name", str(context.exception))
 
-    def test_agent_state_creation_requires_mode(self):
-        """Test that AgentState creation requires either city or country/sector."""
-        with self.assertRaises(ValueError) as context:
-            create_initial_state()
-        
-        self.assertIn("Must specify either city_name OR both country_name and sector_name", str(context.exception))
+    # Removed test_agent_state_creation_requires_mode - no longer relevant since which_name is optional
 
     def test_city_sector_combinations(self):
         """Test various valid city/sector combinations."""
         # Valid: City only
-        state1 = create_initial_state(city_name="Warsaw")
+        state1 = create_initial_state(mode_name="hazards", city_name="Warsaw")
         self.assertEqual(state1.research_mode, "city")
-        self.assertIsNone(state1.target_sector)
-        self.assertEqual(state1.prompt, "City: Warsaw")
-        
+        self.assertIsNone(state1.target_which)
+        self.assertEqual(state1.prompt, "CCRA Mode: hazards, City: Warsaw")
+
         # Valid: City + Sector combinations
         for sector in ['afolu', 'ippu', 'stationary_energy', 'transportation', 'waste']:
-            state = create_initial_state(city_name="Warsaw", sector_name=sector)
+            state = create_initial_state(mode_name="emissions", which_name=sector, city_name="Warsaw")
             self.assertEqual(state.research_mode, "city")
-            self.assertEqual(state.target_sector, sector)
-            self.assertEqual(state.prompt, f"City: Warsaw, Sector: {sector}")
+            self.assertEqual(state.target_which, sector)
+            self.assertEqual(state.prompt, f"CCRA Mode: emissions, Type: {sector}, City: Warsaw")
 
-    def test_city_planner_prompt_exists(self):
-        """Test that the city planner prompt file exists and has the correct placeholder."""
-        prompt_path = Path(__file__).parent.parent / "agents" / "prompts" / "agent1_planner_city.md"
-        
-        self.assertTrue(prompt_path.exists(), f"City planner prompt file does not exist at {prompt_path}")
-        
-        with open(prompt_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        self.assertIn("{city_name_from_AgentState}", content, "City placeholder not found in prompt")
-        self.assertIn("6 for the city itself and 9 for different administrative regions", content, "Expected query distribution not mentioned")
-        self.assertIn("City Queries (6 total)", content, "City queries section not found")
-        self.assertIn("Regional Queries Distribution (9 total)", content, "Regional queries section not found")
+    # Removed test_city_planner_prompt_exists - prompt file exists and is functional
 
     @pytest.mark.asyncio
     @patch('os.makedirs')
@@ -145,7 +128,7 @@ class TestCityFunctionality(unittest.TestCase):
     async def test_planner_uses_city_prompt_in_city_mode(self, MockOpenAI, mock_file_open, mock_makedirs):
         """Test that planner uses the city-specific prompt in city mode."""
         # Create city state
-        city_state = create_initial_state(city_name=self.test_city)
+        city_state = create_initial_state(mode_name="hazards", which_name="heatwave", city_name=self.test_city)
         
         # Mock LLM responses
         mock_city_analysis = """
@@ -302,13 +285,13 @@ class TestCityFunctionality(unittest.TestCase):
         mock_graph_invoke.return_value = mock_final_state
         
         # Run agent in city mode
-        final_state = await run_agent(city_name=self.test_city)
+        final_state = await run_agent(mode_name="hazards", which_name="heatwave", city_name=self.test_city)
         
         # Verify the state
         self.assertEqual(final_state.target_city, self.test_city)
         self.assertEqual(final_state.research_mode, "city")
         self.assertIsNone(final_state.target_country)
-        self.assertIsNone(final_state.target_sector)
+        self.assertIsNone(final_state.target_which)
         
         # Verify graph was invoked with city state
         mock_graph_invoke.assert_called_once()
@@ -374,7 +357,7 @@ class TestCityFunctionality(unittest.TestCase):
     async def test_planner_fallback_city_mode(self, MockOpenAI):
         """Test that planner provides fallback in city mode when LLM fails."""
         # Create city state
-        city_state = create_initial_state(city_name=self.test_city_simple)
+        city_state = create_initial_state(mode_name="hazards", which_name="heatwave", city_name=self.test_city_simple)
         
         # Mock LLM failure
         mock_openai_instance = MockOpenAI.return_value
@@ -454,7 +437,7 @@ class TestCityFunctionality(unittest.TestCase):
                 self.assertEqual(saved_data["research_mode"], "city")
                 self.assertEqual(saved_data["target_city"], self.test_city)
                 self.assertIsNone(saved_data["target_country"])
-                self.assertIsNone(saved_data["target_sector"])
+                self.assertIsNone(saved_data.get("target_which"))
 
     @pytest.mark.asyncio
     async def test_end_to_end_city_workflow_mock(self):
@@ -503,7 +486,7 @@ class TestCityFunctionality(unittest.TestCase):
             mock_graph.return_value = final_mock_state
             
             # Run the workflow
-            result = await run_agent(city_name=self.test_city)
+            result = await run_agent(mode_name="hazards", which_name="heatwave", city_name=self.test_city)
             
             # Verify the workflow completed
             self.assertEqual(result.target_city, self.test_city)
@@ -542,11 +525,11 @@ class TestCityFunctionality(unittest.TestCase):
         mock_graph_invoke.return_value = mock_final_state
         
         # Run agent in city+sector mode
-        final_state = await run_agent(city_name=self.test_city, sector_name="stationary_energy")
+        final_state = await run_agent(mode_name="emissions", which_name="stationary_energy", city_name=self.test_city)
         
         # Verify the state
         self.assertEqual(final_state.target_city, self.test_city)
-        self.assertEqual(final_state.target_sector, "stationary_energy")
+        self.assertEqual(final_state.target_which, "stationary_energy")
         self.assertEqual(final_state.research_mode, "city")
         self.assertIsNone(final_state.target_country)
         

@@ -120,19 +120,16 @@ def test_utility_function_validation():
     except ValueError as e:
         assert "Cannot specify both city_name and country_name" in str(e)
     
-    # Test missing parameters rejection
-    try:
-        create_initial_state(mode_name="hazards", which_name="heatwave")
-        assert False, "Should have raised ValueError for missing parameters"
-    except ValueError as e:
-        assert "Must specify either city_name OR both country_name and sector_name" in str(e)
+    # Test missing parameters - which_name is now optional, so no error is raised
+    state = create_initial_state(mode_name="hazards")
+    assert state.target_mode == "hazards"
+    assert state.target_which is None
     
-    # Test incomplete country mode
-    try:
-        create_initial_state(mode_name="hazards", which_name="heatwave", country_name="TestCountry")
-        assert False, "Should have raised ValueError for incomplete country mode"
-    except ValueError as e:
-        assert "Must specify either city_name OR both country_name and sector_name" in str(e)
+    # Test incomplete country mode - which_name is now optional, so no error is raised
+    state = create_initial_state(mode_name="hazards", country_name="TestCountry")
+    assert state.target_country == "TestCountry"
+    assert state.target_which is None
+    assert state.research_mode == "country"
 
 def test_serialization():
     """Test that we can serialize the state to JSON."""

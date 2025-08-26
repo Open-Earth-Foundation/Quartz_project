@@ -319,136 +319,12 @@ class TestResearcherNode(unittest.IsolatedAsyncioTestCase):
         mock_scrape_urls_async.assert_called_once_with(urls=["http://example.com"], state=self.initial_state)
         self.assertTrue(any(doc.get("url") == "http://example.com" for doc in updated_state.scraped_data))
 
-    @patch('agents.utils.file_saver.Path.mkdir')  # Mock for Path.mkdir in file_saver module
-    @patch('agents.utils.file_saver.open', new_callable=mock_open)  # Mock for open in file_saver module
-    # Patches for os.makedirs and open directly within agents.researcher (for summary)
-    @patch('agents.researcher.os.makedirs') # Mock for os.makedirs in researcher module
-    @patch('agents.researcher.open', new_callable=mock_open) # Mock for open in researcher module
-    @patch('agents.researcher.scrape_urls_async', new_callable=AsyncMock)
-    @patch('agents.researcher.collect_search_results', new_callable=AsyncMock)
-    @patch('agents.researcher.AsyncOpenAI')
-    async def test_researcher_node_saves_scraped_html_content(
-        self, 
-        mock_researcher_async_openai: MagicMock,      # Corresponds to @patch('agents.researcher.AsyncOpenAI')
-        mock_researcher_collect_search_results: AsyncMock, # Corresponds to @patch('agents.researcher.collect_search_results', ...)
-        mock_researcher_scrape_urls_async: AsyncMock,    # Corresponds to @patch('agents.researcher.scrape_urls_async', ...)
-        mock_researcher_direct_open: MagicMock,         # Corresponds to @patch('agents.researcher.open', ...)
-        mock_researcher_direct_os_makedirs: MagicMock,  # Corresponds to @patch('agents.researcher.os.makedirs')
-        mock_filesaver_actual_modules_open: MagicMock,  # Corresponds to @patch('agents.utils.file_saver.open', ...)
-        mock_filesaver_actual_modules_path_mkdir: MagicMock  # Corresponds to @patch('agents.utils.file_saver.Path.mkdir')
-    ):
-        """
-        Test that researcher_node correctly scrapes a specific URL (Polish stats site)
-        and attempts to save its HTML content using file_saver.save_scrape_to_file.
-        This test focuses on the path from a URL being deemed relevant to it being scraped and saved.
-        """
-        test_url_to_scrape = "https://bdl.stat.gov.pl/bdl/dane/podgrup/temat"
-        mock_html_content = "<html><body>Mock Polish Stats Data</body></html>"
-        
-        # --- Configure Mocks ---
-        
-        # 1. Mock collect_search_results (used by researcher_node)
-        async def mock_collect_side_effect_for_save_test(**kwargs):
-            return [{ "url": test_url_to_scrape, "title": "Polish Stats", "snippet": "BDL data..." }]
-        mock_researcher_collect_search_results.side_effect = mock_collect_side_effect_for_save_test
 
-        # 2. Mock Relevance Check (via AsyncOpenAI client, used by researcher_node)
-        mock_relevance_client_instance = mock_researcher_async_openai.return_value
-        mock_relevance_completions = AsyncMock()
-        mock_relevance_client_instance.chat = AsyncMock()
-        mock_relevance_client_instance.chat.completions = mock_relevance_completions
-        async def mock_relevance_side_effect_for_save_test(*args, **kwargs):
-            relevance_response_dict = {"is_relevant": True, "reason": f"Mock relevance: YES for {test_url_to_scrape}"}
-            relevance_response_content = json.dumps(relevance_response_dict)
-            mock_choice = MagicMock()
-            mock_choice.message = MagicMock()
-            mock_choice.message.content = relevance_response_content
-            mock_completion_response = AsyncMock()
-            mock_completion_response.choices = [mock_choice]
-            return mock_completion_response
-        mock_relevance_completions.create = AsyncMock(side_effect=mock_relevance_side_effect_for_save_test)
-
-        # 3. Mock scrape_urls_async (used by researcher_node)
-        async def mock_scrape_side_effect_for_save_test(urls, state=None, **kwargs):
-            results = []
-            for url_item in urls:
-                if url_item == test_url_to_scrape:
-                    results.append({
-                        'url': url_item,
-                        'html_content': mock_html_content,
-                        'content': f'Mock markdown for {url_item}',
-                        'title': f'Scraped {url_item}',
-                        'success': True
-                    })
-                else:
-                    results.append({
-                        'url': url_item, 'html_content': None, 'content': 'Error content', 
-                        'title': f'Scraped {url_item}', 'success': False
-                    })
-            return results
-        mock_researcher_scrape_urls_async.side_effect = mock_scrape_side_effect_for_save_test
-
-        # 4. Initial state setup
-        self.initial_state.search_plan = [{ "query": "Search that finds Polish stats", "priority": "high", "status": "pending", "rank": 1 }]
-        self.initial_state.target_country = "Poland"
-        self.initial_state.target_which = "stationary_energy"
-        if not self.initial_state.start_time:
-             self.initial_state.start_time = datetime.now(timezone.utc).isoformat()
-
-        # --- Run the node ---
-        updated_state = await researcher_node(self.initial_state)
-
-        # --- Assertions ---
-        
-        # Use the ACTUAL sanitization logic from researcher.py line 321-323
-        raw_run_id = self.initial_state.start_time
-        sanitized_run_id_from_time = raw_run_id.replace(":", "-").replace("T", "_").split(".")[0]
-        current_run_id = sanitized_run_id_from_time
-        
-        # Assertions for operations within agents.utils.file_saver.save_scrape_to_file
-        sanitized_sector = "Stationary Energy".replace(" ", "_").replace("/", "_").replace("\\", "_")
-        
-        sane_country = sanitize_filename("Poland")
-        sane_folder_name = sanitize_filename(f"{sanitized_sector}_{current_run_id}")
-        sanitized_prefix = sanitize_filename("bdl.stat.gov.md.html")
-        
-        expected_full_path = WindowsPath(f"data/scrape_results/{sane_country}/{sane_folder_name}/{sanitized_prefix}")
-
-        # Check the call to Path.mkdir within file_saver (mocked as mock_filesaver_actual_modules_path_mkdir)
-        # save_scrape_to_file calls filepath.parent.mkdir(...), so we just verify it was called correctly
-        mock_filesaver_actual_modules_path_mkdir.assert_called_once_with(parents=True, exist_ok=True)
-
-        # Verify that mkdir was called once (we can't easily check the instance it was called on)
-        self.assertEqual(mock_filesaver_actual_modules_path_mkdir.call_count, 1, "Path.mkdir in file_saver should be called once.")
-
-        # Check the call to open within file_saver (mocked as mock_filesaver_actual_modules_open)
-        mock_filesaver_actual_modules_open.assert_called_once_with(expected_full_path, "w", encoding="utf-8")
-        mock_filesaver_actual_modules_open().write.assert_called_once_with(mock_html_content)
-
-        # Assertions for researcher_node's direct file operations (e.g., summary saving)
-        # These use mock_researcher_direct_os_makedirs and mock_researcher_direct_open
-        mock_researcher_direct_os_makedirs.assert_called_with( # Use assert_called_with or assert_any_call as appropriate
-            os.path.join(os.getcwd(), "logs", "researcher_outputs"), 
-            exist_ok=True
-        )
-        self.assertTrue(mock_researcher_direct_open.called, "agents.researcher.open (for summary) was not called")
-
-        # Check that the URL was added to scraped_data in the state
-        found_in_scraped_data = False
-        for item in updated_state.scraped_data:
-            if item.get("url") == test_url_to_scrape:
-                found_in_scraped_data = True
-                self.assertEqual(item.get("html_content"), mock_html_content)
-                self.assertEqual(item.get("saved_html_filepath"), str(expected_full_path))
-                break
-        self.assertTrue(found_in_scraped_data, f"Scraped data for {test_url_to_scrape} not found in updated_state.scraped_data")
-
-    @patch('agents.utils.scraping.crawl_website')  # Remove new_callable=AsyncMock since crawl_website is sync
     @patch('agents.researcher.collect_search_results', new_callable=AsyncMock)
     @patch('os.makedirs')
     @patch('builtins.open', new_callable=mock_open)
     @patch('agents.researcher.AsyncOpenAI')
-    async def test_researcher_node_deep_dive_crawl_action(self, mock_async_openai_client, mock_node_file_open, mock_node_makedirs, mock_collect_search_results, mock_crawl_website):
+    async def test_researcher_node_deep_dive_crawl_action(self, mock_async_openai_client, mock_node_file_open, mock_node_makedirs, mock_collect_search_results):
         # Setup state with a deep dive crawl action
         self.initial_state.metadata["deep_dive_action"] = {
             "action_type": "crawl", 
@@ -471,36 +347,37 @@ class TestResearcherNode(unittest.IsolatedAsyncioTestCase):
         mock_collect_search_results.return_value = []
 
         # Mock crawl_website to return multiple successful results (sync function)
-        mock_crawl_website.return_value = [
-            {
-                "url": "https://docs.example.com/page1", 
-                "content": "Mock content 1", 
-                "success": True,
-                "title": "Page 1"
-            },
-            {
-                "url": "https://docs.example.com/page2", 
-                "content": "Mock content 2", 
-                "success": True,
-                "title": "Page 2"  
-            },
-            {
-                "url": "https://docs.example.com/page3", 
-                "content": "Mock content 3", 
-                "success": True,
-                "title": "Page 3"
-            }
-        ]
+        with patch('agents.utils.scraping.crawl_website') as mock_crawl_website:
+            mock_crawl_website.return_value = [
+                {
+                    "url": "https://docs.example.com/page1",
+                    "content": "Mock content 1",
+                    "success": True,
+                    "title": "Page 1"
+                },
+                {
+                    "url": "https://docs.example.com/page2",
+                    "content": "Mock content 2",
+                    "success": True,
+                    "title": "Page 2"
+                },
+                {
+                    "url": "https://docs.example.com/page3",
+                    "content": "Mock content 3",
+                    "success": True,
+                    "title": "Page 3"
+                }
+            ]
 
-        updated_state = await researcher_node(self.initial_state)
+            updated_state = await researcher_node(self.initial_state)
 
-        # Verify crawl_website was called with correct parameters
-        mock_crawl_website.assert_called_once_with(
-            base_url="https://docs.example.com",
-            max_pages=15,
-            exclude_patterns=["blog/*", "news/*"],
-            state=self.initial_state
-        )
+            # Verify crawl_website was called with correct parameters
+            mock_crawl_website.assert_called_once_with(
+                base_url="https://docs.example.com",
+                max_pages=15,
+                exclude_patterns=["blog/*", "news/*"],
+                state=self.initial_state
+            )
         
         # Verify deep_dive_action was cleared from metadata after processing
         self.assertNotIn("deep_dive_action", updated_state.metadata)

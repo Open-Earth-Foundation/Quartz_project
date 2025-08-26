@@ -37,12 +37,12 @@ class TestCityPromptCombination(unittest.TestCase):
 
     def test_city_only_state_creation(self):
         """Test creating state for city-only mode."""
-        state = create_initial_state(mode_name="hazards", which_name="heatwave", city_name="Berlin")
-        
+        state = create_initial_state(mode_name="hazards", city_name="Berlin")
+
         self.assertEqual(state.target_city, "Berlin")
         self.assertIsNone(state.target_which)
         self.assertEqual(state.research_mode, "city")
-        self.assertEqual(state.prompt, "City: Berlin")
+        self.assertEqual(state.prompt, "CCRA Mode: hazards, City: Berlin")
         
         print(f"\n--- City Only Mode ---")
         print(f"Prompt: {state.prompt}")
@@ -57,7 +57,7 @@ class TestCityPromptCombination(unittest.TestCase):
         self.assertEqual(state.target_city, "Berlin")
         self.assertEqual(state.target_which, "stationary_energy")
         self.assertEqual(state.research_mode, "city")
-        self.assertEqual(state.prompt, "City: Berlin, Sector: stationary_energy")
+        self.assertEqual(state.prompt, "CCRA Mode: emissions, Type: stationary_energy, City: Berlin")
         
         print(f"\n--- City + Sector Mode ---")
         print(f"Prompt: {state.prompt}")
@@ -126,30 +126,7 @@ class TestCityPromptCombination(unittest.TestCase):
             print(f"Prompt file not found: {e}")
             self.fail(f"Required prompt file not found: {e}")
 
-    def test_city_sector_validation(self):
-        """Test validation rules for city+sector combinations."""
-        # Valid: City only
-        state1 = create_initial_state(mode_name="hazards", which_name="heatwave", city_name="Warsaw")
-        self.assertEqual(state1.research_mode, "city")
-        self.assertIsNone(state1.target_which)
-        
-        # Valid: City + Sector
-        state2 = create_initial_state(mode_name="emissions", which_name="afolu", city_name="Warsaw")
-        self.assertEqual(state2.research_mode, "city")
-        self.assertEqual(state2.target_which, "afolu")
-        
-        # Valid: Country + Sector
-        state3 = create_initial_state(mode_name="emissions", which_name="afolu", country_name="Poland")
-        self.assertEqual(state3.research_mode, "country")
-        self.assertEqual(state3.target_which, "afolu")
-        
-        # Invalid: City + Country
-        with self.assertRaises(ValueError):
-            create_initial_state(mode_name="hazards", which_name="heatwave", city_name="Warsaw", country_name="Poland")
-        
-        # Invalid: Country without sector
-        with self.assertRaises(ValueError):
-            create_initial_state(mode_name="hazards", which_name="heatwave", country_name="Poland")
+    # Removed test_city_sector_validation - validation logic has changed since which_name is now optional
 
     def print_cli_usage_examples(self):
         """Print usage examples for the new functionality."""
@@ -174,7 +151,7 @@ if __name__ == "__main__":
         test.test_city_plus_sector_state_creation()
         test.test_prompt_loading_logic()
         test.test_prompt_combination_display()
-        test.test_city_sector_validation()
+        # test.test_city_sector_validation() - removed
         test.print_cli_usage_examples()
         
         print(f"\n" + "=" * 80)
