@@ -1,0 +1,57 @@
+general:
+  # Application name and version
+  app_name: GHGI Dataset Discovery Agent
+  version: "2.0.0"
+
+search:
+  # Maximum number of search results to process per query
+  max_results_per_query: 10
+  # Maximum number of pages to crawl per domain
+  max_pages_per_domain: 5
+  # Maximum number of search queries to execute per run (0 for unlimited)
+  max_searches_per_run: 5
+
+models:
+  # Model used for reasoning, planning, and complex tasks
+  thinking_model: google/gemini-2.5-flash
+  # Model used for regular tasks
+  normal_model: google/gemini-2.5-flash
+  # Model used for structured outputs and extraction
+  structured_model: google/gemini-2.5-flash
+  structured_model_for_review: google/gemini-2.5-flash
+  # Model used for relevance check
+  relevance_check_model: google/gemini-2.5-flash
+  # Default temperature for model calls
+  default_temperature: 0.2
+  # Maximum tokens to generate in responses
+  max_tokens: 70000
+
+retry:
+  # Number of retry attempts for API calls
+  max_attempts: 3
+  # Base delay for exponential backoff (seconds)
+  base_delay: 2.0
+  # Maximum delay between retries (seconds)
+  max_delay: 60.0
+
+scraping:
+  # Maximum concurrent scraping operations to avoid rate limiting
+  concurrent_scrape_limit: 2
+  # Delay between scraping operations (seconds)
+  scrape_delay: 2.0
+
+agent:
+  max_iterations: 5
+  # Maximum number of search queries the researcher agent can perform in a single run.
+  max_searches_per_run: 10
+  # Maximum number of deep dives (additional searches)
+  max_deep_dives: 10
+  # Enable pre-scrape relevance check
+  enable_pre_scrape_relevance_check: true
+
+storage:
+  # Directory for storing output files
+  output_dir: runs
+  # Format for filenames (%s will be replaced with timestamp)
+  filename_format: results_%s.json
+
