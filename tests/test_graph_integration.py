@@ -469,7 +469,8 @@ class TestGraphIntegration(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(mock_researcher_google.call_count, 1) # Should now be 1 with single query and no expansion
         self.assertEqual(mock_scrape_urls_async.call_count, 1) # Called once for the single search result
         self.assertEqual(mock_extractor_instance.create.call_count, 1) # ADDED: Check extractor mock call
-        self.assertEqual(mock_reviewer_openai_instance.create.call_count, 4)
+        # In this accept path, reviewer LLM is called twice (raw + structured)
+        self.assertEqual(mock_reviewer_openai_instance.create.call_count, 2)
         
         # Assert that prompt loading mocks were called
         mock_load_raw_reviewer_prompt_tpl.assert_called_once()
