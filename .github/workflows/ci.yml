@@ -2,10 +2,19 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
+    inputs:
+      run_integration:
+        description: "Run integration tests"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "true"
+          - "false"
   schedule:
-    - cron: '0 6 * * 1'  # Mondays 06:00 UTC
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -22,8 +31,8 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: "pip"
 
       - name: Install dependencies
         run: |
@@ -37,7 +46,7 @@ jobs:
   integration:
     name: Integration Tests (Firecrawl/OpenRouter)
     needs: unit
-    if: ${{ (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && secrets.FIRECRAWL_API_KEY != '' }}
+    if: (github.event_name == 'workflow_dispatch' && github.event.inputs.run_integration == 'true') || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     env:
       FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
@@ -49,13 +58,20 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: "pip"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Check secrets availability
+        run: |
+          if [ -z "$FIRECRAWL_API_KEY" ]; then
+            echo "FIRECRAWL_API_KEY is not set. Skipping integration tests."
+            exit 1
+          fi
 
       - name: Run integration tests only
         run: |
