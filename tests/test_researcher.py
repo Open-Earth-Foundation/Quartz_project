@@ -11,7 +11,7 @@ import json
 import config
 from tenacity import stop_after_attempt, wait_none
 import re
-from pathlib import Path, WindowsPath
+from pathlib import Path
 from datetime import datetime, timezone
 import tempfile
 
@@ -412,7 +412,8 @@ class TestResearcherNode(unittest.IsolatedAsyncioTestCase):
         sane_folder_name = sanitize_filename(f"{sanitized_sector}_{current_run_id}")
         sanitized_prefix = sanitize_filename("bdl.stat.gov.md.html")
         
-        expected_full_path = WindowsPath(f"data/scrape_results/{sane_country}/{sane_folder_name}/{sanitized_prefix}")
+        # Use generic Path to be OS-agnostic on CI runners
+        expected_full_path = Path("data/scrape_results") / sane_country / sane_folder_name / sanitized_prefix
 
         # Check the call to Path.mkdir within file_saver (mocked as mock_filesaver_actual_modules_path_mkdir)
         # save_scrape_to_file calls filepath.parent.mkdir(...), so we just verify it was called correctly

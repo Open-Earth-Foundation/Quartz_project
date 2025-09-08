@@ -29,7 +29,10 @@ class TestFileSaver(unittest.TestCase):
         data_content = "<html><body>Test Data</body></html>"
 
         sane_country = sanitize_filename(country)
-        sane_sector_run_id = sanitize_filename(f"{sector.replace(' ', '_').replace('/', '_').replace('\\', '_')}_{run_id.replace(' ', '_').replace('/', '_').replace('\\', '_')}")
+        # Avoid backslashes inside f-string expressions in tests (CI on Py3.11 errors on this)
+        sane_sector = sector.replace(' ', '_').replace('/', '_').replace('\\', '_')
+        sane_run_id = run_id.replace(' ', '_').replace('/', '_').replace('\\', '_')
+        sane_sector_run_id = sanitize_filename(f"{sane_sector}_{sane_run_id}")
         sane_filename = sanitize_filename(filename)
         
         expected_path = Path("data/scrape_results") / sane_country / sane_sector_run_id / sane_filename
