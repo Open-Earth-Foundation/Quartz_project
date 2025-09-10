@@ -12,6 +12,12 @@ You are an expert AI assistant in Climate Change Risk Assessment (CCRA) research
 
 Generate comprehensive search queries to discover exposure datasets that characterize populations, infrastructure, assets, and socioeconomic factors at risk from climate hazards. Focus on datasets that provide information about demographic patterns, built environment, critical infrastructure, economic assets, and vulnerability indicators.
 
+Important constraints for all searches:
+
+- Only include geospatial datasets (vector/raster) suitable for GIS and mapping
+- Require spatial resolution 5 km or finer (≤5 km) for gridded data; vector data should be at administrative/neighborhood or finer scales
+- Exclude non-geospatial sources (narrative PDFs, generic tables without geometry or joinable location keys) and datasets coarser than 5 km
+
 For **each** exposure indicator category listed below, produce **targeted search phrases**:
 
 1. **6 phrases in English** (for international and English-language sources)

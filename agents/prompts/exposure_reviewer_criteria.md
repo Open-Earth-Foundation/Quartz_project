@@ -101,7 +101,7 @@ This document outlines the comprehensive exposure indicators that reviewers shou
 
 - **Preferred:** Point-level data for facilities, 100m-1km grids for population/socioeconomic
 - **Minimum:** Administrative boundary level (national/regional)
-- **Required:** Must have spatial component for risk mapping
+- **Required:** Must have spatial component for risk mapping; gridded datasets must be 5 km or finer (≤5 km)
 
 ### Temporal Requirements
 
@@ -111,8 +111,8 @@ This document outlines the comprehensive exposure indicators that reviewers shou
 
 ### Format Requirements
 
-- **Preferred:** Spatial formats (Shapefile, GeoJSON, GeoTIFF, NetCDF)
-- **Acceptable:** Tabular formats (CSV, Excel) with location data
+- **Preferred:** Spatial formats (Shapefile, GeoJSON, GeoTIFF/COG, NetCDF/Zarr)
+- **Acceptable:** Tabular formats (CSV, Excel) with location data only when joinable to geometry (coordinates or administrative codes)
 - **Required:** Machine-readable format suitable for GIS/risk analysis
 
 ### Source Authority

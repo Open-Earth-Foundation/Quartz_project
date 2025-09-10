@@ -10,7 +10,7 @@ You are an expert AI assistant in Climate Change Risk Assessment (CCRA) research
 
 ### Task
 
-Generate comprehensive search queries to discover heatwave hazard datasets and indicators. Focus on HIGH-RESOLUTION datasets (10km or better) that provide information about extreme heat events, heat stress conditions, and temperature-based climate hazards. Prioritize temperature and humidity data with fine spatial resolution for detailed climate risk assessment.
+Generate comprehensive search queries to discover heatwave hazard datasets and indicators. Focus on HIGH-RESOLUTION geospatial datasets (5 km or better) that provide information about extreme heat events, heat stress conditions, and temperature-based climate hazards. Prioritize temperature and humidity data with fine spatial resolution for detailed climate risk assessment.
 
 For **each** heatwave indicator category listed below, produce **targeted search phrases**:
 
@@ -80,7 +80,7 @@ For each category, return a bulleted block like:
 **Data Format Priorities (Geospatial Focus):**
 
 - NetCDF files for high-resolution gridded temperature/humidity data
-- GeoTIFF for processed temperature/humidity grids
+- GeoTIFF/COG for processed temperature/humidity grids
 - GRIB format for weather model outputs
 - Zarr format for cloud-optimized geospatial data
 - API endpoints for real-time high-resolution data access
@@ -92,11 +92,11 @@ For each category, return a bulleted block like:
 - Future projections: 2030s, 2050s, 2080s
 - Daily resolution preferred for heat wave analysis
 
-**Spatial Resolution Targets (PRIORITY: 10km or better):**
+**Spatial Resolution Targets (PRIORITY: 5 km or better):**
 
-- Global: 0.1° (≈11km) or finer grid spacing
-- Regional: 1-10 km resolution (prefer ≤5km)
-- Urban: ≤1km for heat island analysis
+- Global: ≈0.05° (~5 km at equator) or finer grid spacing
+- Regional: ≤5 km resolution
+- Urban: ≤1 km for heat island analysis
 - High-resolution gridded data preferred over station data for spatial analysis
 
 **Key Search Terms to Include:**

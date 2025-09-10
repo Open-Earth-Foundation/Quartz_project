@@ -80,8 +80,8 @@ For each category, return a bulleted block like:
 
 **Data Format Priorities (Complex Integration Focus):**
 
-- GIS vector data (shapefiles) for landslide polygons and boundaries
-- Raster data (GeoTIFF) for susceptibility maps and multi-factor indices
+- GIS vector data (Shapefile/GeoJSON) for landslide polygons and boundaries
+- Raster data (GeoTIFF/COG) for susceptibility maps and multi-factor indices
 - NetCDF files for multi-variable landslide models
 - Database formats for landslide inventories
 - API endpoints for real-time monitoring data

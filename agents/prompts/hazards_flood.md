@@ -81,8 +81,8 @@ For each category, return a bulleted block like:
 **Data Format Priorities (Geospatial Focus):**
 
 - NetCDF files for gridded precipitation and flood model outputs
-- GeoTIFF for flood inundation maps and depth grids
-- Shapefile format for flood boundaries and river networks
+- GeoTIFF/COG for flood inundation maps and depth grids
+- Shapefile/GeoJSON for flood boundaries and river networks
 - GRIB format for meteorological model outputs
 - Zarr format for cloud-optimized geospatial data
 - API endpoints for real-time flood monitoring data
@@ -95,12 +95,12 @@ For each category, return a bulleted block like:
 - High-frequency data (hourly, daily) for flood modeling
 - Multi-temporal datasets for trend analysis
 
-**Spatial Resolution Targets:**
+**Spatial Resolution Targets (enforce ≤5 km for gridded data):**
 
-- Global: 0.05° to 0.25° grid spacing for global flood monitoring
-- Regional: 1-10 km resolution for flood forecasting
-- National: ≤1km for flood risk mapping
-- Local: ≤100m for detailed flood modeling and urban areas
+- Global: ≈0.05° (~5 km at equator) or finer grid spacing
+- Regional: ≤5 km resolution for flood forecasting
+- National: ≤1 km for flood risk mapping
+- Local: ≤100 m for detailed flood modeling and urban areas
 
 **Key Search Terms to Include:**
 

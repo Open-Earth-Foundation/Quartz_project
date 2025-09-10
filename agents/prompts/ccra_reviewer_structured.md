@@ -77,7 +77,8 @@ For **EXPOSURE** datasets, evaluate based on coverage of these key indicator cat
 - Official authoritative sources (government agencies, international organizations, research institutions)
 - Spatial coverage matches target location (national/city-specific preferred for local assessments)
 - Temporal coverage appropriate for risk assessment (recent data, multi-year series)
-- Data format suitable for analysis (spatial data preferred for exposure)
+- Data format suitable for analysis (spatial data required): vector or raster geospatial datasets
+- Spatial resolution requirement: gridded products must be 5 km or finer (≤5 km); vector data at administrative/neighborhood or finer scales
 
 {deep_dive_section}
 
@@ -89,6 +90,7 @@ For **EXPOSURE** datasets, evaluate based on coverage of these key indicator cat
 - Data lacks specific metrics for the target CCRA component
 - Missing key exposure indicators (no population data, no infrastructure locations, no socioeconomic factors)
 - Data quality insufficient (no spatial component, outdated, incomplete coverage)
+- Non-geospatial content (narrative-only documents, tables without geometry) or gridded spatial resolution coarser than 5 km
 - Cannot be used for quantitative risk assessment
 
 {available_actions_note}

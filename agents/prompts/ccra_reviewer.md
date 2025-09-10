@@ -80,6 +80,9 @@ The JSON object should have the following fields:
 
 - Be critical. Only recommend documents for extraction if they show strong evidence of containing actual climate risk data or direct links to datasets.
 - Prioritize authoritative sources (meteorological services, climate data centers, research institutions, government climate portals).
+- Only recommend documents that contain or link to geospatial datasets (vector/raster) suitable for GIS; exclude narrative-only pages and tables without geometry/joinable location codes
+- Enforce spatial resolution 5 km or finer (≤5 km) for gridded datasets; exclude datasets coarser than 5 km
+- If formats are indicated, acceptable geospatial formats include GeoTIFF/COG (.tif/.tiff), NetCDF/Zarr, and Shapefile/GeoJSON; de-prioritize non-geospatial formats
 - Look for specific CCRA indicators:
   - **Hazards**: Temperature extremes, precipitation data, storm tracks, climate indices
   - **Exposure**: Population density, built-up areas, critical infrastructure locations, socioeconomic indicators, property values, health facilities, transportation networks, environmental quality data

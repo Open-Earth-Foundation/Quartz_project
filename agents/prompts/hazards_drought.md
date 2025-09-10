@@ -81,10 +81,10 @@ For each category, return a bulleted block like:
 **Data Format Priorities (Geospatial Focus):**
 
 - NetCDF files for gridded precipitation and soil moisture data
-- GeoTIFF for processed drought indicators and indices
+- GeoTIFF/COG for processed drought indicators and indices
 - GRIB format for meteorological model outputs
 - Zarr format for cloud-optimized geospatial data
-- Shapefile format for drought monitoring boundaries
+- Shapefile/GeoJSON for drought monitoring boundaries
 - API endpoints for real-time drought monitoring data
 
 **Temporal Coverage Priorities:**
@@ -95,12 +95,12 @@ For each category, return a bulleted block like:
 - Monthly resolution preferred for drought analysis
 - Multi-temporal datasets for trend analysis
 
-**Spatial Resolution Targets:**
+**Spatial Resolution Targets (enforce ≤5 km for gridded data):**
 
-- Global: 0.05° to 0.25° grid spacing for global coverage
-- Regional: 1-10 km resolution for detailed drought monitoring
-- National: ≤5km for country-level drought assessment
-- Local: ≤1km for agricultural and urban drought analysis
+- Global: ≈0.05° (~5 km at equator) or finer grid spacing
+- Regional: ≤5 km resolution for detailed drought monitoring
+- National: ≤5 km for country-level drought assessment
+- Local: ≤1 km for agricultural and urban drought analysis
 
 **Key Search Terms to Include:**
 
