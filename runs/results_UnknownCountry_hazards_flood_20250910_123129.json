@@ -1,0 +1,722 @@
+{
+    "research_mode": "global",
+    "target_country": null,
+    "target_country_locode": "GLOBAL",
+    "target_mode": "hazards",
+    "target_which": "flood",
+    "target_city": null,
+    "start_time": "2025-09-10T12:19:53.153504",
+    "end_time": "2025-09-10T12:31:29.705068",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 11,
+    "structured_data": [
+        {
+            "name": "Long-term evolution and non-stationary behaviours of daily and subdaily precipitation extremes in China",
+            "method_of_access": "Downloadable PDF from Wiley Online Library",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "National",
+            "data_format": "PDF",
+            "description": "This research article investigates changes in daily and subdaily precipitation extremes in China, focusing on long-term evolution and non-stationary behaviours. The study aims to understand these changes over the last millennium, a period dominated by natural forcing. The article was first published on January 25, 2024, by the International Journal of Climatology.",
+            "spatial_resolution": "National (China)",
+            "temporal_coverage": "Last millennium (implied, as a period dominated by natural forcing)",
+            "url": "https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.8373",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Climate Data Online",
+            "method_of_access": "Web interface query, downloadable files, web services",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Global",
+            "description": "Climate Data Online (CDO) provides free access to NCDC's archive of global historical weather and climate data, including quality controlled daily, monthly, seasonal, and yearly measurements of temperature, precipitation, wind, and degree days, as well as radar data and 30-year Climate Normals. It also offers station history information. Customers can order certified hard copies for legal use.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "Historical (daily, monthly, seasonal, yearly measurements), 30-year Climate Normals",
+            "url": "https://www.ncei.noaa.gov/cdo-web/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "River discharge and related historical data from the Global Flood Awareness System (GloFAS)",
+            "method_of_access": "Downloadable files (GRIB2 and NetCDF-4) via CDS",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Global",
+            "data_format": "GRIB2, NetCDF-4",
+            "description": "This dataset provides gridded modelled daily hydrological time series forced with meteorological reanalysis data from the Global Flood Awareness System (GloFAS). It offers a consistent representation of key hydrological variables across the global domain (except Antarctica), including river discharge, soil wetness index, snow water equivalent, and runoff water equivalent. The data is produced by forcing the LISFLOOD hydrological model with ERA5 meteorological reanalysis data. It covers the period from 1 January 1979 to near real time for v4.0 and is updated daily. It is part of the operational flood forecasting within the Copernicus Emergency Management Service (CEMS).",
+            "spatial_resolution": "0.05° x 0.05° for version 4.0, 0.1° x 0.1° for version 3.1 and older (Global except for Antarctica: 90N-60S, 180W-180E)",
+            "temporal_coverage": "1 January 1979 to near real time (v4.0), daily data",
+            "url": "https://ewds.climate.copernicus.eu/datasets/cems-glofas-historical",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Global dataset of sub-daily precipitation indices (GSDR-I)",
+            "method_of_access": "Published alongside a gridded data product based on all gauges, implying downloadable files or a web interface for data access.",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Global",
+            "data_format": "Gridded data product, gauge time series",
+            "description": "This study presents a new global dataset of sub-daily precipitation indices calculated from a unique database of 18,591 gauge time series. Developed together with prospective users, the indices describe sub-daily precipitation variability and extremes in terms of intensity, duration and frequency properties. The indices are published for each gauge where possible, alongside a gridded data product based on all gauges. The dataset will be useful in many fields concerned with variability and extremes in the climate system, as well as in climate model evaluation and management of floods and other risks. The dataset is provided by The Author(s) © 2023.",
+            "spatial_resolution": "Point measurements (18,591 gauges) and gridded data product",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37349333/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "A high-resolution global flood hazard model",
+            "method_of_access": "The content describes a research article detailing a model. Direct data access is not explicitly mentioned, but the model produces data that would likely be available through a research institution or data repository.",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Global",
+            "data_format": "GeoTIFF depth grids, vector flood extents (implied from CCRA framework for flood data)",
+            "description": "This research article describes a high-resolution global flood hazard model that produces return period flood hazard maps at ~90m resolution for the terrestrial land surface between 56°S and 60°N. The model was developed by researchers from the School of Geographical Sciences, University of Bristol, UK, and the European Commission, Joint Research Centre, Ispra, Italy. It aims to address the demand for modeled flood hazard data in data-scarce regions and has been validated against high-resolution government flood hazard data sets from the UK and Canada.",
+            "spatial_resolution": "~90m resolution for the whole terrestrial land surface between 56°S and 60°N",
+            "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015wr016954",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "A globally applicable framework for compound flood hazard modeling",
+            "method_of_access": "Downloadable article (PDF) and assets",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Global",
+            "description": "This research article describes a globally applicable framework for compound flood hazard modeling that accounts for interactions between pluvial, fluvial, and coastal flood drivers. It uses the SFINCS model, automatically set up from global datasets and coupled with a global hydrodynamic river routing model and a global surge and tide model. The framework was tested using historical compound flood events in Mozambique.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "2023 (publication date), historical events simulated (e.g., Tropical Cyclone Idai in March 2019, Tropical Cyclone Eloise)",
+            "url": "https://nhess.copernicus.org/articles/23/823/2023/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "A global dynamic runoff application and dataset based on the assimilation of GPM, SMAP, and GCN250 curve number datasets",
+            "method_of_access": "Downloadable PDF, Google Earth Engine application, GeoTIFF format",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Global",
+            "data_format": "GeoTIFF, PDF",
+            "description": "This dataset provides a global mean monthly runoff dataset for April 2015-2021 in GeoTIFF format at a 250-meter resolution. It utilizes soil moisture and GPM rainfall to dynamically retrieve the appropriate curve number and generate corresponding runoff anywhere on Earth. The dataset is useful for hydrologic design, land management, water resources management, and flood risk assessment.",
+            "spatial_resolution": "250-meter resolution",
+            "temporal_coverage": "April 2015-2021 (mean monthly runoff), 2015-present (dynamic runoff application)",
+            "url": "https://www.nature.com/articles/s41597-022-01834-0",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Real-time data resources",
+            "method_of_access": "Web interface, interactive maps, image viewer, download image",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Global",
+            "data_format": "Interactive map, numerical data, graph/figure, satellite imagery, modeled/predicted",
+            "description": "NOAA collects real-time data from satellites, buoys, weather stations, citizen scientists, and more. This collection of ocean, freshwater, and atmospheric resources shows what is happening right now. It includes resources like Climate.gov Maps and Data, CoCoRaHS Network for precipitation, and GOES East & West Image Viewer for satellite imagery.",
+            "spatial_resolution": "Global (implied by satellite imagery and 'all 50 states' for CoCoRaHS)",
+            "temporal_coverage": "Real-time, daily updates (for CoCoRaHS), historical data also mentioned in other collections",
+            "url": "https://www.noaa.gov/education/resource-collections/data/real-time",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "World Bank Open Data",
+            "method_of_access": "Web interface query, downloadable files (via DataBank, Microdata Library, Data Catalog)",
+            "granularity": "Global, Economy/Country, Indicator",
+            "data_format": "Database, Time series, Microdata, Datasets (specific formats not detailed but implied from platforms)",
+            "description": "The World Bank Open Data site provides free and open access to global development data, including World Development Indicators. It is expanding to Data360, a curated collection of data, analytics, and tools. Data is available through DataBank for time series, Microdata Library for surveys, and Data Catalog for datasets. The content covers various themes like people, prosperity, planet, infrastructure, and digital.",
+            "spatial_resolution": "Global, Country-level, Indicator-specific (resolution not explicitly stated for all data)",
+            "temporal_coverage": "Varies by indicator, with examples like 1972-2023, 1981-2023, 1960-2023, 1990-2023",
+            "url": "https://data.worldbank.org/",
+            "country": "Global",
+            "country_locode": "GLOBAL",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood"
+        },
+        {
+            "name": "River Flood Hazard Maps at European and Global Scale",
+            "method_of_access": "Downloadable files (GEOTIF)",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Global, European, Mediterranean Basin region",
+            "data_format": "GEOTIF",
+            "description": "The datasets depict flood prone areas in Europe and the World for river flood events of different magnitude (from 1-in-10-year to 1-in-500-year). The maps are developed using hydrological and hydrodynamic models, driven by climatological data from EFAS and GloFAS of the Copernicus Emergency Management Service. The collection also includes supplementary maps showing water bodies. The datasets do not represent official flood hazard maps. Last updated: 20 Mar 2024. Published by European Commission, Joint Research Centre.",
+            "spatial_resolution": "90m (3 arcseconds)",
+            "temporal_coverage": "Return periods from 1-in-10-year to 1-in-500-year",
+            "url": "https://data.jrc.ec.europa.eu/collection/id-0054",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Banking on Cities: Investing in Resilient and Low-Carbon Urbanization",
+            "method_of_access": "Web interface query, downloadable publication",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Global",
+            "data_format": "Publication (implied PDF or similar document format)",
+            "description": "A publication from the World Bank titled 'Banking on Cities: Investing in Resilient and Low-Carbon Urbanization', published on 2025-06-03. This publication is likely related to urban development, resilience, and low-carbon initiatives.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "2025-06-03 (publication date)",
+            "url": "https://openknowledge.worldbank.org/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "hazards",
+            "which": "flood",
+            "research_mode": "global",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for hazards/flood (Global) with 54 structured queries.",
+            "target_country_locode": "GLOBAL",
+            "primary_languages": [
+                "en"
+            ],
+            "parsed_keywords_count": 54,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "global extreme precipitation events dataset",
+                "worldwide rainfall intensity-duration-frequency curves",
+                "satellite storm event characteristics data global",
+                "gridded precipitation percentiles 95th 99th global",
+                "high-resolution global precipitation data for flood modeling",
+                "climate model extreme rainfall projections NetCDF",
+                "global daily precipitation observations API",
+                "historical extreme rainfall data global coverage",
+                "global sub-daily precipitation dataset for flood risk",
+                "global river discharge and flow rates dataset"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 14,
+            "new_data_items": 5
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-10T12:25:12.040959",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 3,
+            "summary": "This batch of documents contains several highly promising sources for flood hazard data. The NOAA Climate Data Online portal and the Copernicus GloFAS historical data are particularly strong candidates, offering direct access to relevant datasets. Several academic papers discuss flood modeling and precipitation extremes, which could lead to data sources or methodologies. Some URLs returned 'No content available', which will need to be re-evaluated.",
+            "reasoning": "Identified highly relevant and authoritative sources (NOAA, Copernicus) that explicitly mention and provide access to historical climate and flood-related data, including gridded datasets with appropriate resolution and formats. The academic paper on global flood hazard modeling is also very relevant and likely to contain or reference suitable data."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 14,
+            "new_data_items_extracted": 5,
+            "total_structured_items": 5
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-10T12:25:29.391387",
+            "action": "structured_review_completed",
+            "suggested_action": "deep_dive",
+            "overall_confidence": "Medium",
+            "summary": "The extracted data provides a good starting point for flood hazard assessment, with several global datasets offering precipitation, river discharge, and flood hazard maps. The sources are generally credible, coming from research institutions and climate data providers. However, some entries are research articles describing models rather than direct data access, which requires further investigation to obtain the actual data. The 'Long-term evolution and non-stationary behaviours of daily and subdaily precipitation extremes in China' is geographically limited to China, making it less suitable for a global assessment, though it provides valuable methodological insights.",
+            "reasoning": "Several promising datasets have been identified, but further investigation is needed to confirm direct data access, understand the exact data formats, and determine the availability of the actual data products described in the research articles. Specifically, obtaining the gridded data from the 'Global dataset of sub-daily precipitation indices (GSDR-I)' and the flood hazard maps from 'A high-resolution global flood hazard model' requires deeper exploration beyond the provided abstracts/articles.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        },
+        {
+            "agent": "DeepDiveProcessor",
+            "action": "crawl",
+            "target": "https://www.ncei.noaa.gov/access/global-hourly-data",
+            "justification": "The request specifically asks for a 'Global dataset of sub-daily precipitation indices (GSDR-I)' and 'gauge time series'. NCEI is a primary source for such data. This URL is a good starting point for global hourly data, which might contain or link to sub-daily precipitation indices and gauge time series. Crawling this section will help discover specific data download pages.",
+            "refinement_details_processed": "1. For 'A high-resolution global flood hazard model', investigate if the flood hazard maps (~90m resolution) are publicly available for download, and if so, identify the data repository or contact information. 2. For 'Global dataset of sub-daily precipitation indices (GSDR-I)', identify the direct link to the gridded data product and gauge time series. 3. Re-evaluate the 'Long-term evolution and non-stationary behaviours of daily and subdaily precipitation extremes in China' for its potential contribution to global methodologies, but acknowledge its limited geographic scope for direct data use in a global assessment.",
+            "actions_this_cycle": 1,
+            "current_websites_considered": "royalsocietypublishing.org, www.ncei.noaa.gov, agupubs.onlinelibrary.wiley.com, iopscience.iop.org, www.prepdata.org, ewds.climate.copernicus.eu, cds.climate.copernicus.eu, www.osti.gov, rmets.onlinelibrary.wiley.com, pubmed.ncbi.nlm.nih.gov",
+            "timestamp": "2025-09-10T12:25:35.161117"
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "worldwide streamflow gauging station data",
+                "global flood peak flows historical data",
+                "major river basin characteristics geospatial data",
+                "global hydrological model river flow data",
+                "open access global streamflow data API",
+                "real-time global river stage data",
+                "global runoff coefficients dataset",
+                "worldwide river network shapefile for flood modeling",
+                "global soil moisture content and saturation dataset",
+                "worldwide infiltration rates geospatial data"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 8,
+            "new_data_items": 8
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-10T12:31:11.636571",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 4,
+            "summary": "This batch of documents contains several highly promising sources for flood hazard data. NOAA's Climate Data Online and Copernicus's GloFAS historical data are direct data portals with relevant datasets. The research articles discuss global flood hazard models and sub-daily precipitation indices, indicating potential for underlying data or methodologies to generate such data. Some URLs returned 'No content available', which will need to be re-evaluated or skipped.",
+            "reasoning": "Identified multiple authoritative sources (NOAA, Copernicus) and relevant research papers that explicitly mention or provide access to flood-related hazard data, including precipitation extremes, river discharge, and global flood hazard models. These are highly relevant for the 'hazards' mode and 'flood' type of CCRA data. The 'No content available' URLs will be re-scraped or skipped in the next step."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 20,
+            "new_data_items_extracted": 6,
+            "total_structured_items": 11
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-10T12:31:29.643076",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted data provides a good range of global flood hazard datasets, including historical precipitation, river discharge, sub-daily precipitation indices, and high-resolution flood hazard models. Several sources are from reputable institutions like NOAA, Copernicus, JRC, and academic publishers. The spatial and temporal coverages are generally appropriate for global flood hazard assessment, with resolutions ranging from point measurements to 90m and 250m gridded data. The data formats are suitable for analysis (NetCDF, GRIB2, GeoTIFF). While some entries are research articles describing models rather than direct data portals, they indicate the existence of such data. The World Bank entries are less directly relevant to flood *hazards* but could contain related socioeconomic data for vulnerability/exposure.",
+            "reasoning": "The extracted structured data provides a robust collection of global flood hazard datasets from highly credible sources, with appropriate spatial and temporal coverage and suitable data formats for CCRA. The completeness of hazard indicators is high, making it suitable for quantitative risk assessment. While some entries are research articles, they point to the existence and methodology of relevant data products. The collection is sufficient to proceed with the hazard component of the CCRA.",
+            "final_decision_mode": true,
+            "consecutive_deep_dive_count": 1
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "global extreme precipitation events dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "worldwide rainfall intensity-duration-frequency curves",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "satellite storm event characteristics data global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "gridded precipitation percentiles 95th 99th global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "high-resolution global precipitation data for flood modeling",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "climate model extreme rainfall projections NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global daily precipitation observations API",
+            "language": "en",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "historical extreme rainfall data global coverage",
+            "language": "en",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global sub-daily precipitation dataset for flood risk",
+            "language": "en",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global river discharge and flow rates dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "worldwide streamflow gauging station data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global flood peak flows historical data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "major river basin characteristics geospatial data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global hydrological model river flow data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "open access global streamflow data API",
+            "language": "en",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "real-time global river stage data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global runoff coefficients dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "worldwide river network shapefile for flood modeling",
+            "language": "en",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global soil moisture content and saturation dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "worldwide infiltration rates geospatial data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global runoff coefficients gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "antecedent moisture conditions global dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "satellite soil moisture data for flood forecasting",
+            "language": "en",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global land surface model soil moisture output",
+            "language": "en",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global root zone soil moisture NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "soil saturation index global mapping",
+            "language": "en",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "worldwide soil hydraulic properties database",
+            "language": "en",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global river stage and water level data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "worldwide reservoir levels and storage data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global lake and wetland levels satellite data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "groundwater table depth global mapping",
+            "language": "en",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "real-time global water level monitoring API",
+            "language": "en",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "historical river stage data for flood analysis",
+            "language": "en",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global tidal gauge data for coastal flood",
+            "language": "en",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "worldwide water body elevation data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global flood early warning system water levels",
+            "language": "en",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global flood extent mapping dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "worldwide flood depth grids GeoTIFF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global floodplain delineation shapefile",
+            "language": "en",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "flood hazard zones global mapping",
+            "language": "en",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "satellite-derived flood inundation maps",
+            "language": "en",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global historical flood extent database",
+            "language": "en",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "future flood inundation projections global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global flood modeling output NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "open access global flood hazard maps",
+            "language": "en",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global flood frequency analysis data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 46,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "worldwide flood return period estimates",
+            "language": "en",
+            "priority": "medium",
+            "rank": 47,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global flood vulnerability indices dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 48,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "flood damage potential global mapping",
+            "language": "en",
+            "priority": "medium",
+            "rank": 49,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "climate change flood risk assessment data global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 50,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global flood exposure and impact data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 51,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global flood risk indicators API",
+            "language": "en",
+            "priority": "medium",
+            "rank": 52,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "socio-economic flood vulnerability global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 53,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "future flood risk scenarios global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 54,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

@@ -1,0 +1,365 @@
+{
+    "research_mode": "global",
+    "target_country": null,
+    "target_country_locode": null,
+    "target_mode": "exposure",
+    "target_which": "economy",
+    "target_city": null,
+    "start_time": "2025-09-10T17:10:28.127690",
+    "end_time": "2025-09-10T17:17:35.775001",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 11,
+    "structured_data": [
+        {
+            "name": "10m Land Cover",
+            "method_of_access": "Web interface query, custom orders, email, Microsoft Azure, or Amazon AWS delivery",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "sector": "AFOLU",
+            "subsector": "Emissions from land within the city boundary",
+            "granularity": "Custom area of interest",
+            "data_format": "Cloud Optimized GeoTIFF (COG), PNG, CSV",
+            "description": "Impact Observatory's 10m Land Cover provides on-demand seasonal or annual insights with comprehensive land cover classes. It uses AI-powered methods and Copernicus Sentinel-2 imagery to classify land use and land cover categories globally. The data covers from 2017 to present with continuous updates, offering 15 land cover classes at 10-meter resolution. It can be used to monitor dense and sparse vegetation types, built areas, active and inactive croplands, and seasonal water patterns.",
+            "spatial_resolution": "10 meters",
+            "temporal_coverage": "2017-Present (custom seasonal or annual dates)",
+            "url": "https://www.impactobservatory.com/10m-land-cover/",
+            "country": "Global",
+            "country_locode": null
+        },
+        {
+            "name": "Population Density Unconstrained individual countries 2000-2020",
+            "method_of_access": "downloadable file",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "granularity": "individual countries",
+            "data_format": "Geotiff, ASCII XYZ",
+            "description": "Estimated population density per grid-cell provided by WorldPop. The dataset is available at a resolution of 30 arc (approximately 1km at the equator) for individual countries from 2000 to 2020.",
+            "spatial_resolution": "1km",
+            "temporal_coverage": "2000-2020",
+            "url": "https://hub.worldpop.org/geodata/listing?id=76",
+            "country": "Global",
+            "country_locode": null
+        },
+        {
+            "name": "GLAMOUR: GLobAl building MOrphology dataset for URban hydroclimate modelling",
+            "method_of_access": "Downloadable PDF",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "granularity": "Global urbanized areas",
+            "data_format": "PDF",
+            "description": "GLAMOUR is a dataset derived from open-source Sentinel imagery that captures the average building height and footprint at a resolution of 0.0009° across urbanized areas worldwide. It provides essential morphological information of 3D building structures for applications including 3D building model generation and urban morphometric parameter derivation, enabling refined hydroclimate simulation and hazard assessment.",
+            "spatial_resolution": "0.0009° resolution across urbanized areas worldwide",
+            "url": "https://www.nature.com/articles/s41597-024-03446-2",
+            "country": "Global",
+            "country_locode": null
+        },
+        {
+            "name": "GHS-POP R2015A",
+            "method_of_access": "Downloadable files (GHS_POP_GPW41975_GLOBE_R2015A_54009_250, etc.)",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "granularity": "Global",
+            "data_format": "GeoTIFF (implied by spatial raster dataset and common for population grids)",
+            "description": "The GHS population grid, derived from GPW4, is a spatial raster dataset depicting the distribution and density of population, expressed as the number of people per cell. Residential population estimates for target years 1975, 1990, 2000 and 2015 provided by CIESIN GPWv4 were disaggregated from census or administrative units to grid cells, informed by the distribution and density of built-up as mapped in the Global Human Settlement Layer (GHSL) global layer per corresponding epoch. Values are expressed as decimals (Float) and represent the absolute number of inhabitants of the cell. Provided by JRC Data catalogue.",
+            "spatial_resolution": "250m, 1Km",
+            "temporal_coverage": "1975, 1990, 2000, 2015",
+            "url": "https://human-settlement.emergency.copernicus.eu/ghs_pop.php",
+            "country": "Global",
+            "country_locode": null
+        },
+        {
+            "name": "Gridded global datasets for Gross Domestic Product and Human Development Index over 1990–2015",
+            "method_of_access": "Downloadable PDF, machine-accessible metadata file (ISA-Tab format)",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "granularity": "Global",
+            "data_format": "PDF, ISA-Tab",
+            "description": "This dataset provides gap-filled multiannual gridded datasets for Gross Domestic Product (GDP) and Human Development Index (HDI) for the whole world. It includes annual gridded datasets for GDP per capita (PPP), total GDP (PPP), and HDI at 5 arc-min resolution for 1990–2015. Additionally, total GDP (PPP) is provided with 30 arc-sec resolution for three time steps (1990, 2000, 2015). The data uses sub-national data indirectly to scale reported national values, ensuring consistency with official statistics.",
+            "spatial_resolution": "5 arc-min, 30 arc-sec",
+            "temporal_coverage": "1990–2015",
+            "url": "https://www.nature.com/articles/sdata20184",
+            "country": "Global",
+            "country_locode": null
+        },
+        {
+            "name": "Monthly electricity consumption data at 1 km × 1 km grid for 280 cities in China from 2012 to 2019",
+            "method_of_access": "Downloadable PDF, View on publisher site",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "sector": "Stationary Energy",
+            "subsector": "Commercial and Institutional Buildings and Facilities",
+            "granularity": "City",
+            "description": "This study introduces an innovative downscaling method combining multi-source data with machine learning and spatial interpolation techniques to estimate monthly electricity consumption across a 1 km x 1 km grid for 280 Chinese cities from 2012 to 2019. The dataset is highly consistent with officially released electricity consumption of different industries and can reflect electricity consumption patterns of different urban land uses.",
+            "spatial_resolution": "1 km x 1 km grid",
+            "temporal_coverage": "2012-2019 (monthly)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11322163/",
+            "country": "Global",
+            "country_locode": null
+        },
+        {
+            "name": "Gridded Population of the World, Version 4 (GPWv4): Population Count, Revision 11",
+            "method_of_access": "Downloadable files (implied by 'Data set' and 'Data files were produced as global rasters')",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "granularity": "Global",
+            "data_format": "rasters (implied GeoTIFF or similar for spatial data)",
+            "description": "The Gridded Population of the World, Version 4 (GPWv4): Population Count, Revision 11, provided by NASA Socioeconomic Data and Applications Center (SEDAC), consists of estimates of human population (number of persons per pixel) for the years 2000, 2005, 2010, 2015, and 2020. It uses a proportional allocation gridding algorithm with 13.5 million administrative units to assign population counts to 30 arc-second grid cells, aggregated to various resolutions.",
+            "spatial_resolution": "30 arc-second (~1 km at the equator), aggregated to 2.5 arc-minute, 15 arc-minute, 30 arc-minute and 1 degree resolutions",
+            "temporal_coverage": "2000, 2005, 2010, 2015, 2020",
+            "url": "https://www.earthdata.nasa.gov/data/catalog/sedac-ciesin-sedac-gpwv4-popcount-r11-4.11",
+            "country": "Global",
+            "country_locode": null
+        },
+        {
+            "name": "Gridded Livestock of the World (GLW 3) database",
+            "method_of_access": "Downloadable PDF, Machine-accessible metadata file (ISA-Tab format)",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "sector": "AFOLU",
+            "subsector": "Emissions from livestock within the city boundary",
+            "granularity": "Global",
+            "data_format": "PDF, ISA-Tab",
+            "description": "The Gridded Livestock of the World (GLW 3) database provides global population densities of cattle, buffaloes, horses, sheep, goats, pigs, chickens and ducks in each land pixel for 2010. It includes detailed metadata on the year, spatial resolution and source of input census data. Two versions are produced: dasymetric weighting and areal weighting.",
+            "spatial_resolution": "0.083333 decimal degrees (approximately 10 km at the equator)",
+            "temporal_coverage": "2010",
+            "url": "https://www.nature.com/articles/sdata2018227",
+            "country": "Global",
+            "country_locode": null
+        },
+        {
+            "name": "India: Copernicus Global Human Settlement Layer (GHSL)",
+            "method_of_access": "Downloadable file (GeoTIFF)",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "granularity": "Global",
+            "data_format": "GeoTIFF",
+            "description": "The Global Human Settlement Layer (GHSL) project produces global spatial information, evidence-based analytics, and knowledge describing the human presence on the planet. It relies on spatial data processing technologies for automatic data analytics and information extraction from large amounts of heterogeneous geospatial data including global, fine-scale satellite image data streams, census data, and crowd sourced or volunteered geographic information sources. Provided by the European Commission, Joint Research Centre (JRC) and Copernicus, the dataset covers the period of 1975-2030 and is updated every year.",
+            "spatial_resolution": "fine-scale satellite image data streams",
+            "temporal_coverage": "1975-2030, updated every year",
+            "url": "https://data.humdata.org/dataset/ind-ghsl",
+            "country": "Global",
+            "country_locode": null
+        },
+        {
+            "name": "DBSM R2023 - Individual building footprints for EU27 from the hierarchical conflation of OSM, Microsoft Buildings and ESM R2020",
+            "method_of_access": "Downloadable file via URL (FTP link provided)",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "sector": "Stationary Energy",
+            "subsector": "Residential Buildings",
+            "granularity": "Individual building footprints for EU27",
+            "data_format": "Vector dataset (implied from description of polygons), GeoTIFF (for ESM R2020), PBF (for OSM)",
+            "description": "This vector dataset contains information about individual building footprints covering all countries of the European Union (EU27). It is the result of conflating building footprint polygons from OpenStreetMap, Microsoft GlobalML Building Footprints, and European Settlement Map. The dataset is provided by the European Commission, Joint Research Centre (JRC) and was created/issued on 2023-10-05, with a modified date of 2025-02-27. The aim is to add relevant attributes from the point of view of energy efficiency and energy consumption in buildings in future versions. Update frequency is irregular.",
+            "spatial_resolution": "Individual building polygons",
+            "temporal_coverage": "Reference year 2023 (DBSM R2023), ESM R2020 uses reference year 2018",
+            "url": "http://data.europa.eu/89h/60c6b14d-3dda-4034-b461-390dc8ed8665",
+            "country": "Global",
+            "country_locode": null
+        },
+        {
+            "name": "Global gridded crop harvested area, production, yield, and monthly physical area data circa 2015",
+            "method_of_access": "Downloadable PDF, machine-accessible metadata file (Figshare)",
+            "ccra_mode": "exposure",
+            "ccra_type": "economy",
+            "sector": "AFOLU",
+            "granularity": "Global",
+            "data_format": "georeferenced gridded format",
+            "description": "This dataset provides an update to global gridded annual and monthly crop datasets, using crop categories established by the Global Agro-Ecological Zones (GAEZ) Version 3 model, based on FAO crop production data. It includes circa 2015 annual crop harvested area, production, and yields by crop production system (irrigated and rainfed) for 26 crops and crop categories globally. It also generates monthly gridded cropland data for physical areas for the 26 crops by production system. The data is provided by Nature.com.",
+            "spatial_resolution": "5-minute resolution",
+            "temporal_coverage": "circa 2015 (annual and monthly)",
+            "url": "https://www.nature.com/articles/s41597-021-01115-2",
+            "country": "Global",
+            "country_locode": null
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "exposure",
+            "which": "economy",
+            "research_mode": "global",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for exposure/economy (Global) with 15 structured queries.",
+            "target_country_locode": null,
+            "primary_languages": [
+                "en"
+            ],
+            "parsed_keywords_count": 15,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Global Human Settlement Layer GHSL GeoTIFF",
+                "Gridded Population of the World GPW v4 GeoTIFF",
+                "WorldPop gridded population density GeoTIFF",
+                "Global gridded GDP data NetCDF",
+                "World Bank Geoportal economic data",
+                "Global capital stock spatial distribution GeoTIFF",
+                "Global critical infrastructure geospatial data Shapefile",
+                "SSP economic projections gridded NetCDF",
+                "Global agricultural land use value GeoTIFF",
+                "Global building footprint data GeoTIFF"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 59,
+            "new_data_items": 11
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-10T17:17:01.967157",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 8,
+            "summary": "Reviewed 12 documents. Several documents from authoritative sources (WorldPop, Nature Scientific Data, Copernicus) offer highly relevant gridded datasets for economy exposure, including population density, GDP, HDI, land cover, and electricity consumption. The resolutions are generally suitable for CCRA, with some exceeding the 5km threshold. Documents with 'No content available' were excluded. The FEMA and UCAS links also had no content.",
+            "reasoning": "Identified multiple highly promising documents containing gridded geospatial data relevant to economy exposure (population, GDP, land cover, building morphology, electricity consumption, livestock distribution) from reputable sources, with resolutions meeting or exceeding the specified criteria. These datasets are directly applicable to CCRA for economy exposure."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 59,
+            "new_data_items_extracted": 11,
+            "total_structured_items": 11
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-10T17:17:35.725282",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted data provides a strong foundation for a global economy exposure assessment. Several datasets offer gridded population data at fine resolutions (WorldPop, GHS-POP, GPWv4), which are crucial for demographic exposure. The 'Gridded global datasets for Gross Domestic Product and Human Development Index' directly addresses economic indicators. 'GLAMOUR' and 'DBSM R2023' provide valuable built environment information, though the latter is limited to EU27. The '10m Land Cover' dataset is highly relevant for land use and built-up area analysis. While some datasets are specific to certain regions (China for electricity, EU27 for building footprints), the overall collection provides global coverage for key exposure indicators. The sources are generally credible, stemming from research institutions, international organizations, and reputable scientific journals.",
+            "reasoning": "The extracted data provides highly relevant and credible information for a global economy exposure assessment, covering core indicators like population, GDP, and built environment. The spatial resolutions are generally good (10m to 1km for population/land cover, 5 arc-min for GDP/HDI), meeting or exceeding the 5km threshold for gridded data. While some specific infrastructure or detailed economic indicators are not globally comprehensive, the foundational datasets are strong enough to proceed with analysis. Further refinement can be done in subsequent search iterations for more granular or specific economic/infrastructure data.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "Global Human Settlement Layer GHSL GeoTIFF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Gridded Population of the World GPW v4 GeoTIFF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "WorldPop gridded population density GeoTIFF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Global gridded GDP data NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "World Bank Geoportal economic data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Global capital stock spatial distribution GeoTIFF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Global critical infrastructure geospatial data Shapefile",
+            "language": "en",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "SSP economic projections gridded NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Global agricultural land use value GeoTIFF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Global building footprint data GeoTIFF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Night-time lights data gridded economic activity",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Global transport network geospatial data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Global industrial zones map vector",
+            "language": "en",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "UN-Habitat urban economic data geospatial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "OpenStreetMap critical infrastructure export global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

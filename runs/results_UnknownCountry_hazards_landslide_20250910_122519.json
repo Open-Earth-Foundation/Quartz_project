@@ -1,0 +1,530 @@
+{
+    "research_mode": "global",
+    "target_country": null,
+    "target_country_locode": "GLOBAL",
+    "target_mode": "hazards",
+    "target_which": "landslide",
+    "target_city": null,
+    "start_time": "2025-09-10T12:19:58.200013",
+    "end_time": "2025-09-10T12:25:20.005820",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 1,
+    "structured_data": [
+        {
+            "name": "Landslide Hazard Assessment for Situational Awareness (LHASA) Model",
+            "method_of_access": "Downloadable software (GitHub), web viewer, data archive (NASA DISC), code available upon request",
+            "ccra_mode": "hazards",
+            "ccra_type": "landslide",
+            "granularity": "Global",
+            "data_format": "GeoTIFF (implied for susceptibility map), software/code",
+            "description": "The Landslide Hazard Assessment for Situational Awareness (LHASA) Model, developed by NASA, maps areas of potential landslide hazard in real time. LHASA 2.0 improves upon LHASA 1.1 by incorporating global landslide inventories within a machine learning framework to estimate the relative probability of landslide occurrence, relying on variables like snow mass, soil moisture, slope, distance to faults, lithologic strength, and rainfall (current and antecedent from GPM IMERG, forecasted from GEOS-FP). It also estimates potential exposure of human population and roads and maps basins likely to experience post-fire debris flows. LHASA 1.1 uses IMERG precipitation data and a global landslide susceptibility map. Both versions are open-source and produced at a 1-km resolution.",
+            "spatial_resolution": "1-km resolution",
+            "temporal_coverage": "Real-time (for LHASA 2.0 nowcast), historical landslide inventories for validation",
+            "url": "https://gpm.nasa.gov/landslides/projects.html",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "hazards",
+            "which": "landslide",
+            "research_mode": "global",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for hazards/landslide (Global) with 54 structured queries.",
+            "target_country_locode": "GLOBAL",
+            "primary_languages": [
+                "en"
+            ],
+            "parsed_keywords_count": 54,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "global slope angle aspect data geological formation maps",
+                "tectonic activity fault lines rock strength properties dataset",
+                "worldwide geological structure landslide susceptibility mapping",
+                "global lithology and landslide hazard assessment data",
+                "international geological survey landslide predisposing factors",
+                "high-resolution DEMs geological units landslide analysis",
+                "global bedrock geology landslide susceptibility GIS data",
+                "worldwide structural geology landslide risk indicators",
+                "geological formation strength properties landslide inventory",
+                "global soil moisture content groundwater levels landslide data"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 2,
+            "new_data_items": 1
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-10T12:25:14.369721",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 1,
+            "summary": "The NASA GPM document is highly promising, detailing several global landslide datasets and models, including LHASA 2.0 with a 1-km resolution and links to data viewers and code. It directly addresses landslide hazards and even exposure. The Copernicus document has no content.",
+            "reasoning": "The NASA GPM document provides direct links to global landslide hazard and exposure data, including a viewer and open-source code, and specifies a 1-km resolution, which is suitable for extraction. The other document is empty."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 2,
+            "new_data_items_extracted": 1,
+            "total_structured_items": 1
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-10T12:25:19.970427",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The LHASA Model is highly relevant for landslide hazard assessment, providing real-time and historical data at a global 1-km resolution. It incorporates key variables for landslide susceptibility and even estimates potential exposure of human population and roads, which is a valuable addition for CCRA. The source (NASA) is highly credible.",
+            "reasoning": "The LHASA model is a highly relevant, credible, and complete dataset for global landslide hazard assessment. Its 1-km resolution and real-time capabilities make it an excellent resource for CCRA. The inclusion of some exposure indicators further strengthens its utility.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "global slope angle aspect data geological formation maps",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "tectonic activity fault lines rock strength properties dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "worldwide geological structure landslide susceptibility mapping",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global lithology and landslide hazard assessment data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "international geological survey landslide predisposing factors",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "high-resolution DEMs geological units landslide analysis",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global bedrock geology landslide susceptibility GIS data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "worldwide structural geology landslide risk indicators",
+            "language": "en",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "geological formation strength properties landslide inventory",
+            "language": "en",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "global soil moisture content groundwater levels landslide data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "worldwide rainfall intensity duration landslide triggering thresholds",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "river network drainage patterns landslide hydrological modeling",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global precipitation data landslide early warning systems",
+            "language": "en",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "soil saturation landslide susceptibility mapping dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "groundwater table fluctuations landslide hazard assessment",
+            "language": "en",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global hydrological models landslide initiation parameters",
+            "language": "en",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "remote sensing soil moisture landslide monitoring data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "drainage density influence on landslide occurrence global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global soil shear strength parameters landslide stability analysis",
+            "language": "en",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "cohesion friction angles soil depth layering landslide data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "vegetation root strength landslide susceptibility mapping dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "worldwide geotechnical properties landslide risk assessment",
+            "language": "en",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "soil mechanics parameters landslide hazard modeling global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "geotechnical boreholes soil profile landslide inventory",
+            "language": "en",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global soil engineering properties landslide vulnerability data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "soil depth mapping landslide potential GIS dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "vegetation cover impact on slope stability global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global land use land cover landslide susceptibility data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "vegetation density type human modification landslide impacts",
+            "language": "en",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "climate change impacts on landslide frequency intensity",
+            "language": "en",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "worldwide deforestation landslide hazard assessment GIS",
+            "language": "en",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "urbanization infrastructure development landslide risk data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global environmental change landslide vulnerability mapping",
+            "language": "en",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "land cover change detection landslide monitoring dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "anthropogenic activities landslide triggering factors global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "climate model projections landslide hazard scenarios",
+            "language": "en",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global landslide susceptibility indices multi-criteria evaluation models",
+            "language": "en",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "historical landslide inventories probability of occurrence maps",
+            "language": "en",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "worldwide landslide susceptibility mapping GIS data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global landslide hazard zonation maps raster vector",
+            "language": "en",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "landslide susceptibility modeling machine learning datasets",
+            "language": "en",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "international landslide inventory database susceptibility assessment",
+            "language": "en",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global landslide risk assessment vulnerability mapping data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "multi-factor landslide susceptibility maps worldwide",
+            "language": "en",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "landslide probability density function global dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global rainfall thresholds landslide initiation data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 46,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "earthquake ground acceleration volcanic activity landslide triggers",
+            "language": "en",
+            "priority": "medium",
+            "rank": 47,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "human activities mining construction landslide triggering factors",
+            "language": "en",
+            "priority": "medium",
+            "rank": 48,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "worldwide seismic data landslide susceptibility analysis",
+            "language": "en",
+            "priority": "medium",
+            "rank": 49,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "global precipitation anomalies landslide triggering events",
+            "language": "en",
+            "priority": "medium",
+            "rank": 50,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "volcanic eruption induced landslide inventory data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 51,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "landslide early warning system rainfall thresholds global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 52,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "anthropogenic landslide triggering mechanisms dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 53,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "multi-trigger landslide event database global",
+            "language": "en",
+            "priority": "medium",
+            "rank": 54,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

@@ -1,0 +1,457 @@
+{
+    "research_mode": "global",
+    "target_country": null,
+    "target_country_locode": "GLOBAL",
+    "target_mode": "exposure",
+    "target_which": "comprehensive_exposure",
+    "target_city": null,
+    "start_time": "2025-09-10T14:19:26.540850",
+    "end_time": "2025-09-10T14:27:48.029759",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 19,
+    "structured_data": [
+        {
+            "name": "Global maps of cropland extent and change show accelerated cropland expansion in the twenty-first century",
+            "method_of_access": "Downloadable PDF",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "sector": "AFOLU",
+            "granularity": "Global",
+            "data_format": "PDF",
+            "description": "This study presents an analysis of global cropland area change for the first two decades of the twenty-first century derived from satellite data time-series. It estimates that in 2019, the cropland area was 1,244 Mha and increased by 9% from 2003 to 2019, primarily due to agricultural expansion in Africa and South America. The expansion accelerated, with half of the new cropland replacing natural vegetation and tree cover. The presented global, high-resolution, cropland map time-series supports monitoring of natural land appropriation.",
+            "spatial_resolution": "High-resolution (implied from 'high-resolution cropland map time-series')",
+            "temporal_coverage": "2003-2019",
+            "url": "https://www.nature.com/articles/s43016-021-00429-z",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "GPWv411: Population Count (Gridded Population of the World Version 4.11)",
+            "method_of_access": "Earth Engine Snippet (API access), downloadable via NASA SEDAC",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global",
+            "data_format": "GeoTIFF (implied by pixel size and gridded data)",
+            "description": "This dataset contains estimates of the number of persons per 30 arc-second grid cell consistent with national censuses and population registers. It models the distribution of global human population for the years 2000, 2005, 2010, 2015, and 2020 on 30 arc-second (approximately 1 km) grid cells. Population is distributed to cells using proportional allocation of population from census and administrative units. The dataset is provided by NASA SEDAC at the Center for International Earth Science Information Network (CIESIN).",
+            "spatial_resolution": "30 arc-second (approximately 1 km)",
+            "temporal_coverage": "2000, 2005, 2010, 2015, 2020 (snapshots, updated every 5 years)",
+            "url": "https://developers.google.com/earth-engine/datasets/catalog/CIESIN_GPWv411_GPW_Population_Count",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "GHS-DEGURBA Toolkit (v2.11)",
+            "method_of_access": "Downloadable executable (.exe) and zip files for training material and documentation",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global",
+            "data_format": "GeoTIFF (implied for population grids), PDF, TXT, ZIP",
+            "description": "The GHS-DEGURBA Toolkit is a suite of tools developed by the EC JRC to implement the Degree of Urbanisation. It includes tools for producing geospatial population grids (GHS-POP2G), warping population grids (GHS-POPWARP), classifying settlements (GHS-DUG), and classifying local units (GHS-DU-TUC). The tools are openly documented and freely available, aiming to improve reproducibility and facilitate information production for large and complex spatial data analytics scenarios.",
+            "url": "https://human-settlement.emergency.copernicus.eu/tools.php",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Sentinel-2 10-Meter Land Use/Land Cover",
+            "method_of_access": "Web interface query",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "sector": "AFOLU",
+            "subsector": "Emissions from land within the city boundary",
+            "granularity": "Global",
+            "description": "A 10-meter annual map of Earth's land surface from 2017-2024, provided by Esri Land Cover. This high-resolution, open, accurate, comparable, and timely land use map is critical for decision-makers in various industry sectors and developing nations, improving understanding of topics like food security, land use planning, surface water, and resource management. Existing artificial intelligence (AI) land classification models were enhanced by bringing together a massive training dataset of billions of human-labeled image pixels.",
+            "spatial_resolution": "10-meter",
+            "temporal_coverage": "2017-2024 (annual)",
+            "url": "https://livingatlas.arcgis.com/landcover/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "A spatially-explicit harmonized global dataset of critical infrastructure",
+            "method_of_access": "Downloadable PDF",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global",
+            "data_format": "GeoTIFF (rasterized)",
+            "description": "A first-of-its-kind globally harmonized spatial dataset for the representation of Critical Infrastructure (CI). It collects and harmonizes detailed geospatial data of the world’s main CI systems into a single geospatial database and develops the Critical Infrastructure Spatial Index (CISI) to express the global spatial intensity of CI. The CISI aggregates high-resolution geospatial OpenStreetMap (OSM) data of 39 CI types categorized under seven overarching CI systems. The dataset can be applied to explore the current landscape of CI, identify CI hotspots, and as exposure input for large-scale risk assessments.",
+            "spatial_resolution": "0.10 × 0.10 degrees and 0.25 × 0.25 degrees",
+            "url": "https://www.nature.com/articles/s41597-022-01218-4",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Integrated Geospatial Infrastructure",
+            "method_of_access": "Web interface query, implied data sharing and collaboration through interconnected networks",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global",
+            "description": "The Integrated Geospatial Infrastructure, provided by Esri, focuses on connecting organizations across borders, jurisdictions, and sectors to address shared challenges efficiently and effectively. It emphasizes the evolution of traditional Spatial Data Infrastructure (SDI) to federated Web GIS, enabling collaboration for sustainable development, disaster management, and tackling biodiversity and climate change through shared data. It highlights pillars such as collaborative governance, data and technology, engagement, and capacity building.",
+            "spatial_resolution": "Global, with implications for local, regional, and national levels through SDI",
+            "url": "https://www.esri.com/en-us/arcgis/integrated-geospatial-infrastructure/overview",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Copernicus Global Land Cover Layers—Collection 2",
+            "method_of_access": "Google Scholar search for the article title, DOAJ search for authors, potentially through the MDPI journal website for the article itself.",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "sector": "AFOLU",
+            "subsector": "Emissions from land within the city boundary",
+            "granularity": "Global",
+            "description": "The content refers to an article titled 'Copernicus Global Land Cover Layers—Collection 2' and lists authors associated with it. It is published in the journal 'Remote Sensing'. The article is likely about land cover data, which is relevant to agricultural exposure in CCRA.",
+            "spatial_resolution": "Global",
+            "url": "https://www.mdpi.com/2072-4292/12/6/1044",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "GHS-BUILT-S R2023A - GHS built-up surface grid",
+            "method_of_access": "Downloadable file",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global",
+            "data_format": "spatial raster dataset",
+            "description": "The GHS-BUILT-S R2023A dataset depicts the distribution of built-up surfaces, expressed as number of square metres. It reports total built-up surface and built-up surface allocated to dominant non-residential (NRES) uses. Provided by European Commission, Joint Research Centre (JRC).",
+            "temporal_coverage": "1975-2030 (multitemporal)",
+            "url": "https://human-settlement.emergency.copernicus.eu/datasets.php",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "GHSL Data Package 2023",
+            "method_of_access": "Downloadable files from website, contact email for support",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global",
+            "data_format": "GeoTIFF (implied by 'grids' and 'layers')",
+            "description": "The GHSL Data Package 2023 provides multitemporal products offering insight into human presence (built-up surface, building height, built-up volume, settlement characteristics, population, settlement layers, degree of urbanisation classification, supporting data, and built-up surface statistics in European LAU). It covers epochs from 1975 through 2020 (5-year intervals) and future projections for 2025 and 2030. Produced by the European Commission’s Joint Research Centre under the Global Human Settlement Layer framework.",
+            "spatial_resolution": "Global coverage, with some pan-European and analytical data mentioned (e.g., European Settlement Map, Urban Centre Database). Specific products like GHS-BUILT-S R2023A and GHS-POP R2023A are described as grids.",
+            "temporal_coverage": "1975-2030 (5-year intervals)",
+            "url": "https://human-settlement.emergency.copernicus.eu/dataToolsOverview.php",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "method_of_access": "Web link to full article",
+            "granularity": "Global",
+            "description": "The provided content is a snippet from a website, likely a journal article page, with navigation links and privacy policy information. It does not contain specific dataset information for CCRA.",
+            "url": "https://www.tandfonline.com/doi/full/10.1080/20964471.2019.1625151",
+            "country": "Global",
+            "country_locode": "GLOBAL",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure"
+        },
+        {
+            "name": "Global Roads Open Access Data Set, Version 1 (gROADSv1)",
+            "method_of_access": "Downloadable file",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "sector": "Transportation",
+            "subsector": "On-road Transportation",
+            "granularity": "Global, Country",
+            "data_format": "file geodatabase, vector",
+            "description": "The Global Roads Open Access Data Set, Version 1 (gROADSv1) combines the best available roads data by country into a global roads coverage, using the UN Spatial Data Infrastructure Transport (UNSDI-T) version 2 as a common data model. All country road networks have been joined topologically at the borders, and many countries have been edited for internal topology. The data was developed by the Center for International Earth Science Information Network - CIESIN - Columbia University, and Information Technology Outreach Services - ITOS - University of Georgia. The date range for road network representations ranges from the 1980s to 2010 depending on the country. The dataset is complete and updated as needed.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "1980-2010",
+            "url": "https://sedac.ciesin.columbia.edu/downloads/metadata/groads-global-roads-open-access-v1.html",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Harmonized Global Critical infrastructure & Index (CISI)",
+            "method_of_access": "Downloadable spatial extracts from Zenodo, Earth Engine Snippet for programmatic access",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global",
+            "data_format": "GeoTIFF (implied by Earth Engine snippet and spatial extracts)",
+            "description": "A first-of-its-kind globally harmonized spatial dataset for the representation of Critical Infrastructure (CI) and a Critical Infrastructure Spatial Index (CISI) to express the global spatial intensity of CI. The datasets are generated from Open Streetmap extract from 8th January 2021. Produced by Nirandjan, S., Koks, E.E., Ward, P.J. et al.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "Data generated from Open Streetmap extract from 8th January 2021",
+            "url": "https://gee-community-catalog.org/projects/cisi/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "WorldPop Open Spatial Demographic Data and Research",
+            "method_of_access": "API, web interface, downloadable files",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global, regional, country, high-resolution geospatial",
+            "data_format": "GeoTIFF (implied for spatial data), API access",
+            "description": "WorldPop provides open access spatial demographic datasets built using transparent approaches, focusing on population distributions, demographic and dynamics. It supports health and development applications, including addressing the Sustainable Development Goals. Data is available globally, regionally, and for specific countries, with high spatial resolution.",
+            "spatial_resolution": "High spatial resolution (implied, e.g., 100m-1km for population grids as per CCRA framework)",
+            "temporal_coverage": "2015 to 2030 (for Global 2 Population Data), annual snapshots (implied for population data)",
+            "url": "https://www.worldpop.org/",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Spatial modeling of agricultural land use change at global scale",
+            "method_of_access": "View PDF, Download full issue",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "sector": "Agriculture, Forestry, and Other Land Use (AFOLU)",
+            "granularity": "Global",
+            "data_format": "PDF",
+            "description": "This study presents a global scale dynamic land-use change model for long-term projections, integrating economic theory and observed behavior of land use change. It shows that the model can reproduce 20th century agricultural land use patterns.",
+            "spatial_resolution": "0.5°×0.5° lat/long",
+            "temporal_coverage": "1901-2005 (historical simulation), long-term (>100 y) projections",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0304380014003640",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "GHSL Data Package",
+            "method_of_access": "Direct download via provided URL",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global",
+            "description": "The GHSL Data Package 2019 provides improved built-up area and population products as well as a new settlement model and functional urban areas. It is produced by the European Commission, Directorate General Joint Research Centre, Global Human Settlement Layer project, supporting the GEO Human Planet Initiative (HPI).",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "2019",
+            "url": "https://gkhub.earthobservations.org/records/x51c1-b2y86",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "Global 1 km × 1 km gridded revised real gross domestic product and electricity consumption during 1992–2019 based on calibrated nighttime light data",
+            "method_of_access": "Downloadable PDF",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "sector": "Stationary Energy",
+            "subsector": "Commercial and Institutional Buildings and Facilities",
+            "granularity": "Global",
+            "data_format": "gridded data",
+            "description": "This study employed a series of methods, such as a particle swarm optimization-back propagation (PSO-BP) algorithm, to unify the scales of DMSP-OLS and NPP-VIIRS images and obtain continuous 1 km × 1 km gridded nighttime light data during 1992–2019. Subsequently, from a revised real growth perspective, a top-down method was employed to calculate global 1 km × 1 km gridded revised real GDP and electricity consumption during 1992–2019 based on calibrated nighttime light data.",
+            "spatial_resolution": "1km x 1km",
+            "temporal_coverage": "1992–2019",
+            "url": "https://www.nature.com/articles/s41597-022-01322-5",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "LandScan Global",
+            "method_of_access": "Downloadable from landscan.ornl.gov",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global",
+            "description": "LandScan Global provides globally consistent and high-resolution data on where populations are on the planet, incorporating working populations, shopping populations, and students in schools, offering greater clarity than residential locations reported in official censuses. It has been used to estimate populations at risk and to plan, aid, and direct disaster recovery efforts. Provided by Oak Ridge National Laboratory (ORNL).",
+            "spatial_resolution": "High-resolution",
+            "url": "https://www.ornl.gov/project/geospatial-data-sets",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "WorldCover",
+            "method_of_access": "web interface query",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "sector": "AFOLU",
+            "subsector": "Emissions from land within the city boundary",
+            "granularity": "Global",
+            "description": "WorldCover provides global land cover products for 2020 and 2021 at 10m resolution, developed and validated in near-real time based on Sentinel-1 and Sentinel-2 data. It is developed by a consortium of European service providers and research organizations.",
+            "spatial_resolution": "10 m resolution",
+            "temporal_coverage": "2020 and 2021",
+            "url": "https://esa-worldcover.org/en",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        },
+        {
+            "name": "WorldPop Program",
+            "method_of_access": "Downloadable files via WorldPop website and WOPR",
+            "ccra_mode": "exposure",
+            "ccra_type": "comprehensive_exposure",
+            "granularity": "Global, national, regional",
+            "data_format": "gridded data",
+            "description": "The WorldPop Program, provided by University Of Southampton (UK), University Of Louisville (USA), Universite Libre De Bruxelles (Belgium) And Flowminder Foundation, offers high resolution, open and contemporary data on human population distributions, including estimates of numbers of people residing in each 100 x 100 m grid cell and their age/sex structures. It produces high resolution maps of population counts and densities from 2000-2020, along with accompanying metadata and peer-reviewed academic papers on methods. The WorldPop Global data collection includes population surfaces for total populations (both adjusted to match UN national estimates, and left unadjusted) as well as breakdowns by age and sex classes.",
+            "spatial_resolution": "100m (3 arc seconds)",
+            "temporal_coverage": "2000-2020 (annual time-steps)",
+            "url": "https://www.popgrid.org/worldpop",
+            "country": "Global",
+            "country_locode": "GLOBAL"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "exposure",
+            "which": "comprehensive_exposure",
+            "research_mode": "global",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for exposure/comprehensive_exposure (Global) with 14 structured queries.",
+            "target_country_locode": "GLOBAL",
+            "primary_languages": [
+                "en"
+            ],
+            "parsed_keywords_count": 14,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "WorldPop gridded population data global",
+                "Global Human Settlement Layer GHSL download",
+                "Copernicus Global Land Cover data download",
+                "OpenStreetMap global building footprints download",
+                "CIESIN Gridded Population of the World GPWv4",
+                "Global critical infrastructure geospatial data",
+                "Global road network vector data",
+                "Gridded GDP global 1km",
+                "Global agricultural land use map high resolution",
+                "UNESCO World Heritage Sites GIS data"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 84,
+            "new_data_items": 19
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-10T14:26:56.048656",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 3,
+            "summary": "The batch of documents contains highly promising sources for comprehensive exposure data. Specifically, Google Earth Engine's catalog entry for GPWv411 Population Count and the Copernicus GHSL tools page directly point to and describe global, high-resolution population and settlement datasets, which are crucial for exposure assessment. The Nature Scientific Data article on critical infrastructure also offers a valuable global dataset. Other documents are either too general, lack direct data, or are inaccessible.",
+            "reasoning": "Identified multiple authoritative sources providing direct access or detailed descriptions of global, high-resolution geospatial datasets for population, settlement, and critical infrastructure, which are directly relevant to comprehensive exposure assessment. These documents meet the criteria for spatial resolution and data format potential."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 84,
+            "new_data_items_extracted": 19,
+            "total_structured_items": 19
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-10T14:27:47.989991",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted structured data provides a strong foundation for a comprehensive exposure assessment at a global scale. Several datasets directly address key exposure indicators, including population distribution (GPWv411, WorldPop, LandScan Global), built-up areas (GHS-BUILT-S, GHSL Data Package), critical infrastructure (Harmonized Global Critical infrastructure & Index, gROADSv1), and land cover/land use (Sentinel-2, Copernicus Global Land Cover, WorldCover, Global maps of cropland extent). The spatial resolutions are generally good, with many datasets offering 1km or finer resolution, which is crucial for detailed CCRA. The temporal coverage is also adequate, with some datasets providing historical time series and future projections. While some entries are more descriptive (e.g., GHS-DEGURBA Toolkit, Integrated Geospatial Infrastructure) and point to tools or frameworks rather than direct data, they indicate valuable resources for processing and integrating exposure data. The inclusion of a dataset on gridded GDP and electricity consumption is also highly relevant for economic exposure.",
+            "reasoning": "The extracted structured data is highly relevant, credible, and sufficiently complete for initiating a comprehensive exposure assessment at a global scale. The datasets meet the specified criteria for spatial resolution (many at 1km or finer), temporal coverage, and data format (geospatial). There are multiple strong candidates for each key exposure indicator, providing robust options for the CCRA. No significant gaps or issues were identified that would warrant a 'deep_dive' or 'reject' action at this stage.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "WorldPop gridded population data global",
+            "language": "en",
+            "priority": "High",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Global Human Settlement Layer GHSL download",
+            "language": "en",
+            "priority": "High",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Copernicus Global Land Cover data download",
+            "language": "en",
+            "priority": "High",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "OpenStreetMap global building footprints download",
+            "language": "en",
+            "priority": "High",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "CIESIN Gridded Population of the World GPWv4",
+            "language": "en",
+            "priority": "Medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Global critical infrastructure geospatial data",
+            "language": "en",
+            "priority": "Medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Global road network vector data",
+            "language": "en",
+            "priority": "Medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Gridded GDP global 1km",
+            "language": "en",
+            "priority": "Medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Global agricultural land use map high resolution",
+            "language": "en",
+            "priority": "Medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "UNESCO World Heritage Sites GIS data",
+            "language": "en",
+            "priority": "Low",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Global building height dataset",
+            "language": "en",
+            "priority": "Low",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Global electricity grid geospatial data",
+            "language": "en",
+            "priority": "Low",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Global urban land value map",
+            "language": "en",
+            "priority": "Low",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Global population projections SSP gridded",
+            "language": "en",
+            "priority": "Medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

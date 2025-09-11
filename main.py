@@ -347,14 +347,11 @@ logger.info("CCRA Agent graph compiled successfully.")
 # --- Save Results Function ---
 def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optional[str]:
     """
-    Save agent results to a JSON file if the final structured review action is 'accept'.
-    Supports both city and country modes.
+    Save a JSON snapshot of the agent run, regardless of final decision.
+    Always writes a summary including decision logs, search plan, and any structured items.
+    The caller can inspect `final_structured_review_action` in the JSON to see accept/reject.
     """
     final_structured_review_action = state.metadata.get("next_step_after_structured_review", "not_set")
-
-    if not final_structured_review_action == "accept":
-        logger.info(f"Skipping save: final structured review action was '{final_structured_review_action}', not 'accept'.")
-        return None
 
     try:
         os.makedirs(output_dir, exist_ok=True)
@@ -375,7 +372,7 @@ def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optiona
         
         filepath = os.path.join(output_dir, filename)
 
-        # Data to save - focus on accepted items and summary
+        # Data to save - full run snapshot and any structured items gathered
         data_to_save = {
             "research_mode": research_mode,
             "target_country": state.target_country,
@@ -390,13 +387,16 @@ def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optiona
             "final_confidence": state.metadata.get("final_review_confidence_assessment"),
             "structured_data_items_count": len(state.structured_data),
             "structured_data": state.structured_data,
+            "raw_review_action": state.metadata.get("next_step_after_review"),
+            "last_raw_review_details": state.metadata.get("last_raw_review_details"),
+            "last_structured_review_details": state.metadata.get("last_structured_review_details"),
             "decision_log": state.decision_log,
             "search_plan_summary": state.search_plan
         }
 
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(data_to_save, f, indent=4, ensure_ascii=False)
-        logger.info(f"Results successfully saved to: {filepath}")
+        logger.info(f"Results snapshot saved to: {filepath}")
         return filepath
     except Exception as e:
         logger.error(f"Failed to save results to JSON: {e}", exc_info=True)
@@ -524,6 +524,16 @@ async def main_async(args, cli_config_overrides: Optional[Dict[str, Any]] = None
             )
             all_final_states.append(final_state)
 
+            # Save a snapshot for each exposure type run
+            try:
+                snapshot_path = save_results_to_json(final_state, config.OUTPUT_DIR)
+                if snapshot_path:
+                    print(f"Saved {exposure_type} results to: {snapshot_path}")
+                else:
+                    print(f"Warning: Failed to save {exposure_type} results JSON")
+            except Exception as e:
+                logger.error(f"Failed to save snapshot for {exposure_type}: {e}")
+
         # Print summary for all exposure types
         print(f"\n{'='*80}")
         print("ALL EXPOSURE TYPES COMPLETED")
@@ -613,14 +623,12 @@ async def main_async(args, cli_config_overrides: Optional[Dict[str, Any]] = None
     num_structured_items = len(final_state.structured_data)
     print(f"Structured Items Found:  {num_structured_items}")
 
-    if final_structured_review_action == "accept" and num_structured_items > 0: # MODIFIED to check structured review
-        output_file = save_results_to_json(final_state, config.OUTPUT_DIR)
-        if output_file:
-            print(f"Results Saved To:        {output_file}")
-        else:
-            print("Results Save Skipped:    Final action was not 'accept' or no data.")
+    # Always save a final JSON snapshot so progress isn't lost
+    output_file = save_results_to_json(final_state, config.OUTPUT_DIR)
+    if output_file:
+        print(f"Results Saved To:        {output_file}")
     else:
-        print("Results Save Skipped:    Final action was not 'accept' or no structured data.")
+        print("Results Save Skipped:    Failed to write JSON.")
 
     print("\n--- Key Decision Log Entries ---")
     for log_entry in final_state.decision_log[-5:]:
