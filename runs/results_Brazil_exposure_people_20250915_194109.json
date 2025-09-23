@@ -1,0 +1,575 @@
+{
+    "research_mode": "country",
+    "target_country": "Brazil",
+    "target_country_locode": "BR",
+    "target_mode": "exposure",
+    "target_which": "people",
+    "target_city": null,
+    "start_time": "2025-09-15T19:29:05.155201",
+    "end_time": "2025-09-15T19:41:09.235687",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 22,
+    "structured_data": [
+        {
+            "name": "Censo Demográfico 2022: População residente e domicílios por setores censitários preliminares",
+            "method_of_access": "Downloadable files (vetorial digitalizados), web interface with interactive maps (Panorama do Censo), direct search by specific locations, selection of districts, subdistricts or census sectors of a given municipality.",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "National, Regional, Municipal, Subdistricts, Districts, Census Sectors",
+            "data_format": "Table, GeoTIFF (implied for maps), vector files",
+            "description": "The IBGE (Brazilian Institute of Geography and Statistics) provides preliminary totals of resident population and households by census sectors, aggregated by subdistricts and districts, from the 2022 Demographic Census. It also includes the preliminary census sector mesh, containing digitized vector files of the census sectors representing the Brazilian territory. This dataset allows for various analyses, including average residents, demographic density, comparisons between cutouts, and mapping of risk areas. The data covers 452,338 census sectors across 5,568 Brazilian municipalities, the Federal District, and Fernando de Noronha. The definitive mesh and aggregates are expected in the second half of the year.",
+            "spatial_resolution": "Census Sectors (452,338 across Brazil), Subdistricts, Districts, Municipalities, States, Regions",
+            "temporal_coverage": "2022",
+            "url": "https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/39525-censo-2022-informacoes-de-populacao-e-domicilios-por-setores-censitarios-auxiliam-gestao-publica",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Projeções populacionais por sexo e idade para pequenas áreas no Brasil",
+            "method_of_access": "Downloadable PDF from the journal website (implied by article link)",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Municipal",
+            "data_format": "PDF (article format), underlying data format not specified but likely statistical tables or similar for population projections",
+            "description": "This article describes a method for population projections by sex and age for small areas in Brazil, using an empirical Bayesian model to reduce instability in demographic event estimates. It applies the method to municipal population projections in Brazil between 2000 and 2010, showing reduced variability in age estimates and improved accuracy compared to the original Duchesne (1989) method, especially for adult and elderly groups.",
+            "spatial_resolution": "Municipal",
+            "temporal_coverage": "2000-2010 (projections)",
+            "url": "https://revistarelap.org/index.php/relap/article/view/51/152",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Gridded Population of the World, Version 4 (GPWv4) Revision 10 (4.10) Data Sets",
+            "method_of_access": "Downloadable files (ASCII, GeoTIFF, NetCDF)",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "National (Brazil)",
+            "data_format": "ASCII, GeoTIFF, NetCDF",
+            "description": "The Gridded Population of the World, Version 4 (GPWv4) Revision 10 (4.10) dataset provides global gridded estimates of population counts by age and sex for the year 2010, consistent with national censuses and population registers. It includes Population Count, Population Density, UN WPP-Adjusted Population Count, UN WPP-Adjusted Population Density, Data Quality Indicators, Land and Water Area, National Identifier Grid, and Basic Demographic Characteristics. For Brazil, data integration errors were corrected in this revision.",
+            "spatial_resolution": "30 arc-second (native), 2.5 minute, 15 minute, 30 minute, 1 degree",
+            "temporal_coverage": "2010",
+            "url": "https://sedac.ciesin.columbia.edu/downloads/docs-repo/gpw-v4-rev11-change-log-general-documentation.txt",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "High-resolution gridded population datasets for Latin America and the Caribbean in 2010, 2015, and 2020",
+            "method_of_access": "Downloadable PDF, available through WorldPop Project website and WorldPop Dataverse Repository",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Regional (Latin America and the Caribbean), National (Brazil is included), 100m grid resolution",
+            "data_format": "PDF, gridded datasets (implied GeoTIFF or similar for 100m resolution)",
+            "description": "An open access archive of high-resolution gridded population datasets created through disaggregation of official population count data for 28 countries in Latin America and the Caribbean, including Brazil. Datasets have a resolution of 3 arc seconds (approximately 100m at the equator) and were produced for the population count year, as well as for 2010, 2015, and 2020. Provided by WorldPop Project.",
+            "spatial_resolution": "3 arc seconds (approximately 100m at the equator)",
+            "temporal_coverage": "2010, 2015, 2020, and population count year for each country",
+            "url": "https://www.nature.com/articles/sdata201545",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Esri Demographics Standard Demographics Dataset for Brazil",
+            "method_of_access": "Web interface query via Esri's data browser",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Country, States, Municipalities, Statistical Areas Level 2, Statistical Areas Level 1",
+            "data_format": "Table, potentially GeoTIFF for population grids (implied by Esri's typical data formats)",
+            "description": "Esri provides a standard demographics dataset for Brazil sourced from Michael Bauer Research GmbH. This dataset was updated in October 2024 with a vintage of 2024. It includes data on Total Population, Population Density, Population per Mill, Male/Female Population Totals, and Population Totals by Age and Gender. The dataset is updated approximately every two years.",
+            "spatial_resolution": "Varies by geography level: Country (1), States (27), Municipalities (5,570), Statistical Areas Level 2 (11,272), Statistical Areas Level 1 (452,244). Settlement points use 2023 European Commission Global Human Settlement Layer (GHSL).",
+            "temporal_coverage": "2024 (vintage), updated approximately every two years.",
+            "url": "https://doc.arcgis.com/en/esri-demographics/latest/esri-demographics/brazil.htm",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Censo 2022 - Quilombolas: Primeiros resultados do universo",
+            "method_of_access": "web interface query, downloadable files (tables, cartograms, map, geospatial vector files)",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "National, State (Unidades da Federação), Municipal, Quilombola Territories, Legal Amazon",
+            "data_format": "tables, cartograms, map (1:5.000.000 scale), geospatial vector files",
+            "description": "The Censo 2022 provides unprecedented data on the quilombola population in Brazil, identifying 1,327,802 people (0.65% of the total population) across 1,696 municipalities. It details their distribution, with 68.19% residing in the Northeast, and Bahia and Maranhão concentrating 50.16% of this population. The census also identifies 494 officially delimited Quilombola Territories, housing 167,202 quilombolas (12.6% of the total). The data was collected by IBGE and reflects a participatory process with the quilombola community. The data is disaggregated by official delimitations as of 31/07/2022.",
+            "spatial_resolution": "Municipal, State, and specific Quilombola Territories; map at 1:5,000,000 scale",
+            "temporal_coverage": "2022",
+            "url": "https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/37464-brasil-tem-1-3-milhao-de-quilombolas-em-1-696-municipios",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "High-resolution gridded population datasets for Latin America and the Caribbean using official statistics",
+            "method_of_access": "Downloadable PDF, WorldPop Data Repository",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "National (for 40 countries in Latin America and the Caribbean, including Brazil)",
+            "data_format": "PDF, gridded datasets (implied GeoTIFF based on CCRA framework for population grids)",
+            "description": "This dataset provides high-resolution gridded population datasets for 40 countries in Latin America and the Caribbean, including Brazil, constructed using official statistics. The datasets aim to accurately capture the distribution of residential population at subnational levels to inform environmental, health, and developmental applications. The data is available from the WorldPop Data Repository.",
+            "spatial_resolution": "3 arc-seconds (approximately 100m at the equator)",
+            "temporal_coverage": "Collection date 2023, projected to increase to almost 760 million by 2050",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10328919/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Setores censitários",
+            "method_of_access": "Downloadable files (shapefile, KML, Excel spreadsheet) and institutional pages",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Setores censitários (Census sectors), Municipal, District, Sub-district, Microregion, Mesoregion, Immediate Geographic Region, Intermediate Geographic Region, Urban Concentration",
+            "data_format": "SHAPE-ZIP, KML, excel2007",
+            "description": "This dataset provides information on census sectors for Minas Gerais, Brazil, including population counts (total residents, households, private households, collective households), average residents in occupied private households, and percentage of imputed occupied private households. It is provided by Instituto Brasileiro de Geografia e Estatística (IBGE) and updated continuously. The data is from the 2022 Census.",
+            "spatial_resolution": "Vetorial, Denominator 250000, Geometric object count 50663",
+            "temporal_coverage": "2022 (Censo 2022)",
+            "url": "https://idesisema.meioambiente.mg.gov.br/geonetwork/srv/api/records/6429801d-05cb-4582-b55b-259b6fc5d362",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "População e domicílios em grade estatística",
+            "method_of_access": "Web application",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Grid statistical",
+            "description": "This dataset provides information on population and households in a statistical grid format, derived from the Censo 2010 conducted by IBGE. It covers 67.6 million households across 5,565 Brazilian municipalities.",
+            "temporal_coverage": "2010",
+            "url": "https://censo2010.ibge.gov.br/resultados",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Informal settlements in São Paulo (Brazil) geo-referenced databases",
+            "method_of_access": "Not specified, implies direct access through NGO Teto's work or collaboration with CEAT",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Community level (Capadócia and Pedra Branca in São Paulo)",
+            "data_format": "Geo-referenced databases (maps containing household data)",
+            "description": "This dataset contains basic demographic and spatial information for 735 families (2,414 people) from two informal settlements (Capadócia and Pedra Branca) in São Paulo, Brazil. It was collected by Vitor Pessoa Colombo (CEAT) in collaboration with NGO Teto during April and May 2019. The data includes information on families living in areas exposed to geological risk.",
+            "spatial_resolution": "Community level within São Paulo, Brazil",
+            "temporal_coverage": "April-May 2019",
+            "url": "https://actu.epfl.ch/news/mapping-informal-settlements-in-sao-paulo-brazil-2/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Estimativas da População",
+            "method_of_access": "Downloadable file via web link",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "municipal and UF (state) level",
+            "description": "Annual population estimates for municipalities and UFs (states) provided by IBGE.",
+            "spatial_resolution": "municipal and UF (state) level",
+            "temporal_coverage": "annual",
+            "url": "https://www.ibge.gov.br/estatisticas/sociais/populacao.html",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Censo Demográfico 2022: Malha de Setores Censitários definitivos",
+            "method_of_access": "Downloadable files (vetorial digitalizados dos setores censitários)",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Sector censitário (sub-municipal), Municipal, Regional (Grandes Regiões)",
+            "data_format": "Arquivos vetoriais digitalizados",
+            "description": "The 2022 Demographic Census data from IBGE indicates that 87.4% (177.5 million) of Brazil's 203.1 million population lives in urban areas, while 12.6% (25.6 million) lives in rural areas. This represents an increase of 16.6 million in urban areas and a decrease of 4.3 million in rural areas since 2010. The data is based on updated orbital images to define urban and rural areas for statistical purposes, classifying each census sector. It includes population data by sex, age, race/color, literacy, and household data like water supply and sanitation. The data also includes information on the routes taken by census enumerators.",
+            "spatial_resolution": "Sector censitário (sub-municipal)",
+            "temporal_coverage": "2022 (comparison with 2010)",
+            "url": "https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/41901-censo-2022-87-da-populacao-brasileira-vive-em-areas-urbanas",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Data for Good at Meta - High Resolution Population Density Maps and Demographic Estimates",
+            "method_of_access": "Web interface query",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "description": "This dataset, provided by Data for Good at Meta, offers high-resolution population density maps and demographic estimates.",
+            "url": "https://data.humdata.org/dataset/?q=Sudan+Baseline+Data&page=66",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Open Buildings",
+            "method_of_access": "Downloadable files via website",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Regional (Latin America and the Caribbean)",
+            "data_format": "Polygon (footprint), Plus Code",
+            "description": "The Open Buildings dataset contains 1.8 billion building detections derived from high-resolution satellite imagery. It includes the polygon describing each building's footprint, a confidence score, and a Plus Code for its center. The dataset covers Africa, South Asia, South-East Asia, Latin America and the Caribbean, and is in its 3rd version. It is useful for applications like population estimation, urban planning, humanitarian response, and environmental/climate science.",
+            "spatial_resolution": "Individual building polygons",
+            "url": "http://sites.research.google/gr/open-buildings/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "South America Building Footprints - Brazil",
+            "method_of_access": "Downloadable GeoJSONL.zip file",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "National",
+            "data_format": "GeoJSONL.zip",
+            "description": "Microsoft is releasing open building footprints dataset for countries in South America. This dataset contains 18,711,536 building footprint polygon geometries for Brazil, detected from Maxar imagery collected between 2020 and 2021. The data is freely available for download and use under the Open Data Commons Open Database License (ODbL).",
+            "spatial_resolution": "Individual building polygons",
+            "temporal_coverage": "2020-2021",
+            "url": "https://github.com/microsoft/SouthAmericaBuildingFootprints",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Global Human Settlement Layer (GHSL)",
+            "method_of_access": "Downloadable raster files (TIF and OVR)",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Global",
+            "data_format": "GeoTIFF, OVR",
+            "description": "The Global Human Settlement Layer (GHSL) project, supported by European Commission, Joint Research Centre, produces global spatial information, analytics, and knowledge describing human presence. It relies on spatial data mining technologies to process satellite imagery, census data, and crowd-sourced information. The project produces thematic information and evidence-based analytical knowledge supporting the implementation of EU regional urban policy and international post-2015 frameworks, including Climate Change. It supports international scientific partnerships, including collaborations with Brazil. The collection consists of built-up (GHS-BUILT), population (GHS-POP) grids, and city model (GHS-SMOD).",
+            "spatial_resolution": "Fine-scale (not explicitly stated, but implied by 'fine-scale satellite image data streams' and '1km' for GHS-BUILT-S Arctic)",
+            "temporal_coverage": "Not explicitly stated for the overall GHSL, but individual datasets within the collection have specific coverages (e.g., GHS-AGE R2025A (1975-2020), GHS-POP ARCTIC R2025A (1975-2030)).",
+            "url": "https://data.jrc.ec.europa.eu/collection/ghsl",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Microsoft's 1.4 Billion Global ML Building Footprints",
+            "method_of_access": "Downloadable CSV manifest file with URLs to building datasets; data can be processed using Python and DuckDB.",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Global, with specific areas covered by quad keys, which can be converted to Well-known Text (WKT) geometries.",
+            "data_format": "CSV (manifest), JSON (processed), GPKG (geographical footprints), DuckDB table",
+            "description": "Microsoft's Global ML Building Footprints dataset, released in 2022 and refreshed 25 times, contains 1.4 billion building footprints with tens of millions of height estimates. Polygons were generated using machine learning on satellite imagery from Airbus, Maxar, Vexcel, and IGN FI. The dataset is also a source for Overture Maps. A manifest CSV file provides URLs, publication dates, and geographical coverage.",
+            "spatial_resolution": "Individual building polygons, with geographical footprints covered by quad keys.",
+            "temporal_coverage": "2022 onwards, with 25 refreshes; latest publication dates are available in the manifest.",
+            "url": "https://tech.marksblogg.com/microsofts-global-ml-building-footprints.html",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Global Forest Review (GFR) Data Sets",
+            "method_of_access": "Web interface query, downloadable files (implied by links to specific datasets)",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "sector": "AFOLU",
+            "granularity": "Global",
+            "data_format": "Table (implied by content structure), GeoTIFF (implied by linked datasets)",
+            "description": "The Global Forest Review (GFR) provides an independent assessment of the state of the world’s forests based on geospatial data and analysis. It uses over 20 different global spatial data sets to understand forest changes and their impacts on people, climate, and biodiversity. The report and Data and Methods section are updated annually to reflect the latest advances in data and data science. The data sets include Tree cover loss, Tree cover loss by dominant driver, Tree cover gain, Net tree cover change, Hot spots of primary forest loss, Tree cover loss due to fire, and Tropical Moist Forest.",
+            "spatial_resolution": "30-meter (for several datasets), 1-kilometer (for Tree cover loss by dominant driver), Vector (for Hot spots of primary forest loss)",
+            "temporal_coverage": "2001-2024 (for Tree cover loss), 2001-2024 (for Tree cover loss by dominant driver), 2000-2020 (for Tree cover gain), 2000-2020 (for Net tree cover change), 2002-2024 (for Hot spots of primary forest loss), 2001-2024 (for Tree cover loss due to fire), 1990-2024 (for Tropical Moist Forest)",
+            "url": "https://gfr.wri.org/data-methods",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "GlobalMLBuildingFootprints",
+            "method_of_access": "downloadable file (dataset-links.csv)",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "national",
+            "data_format": "CSV (for links), likely GeoTIFF/vector for footprints",
+            "description": "Worldwide building footprints derived from satellite imagery by Bing Maps, detecting 1.4B buildings between 2014 and 2024. The data is freely available for download and use under ODbL. Updates include new building footprints and height estimates, with recent contributions to Brazil (2M buildings added in January 2025 update).",
+            "spatial_resolution": "Worldwide, with specific updates for countries like Brazil. Individual building polygons implied.",
+            "temporal_coverage": "2014-2024 (imagery used), with updates up to February 2025. Specific update for Brazil in January 2025.",
+            "url": "https://github.com/microsoft/GlobalMLBuildingFootprints",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "OpenStreetMap Export",
+            "method_of_access": "Web interface query, direct tile access (implied)",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Global, with ability to zoom to specific locations (e.g., Brazil)",
+            "data_format": "Map tiles (PNG), vector data (implied for export)",
+            "description": "OpenStreetMap provides map data, including information that can be used to infer population distribution and settlement patterns. The content shows various map layers and options for sharing and exporting map data. It is provided by OpenStreetMap contributors.",
+            "spatial_resolution": "Varies by zoom level, down to street level detail (implied by map tiles)",
+            "temporal_coverage": "Continuously updated (implied by 'OpenStreetMap contributors' and 'Make a Donation')",
+            "url": "https://www.openstreetmap.org/export",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Microsoft Global Building Footprints",
+            "method_of_access": "Downloadable GEOJSON files by Quadkey Partitions from GitHub, via Tableau Public dashboard",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Global, with significant coverage in countries like Brazil",
+            "data_format": "line-delimited GeoJSON, compressed as .csv.gz",
+            "description": "The Microsoft Global Building Footprints dataset provides 1.4 billion building outlines, freely available under the Open Database License (ODbL). Collected since 2014 from high-quality sources like Maxar, Airbus, and IGN France imagery, it offers comprehensive global coverage for various geospatial applications.",
+            "spatial_resolution": "Individual building polygons",
+            "temporal_coverage": "Since 2014",
+            "url": "https://roddar.com/data-hub/microsoft-global-building-footprints",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Daylight Map Distribution v1.46",
+            "method_of_access": "Downloadable files via S3 links",
+            "ccra_mode": "exposure",
+            "ccra_type": "people",
+            "granularity": "Global, with specific mention of São Paulo, Southeast Region, Brazil for building data",
+            "data_format": "OSM PBF, OSC, Shapefile, TSV, JSON, Parquet",
+            "description": "Version 1.46 of Daylight Map Distribution, released on May 15th, 2024, provides global geographic data including planet files (100% OSM data), coastlines, administrative boundaries, and building footprints. The building data specifically mentions a repair in São Paulo, Southeast Region, Brazil. Data is provided by Daylight, Esri, and Microsoft.",
+            "spatial_resolution": "Global, with individual building polygons implied for building footprints.",
+            "temporal_coverage": "May 15th, 2024 (release date)",
+            "url": "https://daylightmap.org/2024/05/15/daylight-v146-release.html",
+            "country": "Brazil",
+            "country_locode": "BR"
+        }
+    ],
+    "raw_review_action": "proceed_to_extraction",
+    "last_raw_review_details": {
+        "overall_assessment": "The batch contains several highly promising documents from authoritative sources (IBGE, SEDAC, Nature/WorldPop, Esri) for 'people' exposure data, particularly for Brazil. These documents discuss and often link to high-resolution gridded population data, census data by administrative units, and demographic characteristics. Some documents are news articles about data releases, which are useful for identifying the data sources, while others are direct data documentation or research papers describing data creation. Several documents had no content, which limits their utility.",
+        "documents_to_extract": [
+            "https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/39525-censo-2022-informacoes-de-populacao-e-domicilios-por-setores-censitarios-auxiliam-gestao-publica",
+            "https://sedac.ciesin.columbia.edu/downloads/docs-repo/gpw-v4-rev11-change-log-general-documentation.txt",
+            "https://www.nature.com/articles/sdata201545",
+            "https://doc.arcgis.com/en/esri-demographics/latest/esri-demographics/brazil.htm",
+            "https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/37464-brasil-tem-1-3-milhao-de-quilombolas-em-1-696-municipios"
+        ],
+        "suggested_next_action": "proceed_to_extraction",
+        "action_reasoning": "Multiple documents from highly credible sources (IBGE, SEDAC, WorldPop, Esri) directly address high-resolution population and demographic data, which are crucial for 'people' exposure in CCRA. These documents either contain or clearly describe the availability of structured, geospatial population datasets at fine resolutions (e.g., census sectors, 30 arc-second grids, 100m grids) for Brazil and Latin America, aligning perfectly with the CCRA context and data requirements. The 'no content' documents should be re-scraped or disregarded."
+    },
+    "last_structured_review_details": {
+        "overall_assessment_notes": "The extracted data provides a comprehensive overview of exposure data for people in Brazil, covering demographic information at various granularities, including high-resolution gridded population datasets and detailed census data down to the census sector level. Several sources offer building footprints, which are crucial for understanding the built environment. While some sources are articles or general overviews, they point to downloadable datasets or provide sufficient detail to confirm the existence and relevance of the data. The IBGE (Brazilian Institute of Geography and Statistics) is a highly credible source for demographic data in Brazil, and its 2022 census data, including preliminary and definitive census sector meshes, is particularly valuable. WorldPop and Esri also provide relevant gridded population and demographic data. The inclusion of specific data on quilombola populations adds an important layer for vulnerability assessment. The building footprint datasets from Microsoft and Google are also highly relevant for understanding the built environment.",
+        "relevance_score": "High",
+        "relevance_reasoning": "The data directly addresses key exposure indicators for people, including population density, total population, age distribution (implied by census data), and built-up areas (via building footprints). The granularity ranges from national to sub-municipal (census sectors) and even individual building polygons, which is ideal for CCRA. The temporal coverage includes recent data (2022 census, 2024 Esri vintage, 2020-2021 building footprints) and projections, making it suitable for current and future risk assessments.",
+        "credibility_score": "High",
+        "credibility_reasoning": "The primary sources are highly credible: IBGE (Brazilian Institute of Geography and Statistics) is the official national statistical agency for Brazil. Other sources like WorldPop, Esri, Microsoft, Google, and the European Commission's Joint Research Centre (GHSL) are well-established and respected institutions in geospatial data and demographics. The articles cited are from peer-reviewed journals or reputable news agencies (IBGE's own news agency).",
+        "completeness_score": "High",
+        "completeness_reasoning": "The dataset is strong in demographic and population data, offering various resolutions and temporal coverages. It also provides excellent coverage for the built environment through multiple building footprint datasets. While specific critical infrastructure locations (hospitals, schools) are not explicitly listed as separate datasets, the high-resolution population and building data, especially at the census sector level, can serve as a foundation for inferring or integrating such information. The data on quilombola populations also contributes to socioeconomic vulnerability aspects. The combination of official census data and gridded population products, along with building footprints, provides a robust foundation for exposure assessment.",
+        "overall_confidence": "High",
+        "suggested_action": "accept",
+        "action_reasoning": "The extracted data is highly relevant, credible, and sufficiently complete for a comprehensive exposure assessment of people in Brazil. It includes official census data at fine granularities, high-resolution gridded population datasets, and extensive building footprint data, all from authoritative sources. The spatial and temporal coverage is appropriate for CCRA, meeting or exceeding the specified resolution requirements. This collection provides an excellent foundation for understanding human exposure in Brazil.",
+        "refinement_details": null
+    },
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "exposure",
+            "which": "people",
+            "country": "Brazil",
+            "research_mode": "country",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for exposure/people (Brazil) with 14 structured queries.",
+            "target_country_locode": "BR",
+            "primary_languages": [
+                "en",
+                "pt"
+            ],
+            "parsed_keywords_count": 14,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "IBGE censo demográfico Brasil shapefile",
+                "IBGE malha de setores censitários Brasil shapefile",
+                "WorldPop Brazil 1km population GeoTIFF",
+                "Gridded Population of the World Brazil NetCDF",
+                "IBGE projeções populacionais Brasil espacial",
+                "IPEAData Brasil pobreza espacial shapefile",
+                "Ministério da Saúde Brasil acesso saúde GIS",
+                "Brazil informal settlements map GIS",
+                "Brazil population by age group GIS",
+                "Brazil SSP population projections spatial"
+            ],
+            "urls_collected": 94,
+            "relevant_urls_for_scraping": 54,
+            "new_data_items": 12
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-15T19:37:26.754823",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 5,
+            "summary": "The batch contains several highly promising documents from authoritative sources (IBGE, SEDAC, Nature/WorldPop, Esri) for 'people' exposure data, particularly for Brazil. The IBGE documents directly reference census data, including population and household counts at fine spatial resolutions (census tracts) and specific demographic groups (quilombolas). The SEDAC and Nature/WorldPop documents describe global and regional gridded population datasets, which are ideal for CCRA exposure analysis. The Esri document also points to detailed demographic data for Brazil. Several documents had no content, which limits their utility.",
+            "reasoning": "Multiple documents from highly credible sources (IBGE, SEDAC, WorldPop, Esri) directly describe or link to high-resolution population and demographic datasets, including gridded data and census tract level data, which are directly relevant to 'people' exposure for CCRA. These documents explicitly mention geospatial formats and fine spatial resolutions, meeting the specified criteria. The article on population projections is also relevant for future exposure scenarios."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 54,
+            "new_data_items_extracted": 12,
+            "total_structured_items": 12
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-15T19:37:59.084283",
+            "action": "structured_review_completed",
+            "suggested_action": "deep_dive",
+            "overall_confidence": "Medium",
+            "summary": "The extracted data provides a strong foundation for exposure assessment in Brazil, particularly regarding demographic and population indicators. Several datasets from IBGE offer high-resolution, recent population data at various administrative levels, including census sectors, which is crucial for granular analysis. WorldPop and Esri also contribute gridded population data, enhancing spatial resolution. The inclusion of specific data on quilombola populations is valuable for understanding vulnerable groups. However, there is a noticeable gap in comprehensive data for built environment, critical infrastructure, and detailed socioeconomic vulnerability beyond basic population counts. While some sources mention households, specific details on housing materials, building footprints, or infrastructure locations are largely absent. The informal settlements data is highly relevant but limited to specific communities in São Paulo.",
+            "reasoning": "The current datasets provide an excellent foundation for population exposure. However, to move towards a comprehensive 'people' exposure assessment, a 'deep_dive' is necessary to identify and extract data related to the built environment, critical infrastructure, and more granular socioeconomic vulnerability indicators. Specifically, information on housing characteristics, locations of essential services, and more detailed poverty/income data would significantly enhance the assessment. The existing IBGE sources might contain some of this information within their broader census releases, requiring more targeted exploration.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        },
+        {
+            "agent": "DeepDiveProcessor",
+            "action": "crawl",
+            "target": "https://www.ibge.gov.br/estatisticas/sociais/populacao/censo-demografico.html",
+            "justification": "This URL is the main entry point for IBGE's Demographic Censuses. Crawling this section will allow us to discover various data releases, tables, and publications related to detailed housing characteristics, socioeconomic indicators, and potentially critical infrastructure locations at sub-municipal levels, as requested in the refinement.",
+            "refinement_details_processed": "Deep dive into IBGE's official website (www.ibge.gov.br) for additional census data releases, specifically looking for: 1. Detailed housing characteristics (e.g., construction materials, access to water/sanitation/electricity) at census sector or municipal level. 2. Data on locations of critical infrastructure (e.g., schools, health facilities) if available through IBGE or other government ministries. 3. Socioeconomic indicators such as income levels, poverty rates, and education attainment at sub-municipal levels. Also, explore other Brazilian government agencies (e.g., Ministry of Cities, Ministry of Health) for relevant geospatial datasets on built environment and social services.",
+            "actions_this_cycle": 1,
+            "current_websites_considered": "www.tandfonline.com, www.worldpop.org, data.humdata.org, www.ibge.gov.br, dados.gov.br, www.nature.com, agupubs.onlinelibrary.wiley.com, revistarelap.org, sedac.ciesin.columbia.edu, pmc.ncbi.nlm.nih.gov",
+            "timestamp": "2025-09-15T19:38:03.058906"
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "GHSL Brazil population density GeoTIFF",
+                "ANA Brasil saneamento básico espacial",
+                "OpenStreetMap Brazil building footprints GeoJSON",
+                "Brazil urban land use map 100m GeoTIFF"
+            ],
+            "urls_collected": 40,
+            "relevant_urls_for_scraping": 12,
+            "new_data_items": 12
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-15T19:40:41.510165",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 5,
+            "summary": "The batch contains several highly promising documents from authoritative sources (IBGE, SEDAC, Nature/WorldPop, Esri) for 'people' exposure data, particularly for Brazil. These documents discuss and often link to high-resolution gridded population data, census data by administrative units, and demographic characteristics. Some documents are news articles about data releases, which are useful for identifying the data sources, while others are direct data documentation or research papers describing data creation. Several documents had no content, which limits their utility.",
+            "reasoning": "Multiple documents from highly credible sources (IBGE, SEDAC, WorldPop, Esri) directly address high-resolution population and demographic data, which are crucial for 'people' exposure in CCRA. These documents either contain or clearly describe the availability of structured, geospatial population datasets at fine resolutions (e.g., census sectors, 30 arc-second grids, 100m grids) for Brazil and Latin America, aligning perfectly with the CCRA context and data requirements. The 'no content' documents should be re-scraped or disregarded."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 64,
+            "new_data_items_extracted": 10,
+            "total_structured_items": 22
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-15T19:41:09.189776",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted data provides a comprehensive overview of exposure data for people in Brazil, covering demographic information at various granularities, including high-resolution gridded population datasets and detailed census data down to the census sector level. Several sources offer building footprints, which are crucial for understanding the built environment. While some sources are articles or general overviews, they point to downloadable datasets or provide sufficient detail to confirm the existence and relevance of the data. The IBGE (Brazilian Institute of Geography and Statistics) is a highly credible source for demographic data in Brazil, and its 2022 census data, including preliminary and definitive census sector meshes, is particularly valuable. WorldPop and Esri also provide relevant gridded population and demographic data. The inclusion of specific data on quilombola populations adds an important layer for vulnerability assessment. The building footprint datasets from Microsoft and Google are also highly relevant for understanding the built environment.",
+            "reasoning": "The extracted data is highly relevant, credible, and sufficiently complete for a comprehensive exposure assessment of people in Brazil. It includes official census data at fine granularities, high-resolution gridded population datasets, and extensive building footprint data, all from authoritative sources. The spatial and temporal coverage is appropriate for CCRA, meeting or exceeding the specified resolution requirements. This collection provides an excellent foundation for understanding human exposure in Brazil.",
+            "final_decision_mode": true,
+            "consecutive_deep_dive_count": 1
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "IBGE censo demográfico Brasil shapefile",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "IBGE malha de setores censitários Brasil shapefile",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "WorldPop Brazil 1km population GeoTIFF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Gridded Population of the World Brazil NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "IBGE projeções populacionais Brasil espacial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "IPEAData Brasil pobreza espacial shapefile",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Ministério da Saúde Brasil acesso saúde GIS",
+            "language": "en",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil informal settlements map GIS",
+            "language": "en",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil population by age group GIS",
+            "language": "en",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil SSP population projections spatial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "GHSL Brazil population density GeoTIFF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "ANA Brasil saneamento básico espacial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "OpenStreetMap Brazil building footprints GeoJSON",
+            "language": "en",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil urban land use map 100m GeoTIFF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "searched"
+        }
+    ]
+}

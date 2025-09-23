@@ -1,0 +1,1377 @@
+{
+    "research_mode": "country",
+    "target_country": "Brazil",
+    "target_country_locode": "BR",
+    "target_mode": "hazards",
+    "target_which": "heatwave",
+    "target_city": null,
+    "start_time": "2025-09-15T18:19:23.220962",
+    "end_time": "2025-09-15T18:34:07.557248",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 46,
+    "structured_data": [
+        {
+            "name": "High-resolution monthly precipitation and temperature time series from 2006 to 2100",
+            "method_of_access": "Downloadable PDF, machine-accessible metadata file via DOI link",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Globally, ~5km spatial resolution",
+            "data_format": "PDF, machine-accessible metadata file (likely containing links to NetCDF, GeoTIFF, CSV time series based on CCRA framework)",
+            "description": "This dataset presents monthly time series data on precipitation, minimum- and maximum temperature for four downscaled global circulation models. It was calculated using model output statistics in combination with mechanistic downscaling (the CHELSA algorithm) at ~5km spatial resolution globally for the years 2006–2100. The downscaling algorithm's performance was validated against historical climate data from 1950–1969.",
+            "spatial_resolution": "~5km",
+            "temporal_coverage": "2006–2100 (projections), 1950–1969 (historical validation)",
+            "url": "https://www.nature.com/articles/s41597-020-00587-y",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Extreme events representation in CMCC-CM2 standard and high-resolution general circulation models",
+            "method_of_access": "Downloadable article (PDF, HTML) and assets from the Copernicus website. Data itself is not directly accessible from this document.",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Global, with specific analysis of extreme temperature and precipitation events.",
+            "data_format": "NetCDF (implied for model output and reanalysis data), GeoTIFF (implied for figures)",
+            "description": "This study evaluates the ability of the CMCC-CM2 standard and high-resolution general circulation models to represent the spatial distribution of extreme events of temperature and precipitation during the historical period (1950–2014). It compares model results to observations (ERA5, MSWEP, CHIRPS) using 6-hourly and daily time series to compute indices representative of intense and extreme conditions. The high-resolution version (1/4 degree) of the atmospheric model shows better results for intense and extreme temperature events than the standard resolution (1 degree).",
+            "spatial_resolution": "1 degree (standard resolution) and 1/4 degree (high resolution) for atmospheric model output; ERA5 reanalysis is also mentioned.",
+            "temporal_coverage": "Historical climate (1950–2014) for simulations; daily and 6-hourly frequencies for indices.",
+            "climate_scenario": "Historical climate radiative forcing",
+            "url": "https://gmd.copernicus.org/articles/15/1841/2022/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Clima e condições meteorológicas médias em Alvarães no ano todo Amazonas, Brasil",
+            "method_of_access": "Web interface query",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "municipal",
+            "data_format": "web table/charts",
+            "description": "This page provides characteristic climate and average weather conditions for Alvarães, Amazonas, Brazil throughout the year. It details temperature variations, precipitation, and an index for warm-weather activities. The data is presented via a web interface with options to view by year, month, or season.",
+            "spatial_resolution": "Municipal (Alvarães, Amazonas)",
+            "temporal_coverage": "Annual (average conditions)",
+            "url": "https://pt.weatherspark.com/y/28215/Clima-caracter%C3%ADstico-em-Alvar%C3%A3es-Amazonas-Brasil-durante-o-ano",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "GFS diário 5km ........ 17 dias",
+            "method_of_access": "Web interface query with municipality selection",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "municipal",
+            "data_format": "graphs",
+            "description": "Daily weather forecast graphs for 86 municipalities in Brazil, updated 4 times a day based on the global GFS model (00h, 06h, 12h, 18h UTC) with 5km spatial resolution and a 17-day projection. Data provided by National Centers for Environmental Prediction (NCEP) - NOAA, through Fundação ABC.",
+            "spatial_resolution": "5km",
+            "temporal_coverage": "17-day projection, updated daily",
+            "url": "https://sma.fundacaoabc.org/previsao_tempo/meteograma/gfs_diario",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Earth Engine Data Catalog",
+            "method_of_access": "Web interface query, API (implied by 'importar esses conjuntos de dados para o ambiente de script com um único clique')",
+            "granularity": "Global (catalog of various datasets)",
+            "data_format": "Raster (implied by 'conjuntos de dados de varredura de ciências da Terra padrão', 'dados raster')",
+            "description": "The Earth Engine public data catalog includes various standard Earth science raster datasets. These datasets can be imported into the scripting environment with a single click. Users can also upload their own raster or vector data for private use or sharing in their scripts. The catalog also allows suggesting new datasets.",
+            "url": "https://developers.google.com/earth-engine/datasets/catalog?hl=pt-br",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave"
+        },
+        {
+            "name": "CRU TS4.01: Climatic Research Unit (CRU) Time-Series (TS) version 4.01 of high-resolution gridded data of month-by-month variation in climate (Jan. 1901- Dec. 2016)",
+            "method_of_access": "Register/Login for access, Explore (Preview dataset)",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "regional",
+            "data_format": "NetCDF, ASCII",
+            "description": "The gridded Climatic Research Unit (CRU) Time-series (TS) data version 4.01 provides month-by-month variations in climate over the period 1901-2016 on high-resolution (0.5x0.5 degree) grids. Variables include cloud cover, diurnal temperature range, frost day frequency, potential evapotranspiration (PET), precipitation, daily mean temperature, monthly average daily maximum and minimum temperature, and vapour pressure. Produced by CRU at the University of East Anglia. Update Frequency: Not Planned. Latest Data Update: 2017-09-22.",
+            "spatial_resolution": "0.5x0.5 degree gridded",
+            "temporal_coverage": "January 1901 - December 2016 (month-by-month)",
+            "url": "https://catalogue.ceda.ac.uk/uuid/58a8802721c94c66ae45c3baa4d814d0/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Temperatura ambiente e internações de crianças por doenças respiratórias em Cuiabá-MT, Brasil",
+            "method_of_access": "Downloadable PDF (Portuguese, English), viewable HTML text (Portuguese, English), abstract (Portuguese, Spanish, English)",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Municipal (Cuiabá-MT)",
+            "data_format": "PDF, HTML",
+            "description": "This study evaluated the role of temperature and fine particulate matter in hospitalizations of children residing in Cuiabá-MT, Brazil, obtained from DATASUS, between 01/01/2016 and 31/12/2018. Daily concentrations of fine particulate matter were estimated by the CAMS mathematical model, provided by CPTEC. Diagnoses included tracheitis and laryngitis, pneumonia, bronchitis, bronchiolitis, and asthma. INMET provided data on maximum and minimum temperatures and relative humidity. Statistical analysis was performed with three generalized additive models of Poisson regression. The study identified associations between minimum temperature and hospitalizations, with an increase in minimum temperature by 4°C reflecting an 18% elevation in the risk of hospitalizations, attributing 15.2% of hospitalizations to this increase and an excess of approximately US$68,000.00 in healthcare system costs during the evaluated period.",
+            "spatial_resolution": "Municipal (Cuiabá-MT)",
+            "temporal_coverage": "2016-2018",
+            "url": "https://www.scielo.br/j/csc/a/Yvf7txxBvypXd5yzBTZfjJH/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Observed Climatology of Average Mean Surface Air Temperature",
+            "method_of_access": "Web interface query, downloadable images (JPEG, PNG)",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "National (Brazil), Subnational (Acre, Alagoas, Amapa, Amazonas, Bahia, Ceara, Distrito Federal, Espirito Santo, Goias, Maranhao, Mato Grosso, Mato Grosso Do Sul, Minas Gerais, Para, Paraiba, Parana, Pernambuco, Piaui, Rio De Janeiro, Rio Grande Do Norte, Rio Grande Do Sul, Rondonia, Roraima, Santa Catarina, Sao Paulo, Sergipe, Tocantins)",
+            "data_format": "JPEG image, PNG image",
+            "description": "This map displays historical patterns of temperature (average, maximum, minimum) and precipitation across various land regions for Brazil. Users can interact with the tool by selecting different variables, time periods, seasons, as well as choosing specific countries or subnational administrative units. The dataset is based on ground-based weather station observations dating back to 1900, with potential biases in regions with sparse station coverage during the early 20th century. Provided by the World Bank Climate Change Knowledge Portal.",
+            "spatial_resolution": "Regional (subnational administrative units)",
+            "temporal_coverage": "1901-2024 (historical data), climatology periods: 1901-1930, 1931-1960, 1961-1990, 1991-2020",
+            "url": "https://climateknowledgeportal.worldbank.org/country/brazil/climate-data-historical",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Journal of Applied Meteorology and Climatology - Volume 63: Issue 10",
+            "method_of_access": "Web interface query, potentially downloadable articles within the journal",
+            "description": "This content is from the Journal of Applied Meteorology and Climatology, specifically Volume 63, Issue 10, published in October 2024. It appears to be an academic journal providing research articles related to meteorology and climatology.",
+            "temporal_coverage": "2024 (Issue 10, Oct 2024), with volumes listed from 2008 to 2025",
+            "url": "https://journals.ametsoc.org/view/journals/apme/63/10/JAMC-D-23-0141.1.xml",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave"
+        },
+        {
+            "name": "Journal of Climate - Volume 32 (2019): Issue 17 (Sep 2019)",
+            "method_of_access": "Web interface query, content available for browsing by volume and issue.",
+            "description": "This content is from the Journal of Climate, specifically Volume 32, Issue 17, published in September 2019. It appears to be an academic journal article, but the specific content of the article is not provided in the snippet. The journal covers climate-related topics.",
+            "temporal_coverage": "2019",
+            "url": "https://journals.ametsoc.org/view/journals/clim/32/17/jcli-d-18-0698.1.xml",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave"
+        },
+        {
+            "name": "Heat waves in São Paulo State, Brazil: Intensity, duration, spatial scope, and atmospheric characteristics",
+            "method_of_access": "The content is a research article. Data access is not explicitly mentioned but typically involves contacting the authors or accessing supplementary materials if provided by the journal.",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "State of São Paulo, Brazil",
+            "data_format": "Observed data from 65 weather stations, NCEP-DOE Reanalysis data",
+            "description": "This study investigates heat waves (HWs) in São Paulo (SP) State, Brazil, describing their intensity, duration, spatial coverage, and atmospheric characteristics. HWs were identified using observed data from 65 weather stations for the period 2000–2020. The NCEP-DOE Reanalysis was used to determine synoptic and global scale circulation characteristics. The study found that SP experiences different effects of thermal stress on maximum temperatures, with the north and northwest sectors reaching the highest average values (38°C). The average temperature of HWs in the state was 34.9°C, with an average duration of 5.3 days, and 92% of events taking place between 2010 and 2020. A greater number of events occurred in 2015, 2016, and 2019, mainly in the austral summer and spring.",
+            "spatial_resolution": "65 weather stations across São Paulo State; NCEP-DOE Reanalysis for synoptic and global scale circulation",
+            "temporal_coverage": "2000–2020",
+            "url": "https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.8058",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Impact of Climate Change on the Tourism Potential of Northeastern Brazil: Trend Analysis and Future Perspectives",
+            "method_of_access": "Downloadable article from MDPI website",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Northeastern Brazil",
+            "description": "This article, published by MDPI, focuses on the impact of climate change on the tourism potential of Northeastern Brazil, including trend analysis and future perspectives. Authors include Ayobami Badiru, Lívia Humaire, Lucas Suassuna de Albuquerque Wanderley, and Andreas Matzarakis.",
+            "url": "https://www.mdpi.com/2071-1050/17/12/5290",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Global hourly, 5 km, all-sky land surface temperature data from 2011 to 2021 based on integrating geostationary and polar-orbiting satellite data (GHA-LST)",
+            "method_of_access": "Downloadable files from https://doi.org/10.5281/zenodo.7487284 and http://glass.umd.edu/allsky_LST/GHA-LST",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Global",
+            "description": "The GHA-LST dataset provides global hourly, 5 km, all-sky land surface temperature data from 2011 to 2021. It was produced by Aolin Jia et al. by integrating geostationary and polar-orbiting satellite data, refining an SEB-based cloudy-sky LST recovery method. This dataset is designed to monitor extreme weather, including heat waves, and is freely available.",
+            "spatial_resolution": "5 km",
+            "temporal_coverage": "2011-2021 (hourly)",
+            "url": "https://essd.copernicus.org/articles/15/869/2023/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "CLIMBra - Climate Change Dataset for Brazil",
+            "method_of_access": "Downloadable PDF, implied data download for gridded product and area-averaged projections",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Brazilian territory, 735 catchments",
+            "data_format": "NetCDF, GeoTIFF (implied for gridded product), time series data (implied for area-averaged projections)",
+            "description": "A dataset based on an ensemble of 19 bias-corrected CMIP6 climate models projections for the Brazilian territory, using SSP2-4.5 and SSP5-8.5 scenarios. It includes bias-corrected daily time-series of precipitation, maximum and minimum temperature, solar net radiation, near-surface wind speed, and relative humidity for historical (1980–2013) and future (2015–2100) simulations. Available as a gridded product and area-averaged projections for 735 catchments.",
+            "spatial_resolution": "0.25° × 0.25°",
+            "temporal_coverage": "Historical (1980–2013), Future (2015–2100), daily time-series",
+            "climate_scenario": "SSP2-4.5, SSP5-8.5",
+            "url": "https://www.nature.com/articles/s41597-023-01956-z",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Bulletin of the American Meteorological Society - Volume 103 (2022): Issue 3 (Mar 2022)",
+            "method_of_access": "Web interface query, journal articles are typically accessible via subscription or direct purchase.",
+            "description": "This content is from the Bulletin of the American Meteorological Society, specifically Volume 103, Issue 3, published in March 2022. It appears to be a journal publication, with various volumes and issues listed from 2008 to 2025, suggesting a regular publication schedule.",
+            "temporal_coverage": "2008-2025 (volumes listed)",
+            "url": "https://journals.ametsoc.org/view/journals/bams/103/3/BAMS-D-21-0145.1.xml",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave"
+        },
+        {
+            "name": "HRES diário 5km ............. 15 dias",
+            "method_of_access": "Web interface query with municipality selection",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Municipal",
+            "data_format": "Graphical charts (implied)",
+            "description": "Daily weather forecast graphs for municipalities in the Fundação ABC's region of interest. Updated twice daily based on 00h and 12h UTC runs of the HRES model with 5km spatial resolution and up to 10-day temporal projection, provided by the European Centre for Medium-Range Weather Forecasts (ECMWF). Includes data for maximum and minimum air temperature.",
+            "spatial_resolution": "5km",
+            "temporal_coverage": "15-day forecast (e.g., 15/09/25 00h to 29/09/25 00h), updated twice daily",
+            "url": "https://sma.fundacaoabc.org/previsao_tempo/meteograma/hres5km_diario",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Climatological patterns of heatwaves during winter and spring 2023 and trends for the period 1979-2023 in central South America",
+            "method_of_access": "Downloadable full-text PDF from ResearchGate",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Regional (Central South America, including Brazil, Argentina, Paraguay, Bolivia)",
+            "data_format": "PDF",
+            "description": "This article analyzes the climatological patterns of heatwaves during winter and spring 2023 and trends for the period 1979-2023 in central South America. It highlights increased heat wave frequency, intensity, and duration, persistent atmospheric blocking, and pronounced positive temperature anomalies. The study covers meteorological services data from Brazil, Argentina, Paraguay, and Bolivia, identifying 7 heatwave episodes in 2023 and discussing their impact on drought in Amazonia. Authors are affiliated with institutions like Centro Nacional de Monitoramento e Alertas de Desastres Naturais (CEMADEN).",
+            "spatial_resolution": "Regional (Central South America)",
+            "temporal_coverage": "1979-2023 (trends), Winter and Spring 2023 (specific events)",
+            "url": "https://www.researchgate.net/publication/388951316_Climatological_patterns_of_heatwaves_during_winter_and_spring_2023_and_trends_for_the_period_1979-2023_in_central_South_America",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Effects of air temperature on the risk of death from COPD in major microregions in Brazil: a time series study",
+            "method_of_access": "The data is presented within the article's abstract and results sections. No direct download or API access to the raw dataset is indicated.",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Microregions in Brazil (Porto Alegre, Curitiba, São Paulo, Rio de Janeiro)",
+            "data_format": "Statistical data presented in text (percentages, confidence intervals)",
+            "description": "This study evaluates the association between the risk of death from COPD and air temperature events in ten major Brazilian microregions. It uses a time series analysis of daily COPD deaths and daily mean air temperatures between 1996 and 2017. The study found significant associations between extreme air temperature events (moderate and extreme cold and heat) and the risk of death from COPD in the southern and southeastern microregions of Brazil.",
+            "spatial_resolution": "Microregional",
+            "temporal_coverage": "1996-2017 (daily data)",
+            "url": "https://www.jornaldepneumologia.com.br/details/3885/pt-BR/effects-of-air-temperature-on-the-risk-of-death-from-copd-in-major-microregions-in-brazil--a-time-series-study",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "A 5-km gridded product development of daily temperature and precipitation for Bangladesh, Nepal, and Pakistan from 1981 to 2016",
+            "method_of_access": "Open Access article, likely downloadable data associated with the publication",
+            "granularity": "5-km gridded product",
+            "description": "This data article describes a 5-km gridded product of daily temperature and precipitation for Bangladesh, Nepal, and Pakistan, covering the period from 1981 to 2016. The article is published in Geoscience Data Journal and is Open Access.",
+            "spatial_resolution": "5-km",
+            "temporal_coverage": "1981-2016 (daily)",
+            "url": "https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/gdj3.217",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave"
+        },
+        {
+            "name": "Clima e condições meteorológicas médias em Colorado no ano todo Paraná, Brasil",
+            "method_of_access": "Web interface query, embedded tables, downloadable content (implied by 'Download' link)",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "municipal",
+            "description": "This dataset provides characteristic climate and average weather conditions for Colorado, Paraná, Brazil throughout the year. It describes the summer as long, hot, muggy, and mostly cloudy, while winter is short, pleasant, and mostly clear. Precipitation occurs year-round. Temperatures generally range from 15 °C to 32 °C, rarely falling below 10 °C or exceeding 36 °C. The best time to visit for warm-weather activities is from late April to mid-September, based on a tourism index. The data is provided by Weather Spark.",
+            "spatial_resolution": "Municipal (Colorado, Paraná)",
+            "temporal_coverage": "Annual averages, with monthly and seasonal breakdowns, and historical data links for specific years (e.g., 2023, 2024, 2025).",
+            "url": "https://pt.weatherspark.com/y/29752/Clima-caracter%C3%ADstico-em-Colorado-Paran%C3%A1-Brasil-durante-o-ano",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Spatially Aggregated Climate Data",
+            "method_of_access": "Web interface query, API, downloadable NetCDF files from AWS Registry of Open Data or CCKP interface",
+            "ccra_mode": "hazards",
+            "granularity": "Country or territory level, sub-national first level, watershed level, Exclusive Economic Zones (EEZs), ocean basins",
+            "data_format": "NetCDF, JSON, XLS",
+            "description": "CCKP offers spatially aggregated climate data for land at the country or territory level, sub-national first level, and watershed level, along with ocean data for Exclusive Economic Zones (EEZs) and ocean basins. Currently, the only data available for ocean areas pertains to cyclones. This same data is also provided at the country or territory level, specifically regarding cyclone landfall. The data can be accessed via a web interface for spatially aggregated data, through an API, or as global gridded NetCDF files from AWS or the CCKP interface.",
+            "spatial_resolution": "Global, 0.25 degree, 0.5 degree, 1 degree (implied from examples like cmip6-x0.25, cru-x0.5, pop-x1)",
+            "temporal_coverage": "1950-2014, 2015-2100, 2020-2039 (examples provided for time periods)",
+            "climate_scenario": "historical, ssp126 (examples provided for scenarios)",
+            "url": "https://climateknowledgeportal.worldbank.org/download-data",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_type": "heatwave"
+        },
+        {
+            "name": "AGU Journals",
+            "method_of_access": "Web interface query, downloadable articles (implied by 'full/10.1029/2023EA003279')",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "national",
+            "description": "The content is from AGU Journals, specifically referencing an article related to Brazil. While the specific article content is not provided, the context suggests it is a scientific publication that could contain data relevant to climate change risk assessment, particularly heatwaves, given the prompt's focus.",
+            "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2023EA003279",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Climatology of heatwaves in South America identified through ERA5 reanalysis data",
+            "method_of_access": "The content is a research article, implying the data might be available upon request from the authors or through the ERA5 reanalysis data source.",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "South America (regional), with specific authors from Brazil (São Paulo, Santa Catarina, Ceará)",
+            "description": "This research article focuses on identifying the spatial coverage, frequency, and intensity of heatwaves in homogeneous areas of maximum air temperature near the surface (Tmax) in South America. It employs cluster analyses during the austral winter-spring transition (July to October) using ERA5 reanalysis data. The study is provided by researchers from institutions in Brazil, including the National Institute for Space Research (INPE) and the Ceará Institute for Meteorology and Water Resources (FUNCEME).",
+            "temporal_coverage": "July to October (austral winter-spring transition)",
+            "url": "https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.7831",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "DADOS HISTÓRICOS ANUAIS",
+            "method_of_access": "Downloadable ZIP files",
+            "ccra_mode": "hazards",
+            "granularity": "National",
+            "data_format": "ZIP",
+            "description": "Annual historical data provided by INMET (Instituto Nacional de Meteorologia) for Brazil, available as downloadable ZIP files for each year from 2000 to 2025.",
+            "spatial_resolution": "National",
+            "temporal_coverage": "2000-2025",
+            "url": "https://portal.inmet.gov.br/dadoshistoricos",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_type": "heatwave"
+        },
+        {
+            "name": "Earth Engine Data Catalog",
+            "method_of_access": "Web interface query, datasets can be imported into scripting environment with one click",
+            "data_format": "raster datasets",
+            "description": "The Earth Engine Data Catalog includes a variety of standard Earth science raster datasets. Users can import these datasets into their scripting environment or upload their own raster or vector data for private use or sharing.",
+            "url": "https://developers.google.com/earth-engine/datasets/catalog?hl=es-419",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave"
+        },
+        {
+            "name": "Challenging the universality of heatwave definitions: gridded temperature discrepancies across climate regions",
+            "method_of_access": "Downloadable PDF",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Tropical regions",
+            "data_format": "PDF",
+            "description": "This article assesses biases in extreme heat events and their distribution by intercomparing the CHIRTS gridded station-satellite temperature dataset with three reanalysis products (ERA5, NCEP-DOE Reanalysis 2, and MERRA2). It highlights discrepancies in the timing of extreme heat events in the tropics and the representation of heatwave frequency using different definitions, urging for locally developed heatwave metrics.",
+            "temporal_coverage": "Historical",
+            "url": "https://link.springer.com/article/10.1007/s10584-023-03641-x",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Eventos Extremos de Janeiro de 2022 no Brasil",
+            "method_of_access": "Web page content, images embedded in the report, downloadable PDF report mentioned via a link.",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "National, Regional (South Region), State (Rio Grande do Sul, Mato Grosso do Sul, Paraná, São Paulo, Roraima, Mato Grosso, Pernambuco, Alagoas, Santa Catarina), Municipal (Bagé, Uruguaiana)",
+            "data_format": "Images (satellite, maps), tables (precipitation, temperature records), descriptive text.",
+            "description": "A report by INMET detailing extreme weather events in Brazil during January 2022, focusing on intense rainfall and a heatwave. It covers impacts such as loss of life, flooding, landslides, economic losses, and agricultural impacts. The heatwave section specifically highlights high temperatures and intense heatwave events in the South Region, particularly Rio Grande do Sul, with temperature anomalies and record maximum temperatures. The report includes data from INMET and INPE.",
+            "spatial_resolution": "Regional, State, Municipal; map images show temperature anomalies (e.g., >5°C, 2-4°C above average) and maximum temperatures across regions.",
+            "temporal_coverage": "January 2022, with specific dates mentioned for heatwave events (Jan 12-26, Jan 20, Jan 21-22) and historical comparison (since 1986).",
+            "url": "https://portal.inmet.gov.br/noticias/eventos-extremos-de-janeiro-de-2022-no-brasil",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Mapas Climáticos Diários",
+            "method_of_access": "Downloadable image files via direct links",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Regional (Paraná state)",
+            "data_format": "PNG (image files)",
+            "description": "Daily climatic maps provided by IDR-Paraná, including daily precipitation, mean daily temperature, maximum daily temperature, minimum daily temperature, soil available water, and reference evapotranspiration. The maps show data for the state of Paraná, Brazil.",
+            "temporal_coverage": "Daily",
+            "url": "https://www.idrparana.pr.gov.br/Pagina/Mapas-Climaticos-Diarios",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Extreme heat waves under 1.5°C and 2°C global warming",
+            "method_of_access": "Downloadable PDF article",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Global, with specific mention of Africa, South America, and Southeast Asia",
+            "data_format": "PDF",
+            "description": "This article, published in Environmental Research Letters by Alessandro Dosio, Lorenzo Mentaschi, Erich M Fischer, and Klaus Wyser on 25 April 2018, analyzes the expected increase in heat wave magnitude and frequency under 1.5°C and 2°C global warming scenarios. It highlights the exposure of the world population to severe heat waves.",
+            "spatial_resolution": "Global, very high-resolution global model mentioned",
+            "temporal_coverage": "Future projections under 1.5°C and 2°C global warming scenarios",
+            "climate_scenario": "1.5°C and 2°C global warming",
+            "url": "https://iopscience.iop.org/article/10.1088/1748-9326/aab827?utm_term=64523c5be0df6808cb9e8b722b438dfc&utm_campaign=USMorningBriefing&utm_source=esp&utm_medium=Email&CMP=usbriefing_email",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Increasing trends in regional heatwaves",
+            "method_of_access": "Downloadable PDF",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Regional and global",
+            "data_format": "PDF",
+            "description": "This article systematically examines regional and global observed heatwave trends using the Berkeley Earth temperature dataset and key heatwave metrics. It finds significant increases in heatwave frequency, duration, and cumulative heat since the 1950s, mainly driven by heatwave days. The study recommends assessing regional trends over multiple decades due to high variability.",
+            "spatial_resolution": "Regional and global",
+            "temporal_coverage": "Since the 1950s",
+            "url": "https://www.nature.com/articles/s41467-020-16970-7",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Heatwave–hospitalization association in Brazil during 2000–2015",
+            "method_of_access": "Article text, figures, and tables embedded in a scientific journal article. Data itself is not directly accessible from the article.",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "National, regional (five regions), city-specific (1,814 cities)",
+            "data_format": "Statistical data presented in article text, figures, and tables.",
+            "description": "This study quantified the association between heatwaves and risk of hospitalization in Brazil during 2000–2015, covering 1,814 cities (>78% of the national population). It analyzed temporal changes and variations across geographic regions, demographics (sex, age groups), and cause categories. The study found that the risk of hospitalization was most pronounced for high-temperature, long-duration heatwaves, with children (0-9 years), the elderly (>=70 years), and perinatal conditions being most strongly associated. The association declined in the south but increased in the southeast over the study period.",
+            "spatial_resolution": "City-specific (1,814 cities), national, regional (five regions of Brazil)",
+            "temporal_coverage": "2000–2015 (daily data for the hottest five consecutive months each year)",
+            "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002753",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Condições Tempo Registradas (Recorded Weather Conditions)",
+            "method_of_access": "Embedded table on a web interface",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Municipal (Brazilian state capitals)",
+            "data_format": "Table",
+            "description": "Daily weather conditions for Brazilian state capitals, including minimum temperature, maximum temperature, relative humidity, and rainfall. Data is current as of 15h (Brasília time) on the reference date, with maximum temperatures subject to change until the end of the day. Provided by INMET (Instituto Nacional de Meteorologia).",
+            "spatial_resolution": "Municipal (Brazilian state capitals)",
+            "temporal_coverage": "Daily (reference date: 14/09/2025)",
+            "url": "https://tempo.inmet.gov.br/CondicoesTempoRegistradas",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Tendência de temperaturas máximas no Brasil (1961-2020)",
+            "method_of_access": "The content describes a map and analysis, implying the data might be available through the Inpe or MCTI, but no direct access method is provided.",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "National, with regional breakdowns (interior do Nordeste, noroeste da região Norte, Centro-Oeste, Sudeste)",
+            "data_format": "Implied gridded data for map visualization (e.g., GeoTIFF), but not explicitly stated.",
+            "description": "An analysis by researchers from the National Institute for Space Research (Inpe), linked to the Ministry of Science, Technology and Innovation (MCTI), showing that maximum temperatures in Brazil increased by up to 3°C in some regions between 1961 and 2020. Most of the national territory observed changes of up to 1.5°C, with 'hotspots' of 2.5°C to 3°C increases in the interior of the Northeast and the northwest of the North region, and also in parts of the Central-West and Southeast.",
+            "spatial_resolution": "Regional (e.g., interior do Nordeste, noroeste da região Norte, Centro-Oeste, Sudeste), with general national coverage. Specific grid resolution is not mentioned.",
+            "temporal_coverage": "1961-2020 (60 years)",
+            "url": "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2023/08/em-60-anos-temperaturas-maximas-aumentaram-em-ate-3oc-graus-em-algumas-regioes-do-brasil",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Climatological patterns of heatwaves during winter and spring 2023 and trends for the period 1979–2023 in central South America",
+            "method_of_access": "Downloadable PDF from Frontiers in Climate journal",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Regional (central South America, including Brazil, Argentina, Paraguay, Bolivia)",
+            "data_format": "PDF (research article)",
+            "description": "This research article analyzes climatological patterns of heatwaves during winter and spring 2023 and trends for the period 1979–2023 in central South America. It discusses the increased frequency, intensity, and duration of heatwaves, particularly in 2023, which was the warmest year on record. The study highlights the impact of these heatwaves on countries like Brazil, Argentina, Paraguay, and Bolivia, and their aggravation of drought conditions in Amazonia.",
+            "spatial_resolution": "Regional (central South America)",
+            "temporal_coverage": "1979–2023 (trends), 2023 (specific events)",
+            "url": "https://www.frontiersin.org/journals/climate/articles/10.3389/fclim.2025.1529082/full",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "HadEX2 dataset",
+            "method_of_access": "Free Access (implied from article, actual data access method not specified)",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Not specified, but global context implied by authors' affiliations and 'Updated analyses... since the beginning of the twentieth century'",
+            "description": "The HadEX2 dataset provides updated analyses of temperature and precipitation extreme indices since the beginning of the twentieth century. The article is authored by M. G. Donat and others, with contributions from institutions like the University of New South Wales, NOAA's National Climatic Data Center, and the Met Office Hadley Centre. One author, J. Marengo, is affiliated with the Earth System Science Centre (CCST), National Institute for Space Research (INPE), São Paulo, Brazil, indicating relevance to Brazil.",
+            "temporal_coverage": "Since the beginning of the twentieth century",
+            "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrd.50150",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "method_of_access": "Wiley Online Library article access",
+            "description": "The provided content is a navigation and login section for AGU Journals on the Wiley Online Library, specifically for an article with DOI 10.1002/2014JD022098. It does not contain information about a specific dataset but rather access points to scientific publications.",
+            "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2014JD022098",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave"
+        },
+        {
+            "name": "Current and Future Climate Extremes Over Latin America and Caribbean: Assessing Earth System Models from High Resolution Model Intercomparison Project (HighResMIP)",
+            "method_of_access": "Downloadable PDF",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Regional (Latin America and the Caribbean)",
+            "data_format": "PDF",
+            "description": "This article assesses the performance of High Resolution Model Intercomparison Project (HighResMIP) models in estimating extreme climate events, including heat waves, over ten regions in Latin America and the Caribbean. It evaluates models using ETCCDI over 1981–2014 and projects future changes (2021–2050) under SSP5–8.5. The study compares the impact of increasing horizontal resolution against reference gridded datasets.",
+            "spatial_resolution": "Low (0.8° ≤ sg ≤ 1.87°), intermediate (0.5° ≤ sg ≤ 0.7°), and high (0.23° ≥ sg ≤ 0.35°) model grid resolutions.",
+            "temporal_coverage": "1981–2014 (historical), 2021–2050 (future projections)",
+            "climate_scenario": "SSP5–8.5",
+            "url": "https://link.springer.com/article/10.1007/s41748-022-00337-7",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Annual warm spell duration index (WSDI; a) and annual cold spell duration index (CSDI; b)",
+            "method_of_access": "Downloadable image, view publication",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Regional (53 to 67°N and from 12 to 31°E)",
+            "data_format": "Image (PNG)",
+            "description": "This figure presents the Annual Warm Spell Duration Index (WSDI) and Annual Cold Spell Duration Index (CSDI). It includes time series of spatial averages over the area from 53 to 67°N and from 12 to 31°E for the period 1950–2018, along with fitted curves and linear fits. It also shows spatial distributions of 30-year means during 1989–2018, with a baseline period of 1961–1990. The data is based on wsdiETCCDI and csdiETCCDI data (Cornes et al., 2018) generated by climind 1.0.0 on 19 November 2019. The content is part of a publication titled 'Natural hazards and extreme events in the Baltic Sea region'.",
+            "spatial_resolution": "Regional (53 to 67°N and from 12 to 31°E)",
+            "temporal_coverage": "1950-2018 (time series), 1989-2018 (30-year means), baseline 1961-1990",
+            "url": "https://www.researchgate.net/figure/Annual-warm-spell-duration-index-WSDI-a-and-annual-cold-spell-duration-index-CSDI_fig8_358304341",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Journal of Climate - Volume 26 (2013): Issue 13 (Jul 2013)",
+            "method_of_access": "Web interface query",
+            "description": "This content appears to be an archive of the Journal of Climate, specifically Volume 26, Issue 13 from July 2013, with links to other volumes and issues. No specific dataset is described.",
+            "temporal_coverage": "2013",
+            "url": "https://journals.ametsoc.org/view/journals/clim/26/13/jcli-d-12-00383.1.xml",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave"
+        },
+        {
+            "name": "Global near real-time daily apparent temperature and heat wave dataset",
+            "method_of_access": "Open Access article, implies data might be available through the authors or associated data centers, but no direct download link for the dataset is provided in the snippet.",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Global",
+            "description": "A global near real-time daily apparent temperature and heat wave dataset developed by Cong Yin, Yaping Yang, Xiaona Chen, Xiafang Yue, Yangxiaoyue Liu, and Ying Xin from institutions including the State Key Laboratory of Resources and Environmental Information System, Chinese Academy of Sciences, and National Earth System Science Data Center.",
+            "spatial_resolution": "Global",
+            "temporal_coverage": "Daily, near real-time",
+            "url": "https://rmets.onlinelibrary.wiley.com/doi/10.1002/gdj3.155",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Índices climáticos extremos de precipitação pluvial e temperatura do ar na região do MATOPIBA-Brasil",
+            "method_of_access": "Downloadable PDF",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "regional",
+            "data_format": "PDF",
+            "description": "This study analyzes annual trends of extreme climatic indices for air temperature and pluvial precipitation in the MATOPIBA region (Maranhão, Tocantins, Piauí, and Bahia states) of Brazil. It uses historical daily data (1950-2004) of maximum and minimum air temperatures and pluvial precipitation acquired from Water Weather Energy Ecosystembase (https://www.2w2e.com/home/CIMP). The study identifies significant increasing trends for TXx, TNx, and DTR, and decreasing trends for TNn in many micro-regions, indicating heatwave-related changes.",
+            "spatial_resolution": "micro-regions within MATOPIBA (Maranhão, Tocantins, Piauí, and Bahia states)",
+            "temporal_coverage": "1950-2004",
+            "url": "https://www.researchgate.net/publication/377717411_Indices_climaticos_extremos_de_precipitacao_pluvial_e_temperatura_do_ar_na_regiao_do_MATOPIBA-Brasil",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Warm Spell Duration Index (WSDI)",
+            "method_of_access": "Downloadable image file, part of a research publication.",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Regional (Mediterranean basin)",
+            "data_format": "PNG (image of a figure)",
+            "description": "Figure 5 from the publication 'Future heat waves over the Mediterranean from an Euro-CORDEX regional climate model ensemble', showing the Warm Spell Duration Index (WSDI). The figure is uploaded by M.O. Molina.",
+            "temporal_coverage": "21st century (future projections)",
+            "climate_scenario": "RCP8.5",
+            "url": "https://www.researchgate.net/figure/As-Fig-4-for-Warm-Spell-Duration-Index-WSDI_fig5_341726872",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Changes in global heat waves and its socioeconomic exposure in a warmer future",
+            "method_of_access": "View PDF, Download full issue, View Open Manuscript",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "global",
+            "data_format": "PDF",
+            "description": "This study analyzes the long-term changing characteristics of global heat waves and estimates future socioeconomic exposure and risks using three historical reanalysis data and multi scenario CMIP6 modeled data. It covers the period from 1971 to 2100.",
+            "temporal_coverage": "1971-2100",
+            "climate_scenario": "SSP1 2.6, SSP2 4.5, SSP5 8.5",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2212096322000663",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Increasing Intensity of Extreme Heatwaves: The Crucial Role of Metrics",
+            "method_of_access": "Downloadable PDF from journal website",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "Global, with regional analysis implied",
+            "data_format": "NetCDF (implied from reanalysis data usage)",
+            "description": "This research letter compares four different heatwave intensity indices applied to reanalysis data for the period 1950–2021. It highlights that metrics based on cumulative values are more appropriate for assessing heatwave intensity and shows that heatwaves have become up to 10 times more frequent and up to three times more intense during 1986–2021 compared to 1950–1985. The study is authored by Emmanuele Russo and Daniela I. V. Domeisen from ETH Zurich.",
+            "temporal_coverage": "1950–2021",
+            "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2023GL103540",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Ano de 2023 é o mais quente da série histórica no Brasil",
+            "method_of_access": "Web page content, images embedded in article",
+            "ccra_mode": "hazards",
+            "ccra_type": "heatwave",
+            "granularity": "National (Brazil), Regional (specific states/regions mentioned)",
+            "data_format": "PNG, GIF (for images/charts), textual data within the article",
+            "description": "Report by Inmet (Instituto Nacional de Meteorologia) stating that 2023 was the warmest year in Brazil's history, with an average temperature of 24.92ºC, 0.69°C above the 1991/2020 historical average. It highlights nine heatwave episodes in 2023 and provides a ranking of the five warmest years between 1961 and 2023, and monthly temperature deviations for 2023. It also shows a map of temperature deviations across Brazil for 2023.",
+            "spatial_resolution": "National (Brazil), regional (e.g., south of Pará, Mato Grosso, south of Mato Grosso do Sul, Paraná, Rio Grande do Sul, areas of Minas Gerais, Goiás, Bahia, Pernambuco and Ceará)",
+            "temporal_coverage": "1961-2023 (historical data), 2023 (specific year analysis), 1991-2020 (historical average reference)",
+            "url": "https://portal.inmet.gov.br/noticias/ano-de-2023-%C3%A9-o-mais-quente-da-hist%C3%B3ria-do-brasil",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Dados Meteorológicos Históricos e Atuais",
+            "method_of_access": "Through the IDR Clima Application (available for Android and Apple iOS) or by requesting via email (sam@idr.pr.gov.br).",
+            "ccra_mode": "hazards",
+            "sector": "Agriculture, Forestry, and Fishing Activities",
+            "granularity": "Paraná (state level)",
+            "data_format": "Application, Email request",
+            "description": "Historical and current meteorological data provided by the Instituto de Desenvolvimento Rural do Paraná (IDR-Paraná). The data can be accessed via the IDR Clima mobile application or by email request. The first meteorological stations in Paraná were installed in the early 20th century.",
+            "temporal_coverage": "Historical and current (early 20th century onwards)",
+            "url": "https://www.idrparana.pr.gov.br/Pagina/Dados-Meteorologicos-Historicos-e-Atuais",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_type": "heatwave"
+        }
+    ],
+    "raw_review_action": "proceed_to_extraction",
+    "last_raw_review_details": {
+        "overall_assessment": "The batch contains several promising documents related to high-resolution climate data and heatwave analysis, particularly for Brazil. Documents from Nature, Copernicus, and World Bank Climate Knowledge Portal are highly relevant. The Weather Spark and Scielo documents are less suitable for direct data extraction due to their format or focus.",
+        "documents_to_extract": [
+            "https://www.nature.com/articles/s41597-020-00587-y",
+            "https://gmd.copernicus.org/articles/15/1841/2022/",
+            "https://climateknowledgeportal.worldbank.org/country/brazil/climate-data-historical",
+            "https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.8058"
+        ],
+        "suggested_next_action": "proceed_to_extraction",
+        "action_reasoning": "Several documents were identified that contain or describe high-resolution gridded temperature data, climate projections, and specific heatwave analyses for Brazil, meeting the criteria for hazards and heatwave datasets. These warrant further investigation for data extraction."
+    },
+    "last_structured_review_details": {
+        "overall_assessment_notes": "The extracted structured data contains a mix of relevant and less relevant information for heatwave hazards in Brazil. Several entries are academic articles discussing heatwaves, their trends, and impacts, which are valuable for context and methodology but do not directly provide raw, usable datasets for a quantitative CCRA. Some entries point to general climate data portals (e.g., Earth Engine, World Bank Climate Knowledge Portal) which might contain relevant data but require further investigation to pinpoint specific heatwave-related datasets at the required resolution. Crucially, there are several highly relevant datasets identified, such as 'High-resolution monthly precipitation and temperature time series from 2006 to 2100' (5km resolution), 'CLIMBra - Climate Change Dataset for Brazil' (0.25x0.25 degree), and 'Global hourly, 5 km, all-sky land surface temperature data from 2011 to 2021'. These datasets offer the spatial and temporal resolution needed for heatwave hazard assessment. Additionally, INMET and IDR-Paraná provide historical and current temperature data, though their direct usability for heatwave indices across Brazil needs to be confirmed. The main challenge is that many entries are research papers or general catalogs, not direct data sources, and some are focused on other countries or very localized areas without broader applicability.",
+        "relevance_score": "Medium",
+        "relevance_reasoning": "While many entries are academic papers or general catalogs, several key datasets directly address heatwave hazards in Brazil with appropriate spatial and temporal resolutions. Specifically, the 'High-resolution monthly precipitation and temperature time series from 2006 to 2100' (5km), 'CLIMBra - Climate Change Dataset for Brazil' (0.25x0.25 degree), and 'Global hourly, 5 km, all-sky land surface temperature data from 2011 to 2021' (5km) are highly relevant for a heatwave hazard assessment. Other entries provide valuable contextual information, trend analysis, and methodologies for heatwave identification, which are indirectly relevant.",
+        "credibility_score": "High",
+        "credibility_reasoning": "The sources are predominantly reputable academic journals (Nature, Copernicus, Wiley, MDPI, AMS, Springer, ScienceDirect, ResearchGate, Frontiers in Climate), national meteorological services (INMET, IDR-Paraná), and well-known data providers/portals (Google Earth Engine, World Bank Climate Knowledge Portal, CEDA). These are considered highly credible for climate change research and data.",
+        "completeness_score": "Medium",
+        "completeness_reasoning": "The extracted data provides a good foundation for heatwave hazard assessment, particularly with the identification of high-resolution temperature datasets for Brazil. However, the completeness is 'Medium' because many entries are articles discussing data rather than providing direct access to the data itself. While some direct data sources are identified (e.g., CLIMBra, GHA-LST), further effort would be needed to consolidate and access all potentially relevant raw data from the mentioned portals and research papers. The current extraction is strong on identifying potential sources but less so on direct data availability for immediate use.",
+        "overall_confidence": "Medium",
+        "suggested_action": "accept",
+        "action_reasoning": "Despite some entries being academic papers rather than direct data sources, the review successfully identified several highly relevant, credible, and high-resolution datasets for heatwave hazards in Brazil (e.g., 'High-resolution monthly precipitation and temperature time series from 2006 to 2100', 'CLIMBra', 'GHA-LST'). These datasets meet the spatial resolution requirement (5km or finer) and cover appropriate temporal ranges for CCRA. The identified sources are authoritative and provide a strong basis for proceeding with data acquisition and analysis for heatwave hazards in Brazil. Further steps would involve actively downloading and processing these identified datasets.",
+        "refinement_details": null
+    },
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "hazards",
+            "which": "heatwave",
+            "country": "Brazil",
+            "research_mode": "country",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for hazards/heatwave (Brazil) with 75 structured queries.",
+            "target_country_locode": "BR",
+            "primary_languages": [
+                "en",
+                "pt"
+            ],
+            "parsed_keywords_count": 75,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Brazil daily maximum temperature dataset 5km",
+                "High-resolution temperature percentiles Brazil climate",
+                "Absolute maximum temperatures Brazil geospatial data",
+                "Brazil temperature anomalies gridded data 1981-2020",
+                "Extreme heat events Brazil daily Tmax NetCDF",
+                "Brazil high-resolution temperature time series climate",
+                "Brasil dados temperatura máxima diária 5km",
+                "Percentis de temperatura alta resolução Brasil clima",
+                "Temperaturas máximas absolutas Brasil dados geoespaciais",
+                "Anomalias de temperatura Brasil dados gradeados 1981-2020"
+            ],
+            "urls_collected": 93,
+            "relevant_urls_for_scraping": 41,
+            "new_data_items": 22
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-15T18:25:45.279289",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 4,
+            "summary": "The batch contains several promising documents related to high-resolution climate data and heatwave analysis, particularly for Brazil. Documents from Nature, Copernicus, and World Bank Climate Knowledge Portal are highly relevant. The Weather Spark and Scielo documents are less suitable for direct data extraction due to their format or focus.",
+            "reasoning": "Several documents were identified that contain or describe high-resolution gridded temperature data, climate projections, and specific heatwave analyses for Brazil, meeting the criteria for hazards and heatwave datasets. These warrant further investigation for data extraction."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 41,
+            "new_data_items_extracted": 22,
+            "total_structured_items": 22
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-15T18:26:45.161925",
+            "action": "structured_review_completed",
+            "suggested_action": "deep_dive",
+            "overall_confidence": "Medium",
+            "summary": "The extracted data contains a mix of highly relevant datasets for heatwave hazards in Brazil, alongside some less relevant or non-data-providing sources. Several entries offer high-resolution temperature data, historical heatwave analysis, and future projections, which are crucial for a CCRA. However, some entries are academic articles without direct data access, general catalogs, or localized weather forecasts that are not suitable for long-term climate risk assessment. The key challenge is to differentiate between sources that provide actionable data and those that are merely informative or too localized/short-term.",
+            "reasoning": "Several highly relevant datasets have been identified, particularly those offering high-resolution gridded temperature data and heatwave-specific analyses for Brazil. However, for some of these, the 'method_of_access' indicates that the data itself is not directly accessible from the document or requires further steps (e.g., contacting authors, exploring supplementary materials, or navigating a catalog). A 'deep_dive' is necessary to confirm direct data availability, format, and specific variables for these promising sources. Specifically, the Google Earth Engine catalog needs to be explored for relevant datasets, and direct data links for the Nature and Copernicus articles need to be verified.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        },
+        {
+            "agent": "DeepDiveProcessor",
+            "action": "scrape",
+            "target": "https://www.nature.com/articles/s41597-020-00621-w",
+            "justification": "The request asks to verify if the 'machine-accessible metadata file via DOI link' leads to direct data download. The DOI link for the Nature article is the primary target to investigate for data access and specific temperature variables.",
+            "refinement_details_processed": "1. For 'High-resolution monthly precipitation and temperature time series from 2006 to 2100' (Nature article), verify if the 'machine-accessible metadata file via DOI link' leads to direct data download (e.g., NetCDF, GeoTIFF) and extract specific temperature variables. \n2. For 'Extreme events representation in CMCC-CM2 standard and high-resolution general circulation models' (Copernicus), investigate if the model output and reanalysis data (ERA5, MSWEP, CHIRPS) mentioned are publicly accessible and extract links if available. \n3. For 'Earth Engine Data Catalog', perform a targeted search within the catalog for 'Brazil temperature', 'heatwave Brazil', or similar keywords to identify specific datasets with appropriate spatial and temporal resolution. \n4. For 'Heat waves in São Paulo State, Brazil', check the journal's supplementary materials or author contact information for access to the observed weather station data or NCEP-DOE Reanalysis data used. \n5. For 'CLIMBra - Climate Change Dataset for Brazil', confirm the direct download links for the gridded product and area-averaged projections (NetCDF, GeoTIFF) and extract specific temperature variables (max/min temperature). \n6. For 'Global hourly, 5 km, all-sky land surface temperature data', confirm the direct download links from Zenodo and GLASS website and extract specific temperature variables.",
+            "actions_this_cycle": 1,
+            "current_websites_considered": "www.nature.com, gmd.copernicus.org, gee-community-catalog.org, www.jornaldepneumologia.com.br, journals.ametsoc.org, climateknowledgeportal.worldbank.org, rmets.onlinelibrary.wiley.com, pt.weatherspark.com, link.springer.com, psl.noaa.gov",
+            "timestamp": "2025-09-15T18:26:58.587649"
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Eventos de calor extremo Brasil Tmax diária NetCDF",
+                "Série temporal de temperatura alta resolução Brasil",
+                "Dados de temperatura extrema Brasil resolução 5km",
+                "Mapeamento de temperaturas máximas diárias Brasil",
+                "Variação de temperatura Brasil dados históricos",
+                "Brazil Heat Wave Magnitude Index HWMId geospatial",
+                "Warm Spell Duration Index WSDI Brazil high-resolution",
+                "Brazil heat wave frequency duration gridded data",
+                "Consecutive hot days Brazil climate risk assessment",
+                "High-resolution heatwave indices Brazil climate data"
+            ],
+            "urls_collected": 96,
+            "relevant_urls_for_scraping": 32,
+            "new_data_items": 28
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-15T18:32:58.971894",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 4,
+            "summary": "The batch contains several promising documents related to high-resolution climate data and heatwave analysis, particularly for Brazil. Documents from Nature, Copernicus, and World Bank Climate Knowledge Portal are highly relevant. The Weather Spark and Scielo documents are less suitable for direct data extraction due to their format or focus.",
+            "reasoning": "Several documents were identified that contain or describe high-resolution gridded temperature data, climate projections, and specific heatwave analyses for Brazil, meeting the criteria for hazards and heatwave datasets. These warrant further investigation for data extraction."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 69,
+            "new_data_items_extracted": 24,
+            "total_structured_items": 46
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-15T18:34:07.370406",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "Medium",
+            "summary": "The extracted structured data contains a mix of relevant and less relevant information for heatwave hazards in Brazil. Several entries are academic articles discussing heatwaves, their trends, and impacts, which are valuable for context and methodology but do not directly provide raw, usable datasets for a quantitative CCRA. Some entries point to general climate data portals (e.g., Earth Engine, World Bank Climate Knowledge Portal) which might contain relevant data but require further investigation to pinpoint specific heatwave-related datasets at the required resolution. Crucially, there are several highly relevant datasets identified, such as 'High-resolution monthly precipitation and temperature time series from 2006 to 2100' (5km resolution), 'CLIMBra - Climate Change Dataset for Brazil' (0.25x0.25 degree), and 'Global hourly, 5 km, all-sky land surface temperature data from 2011 to 2021'. These datasets offer the spatial and temporal resolution needed for heatwave hazard assessment. Additionally, INMET and IDR-Paraná provide historical and current temperature data, though their direct usability for heatwave indices across Brazil needs to be confirmed. The main challenge is that many entries are research papers or general catalogs, not direct data sources, and some are focused on other countries or very localized areas without broader applicability.",
+            "reasoning": "Despite some entries being academic papers rather than direct data sources, the review successfully identified several highly relevant, credible, and high-resolution datasets for heatwave hazards in Brazil (e.g., 'High-resolution monthly precipitation and temperature time series from 2006 to 2100', 'CLIMBra', 'GHA-LST'). These datasets meet the spatial resolution requirement (5km or finer) and cover appropriate temporal ranges for CCRA. The identified sources are authoritative and provide a strong basis for proceeding with data acquisition and analysis for heatwave hazards in Brazil. Further steps would involve actively downloading and processing these identified datasets.",
+            "final_decision_mode": true,
+            "consecutive_deep_dive_count": 1
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "Brazil daily maximum temperature dataset 5km",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "High-resolution temperature percentiles Brazil climate",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Absolute maximum temperatures Brazil geospatial data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil temperature anomalies gridded data 1981-2020",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Extreme heat events Brazil daily Tmax NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil high-resolution temperature time series climate",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brasil dados temperatura máxima diária 5km",
+            "language": "en",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Percentis de temperatura alta resolução Brasil clima",
+            "language": "en",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Temperaturas máximas absolutas Brasil dados geoespaciais",
+            "language": "en",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Anomalias de temperatura Brasil dados gradeados 1981-2020",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Eventos de calor extremo Brasil Tmax diária NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Série temporal de temperatura alta resolução Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Dados de temperatura extrema Brasil resolução 5km",
+            "language": "en",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Mapeamento de temperaturas máximas diárias Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Variação de temperatura Brasil dados históricos",
+            "language": "en",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil Heat Wave Magnitude Index HWMId geospatial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Warm Spell Duration Index WSDI Brazil high-resolution",
+            "language": "en",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil heat wave frequency duration gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Consecutive hot days Brazil climate risk assessment",
+            "language": "en",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "High-resolution heatwave indices Brazil climate data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil extreme heat event metrics 5km resolution",
+            "language": "en",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índice de Magnitude de Onda de Calor Brasil geoespacial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índice de Duração de Períodos Quentes WSDI Brasil alta resolução",
+            "language": "en",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Frequência e duração de ondas de calor Brasil dados gradeados",
+            "language": "en",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dias quentes consecutivos Brasil avaliação de risco climático",
+            "language": "en",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índices de onda de calor alta resolução Brasil dados",
+            "language": "en",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Métricas de eventos de calor extremo Brasil 5km",
+            "language": "en",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de ondas de calor Brasil resolução espacial fina",
+            "language": "en",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Análise de ondas de calor Brasil dados diários",
+            "language": "en",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Projeções de ondas de calor Brasil cenários",
+            "language": "en",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil Heat Index calculations high-resolution data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Wet Bulb Globe Temperature WBGT Brazil gridded",
+            "language": "en",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Apparent temperature Brazil 5km resolution climate",
+            "language": "en",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Universal Thermal Climate Index UTCI Brazil geospatial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Human heat stress indicators Brazil climate risk",
+            "language": "en",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil thermal comfort indices high-resolution",
+            "language": "en",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Cálculos de Índice de Calor Brasil dados alta resolução",
+            "language": "en",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Temperatura de Bulbo Úmido e Globo WBGT Brasil gradeado",
+            "language": "en",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Temperatura aparente Brasil resolução 5km clima",
+            "language": "en",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índice Climático Térmico Universal UTCI Brasil geoespacial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Indicadores de estresse térmico humano Brasil risco climático",
+            "language": "en",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índices de conforto térmico Brasil alta resolução",
+            "language": "en",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de estresse por calor Brasil para saúde",
+            "language": "en",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapeamento de WBGT Brasil resolução fina",
+            "language": "en",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Condições de calor e umidade Brasil dados",
+            "language": "en",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil future temperature projections RCP SSP 5km",
+            "language": "en",
+            "priority": "medium",
+            "rank": 46,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Heat wave frequency projections Brazil high-resolution",
+            "language": "en",
+            "priority": "medium",
+            "rank": 47,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil temperature change scenarios gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 48,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Extreme heat return periods Brazil climate models",
+            "language": "en",
+            "priority": "medium",
+            "rank": 49,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil future heat stress projections 2050s",
+            "language": "en",
+            "priority": "medium",
+            "rank": 50,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "High-resolution climate projections Brazil heatwaves",
+            "language": "en",
+            "priority": "medium",
+            "rank": 51,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Projeções futuras de temperatura Brasil RCP SSP 5km",
+            "language": "en",
+            "priority": "medium",
+            "rank": 52,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Projeções de frequência de ondas de calor Brasil alta resolução",
+            "language": "en",
+            "priority": "medium",
+            "rank": 53,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Cenários de mudança de temperatura Brasil dados gradeados",
+            "language": "en",
+            "priority": "medium",
+            "rank": 54,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Períodos de retorno de calor extremo Brasil modelos climáticos",
+            "language": "en",
+            "priority": "medium",
+            "rank": 55,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Projeções futuras de estresse térmico Brasil 2050",
+            "language": "en",
+            "priority": "medium",
+            "rank": 56,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Projeções climáticas alta resolução Brasil ondas de calor",
+            "language": "en",
+            "priority": "medium",
+            "rank": 57,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de projeção de calor extremo Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 58,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Cenários de calor futuro Brasil resolução fina",
+            "language": "en",
+            "priority": "medium",
+            "rank": 59,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Impactos de calor futuro Brasil dados climáticos",
+            "language": "en",
+            "priority": "medium",
+            "rank": 60,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil gridded temperature datasets 5km resolution",
+            "language": "en",
+            "priority": "medium",
+            "rank": 61,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Reanalysis temperature data Brazil ERA5 high-resolution",
+            "language": "en",
+            "priority": "medium",
+            "rank": 62,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Satellite-derived temperature Brazil daily 5km",
+            "language": "en",
+            "priority": "medium",
+            "rank": 63,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil weather station temperature records API",
+            "language": "en",
+            "priority": "medium",
+            "rank": 64,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "High-resolution meteorological data Brazil heat",
+            "language": "en",
+            "priority": "medium",
+            "rank": 65,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil daily temperature and humidity gridded NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 66,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados gradeados de temperatura Brasil resolução 5km",
+            "language": "en",
+            "priority": "medium",
+            "rank": 67,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de reanálise de temperatura Brasil ERA5 alta resolução",
+            "language": "en",
+            "priority": "medium",
+            "rank": 68,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Temperatura derivada de satélite Brasil diária 5km",
+            "language": "en",
+            "priority": "medium",
+            "rank": 69,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Registros de temperatura estações meteorológicas Brasil API",
+            "language": "en",
+            "priority": "medium",
+            "rank": 70,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados meteorológicos alta resolução Brasil calor",
+            "language": "en",
+            "priority": "medium",
+            "rank": 71,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Temperatura e umidade diária gradeada Brasil NetCDF",
+            "language": "en",
+            "priority": "medium",
+            "rank": 72,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados climáticos históricos Brasil resolução fina",
+            "language": "en",
+            "priority": "medium",
+            "rank": 73,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "INMET dados de temperatura e umidade Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 74,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Monitoramento de temperatura Brasil dados espaciais",
+            "language": "en",
+            "priority": "medium",
+            "rank": 75,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

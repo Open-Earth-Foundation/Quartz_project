@@ -1,0 +1,1121 @@
+{
+    "research_mode": "country",
+    "target_country": "Brazil",
+    "target_country_locode": "BR",
+    "target_mode": "hazards",
+    "target_which": "flood",
+    "target_city": null,
+    "start_time": "2025-09-15T18:19:32.624071",
+    "end_time": "2025-09-15T18:30:37.384638",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 18,
+    "structured_data": [
+        {
+            "name": "Predicting storm surge extremes on the Southeast Brazilian Coast: Long-term projections with neural networks",
+            "method_of_access": "Purchase PDF, Access through organization",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Regional (Southeast Brazilian Coast, Imbetiba Port in Macaé, Rio de Janeiro)",
+            "data_format": "PDF",
+            "description": "This study assesses the climate change impact on storm surge in Southeast Brazil using MLP and LSTM neural network models to project storm surge until 2060. The models were trained and evaluated using sea level data from Imbetiba Port in Macaé, Rio de Janeiro, and utilized dynamic regionalization data from RegCM4 and WW3 models, forced by HadGEM2-ES and MPI climate models. Projections indicated a 28% increase (MLP ANN) and a 70% increase (LSTM RNN) in estimating extreme values for 100-year storm surge heights.",
+            "temporal_coverage": "Projections until 2060",
+            "climate_scenario": "CMIP5 data (HadGEM2-ES and MPI climate models)",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S2352485524004791",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Climate Change Risk Assessment (CCRA) dataset for Brazil",
+            "method_of_access": "The document is a research paper, suggesting data might be available through supplementary materials or by contacting the authors, but no direct access method is specified in the provided content.",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "national",
+            "description": "This document is a research paper discussing a Climate Change Risk Assessment framework, with a focus on hazards, exposure, and vulnerability. The content provided specifically mentions Brazil as the country of relevance for the dataset. No specific dataset details, provider, time period, or update frequency are mentioned in the provided content.",
+            "url": "https://www.tandfonline.com/doi/full/10.1080/19475705.2025.2461063",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "The May 2024 Flood Disaster in Southern Brazil: Causes, Impacts, and SWOT-Based Volume Estimation",
+            "method_of_access": "The document is a research letter available online, implying data might be available upon request from authors or supplementary materials, though not explicitly stated.",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Southern Brazil",
+            "description": "This research letter analyzes the May 2024 flood disaster in Southern Brazil, focusing on its causes, impacts, and volume estimation using SWOT-based methods. The study is authored by Iury T. Simoes-Sousa and others, affiliated with institutions like Woods Hole Oceanographic Institution and University of Twente.",
+            "temporal_coverage": "May 2024",
+            "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024GL112442",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Atlas pluviométrico do Brasil; equações intensidade-duração-frequência (desagregação de precipitações diárias): estação pluviométrica Valença; código 01339038 (ANA); município Cairu, BA",
+            "method_of_access": "Downloadable PDF file",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Municipal (Cairu, BA)",
+            "data_format": "PDF",
+            "description": "This work presents the Intensity-Duration-Frequency (IDF) equation established for the municipality of Cairu/BA. The data series used in the study was elaborated from records of daily maximum precipitations per hydrological year from the Valença pluviometric station, code 01339038 (ANA), located 14km from the municipality of Cairu. The methodology for defining the equation by disaggregation of daily precipitations is described in detail in Pinto (2013). The frequency distribution adjusted to the daily data was Gumbel, with parameters calculated by the L-moments method. The disaggregation of daily quantiles into other durations was performed with the relationships between rainfall heights of different durations obtained from the IDF equation established by Otto Pfafstetter for the municipality of Salvador/BA (Pfafstetter, 1982). The adjusted equations to represent the family of IDF curves can be applied for durations between 5min and 24h and are recommended for return periods up to 100 years. The application of the IDF equation elaborated for the municipality of Cairu allows associating precipitation intensities, in different durations, with occurrence frequencies, which will be used in the dimensioning of hydraulic structures. It can also be used inversely, that is, to estimate the frequency of a precipitation event that occurred in a given duration, defining whether the event was rare or ordinary, according to the characterization of local extreme rain. Provided by Serviço Geológico do Brasil - CPRM.",
+            "spatial_resolution": "Point measurements (Valença pluviometric station), applied to municipal (Cairu, BA)",
+            "temporal_coverage": "Up to 2022 (data series from Valença pluviometric station), return periods up to 100 years",
+            "url": "https://rigeo.sgb.gov.br/handle/doc/23389?mode=full",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "CLIMBra - Climate Change Dataset for Brazil",
+            "method_of_access": "Downloadable PDF, dataset likely available via a repository (not explicitly stated in the provided text, but implied by 'available for both historical (1980–2013) and future (2015–2100) simulations')",
+            "ccra_mode": "hazards",
+            "granularity": "national",
+            "data_format": "gridded product, area-averaged projections",
+            "description": "A dataset based on an ensemble of 19 bias-corrected CMIP6 climate models projections for the Brazilian territory based on the SSP2-4.5 and SSP5-8.5 scenarios. It includes bias-corrected daily time-series of precipitation, maximum and minimum temperature, solar net radiation, near-surface wind speed, and relative humidity. The dataset is available for both historical (1980–2013) and future (2015–2100) simulations. Besides the gridded product, it provides area-averaged projections for 735 catchments included in the Catchments Attributes for Brazil (CABra) dataset.",
+            "spatial_resolution": "0.25° × 0.25°",
+            "temporal_coverage": "Historical (1980–2013) and Future (2015–2100) daily time-series",
+            "climate_scenario": "SSP2-4.5, SSP5-8.5",
+            "url": "https://www.nature.com/articles/s41597-023-01956-z",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_type": "flood"
+        },
+        {
+            "name": "Analysis of Extreme Rainfall and Natural Disasters Events Using Satellite Precipitation Products in Different Regions of Brazil",
+            "method_of_access": "Web interface query (Google Scholar, DOAJ links for authors)",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Different Regions of Brazil",
+            "description": "This article focuses on the analysis of extreme rainfall and natural disaster events using satellite precipitation products across different regions of Brazil. Authors include R. Palharini, D. Vila, D. Rodrigues, R. Palharini, E. Mattos, and E. Undurraga.",
+            "url": "https://www.mdpi.com/2073-4433/13/10/1680",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Observed Climatology of Average Mean Surface Air Temperature - Brazil",
+            "method_of_access": "Web interface query, downloadable images (JPEG, PNG)",
+            "ccra_mode": "hazards",
+            "granularity": "National, Subnational (Acre, Alagoas, Amapa, Amazonas, Bahia, Ceara, Distrito Federal, Espirito Santo, Goias, Maranhao, Mato Grosso, Mato Grosso Do Sul, Minas Gerais, Para, Paraiba, Parana, Pernambuco, Piaui, Rio De Janeiro, Rio Grande Do Norte, Rio Grande Do Sul, Rondonia, Roraima, Santa Catarina, Sao Paulo, Sergipe, Tocantins)",
+            "data_format": "JPEG image, PNG image",
+            "description": "This map displays historical patterns of temperature (average, maximum, minimum) and precipitation across various land regions for Brazil and its subnational administrative units. Users can interact with the tool by selecting different variables, time periods, and seasons. The dataset is based on ground-based weather station observations dating back to 1900, with potential biases in regions with sparse station coverage, especially during the early 20th century. Provided by the World Bank Climate Change Knowledge Portal.",
+            "temporal_coverage": "1901-1930, 1931-1960, 1961-1990, 1991-2020 (Climatology Periods); 1901-2024 (Timeseries)",
+            "url": "https://climateknowledgeportal.worldbank.org/country/brazil/climate-data-historical",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_type": "flood"
+        },
+        {
+            "name": "Pluviômetros Automáticos",
+            "method_of_access": "Web interface (Mapa Interativo) with data download functionality for historical series",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Municipal (specific locations within municipalities)",
+            "data_format": "Downloadable historical series (format not specified, but typically CSV or similar for time series)",
+            "description": "The 'Pluviômetros Automáticos' project aims to expand and complement Brazil's pluviometric monitoring network to support the issuance of natural disaster alerts, contributing to the reduction of damages and human losses. The automatic rain gauges, part of Cemaden's Environmental Monitoring Network, measure rainfall quantity and intensity to detect potential landslides, floods, and flash floods. Data is transmitted every 10 minutes (if raining) or hourly (if not raining) to Cemaden's servers, processed, and made available to the Situation Room. The data is also used as input for hydrological and geodynamic models for river flow prediction and slope stability analysis. Data is available to the public via an interactive map, allowing download of historical series. Data is raw and in UTC.",
+            "spatial_resolution": "Point measurements (individual rain gauge locations) within municipalities, covering 821 priority municipalities for disaster risk management.",
+            "temporal_coverage": "Real-time data (every 10 minutes if raining, hourly if not), with historical series available for download.",
+            "url": "http://www2.cemaden.gov.br/pluviometros-automatico/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Earth Engine Data Catalog",
+            "method_of_access": "Web interface query, API documentation",
+            "description": "The Earth Engine Data Catalog includes various standard Earth science scan datasets. These datasets can be imported into the scripting environment with a single click. Users can also upload their own raster or vector data for private use or sharing in their scripts. The catalog is provided by Google Earth Engine.",
+            "url": "https://developers.google.com/earth-engine/datasets/catalog?hl=pt-br",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood"
+        },
+        {
+            "name": "Changes in Flood Magnitude and Frequency Projected for Vulnerable Regions and Major Wetlands of South America",
+            "method_of_access": "The document is a research letter available online. The data itself is not directly accessible via a download link or API in the provided content.",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Regional (South America), focusing on vulnerable regions and major wetlands",
+            "description": "A research letter discussing projected changes in flood magnitude and frequency for vulnerable regions and major wetlands in South America. The study is authored by I. Petry and others from institutions including Instituto de Pesquisas Hidráulicas (IPH), Universidade Federal do Rio Grande do Sul (UFRGS), Universidade Estadual de Campinas (UNICAMP), and Agência Nacional de Águas (ANA) in Brazil.",
+            "temporal_coverage": "Projected changes (future)",
+            "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2024GL112436?af=R",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Cemaden Interactive Map - Flood Data",
+            "method_of_access": "Web interface query",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "National, regional, municipal (implied by interactive map with zoom functionality)",
+            "description": "Interactive map from Cemaden (Centro Nacional de Monitoramento e Alertas de Desastres Naturais) providing information related to natural disaster monitoring and alerts, including flood-related data such as 'Pluviômetro' (rain gauge) and 'Informações E. Hidrológicas' (Hydrological Information). The map displays active layers with UTC time.",
+            "temporal_coverage": "Real-time/near real-time (implied by 'Camadas ativas (Hora UTC)')",
+            "url": "https://mapainterativo.cemaden.gov.br/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Atlas Pluviométrico do Brasil: Equações Intensidade-Duração-Frequência (Desagregação de Precipitações Diárias): estação pluviométrica Brasília; códigos 01547004 (ANA) e 83377 (INMET), município Brasília, DF",
+            "method_of_access": "Downloadable PDF file",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Municipal (Brasília, DF)",
+            "data_format": "Adobe PDF",
+            "description": "An Atlas Pluviométrico for Brazil, focusing on Intensity-Duration-Frequency (IDF) equations for daily precipitation disaggregation. The report covers the pluviometric station in Brasília, DF, with codes 01547004 (ANA) and 83377 (INMET). Published by CPRM in 2022.",
+            "temporal_coverage": "2022 (publication date)",
+            "url": "https://rigeo.sgb.gov.br/handle/doc/23227",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Event attribution of Parnaíba River floods in Northeastern Brazil",
+            "method_of_access": "Open Access article, likely downloadable as PDF from the provided URL.",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Regional (Northeastern Brazil, Parnaíba River)",
+            "description": "An original article focusing on the event attribution of floods in the Parnaíba River in Northeastern Brazil. The study is authored by researchers from institutions including Centro Nacional de Monitoramento de Desastres Naturais, Oxford e-Research Centre, University of Oxford, University of Edinburgh, Universidade Federal do Rio Grande do Sul, Universidade de São Paulo, Instituto Nacional de Pesquisas Espaciais, and Met Office Hadley Centre.",
+            "url": "https://rmets.onlinelibrary.wiley.com/doi/10.1002/cli2.16",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "CABra: Catchments Attributes for Brazil",
+            "method_of_access": "Freely available for download from Zenodo and accessible via a Shiny app web interface.",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "sector": "Agriculture, Forestry, and Other Land Use (AFOLU)",
+            "subsector": "Emissions from land within the city boundary",
+            "granularity": "catchment level for 735 catchments across Brazil",
+            "data_format": "Not explicitly stated, but implied to be structured data given the description of attributes and use in hydrological modeling. Likely includes shapefiles for boundaries.",
+            "description": "CABra is a large-sample dataset for Brazilian catchments, including long-term data (30 years: 1980–2010) for 735 catchments across eight main attribute classes: climate, streamflow, groundwater, geology, soil, topography, land cover, and hydrologic disturbance. It synthesizes data from ground stations, remote sensing, and gridded datasets, and includes boundary shapefiles, geographic coordinates, and drainage area for each catchment, along with over 100 attributes.",
+            "spatial_resolution": "Catchment areas range from 9 to 4,800,000 km2. Catchments are delineated using MERIT DEM.",
+            "temporal_coverage": "1980–2010 (30 years) for streamflow data, with daily mean streamflow values.",
+            "url": "https://hess.copernicus.org/articles/25/3105/2021/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Impactos econômicos e sociais de inundações em bacia hidrográfica urbana",
+            "method_of_access": "Downloadable PDF file",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Municipal (Campo Grande, Prosa stream basin)",
+            "data_format": "Adobe PDF",
+            "description": "This dissertation applies coupled HEC-HMS and HEC-RAS models to determine flood areas in the Prosa stream basin in Campo Grande, Brazil, using sub-hourly hydrometeorological data and terrain models with 1-meter resolution. It also quantifies potential economic damages from floods, showing that 100-year return period floods can cause up to 500,000 US dollars in damages. The study was conducted by Leonardo de Souza Bruno and published in 2021 by the Universidade Federal de Mato Grosso do Sul.",
+            "spatial_resolution": "1 meter (terrain models), urban areas (Prosa stream basin, Campo Grande)",
+            "temporal_coverage": "2021 (document date), historical and design rainfall events",
+            "url": "https://repositorio.ufms.br/handle/123456789/4072",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "method_of_access": "Web interface query (page not found)",
+            "description": "The provided URL leads to a 'page not found' error on the CEMADEN website, indicating no dataset is directly accessible or described at this specific address. The content primarily discusses website services and cookie settings.",
+            "url": "http://www.cemaden.gov.br/categoria/redededados/",
+            "country": "Brazil",
+            "country_locode": "BR",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood"
+        },
+        {
+            "name": "The new historical flood of 2021 in the Amazon River compared to major floods of the 21st century: Atmospheric features in the context of the intensification of floods",
+            "method_of_access": "Downloadable PDF",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Regional (Amazon Basin, Manaus station, northern Amazonia)",
+            "data_format": "PDF",
+            "description": "This article reports on the extreme flood of 2021 in the Amazon Basin, specifically at Manaus station (Brazil), comparing it to major floods of the 21st century. It analyzes atmospheric features, including intensification of atmospheric upward motion and Walker circulations, enhanced deep convective clouds, and intense rainfall over northern Amazonia, associated with La Niña conditions. The study covers the period from 1903 to 2021, with a focus on events since the late 1990s.",
+            "temporal_coverage": "1903-2021 (daily water level data at Port of Manaus stations), focusing on 21st century floods (2009, 2012, 2017, 2021)",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2212094721000931",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Atlas Pluviométrico do Brasil: Equações Intensidade-Duração-Frequência (Desagregação de Precipitações Diárias): estação pluviométrica Fazenda Santa Elisa; código 00649001 (ANA), município Canaã dos Carajás, PA",
+            "method_of_access": "Downloadable PDF file",
+            "ccra_mode": "hazards",
+            "ccra_type": "flood",
+            "granularity": "Municipal",
+            "data_format": "PDF",
+            "description": "This document is part of the Pluviometric Atlas of Brazil, focusing on Intensity-Duration-Frequency (IDF) equations for daily precipitation disaggregation for the Fazenda Santa Elisa pluviometric station (code 00649001, ANA) in the municipality of Canaã dos Carajás, Pará. Published by CPRM in 2022.",
+            "spatial_resolution": "Point measurement (pluviometric station) within a municipality (Canaã dos Carajás, PA)",
+            "temporal_coverage": "2022 (publication date, implies data up to or before this year)",
+            "url": "https://rigeo.cprm.gov.br/handle/doc/23242",
+            "country": "Brazil",
+            "country_locode": "BR"
+        }
+    ],
+    "raw_review_action": "proceed_to_extraction",
+    "last_raw_review_details": {
+        "overall_assessment": "This batch of documents contains several highly promising resources for flood hazard data in Brazil. Multiple academic papers discuss storm surge projections, flood disaster analysis using satellite data, and changes in flood magnitude and frequency. Crucially, there are direct links to a national pluviometric atlas with Intensity-Duration-Frequency (IDF) equations for specific municipalities, and a real-time interactive map of automatic rain gauges from CEMADEN, which also allows historical data download. The World Bank Climate Knowledge Portal offers historical precipitation data for Brazil, though its resolution needs to be verified. The Google Earth Engine catalog is a good entry point for discovering relevant geospatial datasets.",
+        "documents_to_extract": [
+            "https://www.sciencedirect.com/science/article/abs/pii/S2352485524004791",
+            "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024GL112442",
+            "https://rigeo.sgb.gov.br/handle/doc/23389?mode=full",
+            "https://www.nature.com/articles/s41597-023-01956-z",
+            "https://climateknowledgeportal.worldbank.org/country/brazil/climate-data-historical",
+            "http://www2.cemaden.gov.br/pluviometros-automatico/",
+            "https://developers.google.com/earth-engine/datasets/catalog/GLOBAL_FLOOD_DB_MODIS_EVENTS_V1?hl=pt-br",
+            "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2024GL112436?af=R",
+            "https://mapainterativo.cemaden.gov.br/",
+            "https://rigeo.sgb.gov.br/handle/doc/23227"
+        ],
+        "suggested_next_action": "proceed_to_extraction",
+        "action_reasoning": "The documents include several academic papers detailing flood projections and analyses for Brazil, often mentioning specific models and data sources. More importantly, direct links to the Brazilian Geological Survey's pluviometric atlases and CEMADEN's real-time rain gauge data with download options are highly relevant for flood hazard assessment. The World Bank portal and Google Earth Engine catalog are also strong candidates for direct data access. These resources are very likely to contain structured or semi-structured flood hazard data at a suitable resolution."
+    },
+    "last_structured_review_details": {
+        "overall_assessment_notes": "The extracted structured data provides a good mix of historical and projected flood-related information for Brazil, covering various granularities from national to municipal and specific catchments. Several entries offer Intensity-Duration-Frequency (IDF) curves, which are crucial for flood hazard assessment. There are also datasets related to storm surge projections, extreme rainfall analysis, and real-time pluviometric data. Credible sources like scientific journals, government agencies (CPRM, ANA, Cemaden), and international organizations (World Bank) are well-represented. While some entries are research papers that don't directly provide downloadable datasets, they indicate the existence of underlying data or methodologies that could be pursued. The CLIMBra dataset is particularly valuable as it offers bias-corrected CMIP6 projections for various climate variables, including precipitation, at a fine spatial resolution. The CABra dataset provides extensive catchment attributes, which are highly relevant for hydrological modeling and flood risk assessment. The main limitation is the lack of direct links to downloadable geospatial data for all entries, with some being research papers or interactive maps without explicit download options for the raw data.",
+        "relevance_score": "High",
+        "relevance_reasoning": "The extracted data is highly relevant to flood hazards in Brazil. It includes historical rainfall data, IDF curves, storm surge projections, extreme event analyses, and future climate projections for precipitation. These are all direct inputs for assessing flood hazards and their future changes.",
+        "credibility_score": "High",
+        "credibility_reasoning": "The sources are predominantly highly credible, including peer-reviewed scientific journals (ScienceDirect, Nature, AGU Publications, MDPI, Wiley Online Library), Brazilian government agencies (Serviço Geológico do Brasil - CPRM, Cemaden, ANA), and international organizations (World Bank Climate Change Knowledge Portal). Google Earth Engine is also a reputable platform for geospatial data.",
+        "completeness_score": "Medium",
+        "completeness_reasoning": "While the data covers various aspects of flood hazards, the completeness for direct quantitative risk assessment is medium. Many entries are research papers describing data or methodologies rather than providing direct access to raw, downloadable geospatial datasets. For instance, while IDF curves are mentioned, the raw data used to derive them or the curves themselves in a machine-readable format are not always directly linked. The CLIMBra and CABra datasets are strong exceptions, offering comprehensive and accessible data. The real-time pluviometer data from Cemaden is also valuable. However, a significant portion requires further investigation to access the actual data for analysis.",
+        "overall_confidence": "High",
+        "suggested_action": "accept",
+        "action_reasoning": "Despite some limitations in direct data accessibility for all entries, the collection provides a strong foundation for flood hazard assessment in Brazil. Key datasets like CLIMBra and CABra offer comprehensive, high-resolution, and future-projected data crucial for CCRA. The presence of IDF curves, storm surge projections, and real-time monitoring data further strengthens its utility. The credible sources and diverse granularities make this an acceptable set of findings, with the understanding that some follow-up might be needed to obtain the raw data from the research papers. The spatial resolution of CLIMBra (0.25° x 0.25°) and the detailed catchment data from CABra meet the requirements for quantitative risk assessment.",
+        "refinement_details": null
+    },
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "hazards",
+            "which": "flood",
+            "country": "Brazil",
+            "research_mode": "country",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for hazards/flood (Brazil) with 90 structured queries.",
+            "target_country_locode": "BR",
+            "primary_languages": [
+                "en",
+                "pt"
+            ],
+            "parsed_keywords_count": 90,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Brazil extreme precipitation events geospatial data",
+                "Rainfall intensity duration frequency curves Brazil",
+                "Brazilian storm event characteristics climate data",
+                "Precipitation percentiles Brazil gridded data",
+                "High-resolution precipitation data Brazil flood modeling",
+                "Satellite rainfall estimates Brazil flood risk",
+                "Eventos de precipitação extrema Brasil dados geoespaciais",
+                "Curvas intensidade-duração-frequência chuva Brasil",
+                "Características de eventos de tempestade Brasil dados climáticos",
+                "Percentis de precipitação Brasil dados de grade"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 10,
+            "new_data_items": 7
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-15T18:24:45.883949",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 6,
+            "summary": "This batch of documents contains several promising leads for flood hazard data in Brazil. The ScienceDirect and Wiley articles discuss storm surge and flood events in Brazil, including methodologies for projection and volume estimation, suggesting potential for underlying data or detailed models. The World Bank Climate Knowledge Portal offers historical climate data for Brazil, including precipitation, which is crucial for flood assessment. The Brazilian Geological Survey (rigeo.sgb.gov.br) provides an 'Atlas pluviométrico do Brasil' with Intensity-Duration-Frequency (IDF) equations, directly relevant to flood risk. The Nature.com article describes a bias-corrected climate change dataset for Brazil with a good spatial resolution, which could be highly valuable. The Google Earth Engine link for GLOBAL_FLOOD_DB_MODIS_EVENTS_V1 is also directly relevant to flood events. Mendeley and MDPI links appear to be general academic platforms or lack specific content in the snippet.",
+            "reasoning": "Multiple documents appear to contain or directly link to relevant flood hazard data, climate projections, or methodologies for Brazil, including specific datasets and models. These warrant a full extraction attempt to determine the availability of geospatial data at the required resolution."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 10,
+            "new_data_items_extracted": 7,
+            "total_structured_items": 7
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-15T18:25:10.024254",
+            "action": "structured_review_completed",
+            "suggested_action": "deep_dive",
+            "overall_confidence": "Medium",
+            "summary": "The extracted data provides a good starting point for flood hazard assessment in Brazil, with several relevant datasets identified. CLIMBra offers national-level gridded precipitation data for historical and future scenarios, which is highly valuable. The 'Atlas pluviométrico do Brasil' provides localized Intensity-Duration-Frequency (IDF) curves, crucial for hydrological modeling. Storm surge projections for the Southeast Brazilian Coast are also relevant. However, some entries are research papers discussing frameworks or specific events without direct access to comprehensive datasets, or are too general (e.g., 'Analysis of Extreme Rainfall and Natural Disasters Events'). The World Bank's 'Observed Climatology' is useful for historical context but primarily focuses on temperature, with precipitation as a secondary variable, and its format (images) might limit direct analytical use. The granularity of some datasets is regional or municipal, which is good, but a comprehensive national-level flood hazard dataset with consistent methodology is still needed.",
+            "reasoning": "The current search has yielded promising results, particularly CLIMBra and the IDF curves. However, a 'deep_dive' is necessary to: 1) ascertain direct access to the CLIMBra dataset (beyond the PDF description), 2) investigate if the 'Atlas pluviométrico do Brasil' contains more IDF curves for other locations or a national compilation, 3) explore the supplementary materials or contact authors for the research papers that discuss datasets or specific events to see if the underlying data is available, and 4) look for more direct, analyzable flood hazard data (e.g., flood extent maps, return period maps) that might be linked from these credible sources or other government portals.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        },
+        {
+            "agent": "DeepDiveProcessor",
+            "action": "scrape",
+            "target": "https://www.nature.com/articles/s41597-023-02011-x#Sec10",
+            "justification": "The 'Data availability' section (Sec10) of the Nature article is the most likely place to find direct download links or instructions for accessing the gridded precipitation data mentioned in the CLIMBra dataset. This section typically provides links to repositories or supplementary files.",
+            "refinement_details_processed": "1. For 'CLIMBra - Climate Change Dataset for Brazil', investigate the Nature article's supplementary information or associated data repositories for direct download links to the gridded precipitation data. Confirm data format and accessibility. 2. For 'Atlas pluviométrico do Brasil', explore the SGB/CPRM website (or Rigeo) for a broader collection of IDF curves or a national atlas, not just the single municipal example. 3. For 'Predicting storm surge extremes on the Southeast Brazilian Coast', check the ScienceDirect page for supplementary data or contact information for authors to inquire about the storm surge projection data. 4. For 'Analysis of Extreme Rainfall and Natural Disasters Events', investigate if the satellite precipitation products mentioned are publicly available and where. 5. Re-evaluate the World Bank Climate Change Knowledge Portal for downloadable precipitation data in a machine-readable format, rather than just images.",
+            "actions_this_cycle": 1,
+            "current_websites_considered": "dadosabertos.ana.gov.br, developers.google.com, www.sciencedirect.com, www.tandfonline.com, www.nature.com, rigeo.sgb.gov.br, data.mendeley.com, climateknowledgeportal.worldbank.org, agupubs.onlinelibrary.wiley.com, www.mdpi.com",
+            "timestamp": "2025-09-15T18:25:17.860562"
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Dados de precipitação de alta resolução Brasil modelagem de inundações",
+                "Estimativas de chuva por satélite Brasil risco de inundação",
+                "Dados pluviométricos históricos Brasil inundações",
+                "Projeções de precipitação futura Brasil inundações",
+                "Atlas de chuvas intensas Brasil",
+                "Brazil river discharge flow rates geospatial data",
+                "Streamflow gauging stations data Brazil",
+                "Flood peak flows Brazil historical data",
+                "River basin characteristics Brazil hydrological modeling",
+                "National hydrological network Brazil discharge data"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 11,
+            "new_data_items": 11
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-15T18:30:05.482706",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 10,
+            "summary": "This batch of documents contains several highly promising resources for flood hazard data in Brazil. Multiple academic papers discuss storm surge projections, flood disaster analysis using satellite data, and changes in flood magnitude and frequency. Crucially, there are direct links to a national pluviometric atlas with Intensity-Duration-Frequency (IDF) equations for specific municipalities, and a real-time interactive map of automatic rain gauges from CEMADEN, which also allows historical data download. The World Bank Climate Knowledge Portal offers historical precipitation data for Brazil, though its resolution needs to be verified. The Google Earth Engine catalog is a good entry point for discovering relevant geospatial datasets.",
+            "reasoning": "The documents include several academic papers detailing flood projections and analyses for Brazil, often mentioning specific models and data sources. More importantly, direct links to the Brazilian Geological Survey's pluviometric atlases and CEMADEN's real-time rain gauge data with download options are highly relevant for flood hazard assessment. The World Bank portal and Google Earth Engine catalog are also strong candidates for direct data access. These resources are very likely to contain structured or semi-structured flood hazard data at a suitable resolution."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 21,
+            "new_data_items_extracted": 11,
+            "total_structured_items": 18
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-15T18:30:37.304766",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted structured data provides a good mix of historical and projected flood-related information for Brazil, covering various granularities from national to municipal and specific catchments. Several entries offer Intensity-Duration-Frequency (IDF) curves, which are crucial for flood hazard assessment. There are also datasets related to storm surge projections, extreme rainfall analysis, and real-time pluviometric data. Credible sources like scientific journals, government agencies (CPRM, ANA, Cemaden), and international organizations (World Bank) are well-represented. While some entries are research papers that don't directly provide downloadable datasets, they indicate the existence of underlying data or methodologies that could be pursued. The CLIMBra dataset is particularly valuable as it offers bias-corrected CMIP6 projections for various climate variables, including precipitation, at a fine spatial resolution. The CABra dataset provides extensive catchment attributes, which are highly relevant for hydrological modeling and flood risk assessment. The main limitation is the lack of direct links to downloadable geospatial data for all entries, with some being research papers or interactive maps without explicit download options for the raw data.",
+            "reasoning": "Despite some limitations in direct data accessibility for all entries, the collection provides a strong foundation for flood hazard assessment in Brazil. Key datasets like CLIMBra and CABra offer comprehensive, high-resolution, and future-projected data crucial for CCRA. The presence of IDF curves, storm surge projections, and real-time monitoring data further strengthens its utility. The credible sources and diverse granularities make this an acceptable set of findings, with the understanding that some follow-up might be needed to obtain the raw data from the research papers. The spatial resolution of CLIMBra (0.25° x 0.25°) and the detailed catchment data from CABra meet the requirements for quantitative risk assessment.",
+            "final_decision_mode": true,
+            "consecutive_deep_dive_count": 1
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "Brazil extreme precipitation events geospatial data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Rainfall intensity duration frequency curves Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazilian storm event characteristics climate data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Precipitation percentiles Brazil gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "High-resolution precipitation data Brazil flood modeling",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Satellite rainfall estimates Brazil flood risk",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Eventos de precipitação extrema Brasil dados geoespaciais",
+            "language": "en",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Curvas intensidade-duração-frequência chuva Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Características de eventos de tempestade Brasil dados climáticos",
+            "language": "en",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Percentis de precipitação Brasil dados de grade",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Dados de precipitação de alta resolução Brasil modelagem de inundações",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Estimativas de chuva por satélite Brasil risco de inundação",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Dados pluviométricos históricos Brasil inundações",
+            "language": "en",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Projeções de precipitação futura Brasil inundações",
+            "language": "en",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Atlas de chuvas intensas Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil river discharge flow rates geospatial data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Streamflow gauging stations data Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Flood peak flows Brazil historical data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "River basin characteristics Brazil hydrological modeling",
+            "language": "en",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "National hydrological network Brazil discharge data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Hydrographic data Brazil flood forecasting",
+            "language": "en",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Vazões de rios Brasil dados geoespaciais",
+            "language": "en",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de estações fluviométricas Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Picos de cheia Brasil dados históricos",
+            "language": "en",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Características de bacias hidrográficas Brasil modelagem hidrológica",
+            "language": "en",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Rede hidrometeorológica nacional Brasil dados de vazão",
+            "language": "en",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados hidrológicos Brasil previsão de inundações",
+            "language": "en",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Série histórica de vazões Brasil inundações",
+            "language": "en",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Modelos hidrológicos Brasil dados de entrada",
+            "language": "en",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "ANA dados de vazão Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil soil moisture content geospatial data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Soil saturation maps Brazil flood risk",
+            "language": "en",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Infiltration rates Brazil hydrological modeling",
+            "language": "en",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Runoff coefficients Brazil watershed data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Antecedent moisture conditions Brazil flood forecasting",
+            "language": "en",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Satellite soil moisture data Brazil flood",
+            "language": "en",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Conteúdo de umidade do solo Brasil dados geoespaciais",
+            "language": "en",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapas de saturação do solo Brasil risco de inundação",
+            "language": "en",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Taxas de infiltração Brasil modelagem hidrológica",
+            "language": "en",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Coeficientes de escoamento superficial Brasil bacias",
+            "language": "en",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Condições de umidade antecedente Brasil previsão de inundações",
+            "language": "en",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de umidade do solo por satélite Brasil inundações",
+            "language": "en",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Monitoramento de umidade do solo Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de solo para modelagem de inundações Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "CENAD umidade do solo Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil river stage water level data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 46,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Reservoir levels storage data Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 47,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Lake wetland levels Brazil geospatial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 48,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Groundwater table data Brazil flood modeling",
+            "language": "en",
+            "priority": "medium",
+            "rank": 49,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Real-time water level monitoring Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 50,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Hydrometric station data Brazil flood",
+            "language": "en",
+            "priority": "medium",
+            "rank": 51,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Nível de rios Brasil dados de cota",
+            "language": "en",
+            "priority": "medium",
+            "rank": 52,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Níveis de reservatórios armazenamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 53,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Níveis de lagos e áreas úmidas Brasil geoespacial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 54,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de nível do lençol freático Brasil modelagem de inundações",
+            "language": "en",
+            "priority": "medium",
+            "rank": 55,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Monitoramento em tempo real nível da água Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 56,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de estações hidrométricas Brasil inundações",
+            "language": "en",
+            "priority": "medium",
+            "rank": 57,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "ANA dados de nível de rios Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 58,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Cotas de inundação históricas Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 59,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de barragens Brasil níveis",
+            "language": "en",
+            "priority": "medium",
+            "rank": 60,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil flood extent mapping geospatial data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 61,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Flood depth grids Brazil high resolution",
+            "language": "en",
+            "priority": "medium",
+            "rank": 62,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Floodplain delineation Brazil GIS data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 63,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Flood hazard zones Brazil mapping",
+            "language": "en",
+            "priority": "medium",
+            "rank": 64,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Historical flood inundation maps Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 65,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Satellite-based flood mapping Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 66,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapeamento de área inundada Brasil dados geoespaciais",
+            "language": "en",
+            "priority": "medium",
+            "rank": 67,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Grades de profundidade de inundação Brasil alta resolução",
+            "language": "en",
+            "priority": "medium",
+            "rank": 68,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Delimitação de planícies de inundação Brasil dados GIS",
+            "language": "en",
+            "priority": "medium",
+            "rank": 69,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Zonas de perigo de inundação Brasil mapeamento",
+            "language": "en",
+            "priority": "medium",
+            "rank": 70,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapas históricos de inundação Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 71,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapeamento de inundações por satélite Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 72,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Atlas de inundações Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 73,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "CENAD mapas de risco de inundação Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 74,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Modelagem de inundação Brasil resultados",
+            "language": "en",
+            "priority": "medium",
+            "rank": 75,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil flood frequency analysis data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 76,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Return period estimates Brazil flood",
+            "language": "en",
+            "priority": "medium",
+            "rank": 77,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Flood vulnerability indices Brazil geospatial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 78,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Flood damage potential Brazil assessment",
+            "language": "en",
+            "priority": "medium",
+            "rank": 79,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Climate change flood risk Brazil projections",
+            "language": "en",
+            "priority": "medium",
+            "rank": 80,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "National flood risk assessment Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 81,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Análise de frequência de inundações Brasil dados",
+            "language": "en",
+            "priority": "medium",
+            "rank": 82,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Estimativas de tempo de retorno inundações Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 83,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índices de vulnerabilidade a inundações Brasil geoespacial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 84,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Potencial de danos por inundações Brasil avaliação",
+            "language": "en",
+            "priority": "medium",
+            "rank": 85,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Risco de inundação mudanças climáticas Brasil projeções",
+            "language": "en",
+            "priority": "medium",
+            "rank": 86,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Avaliação nacional de risco de inundações Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 87,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapas de risco e desastres naturais Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 88,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "CENAD risco de desastres Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 89,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Estudos de risco de inundações Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 90,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

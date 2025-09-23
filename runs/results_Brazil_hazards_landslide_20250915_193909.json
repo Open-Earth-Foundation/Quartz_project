@@ -1,0 +1,937 @@
+{
+    "research_mode": "country",
+    "target_country": "Brazil",
+    "target_country_locode": "BR",
+    "target_mode": "hazards",
+    "target_which": "landslide",
+    "target_city": null,
+    "start_time": "2025-09-15T19:29:05.155201",
+    "end_time": "2025-09-15T19:39:09.661484",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 4,
+    "structured_data": [
+        {
+            "name": "Mapa on-line da CPRM",
+            "method_of_access": "Web interface query (interactive platform)",
+            "ccra_mode": "hazards",
+            "ccra_type": "landslide",
+            "granularity": "municipal",
+            "data_format": "interactive map",
+            "description": "An interactive online map developed by the Geological Survey of Brazil (CPRM) that allows visualization of areas with high and very high risk of landslides, floods, flash floods, and rockfalls in over 1,600 Brazilian municipalities. It contains a rich database for national, state, and municipal managers.",
+            "spatial_resolution": "municipal (over 1,600 municipalities in Brazil)",
+            "url": "https://ibram.org.br/noticia/mapa-on-line-da-cprm-permite-visualizar-areas-com-riscos-de-desastres-no-brasil/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Mapa Prevenção de Desastres",
+            "method_of_access": "Web interface query via geoportal",
+            "ccra_mode": "hazards",
+            "ccra_type": "landslide",
+            "granularity": "National",
+            "description": "A map for disaster prevention provided by GeoSGB, likely focusing on geological hazards such as landslides, given the context of 'Geologia de Engenharia.GIS'.",
+            "url": "https://geosgb.sgb.gov.br/",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Mapeamento de Geodiversidade do Estado de Minas Gerais - Risco de Erosão e Movimento de Massa",
+            "method_of_access": "Downloadable shapefile, KML, and Excel formats; links to official project pages and GeoPortal",
+            "ccra_mode": "hazards",
+            "ccra_type": "landslide",
+            "granularity": "Regional (Minas Gerais)",
+            "data_format": "Shapefile, KML, Excel",
+            "description": "This project aims to provide Brazil with thematic territorial maps of the physical environment, focusing on geology, relief, and soils, to be used as tools for territorial planning in the mineral, transport, agriculture, tourism, and environment sectors. The dataset specifically covers the 'Risk' theme of the Geodiversity mapping of Minas Gerais state, elaborated by CPRM, including areas at risk of erosion and mass movement. Maintenance and update frequency is 'as needed'.",
+            "spatial_resolution": "1:1,000,000 (Denominator 1000000)",
+            "temporal_coverage": "Publication Date: 2018-02-26",
+            "url": "https://idesisema.meioambiente.mg.gov.br/geonetwork/srv/api/records/12e3e3c1-a9ab-4e39-8e12-badcd81e43df",
+            "country": "Brazil",
+            "country_locode": "BR"
+        },
+        {
+            "name": "Suscetibilidade a deslizamentos do Brasil: primeira aproximação",
+            "method_of_access": "The study is part of the 2nd volume of the collection “Macrocaracterização dos Recursos Naturais do Brasil”, which is likely a publication. The content implies the data is presented in maps and statistical tables within the study.",
+            "ccra_mode": "hazards",
+            "ccra_type": "landslide",
+            "granularity": "National, Regional (Sudeste, Sul, Norte, Centro-Oeste, Nordeste), State (Rio de Janeiro, Espírito Santo, Santa Catarina)",
+            "data_format": "GeoTIFF susceptibility maps (implied from 'mapa final'), statistical tables",
+            "description": "An unprecedented study by IBGE, released on November 29, 2019, mapping landslide susceptibility across Brazil. It identifies areas with very high and high risk, highlighting the state of Rio de Janeiro as having over half its territory at very high risk. The study considers factors like Geology, Geomorphology, Pedology, Declivity, Pluviosity, and Land Cover/Use/Vegetation. It aims to provide a general overview for further detailed studies and is part of the 'Macrocaracterização dos Recursos Naturais do Brasil' collection.",
+            "spatial_resolution": "The study was done on a statistical grid, with specific mentions of national, regional, and state-level data. No specific grid resolution (e.g., 10m, 1km) is provided.",
+            "temporal_coverage": "Published 2019, updated 2020. The study itself is a 'first approximation' and does not specify a historical period or future projections.",
+            "url": "https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/26127-estado-do-rio-tem-mais-da-metade-do-territorio-com-alto-risco-de-deslizamentos",
+            "country": "Brazil",
+            "country_locode": "BR"
+        }
+    ],
+    "raw_review_action": "proceed_to_extraction",
+    "last_raw_review_details": {
+        "overall_assessment": "The documents provided show varying degrees of relevance to landslide hazard data. The first document from IBRAM appears to be a news article about an online map, but the content snippet itself is mostly navigation links and doesn't directly provide data. The second document, GeoSGB, is a geoscientific portal that explicitly mentions 'Mapa Prevenção de Desastres' and links to a geoscientific portal, which is highly promising. The third document from IBGE is a news article discussing a study on landslide susceptibility in Rio de Janeiro, mentioning a map and specific percentages, which could lead to a dataset.",
+        "documents_to_extract": [
+            "https://geosgb.sgb.gov.br/",
+            "https://idesisema.meioambiente.mg.gov.br/geonetwork/srv/api/records/12e3e3c1-a9ab-4e39-8e12-badcd81e43df"
+        ],
+        "suggested_next_action": "proceed_to_extraction",
+        "action_reasoning": "The GeoSGB portal (document 2) is a government geoscientific service and explicitly mentions a 'Disaster Prevention Map' and offers various geospatial services, making it a strong candidate for landslide hazard data. Document 3 is a metadata record for a dataset on erosion and mass movement risk in Minas Gerais, provided by the Geological Survey of Brazil, with direct download links for shapefile and KML, making it highly relevant and directly extractable. Document 1 is a news article about an online map, but the content snippet itself is not directly useful for data extraction. Document 4 is a news article about a landslide susceptibility study, which might lead to data, but the metadata record is more direct."
+    },
+    "last_structured_review_details": {
+        "overall_assessment_notes": "The extracted data provides highly relevant and credible information regarding landslide hazards in Brazil. Multiple sources from official Brazilian government agencies (CPRM, IBGE, SGB) offer interactive maps, downloadable geospatial data (shapefiles, KML), and detailed reports on landslide susceptibility and risk areas. The granularity ranges from national to municipal and state levels, with some datasets providing specific spatial resolutions (e.g., 1:1,000,000). The data covers various aspects of landslide hazards, including risk areas, susceptibility, and factors contributing to mass movement. While some entries could benefit from more explicit spatial resolution details (e.g., grid size for susceptibility maps), the overall quality and relevance for a hazards CCRA are very high.",
+        "relevance_score": "High",
+        "relevance_reasoning": "All extracted data directly pertains to landslide hazards in Brazil, which is the specified CCRA mode, type, and target location. The datasets identify risk areas, susceptibility, and contributing factors, which are crucial for understanding and assessing landslide hazards.",
+        "credibility_score": "High",
+        "credibility_reasoning": "The data sources are highly credible, originating from official Brazilian government institutions such as the Geological Survey of Brazil (CPRM/SGB), the Brazilian Institute of Geography and Statistics (IBGE), and state environmental agencies (Minas Gerais). These are authoritative bodies responsible for geological and environmental mapping and risk assessment in Brazil.",
+        "completeness_score": "High",
+        "completeness_reasoning": "The extracted data provides a comprehensive overview of landslide hazards in Brazil, covering national, regional, and municipal scales. It includes interactive maps, downloadable geospatial data, and detailed reports. The information is sufficient for a robust hazards assessment, offering both visualization and analytical capabilities. While specific grid resolutions for some susceptibility maps could be more explicit, the overall completeness for a hazards assessment is strong.",
+        "overall_confidence": "High",
+        "suggested_action": "accept",
+        "action_reasoning": "The extracted data is highly relevant, credible, and sufficiently complete for a hazards CCRA focusing on landslides in Brazil. It provides direct access to official geospatial data and reports, which are essential for quantitative risk assessment. The variety of data formats and granularities ensures broad utility for the assessment.",
+        "refinement_details": null
+    },
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "hazards",
+            "which": "landslide",
+            "country": "Brazil",
+            "research_mode": "country",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for hazards/landslide (Brazil) with 90 structured queries.",
+            "target_country_locode": "BR",
+            "primary_languages": [
+                "en",
+                "pt"
+            ],
+            "parsed_keywords_count": 90,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Brazil landslide geological formation maps slope stability",
+                "Brazilian geological survey fault lines landslide susceptibility data",
+                "Rock type strength properties mass movement Brazil GIS",
+                "Geological factors landslide hazard mapping Brazil",
+                "Tectonic activity slope angle data Brazil landslides",
+                "Integrated geological datasets landslide risk assessment Brazil",
+                "Mapeamento geológico deslizamentos Brasil dados",
+                "Serviço Geológico do Brasil falhas geológicas deslizamentos",
+                "Tipos de rocha resistência solos deslizamentos Brasil",
+                "Fatores geológicos risco de deslizamento Brasil"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 3,
+            "new_data_items": 3
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-15T19:32:57.368642",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 2,
+            "summary": "The documents provided are highly relevant to landslide hazards, particularly for Brazil and Minas Gerais. The first document is a news article referencing an online map for disaster risks, which points to the second document. The second document is a geoscientific portal (GeoSGB) that explicitly mentions 'Mapa Prevenção de Desastres' (Disaster Prevention Map) and links to a geoscientific engineering portal. The third document is a metadata record for a geospatial dataset on geological risks, mass movement, and erosion in Minas Gerais, with direct download links for shapefiles and KML, and mentions the Brazilian Geological Survey (SGB/CPRM) as the author. This is very promising for structured landslide data.",
+            "reasoning": "The third document provides direct links to shapefiles and KML for geological risk, mass movement, and erosion data, which is precisely what is needed for landslide hazard assessment. The second document (GeoSGB) is a portal from an authoritative source (Brazilian Geological Survey) that likely contains or links to similar geospatial data, including a 'Disaster Prevention Map'. The first document, while a news article, serves as a good lead to these authoritative sources."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 3,
+            "new_data_items_extracted": 3,
+            "total_structured_items": 3
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-15T19:33:09.575348",
+            "action": "structured_review_completed",
+            "suggested_action": "deep_dive",
+            "overall_confidence": "High",
+            "summary": "The extracted data provides highly relevant information for landslide hazards in Brazil. The sources are official government agencies (CPRM/SGB) and state environmental bodies, ensuring high credibility. The data includes interactive maps and downloadable geospatial formats, which are crucial for CCRA. While the 'Mapa on-line da CPRM' offers municipal-level granularity across a large number of municipalities, and the 'Mapeamento de Geodiversidade do Estado de Minas Gerais' provides regional data at a good spatial resolution, there is still potential to find more granular or comprehensive national-level datasets for specific landslide indicators if available. The current data focuses on hazard mapping rather than exposure indicators, which is appropriate for the 'hazards' CCRA mode.",
+            "reasoning": "The current data is excellent for identifying landslide hazard areas. However, to maximize its utility for quantitative CCRA, a 'deep_dive' is recommended to ascertain if the underlying geospatial data for the 'Mapa on-line da CPRM' can be directly accessed or downloaded, rather than just visualized. This would allow for more detailed analysis and integration with other CCRA components. Additionally, exploring if similar detailed, downloadable datasets exist for other high-risk states in Brazil would enhance national coverage.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        },
+        {
+            "agent": "DeepDiveProcessor",
+            "action": "crawl",
+            "target": "https://geosgb.sgb.gov.br/",
+            "justification": "The request specifically asks to investigate the 'Mapa on-line da CPRM' (hosted on geosgb.sgb.gov.br) for downloadable geospatial data. Crawling the main domain will help identify sections like 'downloads', 'geospatial data', 'web services', or 'map layers' that might contain the underlying shapefiles or GeoJSON for landslide risk areas. I am excluding news, events, and contact pages as they are unlikely to contain direct data downloads.",
+            "refinement_details_processed": "1. Investigate the 'Mapa on-line da CPRM' (https://ibram.org.br/noticia/mapa-on-line-da-cprm-permite-visualizar-areas-com-riscos-de-desastres-no-brasil/ and https://geosgb.sgb.gov.br/) to determine if the underlying geospatial data (e.g., shapefiles, GeoJSON) for landslide risk areas across the 1,600+ municipalities can be downloaded for direct analysis. 2. Search for similar detailed, downloadable landslide hazard/susceptibility maps from official state-level geological surveys or environmental agencies for other high-risk Brazilian states (e.g., Rio de Janeiro, São Paulo, Espírito Santo).",
+            "actions_this_cycle": 1,
+            "current_websites_considered": "idesisema.meioambiente.mg.gov.br, ibram.org.br, geosgb.sgb.gov.br",
+            "timestamp": "2025-09-15T19:33:14.930115"
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Atividade tectônica ângulo de talude dados deslizamentos Brasil",
+                "Conjuntos de dados geológicos integrados avaliação de risco deslizamento Brasil",
+                "Mapas de formação geológica e suscetibilidade a deslizamentos Brasil",
+                "Propriedades geotécnicas rocha e solo deslizamentos Brasil",
+                "Dados de inclinação e aspecto para análise de deslizamentos Brasil",
+                "Brazil rainfall intensity duration landslide thresholds",
+                "Soil moisture content groundwater levels landslide Brazil",
+                "River network drainage patterns landslide susceptibility Brazil",
+                "Hydrological triggers mass movement data Brazil",
+                "Climate change impacts rainfall-induced landslides Brazil"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 1,
+            "new_data_items": 1
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-15T19:39:03.299318",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 2,
+            "summary": "The documents provided show varying degrees of relevance to landslide hazard data. The first document from IBRAM appears to be a news article about an online map, but the content snippet itself is mostly navigation links and doesn't directly provide data. The second document, GeoSGB, is a geoscientific portal that explicitly mentions 'Mapa Prevenção de Desastres' and links to a geoscientific portal, which is highly promising. The third document from IBGE is a news article discussing a study on landslide susceptibility in Rio de Janeiro, mentioning a map and specific percentages, which could lead to a dataset.",
+            "reasoning": "The GeoSGB portal (document 2) is a government geoscientific service and explicitly mentions a 'Disaster Prevention Map' and offers various geospatial services, making it a strong candidate for landslide hazard data. Document 3 is a metadata record for a dataset on erosion and mass movement risk in Minas Gerais, provided by the Geological Survey of Brazil, with direct download links for shapefile and KML, making it highly relevant and directly extractable. Document 1 is a news article about an online map, but the content snippet itself is not directly useful for data extraction. Document 4 is a news article about a landslide susceptibility study, which might lead to data, but the metadata record is more direct."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 4,
+            "new_data_items_extracted": 1,
+            "total_structured_items": 4
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-09-15T19:39:09.648324",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted data provides highly relevant and credible information regarding landslide hazards in Brazil. Multiple sources from official Brazilian government agencies (CPRM, IBGE, SGB) offer interactive maps, downloadable geospatial data (shapefiles, KML), and detailed reports on landslide susceptibility and risk areas. The granularity ranges from national to municipal and state levels, with some datasets providing specific spatial resolutions (e.g., 1:1,000,000). The data covers various aspects of landslide hazards, including risk areas, susceptibility, and factors contributing to mass movement. While some entries could benefit from more explicit spatial resolution details (e.g., grid size for susceptibility maps), the overall quality and relevance for a hazards CCRA are very high.",
+            "reasoning": "The extracted data is highly relevant, credible, and sufficiently complete for a hazards CCRA focusing on landslides in Brazil. It provides direct access to official geospatial data and reports, which are essential for quantitative risk assessment. The variety of data formats and granularities ensures broad utility for the assessment.",
+            "final_decision_mode": true,
+            "consecutive_deep_dive_count": 1
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "Brazil landslide geological formation maps slope stability",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazilian geological survey fault lines landslide susceptibility data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Rock type strength properties mass movement Brazil GIS",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Geological factors landslide hazard mapping Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Tectonic activity slope angle data Brazil landslides",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Integrated geological datasets landslide risk assessment Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Mapeamento geológico deslizamentos Brasil dados",
+            "language": "en",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Serviço Geológico do Brasil falhas geológicas deslizamentos",
+            "language": "en",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Tipos de rocha resistência solos deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Fatores geológicos risco de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Atividade tectônica ângulo de talude dados deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Conjuntos de dados geológicos integrados avaliação de risco deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Mapas de formação geológica e suscetibilidade a deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Propriedades geotécnicas rocha e solo deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Dados de inclinação e aspecto para análise de deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil rainfall intensity duration landslide thresholds",
+            "language": "en",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Soil moisture content groundwater levels landslide Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "River network drainage patterns landslide susceptibility Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Hydrological triggers mass movement data Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Climate change impacts rainfall-induced landslides Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Integrated hydrological models landslide risk Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Limiares de chuva intensidade duração deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Conteúdo de umidade do solo níveis de água subterrânea deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Rede de rios padrões de drenagem suscetibilidade a deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gatilhos hidrológicos movimentos de massa dados Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Impactos das mudanças climáticas deslizamentos induzidos por chuva Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Modelos hidrológicos integrados risco de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de precipitação para alerta precoce de deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Monitoramento de umidade do solo para risco de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Análise de bacias hidrográficas e deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil soil shear strength parameters landslide modeling",
+            "language": "en",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Cohesion friction angles soil depth landslide data Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Vegetation root strength slope stability Brazil GIS",
+            "language": "en",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Geotechnical properties landslide susceptibility Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Soil layering geotechnical assessment Brazil landslides",
+            "language": "en",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Multi-factor geotechnical datasets landslide risk Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Parâmetros de resistência ao cisalhamento do solo deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Coesão ângulos de atrito profundidade do solo deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Resistência radicular da vegetação estabilidade de taludes Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Propriedades geotécnicas suscetibilidade a deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Camadas de solo avaliação geotécnica deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Conjuntos de dados geotécnicos multifator risco de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de ensaios de solo para modelagem de deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapeamento de profundidade do solo e risco de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Influência da vegetação na estabilidade de encostas Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil land use land cover landslide vulnerability",
+            "language": "en",
+            "priority": "medium",
+            "rank": 46,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Vegetation density type mass movement Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 47,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Human modification roads buildings landslide risk Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 48,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Environmental variables landslide susceptibility Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 49,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Climate change impacts land degradation landslides Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 50,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Integrated environmental datasets landslide assessment Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 51,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Uso e cobertura da terra vulnerabilidade a deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 52,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Densidade tipo de vegetação movimentos de massa Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 53,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Modificação humana estradas edifícios risco de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 54,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Variáveis ambientais suscetibilidade a deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 55,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Impactos climáticos degradação do solo deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 56,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Conjuntos de dados ambientais integrados avaliação de deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 57,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Desmatamento e risco de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 58,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Urbanização e instabilidade de encostas Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 59,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de sensoriamento remoto para fatores ambientais deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 60,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil landslide susceptibility indices multi-criteria evaluation",
+            "language": "en",
+            "priority": "medium",
+            "rank": 61,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Historical landslide inventories probability occurrence Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 62,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Landslide susceptibility mapping GIS models Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 63,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Multi-factor landslide susceptibility assessment Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 64,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Probabilistic landslide hazard maps Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 65,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Integrated susceptibility models for landslide risk Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 66,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índices de suscetibilidade a deslizamentos avaliação multicritério Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 67,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventários históricos de deslizamentos probabilidade de ocorrência Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 68,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapeamento de suscetibilidade a deslizamentos modelos GIS Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 69,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Avaliação multifatorial de suscetibilidade a deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 70,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapas de perigo de deslizamento probabilísticos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 71,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Modelos de suscetibilidade integrados para risco de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 72,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Metodologias de mapeamento de suscetibilidade a deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 73,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de inventário de deslizamentos para modelagem Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 74,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Validação de mapas de suscetibilidade a deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 75,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil rainfall thresholds landslide initiation data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 76,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Earthquake ground acceleration landslide triggers Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 77,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Human activities mining construction landslide Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 78,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Multi-trigger landslide analysis Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 79,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Climate change induced landslide triggers Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 80,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Integrated triggering factor datasets landslide early warning Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 81,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Limiares de chuva para iniciação de deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 82,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Aceleração sísmica do solo gatilhos de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 83,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Atividades humanas mineração construção deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 84,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Análise de múltiplos gatilhos de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 85,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gatilhos de deslizamento induzidos por mudanças climáticas Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 86,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Conjuntos de dados de fatores desencadeadores integrados alerta precoce deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 87,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de sismicidade e deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 88,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Monitoramento de chuvas para prevenção de deslizamentos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 89,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Impacto da urbanização nos gatilhos de deslizamento Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 90,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

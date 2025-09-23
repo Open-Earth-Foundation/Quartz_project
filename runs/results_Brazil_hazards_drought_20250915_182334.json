@@ -1,0 +1,795 @@
+{
+    "research_mode": "country",
+    "target_country": "Brazil",
+    "target_country_locode": "BR",
+    "target_mode": "hazards",
+    "target_which": "drought",
+    "target_city": null,
+    "start_time": "2025-09-15T18:19:24.535123",
+    "end_time": "2025-09-15T18:23:34.329535",
+    "total_iterations": 1,
+    "final_structured_review_action": "not_set",
+    "final_confidence": null,
+    "structured_data_items_count": 0,
+    "structured_data": [],
+    "raw_review_action": "end",
+    "last_raw_review_details": {
+        "overall_assessment": "The provided document snippet is extremely short and only contains navigation links, offering no substantive content to assess its relevance for drought hazard datasets. The URL suggests a scientific publication, which could potentially contain relevant information, but the snippet itself is uninformative.",
+        "documents_to_extract": [],
+        "suggested_next_action": "end",
+        "action_reasoning": "The content snippet is too sparse to determine if the document contains any relevant drought hazard data. Without more content, it's impossible to justify extraction. Further research with this specific document is unlikely to yield results based on the current snippet."
+    },
+    "last_structured_review_details": null,
+    "decision_log": [
+        {
+            "action": "init",
+            "mode": "hazards",
+            "which": "drought",
+            "country": "Brazil",
+            "research_mode": "country",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "CCRA plan for hazards/drought (Brazil) with 90 structured queries.",
+            "target_country_locode": "BR",
+            "primary_languages": [
+                "en",
+                "pt"
+            ],
+            "parsed_keywords_count": 90,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Brazil gridded precipitation anomalies data",
+                "Rainfall percentiles Brazil drought dataset",
+                "Dry spell duration frequency Brazil climate data",
+                "Brazil precipitation deciles geospatial data",
+                "Gridded rainfall deficit data Brazil",
+                "Brazil historical precipitation drought data",
+                "Dados de anomalias de precipitação Brasil",
+                "Percentis de chuva seca Brasil",
+                "Duração de períodos secos frequência Brasil",
+                "Dados geoespaciais de deficiência de chuva Brasil"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 1,
+            "new_data_items": 1
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-09-15T18:23:34.305321",
+            "action": "raw_review_completed",
+            "suggested_action": "end",
+            "documents_selected_for_extraction_count": 0,
+            "summary": "The provided document snippet is extremely short and only contains navigation links, offering no substantive content to assess its relevance for drought hazard datasets. The URL suggests a scientific publication, which could potentially contain relevant information, but the snippet itself is uninformative.",
+            "reasoning": "The content snippet is too sparse to determine if the document contains any relevant drought hazard data. Without more content, it's impossible to justify extraction. Further research with this specific document is unlikely to yield results based on the current snippet."
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "Brazil gridded precipitation anomalies data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Rainfall percentiles Brazil drought dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Dry spell duration frequency Brazil climate data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil precipitation deciles geospatial data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Gridded rainfall deficit data Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Brazil historical precipitation drought data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Dados de anomalias de precipitação Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Percentis de chuva seca Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Duração de períodos secos frequência Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Dados geoespaciais de deficiência de chuva Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Precipitação decil Brasil seca",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados históricos de seca por precipitação Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapeamento de déficit hídrico Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Monitoramento de seca pluviométrica Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de escassez de chuva Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil soil moisture content gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Root zone soil moisture Brazil dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil soil moisture anomalies geospatial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Agricultural drought indicators Brazil data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gridded soil moisture Brazil climate change",
+            "language": "en",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil remote sensing soil moisture data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de umidade do solo Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Umidade do solo na zona radicular Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Anomalias de umidade do solo Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Indicadores de seca agrícola Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapeamento de umidade do solo Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de seca do solo Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Monitoramento de umidade do solo por satélite Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Conteúdo de água no solo Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de seca edáfica Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil actual evapotranspiration gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Potential evapotranspiration Brazil dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil evaporative demand geospatial data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Aridity indices Brazil climate data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gridded AET PET Brazil drought",
+            "language": "en",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil evapotranspiration anomalies data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de evapotranspiração real Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Evapotranspiração potencial Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Demanda evaporativa Brasil dados",
+            "language": "en",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índices de aridez Brasil geoespacial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapeamento de evapotranspiração Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de seca por evapotranspiração Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Balanço hídrico evapotranspirativo Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Anomalias de evapotranspiração Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de PET AET Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil SPI SPEI drought index data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 46,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Palmer Drought Severity Index Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 47,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Crop Moisture Index Brazil geospatial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 48,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gridded drought indices Brazil climate",
+            "language": "en",
+            "priority": "medium",
+            "rank": 49,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil drought monitoring SPI SPEI",
+            "language": "en",
+            "priority": "medium",
+            "rank": 50,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Historical drought indices Brazil data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 51,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índice de seca SPI SPEI Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 52,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índice de Severidade de Seca de Palmer Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 53,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índice de Umidade da Cultura CMI Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 54,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de índices de seca Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 55,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapeamento de índices de seca Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 56,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Monitoramento de seca por índices Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 57,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados históricos de índices de seca Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 58,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Índices de seca agrícola Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 59,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Projeções de índices de seca Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 60,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil water balance components data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 61,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Groundwater levels Brazil geospatial",
+            "language": "en",
+            "priority": "medium",
+            "rank": 62,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil river discharge data drought",
+            "language": "en",
+            "priority": "medium",
+            "rank": 63,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Reservoir storage levels Brazil data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 64,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gridded water balance Brazil climate",
+            "language": "en",
+            "priority": "medium",
+            "rank": 65,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil hydrological drought data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 66,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de componentes do balanço hídrico Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 67,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Níveis de água subterrânea Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 68,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de vazão de rios Brasil seca",
+            "language": "en",
+            "priority": "medium",
+            "rank": 69,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Níveis de armazenamento de reservatórios Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 70,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Balanço hídrico geoespacial Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 71,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de seca hidrológica Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 72,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Monitoramento de recursos hídricos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 73,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Disponibilidade hídrica Brasil seca",
+            "language": "en",
+            "priority": "medium",
+            "rank": 74,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de estresse hídrico Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 75,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil dry day counts gridded data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 76,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consecutive dry days Brazil dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 77,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil precipitation concentration data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 78,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Drought duration intensity Brazil climate",
+            "language": "en",
+            "priority": "medium",
+            "rank": 79,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gridded meteorological drought Brazil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 80,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Brazil historical meteorological drought data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 81,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Contagem de dias secos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 82,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dias secos consecutivos Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 83,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Concentração de precipitação Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 84,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Duração e intensidade da seca Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 85,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de seca meteorológica Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 86,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Mapeamento de seca meteorológica Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 87,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Monitoramento de seca pluviométrica Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 88,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Dados de eventos extremos de seca Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 89,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Projeções de seca meteorológica Brasil",
+            "language": "en",
+            "priority": "medium",
+            "rank": 90,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}
