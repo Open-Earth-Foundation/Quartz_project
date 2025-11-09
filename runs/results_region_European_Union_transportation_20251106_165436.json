@@ -1,0 +1,269 @@
+{
+    "research_mode": "region",
+    "target_country": "European Union",
+    "target_country_locode": "EU",
+    "target_sector": "transportation",
+    "target_city": null,
+    "target_region": "European Union",
+    "start_time": "2025-11-06T16:48:57.209445",
+    "end_time": "2025-11-06T16:54:36.902402",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 6,
+    "structured_data": [
+        {
+            "name": "GAINS - Greenhouse Gas and Air Pollution Interactions and Synergies Model",
+            "method_of_access": "Web interface query through MIDAS (Policy Model Inventory) search platform at https://web.jrc.ec.europa.eu/policy-model-inventory/search/",
+            "sector": [
+                "stationary_energy",
+                "afolu"
+            ],
+            "subsector": [
+                "Energy Industries",
+                "Agriculture, Forestry, and Fishing Activities"
+            ],
+            "data_format": "Model-based database with multi-pollutant emission calculations",
+            "description": "The GAINS model, developed by the International Institute for Applied Systems Analysis (IIASA), is a comprehensive greenhouse gas and air pollution modeling tool that describes atmospheric pollution pathways from anthropogenic origins to environmental impacts. It integrates information on economic, energy, and agricultural development, emission control potentials and costs, atmospheric dispersion, and environmental sensitivities. The model assesses impacts on human health from fine particulates and ground-level ozone, ecosystem damage from acidification and eutrophication, and climate metrics including warming potential. It quantifies emissions of CO2, CH4, N2O, fluorinated gases (HFCs, PFCs, SF6), SO2, NOx, NH3, VOCs, PM2.5, PM10, black carbon, organic carbon, and mercury. The model has global coverage representing 180 countries/regions and spans 1990 to 2050 in five-year intervals with extension to 2070 for the European region. It contains over 1,000 emission source sectors with associated emission factors and reduction technologies.",
+            "granularity": "Global with specific geographic representation of 180 countries/regions; European region with extended temporal coverage to 2070",
+            "url": "https://web.jrc.ec.europa.eu/policy-model-inventory/search/",
+            "country": "European Union",
+            "country_locode": "EU"
+        },
+        {
+            "name": "European Alternative Fuels Observatory (EAFO)",
+            "method_of_access": "Web interface with interactive maps, country-specific reports, and data visualizations accessible through the portal at https://alternative-fuels-observatory.ec.europa.eu/",
+            "sector": "transportation",
+            "subsector": "On-road Transportation, Railways, Waterborne Navigation, Aviation, Off-road Transportation",
+            "data_format": "Interactive web interface, infographics, interactive maps, statistical reports",
+            "description": "The European Alternative Fuels Observatory (EAFO) is the European Commission's key reference portal providing up-to-date statistics on alternative fuels infrastructure and fleet data for road vehicles (private and commercial), rail, maritime shipping, inland waterways, and aviation. The platform offers country-level reports for all EU27 member states plus additional European countries, with interactive infographics and data visualizations. Updates are provided regularly, with recent notifications indicating October 2025 data updates and 2024 country reviews.",
+            "granularity": "National (all EU countries individually), EU27 summary view, and extended coverage including UK, Norway, Iceland, Switzerland, Turkey, and Liechtenstein",
+            "url": "https://alternative-fuels-observatory.ec.europa.eu/homepage",
+            "country": "European Union",
+            "country_locode": "EU"
+        },
+        {
+            "name": "EEA greenhouse gases — data viewer",
+            "method_of_access": "Web interface query / Interactive dashboard",
+            "sector": [
+                "stationary_energy",
+                "transportation",
+                "waste",
+                "ippu",
+                "afolu"
+            ],
+            "data_format": "Interactive web dashboard",
+            "description": "Data viewer on Total greenhouse gas emissions and removals of the European Union, based on data reported by EU Member States under the EU Governance Regulation. Published by the European Environment Agency (EEA) on 16 April 2025, with last modification on 16 May 2025. Provides comprehensive greenhouse gas inventory data for EU member states.",
+            "granularity": "National (EU Member States level)",
+            "url": "https://www.eea.europa.eu/en/analysis/maps-and-charts/greenhouse-gases-viewer-data-viewers",
+            "country": "European Union",
+            "country_locode": "EU"
+        },
+        {
+            "name": "Total GHG emissions and removals in the EU",
+            "method_of_access": "Web interface query through EEA Datahub; Metadata Factsheet (PDF) and Metadata catalogue available",
+            "sector": [
+                "stationary_energy",
+                "transportation",
+                "waste",
+                "ippu",
+                "afolu"
+            ],
+            "description": "Dataset containing total greenhouse gas emissions and removals of the European Union, based on data reported by EU Member States under the EU Governance Regulation. The data reflects GHG inventory data by year as reported under the United Nations Framework Convention for Climate Change (UNFCCC). Temporal coverage: 1985-2023. Published 16 May 2025, last modified 09 October 2025. Provider: European Environment Agency (EEA).",
+            "granularity": "National (EU-level aggregation of Member States data)",
+            "url": "https://www.eea.europa.eu/en/datahub/datahubitem-view/3b7fe76c-524a-439a-bfd2-a6e4046302a2",
+            "country": "European Union",
+            "country_locode": "EU"
+        },
+        {
+            "name": "Air emissions accounts by NACE Rev. 2 activity (env_ac_ainah_r2)",
+            "method_of_access": "Eurostat web interface with downloadable SDMX metadata file; national metadata accessible via country-specific URLs",
+            "sector": "stationary_energy",
+            "data_format": "SDMX (Statistical Data and Metadata eXchange)",
+            "description": "Air emissions accounts dataset compiled by Eurostat, the statistical office of the European Union, organized by NACE Rev. 2 economic activities. The dataset covers air emissions from various economic sectors and activities across EU member states and associated countries. Managed by the E2 unit (Environmental statistics and accounts; sustainable development) within Eurostat. National metadata are produced by individual countries and released through Eurostat. The dataset includes coverage for all 27 EU member states plus Iceland, Norway, Switzerland, Serbia, and Türkiye.",
+            "granularity": "National (by EU member state and associated countries)",
+            "url": "https://ec.europa.eu/eurostat/cache/metadata/en/env_ac_ainah_r2_sims.htm",
+            "country": "European Union",
+            "country_locode": "EU"
+        },
+        {
+            "name": "European Alternative Fuels Observatory (EAFO) 3.0",
+            "method_of_access": "Web interface portal at alternative-fuels-observatory.ec.europa.eu; migrated to Commission web domain (ec.europa.eu)",
+            "sector": "transportation",
+            "subsector": "On-road Transportation",
+            "data_format": "Web database with structured data on vehicles and infrastructure",
+            "description": "EAFO 3.0 is the European Commission's knowledge centre on alternative fuels in Europe, covering all EU Member States, EFTA-EEA Member States (Iceland, Liechtenstein, Norway, Switzerland), the United Kingdom, and Turkey. The observatory gathers information on infrastructure roll-out for alternative fuels, uptake of alternative fuels, and support measures. It also covers rail and aviation sectors. The project runs from May 2021 to December 2024 and supports monitoring of the Alternative Fuels Infrastructure Directive (2019/94/EU), the proposed Alternative Fuels Infrastructure Regulation, and the Clean Vehicles Directive. Data includes vehicles, infrastructure, public incentives, and legislation information.",
+            "granularity": "National (EU Member States and associated countries)",
+            "url": "https://www.polisnetwork.eu/project/european-alternative-fuels-observatory-eafo-3-0/",
+            "country": "European Union",
+            "country_locode": "EU"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "region": "European Union",
+            "sector": "transportation",
+            "research_mode": "region",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "Plan for European Union with 12 structured queries.",
+            "target_country_locode": "EU",
+            "primary_languages": [
+                "en",
+                "fr",
+                "de",
+                "es"
+            ],
+            "parsed_keywords_count": 12,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "EEA European GHG Inventory transportation emissions 2024",
+                "Eurostat env_air_emis NACE transport CO2 emissions dataset",
+                "EU ETS EUTL aviation maritime emissions verified 2023 2024",
+                "DG MOVE transport statistics yearbook modal split fuel consumption",
+                "European Alternative Fuels Observatory EV hydrogen uptake charging infrastructure",
+                "JRC COPERT TREMOVE transport emissions model EU baseline scenarios",
+                "AEE inventaire GES transports émissions UE 2024 rapport national",
+                "Eurostat Luftemissionen Verkehr NACE CO2 Datensatz Deutschland Frankreich",
+                "Observatorio Combustibles Alternativos UE vehículos eléctricos infraestructura carga",
+                "Effort Sharing Regulation ESR 2023/857 transport emissions targets Member State progress reports"
+            ],
+            "urls_collected": 92,
+            "relevant_urls_for_scraping": 10,
+            "new_data_items": 10
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-11-06T16:53:08.134263",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 6,
+            "summary": "Reviewed 8 documents from official EU sources. This is an excellent batch with multiple highly promising resources for EU transportation sector GHGI data. The documents include direct links to Eurostat databases, EEA data viewers and inventories, EDGAR emissions database, and the European Alternative Fuels Observatory. All sources are authoritative (EC, Eurostat, EEA, JRC) and specifically relevant to greenhouse gas emissions and transportation. Several documents explicitly mention structured datasets, data browsers, and downloadable files covering emissions by sector, activity, and time series.",
+            "reasoning": "Identified six highly authoritative documents with direct access to structured GHGI data. Eurostat provides multiple datasets on emissions by economic activity (NACE classification) with data browsers and downloadable formats. EEA offers comprehensive GHG inventory data (1985-2023) and interactive viewers. EDGAR provides independent global emissions database with sectoral detail and gridded data. EAFO specifically covers transportation sector alternative fuels, vehicles, and infrastructure data. All sources are official EU institutions with established data dissemination mechanisms. The remaining two documents (JRC Policy Model Inventory and Eionet) are less directly relevant for structured data extraction but could be secondary resources if needed."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 10,
+            "new_data_items_extracted": 6,
+            "total_structured_items": 6
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-11-06T16:54:36.836514",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted structured data represents a comprehensive collection of official EU-level GHGI sources from highly credible institutions (EEA, Eurostat, European Commission). Six data sources have been identified covering all major GHGI sectors (energy, transportation, waste, IPPU, AFOLU). The sources include both aggregate EU-level data and national-level breakdowns for all EU27 member states. Data appears current (2024-2025 updates noted) and methodologically sound. However, the extraction focuses on data portals and tools rather than specific quantitative emission values or detailed activity data tables. The sources are well-positioned to contain the needed GHGI data, but direct access to specific datasets and their detailed contents requires verification.",
+            "reasoning": "The extracted structured data identifies official, credible, and comprehensive GHGI sources for the European Union that meet all acceptance criteria: (1) Official national/EU-level GHGI activity data from government statistical offices (EEA, Eurostat); (2) Strong indication these websites contain desired data - they are explicitly designed as GHGI data repositories; (3) Coverage of key emission categories across all sectors; (4) Data is current and methodologically sound. The sources are well-established reference points for EU GHGI research. While deeper investigation of specific datasets may be needed for detailed analysis, the foundational data infrastructure is confirmed and credible. No gaps in sector coverage or source credibility warrant rejection or extended deep-dive investigation at this stage. The search plan has successfully identified the primary EU GHGI data sources.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "EEA European GHG Inventory transportation emissions 2024",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "Eurostat env_air_emis NACE transport CO2 emissions dataset",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "dataset_catalog",
+            "status": "searched"
+        },
+        {
+            "query": "EU ETS EUTL aviation maritime emissions verified 2023 2024",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "DG MOVE transport statistics yearbook modal split fuel consumption",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "European Alternative Fuels Observatory EV hydrogen uptake charging infrastructure",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "JRC COPERT TREMOVE transport emissions model EU baseline scenarios",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "AEE inventaire GES transports émissions UE 2024 rapport national",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "Eurostat Luftemissionen Verkehr NACE CO2 Datensatz Deutschland Frankreich",
+            "language": "de",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "dataset_catalog",
+            "status": "searched"
+        },
+        {
+            "query": "Observatorio Combustibles Alternativos UE vehículos eléctricos infraestructura carga",
+            "language": "es",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "Effort Sharing Regulation ESR 2023/857 transport emissions targets Member State progress reports",
+            "language": "en",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "legislation_tracker",
+            "status": "searched"
+        },
+        {
+            "query": "FuelEU Maritime Regulation 2023/1805 fuel consumption reporting maritime emissions data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "legislation_tracker",
+            "status": "pending"
+        },
+        {
+            "query": "Eurostat tran_* transport activity vehicle registrations fuel sales modal statistics annual",
+            "language": "en",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "dataset_catalog",
+            "status": "pending"
+        }
+    ]
+}

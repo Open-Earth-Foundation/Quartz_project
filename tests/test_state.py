@@ -102,6 +102,15 @@ def test_utility_function():
     assert state.research_mode == "country"
     assert state.target_city is None
 
+def test_utility_function_region_mode():
+    """Test the create_initial_state utility function for region mode."""
+    state = create_initial_state(region_name="European Union", sector_name="stationary_energy")
+    assert state.target_region == "European Union"
+    assert state.target_country == "European Union"
+    assert state.target_sector == "stationary_energy"
+    assert state.prompt == "Region: European Union, Sector: stationary_energy"
+    assert state.research_mode == "region"
+
 def test_utility_function_city_mode():
     """Test the create_initial_state utility function for city mode."""
     state = create_initial_state(city_name="TestCity")
@@ -119,6 +128,16 @@ def test_utility_function_validation():
         assert False, "Should have raised ValueError for mixed modes"
     except ValueError as e:
         assert "Cannot specify both city_name and country_name" in str(e)
+
+    # Test city + region rejection
+    with pytest.raises(ValueError) as excinfo_city_region:
+        create_initial_state(city_name="TestCity", region_name="European Union", sector_name="TestSector")
+    assert "city_name and region_name" in str(excinfo_city_region.value)
+
+    # Test country + region rejection
+    with pytest.raises(ValueError) as excinfo_country_region:
+        create_initial_state(country_name="TestCountry", region_name="European Union", sector_name="TestSector")
+    assert "country_name and region_name" in str(excinfo_country_region.value)
     
     # Test missing parameters rejection
     try:
@@ -126,7 +145,11 @@ def test_utility_function_validation():
         assert False, "Should have raised ValueError for missing parameters"
     except ValueError as e:
         assert "Must specify either city_name OR both country_name and sector_name" in str(e)
-    
+
+    with pytest.raises(ValueError) as excinfo_region:
+        create_initial_state(region_name="European Union")
+    assert "Region mode requires sector_name" in str(excinfo_region.value)
+
     # Test incomplete country mode
     try:
         create_initial_state(country_name="TestCountry")

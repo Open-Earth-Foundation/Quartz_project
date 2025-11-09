@@ -100,6 +100,31 @@ async def planner_node(state: AgentState) -> AgentState:
         placeholder = "{city_name_from_AgentState}"
         target_name = state.target_city
         
+    elif research_mode == "region":
+        region_name = state.target_region or state.metadata.get("region_name") or state.target_country
+        if not region_name:
+            logger.error("Region mode specified but no region name is available. Aborting planner.")
+            current_state_dict["decision_log"].append({"agent": "Planner", "action": "error_early_exit", "message": "Region mode specified but region name missing."})
+            return AgentState(**current_state_dict)
+
+        sector = state.target_sector.lower() if state.target_sector else ""
+        if not sector:
+            logger.error("Target sector is not specified for region mode. Aborting planner.")
+            current_state_dict["decision_log"].append({"agent": "Planner", "action": "error_early_exit", "message": "Target sector not specified for region mode."})
+            return AgentState(**current_state_dict)
+
+        region_key = region_name.strip().lower()
+        if region_key in ("european union", "eu"):
+            base_prompt_path = PROMPT_DIR / "agent1_planner_region_eu.md"
+            placeholder = "{region_name_from_AgentState}"
+            logger.info(f"Using EU region planner prompt: {base_prompt_path}")
+        else:
+            base_prompt_path = PROMPT_DIR / "agent1_planner.md"
+            placeholder = "{country_name_from_AgentState}"
+            logger.warning(f"No region-specific prompt found for '{region_name}'. Falling back to default country prompt.")
+
+        target_name = region_name
+
     else:
         # Country mode - existing logic
         sector = state.target_sector.lower() if state.target_sector else ""
@@ -149,6 +174,17 @@ async def planner_node(state: AgentState) -> AgentState:
 
     # --- Prompt formatting and splitting (adapt if prompts change structure) --- #
     full_user_content = prompt_template.replace(placeholder, target_name)
+
+    # Replace optional placeholders if present
+    optional_replacements = {
+        "{sector_name_from_AgentState}": state.target_sector or "all sectors",
+        "{region_name_from_AgentState}": (state.target_region or state.metadata.get("region_name") or target_name) if research_mode == "region" else None,
+        "{country_name_from_AgentState}": state.target_country,
+        "{city_name_from_AgentState}": state.target_city,
+    }
+    for token, value in optional_replacements.items():
+        if token in full_user_content and value:
+            full_user_content = full_user_content.replace(token, value)
     
     # Log the complete combined prompt for debugging
     logger.info(f"=== COMBINED PROMPT DEBUG ===")
@@ -187,6 +223,8 @@ async def planner_node(state: AgentState) -> AgentState:
         client = OpenAI(base_url=config.OPENROUTER_BASE_URL, api_key=config.OPENROUTER_API_KEY)
         if research_mode == "city":
             logger.info(f"Sending initial planning prompt to {config.THINKING_MODEL} for city: {state.target_city}")
+        elif research_mode == "region":
+            logger.info(f"Sending initial planning prompt to {config.THINKING_MODEL} for region: {target_name}")
         else:
             logger.info(f"Sending initial planning prompt to {config.THINKING_MODEL} for country: {state.target_country}")
         logger.debug(f"Planner User Content Snippet for THINKING_MODEL: {user_content[:200]}...")
@@ -211,6 +249,9 @@ async def planner_node(state: AgentState) -> AgentState:
                 if research_mode == "city":
                     target_name_sanitized = re.sub(r'[^\w\-_]', '_', state.target_city or "UnknownCity")
                     filename = f"planner_output_raw_city_{target_name_sanitized}_{timestamp}.md"
+                elif research_mode == "region":
+                    target_name_sanitized = re.sub(r'[^\w\-_]', '_', target_name or "UnknownRegion")
+                    filename = f"planner_output_raw_region_{target_name_sanitized}_{timestamp}.md"
                 else:
                     target_name_sanitized = re.sub(r'[^\w\-_]', '_', state.target_country or "UnknownCountry")
                     filename = f"planner_output_raw_{target_name_sanitized}_{timestamp}.md"
@@ -228,6 +269,10 @@ async def planner_node(state: AgentState) -> AgentState:
             if research_mode == "city":
                 current_search_plan_fallback.append(
                     {"query": f"{state.target_city} greenhouse gas emissions data", "language": "en", "priority": "high", "status": "pending", "target_type": "fallback_generic_city"}
+                )
+            elif research_mode == "region":
+                current_search_plan_fallback.append(
+                    {"query": f"{target_name} greenhouse gas inventory data", "language": "en", "priority": "high", "status": "pending", "target_type": "fallback_generic_region"}
                 )
             else:
                 current_search_plan_fallback.append(

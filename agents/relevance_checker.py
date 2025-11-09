@@ -13,6 +13,18 @@ logger = logging.getLogger(__name__)
 
 RELEVANCE_CHECK_PROMPT_PATH = Path(__file__).parent / "prompts" / "relevance_check_prompt.md"
 
+def _strip_code_fences(text: str) -> str:
+    """Remove surrounding Markdown code fences (``` or ```json) if present."""
+    stripped = text.strip()
+    if stripped.startswith("```"):
+        stripped = stripped[3:]
+        if stripped.lower().startswith("json"):
+            stripped = stripped[4:]
+        stripped = stripped.lstrip()
+        if stripped.endswith("```"):
+            stripped = stripped[:-3].rstrip()
+    return stripped
+
 class RelevanceCheckError(Exception):
     """Custom exception for relevance check failures."""
     pass
@@ -85,8 +97,8 @@ async def check_url_relevance_async(search_result: Dict[str, Any], target_countr
             return RelevanceCheckOutput(is_relevant=False, reason="LLM returned empty content for relevance check")
 
         logger.debug(f"Relevance check for {url}: Raw LLM response: '{raw_content}'")
-        
-        parsed_output = RelevanceCheckOutput.model_validate_json(raw_content)
+        cleaned_content = _strip_code_fences(raw_content)
+        parsed_output = RelevanceCheckOutput.model_validate_json(cleaned_content)
         
         logger.info(f"Relevance check for {url}: Relevant: {parsed_output.is_relevant}, Reason: '{parsed_output.reason}'")
         return parsed_output

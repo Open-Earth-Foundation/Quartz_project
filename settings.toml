@@ -13,11 +13,13 @@ max_searches_per_run = 5
 
 [models]
 # Model used for reasoning, planning, and complex tasks
-thinking_model = "deepseek/deepseek-r1-0528:free"
+thinking_model = "anthropic/claude-haiku-4.5"
 # Model used for regular tasks
-normal_model = "deepseek/deepseek-r1-0528:free"
-# Model used for relevance check
-relevance_check_model = "google/gemini-2.5-flash-preview"
+normal_model = "anthropic/claude-haiku-4.5"
+# Model used for relevance check / structured output
+structured_model = "anthropic/claude-haiku-4.5"
+structured_model_for_review = "anthropic/claude-haiku-4.5"
+relevance_check_model = "anthropic/claude-haiku-4.5"
 # Default temperature for model calls
 default_temperature = 0.2
 # Maximum tokens to generate in responses

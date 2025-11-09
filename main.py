@@ -305,7 +305,7 @@ logger.info("GHGI Agent graph compiled successfully.")
 def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optional[str]:
     """
     Save agent results to a JSON file if the final structured review action is 'accept'.
-    Supports both city and country modes.
+    Supports city, country, and region modes.
     """
     final_structured_review_action = state.metadata.get("next_step_after_structured_review", "not_set")
 
@@ -323,6 +323,11 @@ def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optiona
             # City mode filename
             city_name_sanitized = re.sub(r'[^\w\-_\.]', '_', state.target_city or "UnknownCity")
             filename = f"results_city_{city_name_sanitized}_{timestamp}.json"
+        elif research_mode == "region":
+            region_name = state.target_region or state.metadata.get("region_name") or state.target_country or "UnknownRegion"
+            region_name_sanitized = re.sub(r'[^\w\-_\.]', '_', region_name)
+            sector_sanitized = re.sub(r'[^\w\-_\.]', '_', state.target_sector or "UnknownSector")
+            filename = f"results_region_{region_name_sanitized}_{sector_sanitized}_{timestamp}.json"
         else:
             # Country mode filename
             country_name_sanitized = re.sub(r'[^\w\-_\.]', '_', state.target_country or "UnknownCountry")
@@ -338,6 +343,7 @@ def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optiona
             "target_country_locode": state.target_country_locode,
             "target_sector": state.target_sector,
             "target_city": state.target_city,
+            "target_region": state.target_region or state.metadata.get("region_name"),
             "start_time": state.start_time,
             "end_time": datetime.now().isoformat(),
             "total_iterations": state.current_iteration,
@@ -358,9 +364,9 @@ def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optiona
         return None
 
 # --- Main Execution Logic ---
-async def run_agent(country_name: Optional[str] = None, sector_name: Optional[str] = None, city_name: Optional[str] = None, english_only_mode: bool = False, cli_config_overrides: Optional[Dict[str, Any]] = None) -> AgentState:
+async def run_agent(country_name: Optional[str] = None, sector_name: Optional[str] = None, city_name: Optional[str] = None, region_name: Optional[str] = None, english_only_mode: bool = False, cli_config_overrides: Optional[Dict[str, Any]] = None) -> AgentState:
     """
-    Initializes and runs the agent for either country/sector or city research.
+    Initializes and runs the agent for city, region, or country research.
     Applies temporary config overrides if provided either directly or from CLI.
     """
     initial_config_values = {}
@@ -380,6 +386,9 @@ async def run_agent(country_name: Optional[str] = None, sector_name: Optional[st
             logger.info(f"Starting agent for city: {city_name}, sector: {sector_name}, English-only mode: {english_only_mode}")
         else:
             logger.info(f"Starting agent for city: {city_name}, English-only mode: {english_only_mode}")
+    elif region_name:
+        initial_state = create_initial_state(region_name=region_name, sector_name=sector_name, english_only_mode=english_only_mode)
+        logger.info(f"Starting agent for region: {region_name}, Sector: {sector_name}, English-only mode: {english_only_mode}")
     else:
         initial_state = create_initial_state(country_name=country_name, sector_name=sector_name, english_only_mode=english_only_mode)
         logger.info(f"Starting agent for country: {country_name}, Sector: {sector_name}, English-only mode: {english_only_mode}")
@@ -458,10 +467,12 @@ async def run_agent(country_name: Optional[str] = None, sector_name: Optional[st
 async def main_async(args, cli_config_overrides: Optional[Dict[str, Any]] = None):
     """Asynchronous main function to run the agent and print summary."""
     # Determine which mode to run in
-    if hasattr(args, 'city') and args.city:
+    if getattr(args, 'city', None):
         # City mode (with optional sector)
         sector_name = getattr(args, 'sector', None)
         final_state = await run_agent(city_name=args.city, sector_name=sector_name, english_only_mode=args.english, cli_config_overrides=cli_config_overrides)
+    elif getattr(args, 'region', None):
+        final_state = await run_agent(region_name=args.region, sector_name=args.sector, english_only_mode=args.english, cli_config_overrides=cli_config_overrides)
     else:
         # Country mode (sector is required)
         final_state = await run_agent(country_name=args.country, sector_name=args.sector, english_only_mode=args.english, cli_config_overrides=cli_config_overrides)
@@ -476,6 +487,11 @@ async def main_async(args, cli_config_overrides: Optional[Dict[str, Any]] = None
             print(f"Research Mode:           City + Sector-based")
         else:
             print(f"Research Mode:           City-based (all sectors)")
+    elif research_mode == "region":
+        target_region = final_state.target_region or final_state.metadata.get("region_name") or final_state.target_country
+        print(f"Target Region:           {target_region}")
+        print(f"Target Sector:           {final_state.target_sector}")
+        print(f"Research Mode:           Region/Sector-based")
     else:
         print(f"Target Country:          {final_state.target_country}")
         print(f"Target Sector:           {final_state.target_sector}")
@@ -523,27 +539,18 @@ if __name__ == "__main__":
     
     # Primary mode selection
     parser.add_argument("--city", type=str, help="The target city name for research. Use quotes for multi-word names like 'San Francisco'. Can be combined with --sector for sector-specific city research.")
-    parser.add_argument("--country", type=str, help="The target country name for the research. Use quotes for multi-word names or separate words will be joined automatically. Cannot be used with --city.")
-    parser.add_argument("--sector", type=str, choices=['afolu', 'ippu', 'stationary_energy', 'transportation', 'waste'], help="The target GHGI sector. Can be used with either --city or --country.")
+    parser.add_argument("--country", type=str, help="The target country name for the research. Use quotes for multi-word names or separate words will be joined automatically. Cannot be used with --city or --region.")
+    parser.add_argument("--region", type=str, help="Target supranational region for research (currently only 'EU'). Requires --sector and cannot be combined with --city or --country.")
+    parser.add_argument("--sector", type=str, choices=['afolu', 'ippu', 'stationary_energy', 'transportation', 'waste'], help="The target GHGI sector. Required for --country and --region modes; optional for --city.")
     
     parser.add_argument("--english", action="store_true", help="Use English-only search mode. This will focus exclusively on English-language sources and documentation.")
     parser.add_argument("--log-level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="Set the logging level.")
     parser.add_argument("--log-dir", type=str, default="logs", help="Directory to store log files.")
     parser.add_argument("--max-iterations", type=int, help="Override the maximum number of iterations for the agent run.")
     
-    # Parse known args first to handle multi-word city/country names
+    # Parse known args first to handle multi-word geographic names
     known_args, unknown_args = parser.parse_known_args()
-    
-    # Validate argument combinations
-    if not known_args.city and not known_args.country:
-        parser.error("Either --city or --country must be provided.")
-    
-    if known_args.city and known_args.country:
-        parser.error("Cannot use both --city and --country. Choose either city mode or country mode.")
-    
-    if known_args.country and not known_args.sector:
-        parser.error("--country requires --sector to be specified.")
-    
+
     # If there are unknown args, they're likely part of a multi-word name
     if unknown_args:
         logger_temp = logging.getLogger(__name__)
@@ -557,6 +564,33 @@ if __name__ == "__main__":
             country_parts = [known_args.country] + unknown_args
             known_args.country = ' '.join(country_parts)
             logger_temp.info(f"Detected multi-word country name: '{known_args.country}' (joined from {country_parts})")
+        elif getattr(known_args, "region", None):
+            region_parts = [known_args.region] + unknown_args
+            known_args.region = ' '.join(region_parts)
+            logger_temp.info(f"Detected multi-word region name: '{known_args.region}' (joined from {region_parts})")
+
+    # Validate argument combinations
+    has_city = bool(known_args.city)
+    has_country = bool(known_args.country)
+    has_region = bool(getattr(known_args, "region", None))
+    
+    if not any([has_city, has_country, has_region]):
+        parser.error("Provide exactly one of --city, --country, or --region.")
+
+    if sum(1 for flag in [has_city, has_country, has_region] if flag) > 1:
+        parser.error("Cannot combine --city, --country, or --region. Choose a single geography mode.")
+
+    if has_country and not known_args.sector:
+        parser.error("--country requires --sector to be specified.")
+
+    if has_region:
+        if not known_args.sector:
+            parser.error("--region requires --sector to be specified.")
+        normalized_region = known_args.region.strip()
+        if normalized_region.lower() in ("eu", "european union"):
+            known_args.region = "European Union"
+        else:
+            parser.error("--region currently supports only 'EU' / 'European Union'.")
     
     args = known_args
 
@@ -569,6 +603,8 @@ if __name__ == "__main__":
             logger.info(f"Starting GHGI Agent for city: {args.city}, sector: {args.sector} with log level: {args.log_level}")
         else:
             logger.info(f"Starting GHGI Agent for city: {args.city} (all sectors) with log level: {args.log_level}")
+    elif args.region:
+        logger.info(f"Starting GHGI Agent for region: {args.region}, sector: {args.sector} with log level: {args.log_level}")
     else:
         logger.info(f"Starting GHGI Agent for country: {args.country}, sector: {args.sector} with log level: {args.log_level}")
     

@@ -1,0 +1,554 @@
+{
+    "research_mode": "country",
+    "target_country": "France",
+    "target_country_locode": "FR",
+    "target_sector": "afolu",
+    "target_city": null,
+    "target_region": null,
+    "start_time": "2025-11-06T23:54:04.193551",
+    "end_time": "2025-11-07T00:00:24.224250",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 4,
+    "structured_data": [
+        {
+            "name": "The consolidated European synthesis of CH4 and N2O emissions for the European Union and United Kingdom: 1990–2017",
+            "method_of_access": "Published article with referenced datasets visualized at https://doi.org/10.5281/zenodo.4590875",
+            "sector": [
+                "afolu",
+                "stationary_energy"
+            ],
+            "data_format": "Review article with integrated datasets (bottom-up and top-down approaches)",
+            "description": "A consolidated synthesis of CH4 and N2O emissions for the European Union and United Kingdom covering the period 1990–2017. The study integrates recent emission inventory data, ecosystem process-based model results, and inverse modeling estimates. It compares bottom-up approaches (EDGAR v5.0 and GAINS) with top-down atmospheric inversion models and European national greenhouse gas inventories (NGHGIs) reported to UNFCCC. The dataset includes anthropogenic emissions estimates and natural emissions from peatlands, rivers, lakes, and geological sources. Published in Earth System Science Data (ESSD) on 28 May 2021 with DOI: 10.5194/essd-13-2307-2021.",
+            "granularity": "European Union and United Kingdom (EU27 + UK) at national and regional scales",
+            "url": "https://essd.copernicus.org/articles/13/2307/2021/",
+            "country": "France",
+            "country_locode": "FR"
+        },
+        {
+            "name": "The consolidated European synthesis of CH4 and N2O emissions for the European Union and United Kingdom: 1990–2019",
+            "method_of_access": "Published article with associated assets available through Copernicus Earth System Science Data journal website; DOI: 10.5194/essd-15-1197-2023",
+            "sector": [
+                "afolu",
+                "stationary_energy",
+                "waste"
+            ],
+            "data_format": "Data description paper with integrated datasets (bottom-up and top-down approaches)",
+            "description": "A consolidated synthesis of CH4 and N2O emissions for the European Union and United Kingdom (EU27 + UK) covering 1990–2019, integrating bottom-up and top-down approaches. The dataset combines updated emission inventory data, process-based model results, data-driven sector models, and inverse modeling estimates. It compares these with European national greenhouse gas inventories (NGHGIs) reported under the UNFCCC. The study includes uncertainties as reported by EU member states and analyzes anthropogenic and natural emissions sources including peatlands, mineral soils, rivers, lakes, reservoirs, geological sources, and biomass burning. Published March 21, 2023 by Ana Maria Roxana Petrescu et al.",
+            "granularity": "National and supranational (European Union and United Kingdom level); includes member state data",
+            "url": "https://essd.copernicus.org/articles/15/1197/2023/",
+            "country": "France",
+            "country_locode": "FR"
+        },
+        {
+            "name": "L'inventaire national des émissions de gaz à effet de serre",
+            "method_of_access": "Web interface with downloadable report and raw data files; link provided to 2024 edition report and CCNUCC data transmission",
+            "sector": "afolu",
+            "subsector": "Land within the city boundary (V.2) - specifically forestry and land use, land-use change and forestry (UTCATF)",
+            "data_format": "PDF report with embedded data; raw data files transmitted to CCNUCC",
+            "description": "France's national greenhouse gas emissions and absorptions inventory, prepared annually by CITEPA under the UNFCCC framework. The inventory covers emissions and absorptions related to forests and wood product use, tracked within the UTCATF (Utilisation de Terres, Changement d'Affectation de Terres et Foresterie) sector. Data covers the period from 1990 to the latest inventoried year (2022 in the 2024 edition published spring 2024). Updated annually with recalculations of all historical data for methodological consistency. Data sources include IGN (Institut Géographique National) for biological production, mortality, harvesting, and storms; Ministry of Agriculture for wood harvest; and Ministry of Energy for biomass consumption. The inventory reports carbon sequestration and emissions from forest biomass, soils, and wood products.",
+            "granularity": "National (France)",
+            "url": "https://observatoire.foret.gouv.fr/themes/l-inventaire-national-des-emissions-de-gaz-a-effet-de-serre",
+            "country": "France",
+            "country_locode": "FR"
+        },
+        {
+            "name": "Overview of Animal Manure Management for Beef, Pig, and Poultry Farms in France",
+            "method_of_access": "Downloadable PDF from ResearchGate publication page",
+            "sector": "afolu",
+            "subsector": "Emissions from livestock",
+            "data_format": "PDF research article with embedded tables and figures",
+            "description": "A peer-reviewed research article published in Frontiers in Sustainable Food Systems (July 2018) by Laurence Loyon that provides a comprehensive overview of animal manure management practices in France for beef cattle, pig, and poultry production. The study synthesizes data from the 2010 Agricultural Census and 2008 livestock farm surveys to document manure production volumes (approximately 120 million tons annually), storage methods, treatment practices, and application techniques. The article covers manure composition (60.6% solid manure, 38.8% slurry, and poultry droppings), storage capacity variations, coverage rates for different manure types, and nitrogen application methods across different livestock sectors in France.",
+            "granularity": "National (France) with regional distribution data",
+            "url": "https://www.researchgate.net/publication/326299245_Overview_of_Animal_Manure_Management_for_Beef_Pig_and_Poultry_Farms_in_France",
+            "country": "France",
+            "country_locode": "FR"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "country": "France",
+            "sector": "afolu",
+            "research_mode": "country",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "Plan for France with 45 structured queries.",
+            "target_country_locode": "FR",
+            "primary_languages": [
+                "en",
+                "fr"
+            ],
+            "parsed_keywords_count": 45,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "France lime application agricultural emissions regional data",
+                "Urea fertilizer use by département GHG inventory",
+                "Soil amendment N₂O emissions sub-national statistics France",
+                "Liming rates Occitanie Nouvelle-Aquitaine Bourgogne-Franche-Comté",
+                "Agricultural lime CO₂ emissions by region France",
+                "Synthetic fertilizer activity data CH₄ N₂O France districts",
+                "Émissions de chaux agriculture France données régionales",
+                "Application d'urée par département inventaire GES France",
+                "Émissions N₂O amendements sols Occitanie Nouvelle-Aquitaine",
+                "Taux de chaulage par région France statistiques"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 3,
+            "new_data_items": 3
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-11-06T23:55:02.630597",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 2,
+            "summary": "Reviewed 3 documents. Two are peer-reviewed scientific synthesis papers from Copernicus (ESSD) on consolidated European CH4 and N2O emissions covering EU27+UK for 1990-2017 and 1990-2019 respectively. These are high-quality data synthesis papers but focus on EU-wide aggregates rather than France-specific AFOLU data. The third document is from the French Forest Observatory (Observatoire des forêts françaises) and directly addresses France's national GHG inventory reporting, specifically the UTCATF sector (land use, land-use change, and forestry), which is core to AFOLU. This French source is highly relevant and appears to link to detailed methodology and data sources.",
+            "reasoning": "The French Forest Observatory page is highly promising as it directly addresses France's national GHG inventory with specific focus on the UTCATF sector (AFOLU equivalent), mentions CITEPA as the responsible agency, and references data sources (IGN, ministry data). The 2023 Copernicus synthesis paper (updated through 2019) provides EU-level context and may contain France-specific breakdowns or methodological insights relevant to AFOLU. Both documents warrant full extraction to identify structured data, tables, links to detailed reports, and contact points for further research."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 3,
+            "new_data_items_extracted": 3,
+            "total_structured_items": 3
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-11-06T23:55:37.674001",
+            "action": "structured_review_completed",
+            "suggested_action": "deep_dive",
+            "overall_confidence": "High",
+            "summary": "Three credible sources have been identified for France's GHGI data. Two are peer-reviewed European synthesis papers (ESSD) covering CH4 and N2O emissions at EU and member state levels for 1990-2017 and 1990-2019. The third is France's official national GHG inventory maintained by CITEPA under UNFCCC framework, specifically covering AFOLU/forestry sector. The sources are highly relevant to GHGI research for France, though the current extraction focuses heavily on AFOLU/forestry. The search plan appears to have targeted agricultural emissions (lime, urea, soil amendments) but the extracted data emphasizes synthesis reports and forestry inventory rather than detailed agricultural activity data by département or specific soil amendment practices.",
+            "reasoning": "A deep dive is warranted because: (1) The CITEPA national inventory website (observatoire.foret.gouv.fr) is confirmed as a credible government source but the extraction only describes the forestry subsector; the full inventory likely contains detailed AFOLU data including agricultural emissions that should be explored; (2) The ESSD papers reference 'member state data' and 'regional scales' but the extraction does not confirm whether France-specific agricultural emissions by region are available in the associated datasets (Zenodo 4590875); (3) The search plan targeted specific agricultural metrics (lime, urea, soil amendments) which may be available in the CITEPA inventory's detailed tables or supplementary data files not yet examined; (4) The method_of_access for CITEPA mentions 'downloadable report and raw data files' and 'CCNUCC data transmission' suggesting structured data exists but has not been fully extracted. A focused re-examination of these sources could yield the sub-national and practice-specific data originally sought.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        },
+        {
+            "agent": "DeepDiveProcessor",
+            "action": "crawl",
+            "target": "https://observatoire.foret.gouv.fr/themes/",
+            "justification": "The refinement requires complete AFOLU sector breakdown including agricultural emissions and regional data. Crawling the themes section will discover all inventory subsections (agriculture, UTCATF, regional data, downloads) within the observatory structure.",
+            "refinement_details_processed": "Re-extract from CITEPA inventory (https://observatoire.foret.gouv.fr/themes/l-inventaire-national-des-emissions-de-gaz-a-effet-de-serre) focusing on: (1) Complete AFOLU sector breakdown including agricultural emissions (not just forestry/UTCATF); (2) Availability of regional/département-level data for agricultural activities; (3) Specific emission sources: lime application, urea fertilizer use, soil N2O emissions; (4) Associated raw data files and supplementary tables. Additionally, examine the Zenodo dataset (https://doi.org/10.5281/zenodo.4590875) referenced in the ESSD 2021 paper to determine if France-specific agricultural emissions by region are available in downloadable format.",
+            "actions_this_cycle": 1,
+            "current_websites_considered": "observatoire.foret.gouv.fr, essd.copernicus.org",
+            "timestamp": "2025-11-06T23:55:45.034586"
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Engrais synthétiques émissions CO₂ CH₄ N₂O régions",
+                "Données d'activité amendements calcaires Bourgogne-Franche-Comté Auvergne",
+                "Émissions directes indirectes azote agriculture districts France",
+                "Inventaire GES sources agrégées sols cultivés régions",
+                "Quantités urée chaux appliquées par département France",
+                "Cattle herd population by French région GHG emissions",
+                "Sheep goat livestock numbers Occitanie Nouvelle-Aquitaine Brittany",
+                "Enteric fermentation CH₄ emissions livestock France sub-national",
+                "Animal manure management N₂O CO₂ by département",
+                "Livestock census data Normandy Pays de la Loire emissions"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 1,
+            "new_data_items": 1
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-11-07T00:00:03.047389",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 4,
+            "summary": "Reviewed 4 documents targeting France's AFOLU sector. Two Copernicus ESSD articles provide consolidated European GHG synthesis data (CH4 and N2O) covering EU27+UK including France, with peer-reviewed methodologies and datasets. One French government source (Observatoire des forêts) directly addresses France's national GHG inventory with focus on UTCATF (land use, land-use change, and forestry) sector—highly relevant to AFOLU. One ResearchGate article covers animal manure management in France with quantitative data on livestock production and manure handling practices, directly relevant to the agriculture component of AFOLU. All four documents show strong potential for structured data extraction.",
+            "reasoning": "All four documents are highly promising for AFOLU data extraction. The Copernicus articles (2021 and 2023) provide peer-reviewed consolidated European GHG synthesis with France-specific data on CH4 and N2O emissions across the period 1990–2019, including comparisons with national inventories. The French government observatory source is an official national inventory reporting document with detailed methodology for UTCATF sector calculations and carbon flux data. The ResearchGate article provides quantitative activity data on livestock manure management practices in France with regional distributions and emission-relevant handling methods. Together, these sources offer both top-down and bottom-up approaches, official inventory data, and sector-specific activity data essential for comprehensive AFOLU assessment."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 4,
+            "new_data_items_extracted": 1,
+            "total_structured_items": 4
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-11-07T00:00:24.206749",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted structured data includes four highly relevant sources for France's GHGI, with strong emphasis on AFOLU sector emissions. Two European synthesis papers (ESSD 2021 and 2023) provide consolidated CH4 and N2O emissions data for France within EU context. Most critically, the official French national inventory (L'inventaire national des émissions de gaz à effet de serre) from CITEPA is present, which is the authoritative government source for France's GHGI reporting to UNFCCC. Additionally, a peer-reviewed study on animal manure management provides sector-specific activity data. The data collectively covers key AFOLU emission categories including forestry, livestock, and soil amendments—directly aligned with the search plan queries on lime application, urea fertilizer, and soil amendment N2O emissions.",
+            "reasoning": "This dataset meets all ACCEPT criteria: (1) Official national GHGI activity data is present via CITEPA's national inventory, which is France's authoritative UNFCCC submission; (2) Government statistical office data is available (IGN, Ministry of Agriculture); (3) Key emission categories for AFOLU sector are covered (forestry, livestock, soil amendments); (4) Sources are highly credible (peer-reviewed journals, official government inventory); (5) National-level granularity is appropriate and sufficient for GHGI purposes. The search plan has been adequately addressed with authoritative sources. No further deep dives are warranted given the presence of the official national inventory and supporting peer-reviewed data.",
+            "final_decision_mode": true,
+            "consecutive_deep_dive_count": 1
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "France lime application agricultural emissions regional data",
+            "language": "en",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Urea fertilizer use by département GHG inventory",
+            "language": "en",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Soil amendment N₂O emissions sub-national statistics France",
+            "language": "en",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Liming rates Occitanie Nouvelle-Aquitaine Bourgogne-Franche-Comté",
+            "language": "en",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Agricultural lime CO₂ emissions by region France",
+            "language": "en",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Synthetic fertilizer activity data CH₄ N₂O France districts",
+            "language": "en",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Émissions de chaux agriculture France données régionales",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Application d'urée par département inventaire GES France",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Émissions N₂O amendements sols Occitanie Nouvelle-Aquitaine",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Taux de chaulage par région France statistiques",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Engrais synthétiques émissions CO₂ CH₄ N₂O régions",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Données d'activité amendements calcaires Bourgogne-Franche-Comté Auvergne",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Émissions directes indirectes azote agriculture districts France",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Inventaire GES sources agrégées sols cultivés régions",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Quantités urée chaux appliquées par département France",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Cattle herd population by French région GHG emissions",
+            "language": "en",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Sheep goat livestock numbers Occitanie Nouvelle-Aquitaine Brittany",
+            "language": "en",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Enteric fermentation CH₄ emissions livestock France sub-national",
+            "language": "en",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Animal manure management N₂O CO₂ by département",
+            "language": "en",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Livestock census data Normandy Pays de la Loire emissions",
+            "language": "en",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Bovine population statistics regional France methane inventory",
+            "language": "en",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Cheptel bovin par région France émissions GES",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Population ovine caprine Occitanie Nouvelle-Aquitaine Bretagne",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Fermentation entérique CH₄ bétail données régionales France",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Gestion fumier lisier N₂O CO₂ par département",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Effectifs animaux Normandie Pays de la Loire inventaire",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Statistiques cheptel bovin régions France méthane",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Émissions élevage par région Bourgogne-Franche-Comté Auvergne",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Données activité bétail districts France inventaire GES",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Population livestock Hauts-de-France Grand Est émissions",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Land-use change cropland grassland France regional emissions",
+            "language": "en",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Above-ground biomass stock by département France carbon",
+            "language": "en",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Forest area conversion statistics Occitanie Nouvelle-Aquitaine sub-national",
+            "language": "en",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Wetland settlement land-use transitions France GHG inventory",
+            "language": "en",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Biomass carbon stock regions Normandy Brittany Auvergne",
+            "language": "en",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Annual land-use conversion rates French districts CO₂ emissions",
+            "language": "en",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Changement d'affectation des terres cultures prairies France régions",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Biomasse aérienne stock carbone par département France",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Conversion forêts terres agricoles Occitanie Nouvelle-Aquitaine",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Zones humides zones urbanisées transitions terres régions",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Stock carbone biomasse Normandie Bretagne Auvergne",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Taux conversion annuelle terres districts France inventaire",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Émissions CO₂ changements affectation sols par région",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Données utilisation terres Bourgogne-Franche-Comté Hauts-de-France",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Statistiques occupation sols biomasse carbone régions France",
+            "language": "fr",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

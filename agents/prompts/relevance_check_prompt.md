@@ -16,8 +16,12 @@ etc.) or official government statistics that can be converted into emissions
   balance*, *production data*, *transport statistics*, *agricultural output*,
   or similar.  
 • The link is a research paper, technical report, or statistical yearbook that
-  promises tables or annexes of numerical activity data matching both the
-  sector and the country.  
+  promises tables or annexes of numerical activity data matching the sector
+  and explicitly includes {target_country} (multi-country datasets are acceptable
+  if {target_country} is covered or can be filtered out).  
+• The source covers multiple countries but clearly states that {target_country}
+  (or the specified city/region) is among the available breakdowns or can be
+  selected.  
 • The page belongs to an official greenhouse-gas inventory submission
   (e.g. UNFCCC CRF tables) where activity data are included. Even if not visible in the snippet
 * We have some emissions data more granular then for the whole country
@@ -31,7 +35,9 @@ etc.) or official government statistics that can be converted into emissions
   overview with no indication of downloadable data tables.  
 • The content focuses solely on final GHG totals, emission factors, or policy
   commentary without the underlying sector-specific drivers.  
-• The country, sector, or data type does **not** match the current task.  
+• The sector or data type does **not** match the current task, or the snippet
+  makes it clear that {target_country} (or the specified city/region) is **not**
+  included anywhere in the dataset.  
 
 ### Output instructions
 Return **only** the structured JSON object defined  for this task. 

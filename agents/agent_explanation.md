@@ -89,7 +89,7 @@ class StructuredDataItem(BaseModel):
   - `target_country: str`
   - `target_sector: str`
   - `target_city: Optional[str]` (for city mode)
-  - `metadata.research_mode: str` ("country" or "city")
+  - `metadata.research_mode: str` ("country", "city", or "region")
   - `metadata.english_only_mode: bool`
 
 **Output Data Types**:

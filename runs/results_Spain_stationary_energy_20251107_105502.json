@@ -1,0 +1,976 @@
+{
+    "research_mode": "country",
+    "target_country": "Spain",
+    "target_country_locode": "ES",
+    "target_sector": "stationary_energy",
+    "target_city": null,
+    "target_region": null,
+    "start_time": "2025-11-07T10:51:41.573185",
+    "end_time": "2025-11-07T10:55:02.226599",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 4,
+    "structured_data": [
+        {
+            "name": "Evolución de la demanda - Demanda 2024",
+            "method_of_access": "Web interface query with link to detailed data access portal (ree.es/datos)",
+            "sector": "stationary_energy",
+            "subsector": "Energy Industries",
+            "data_format": "Interactive charts, data tables, web interface",
+            "description": "Annual and monthly electricity demand evolution report for Spain covering 2024, provided by Red Eléctrica de España (REE). The dataset includes total national demand (248,811 GWh in 2024), peninsular system demand (233,462 GWh), and regional breakdown by autonomous communities. Covers electricity generation mix including renewable sources (hydroelectric, wind, solar photovoltaic, solar thermal), nuclear, combined cycle, coal, and other sources. Data is provisional as of January 2025 with annual updates. Includes energy balance information, demand coverage analysis, and storage/battery integration data.",
+            "granularity": "National (Spain), regional (Autonomous Communities), and subsystem level (Peninsular, Balearic Islands, Canary Islands, Ceuta, Melilla)",
+            "url": "https://www.sistemaelectrico-ree.es/es/informe-del-sistema-electrico/demanda/evolucion-demanda",
+            "country": "Spain",
+            "country_locode": "ES"
+        },
+        {
+            "name": "National Inventory Submissions 2023 - Annex I Party GHG Inventory Submissions",
+            "method_of_access": "Web interface with downloadable files (NIR and CRF tables); data accessible through UNFCCC website with links to individual party submissions",
+            "sector": [
+                "stationary_energy",
+                "transportation",
+                "ippu",
+                "afolu",
+                "waste"
+            ],
+            "data_format": "National Inventory Report (NIR) and Common Reporting Format (CRF) tables; supplementary information in Standard Electronic Format (SEF)",
+            "description": "Annual greenhouse gas inventory submissions from Annex I parties to the UNFCCC for 2023, containing detailed descriptive and numerical information on GHG emissions and removals. Includes National Inventory Reports (NIRs) with comprehensive data, Common Reporting Format (CRF) tables with emissions, removals, implied emission factors and activity data, and supplementary Kyoto Protocol information. Provider: UNFCCC Secretariat. Time period: 2023 submission year covering historical data. Update frequency: Annual submissions.",
+            "granularity": "National (Annex I parties including Spain)",
+            "url": "https://unfccc.int/ghg-inventories-annex-i-parties/2023",
+            "country": "Spain",
+            "country_locode": "ES"
+        },
+        {
+            "name": "ESIOS - Sistema de Información del Operador del Sistema (Generation and Consumption Data)",
+            "method_of_access": "Web interface query at https://www.esios.ree.es/es/generacion-y-consumo",
+            "sector": "stationary_energy",
+            "subsector": "Energy Industries",
+            "description": "ESIOS is the Information System of the Spanish electricity system operator (Red Eléctrica de España - REE). The platform provides real-time and historical data on electricity generation and consumption in Spain. The content shows updates to technical specifications, operational procedures, and service documentation related to grid management, demand response services, and voltage control. Updates are published regularly with the most recent entries from 2025.",
+            "granularity": "national",
+            "url": "https://www.esios.ree.es/es/generacion-y-consumo",
+            "country": "Spain",
+            "country_locode": "ES"
+        },
+        {
+            "name": "Estadística de Consumo Energético Residencial Anual",
+            "method_of_access": "Web interface with links to results and methodology documentation; data accessible through the Ministry of Ecological Transition and Demographic Challenge (MITECO) website",
+            "sector": "stationary_energy",
+            "subsector": "Residential Buildings",
+            "description": "Annual statistical operation providing information on energy consumption in the residential sector in Spain by end-use categories. The dataset analyzes various energy sources (electricity, petroleum products, coal, natural gas, renewable sources, waste, and heat pumps) and primary end-uses (space heating, space cooling, water heating, cooking, lighting, electrical appliances, and other final uses). Provider: Ministry of Ecological Transition and Demographic Challenge (MITECO). Update frequency: Annual. Time period: Ongoing annual collection.",
+            "granularity": "National (Spain)",
+            "url": "https://www.miteco.gob.es/es/ministerio/servicios/estadisticas/estadisticas-de-energia/estadisticas-de-consumo-y-almacenamiento-energetico/estadisticas-de-consumo-energetico-residencial.html",
+            "country": "Spain",
+            "country_locode": "ES"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "country": "Spain",
+            "sector": "stationary_energy",
+            "research_mode": "country",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "Plan for Spain with 105 structured queries.",
+            "target_country_locode": "ES",
+            "primary_languages": [
+                "ES",
+                "EN"
+            ],
+            "parsed_keywords_count": 105,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Spain residential sector GHG emissions inventory national",
+                "Inventario de emisiones GHG sector residencial España nacional",
+                "Household fuel consumption natural gas LPG firewood Spain",
+                "Consumo de combustibles residencial gas natural GLP leña España",
+                "Residential energy use CO₂ CH₄ N₂O by autonomous community",
+                "Emisiones CO₂ CH₄ N₂O viviendas por comunidad autónoma",
+                "Grid electricity consumption residential buildings provincial Spain emissions",
+                "Consumo de electricidad residencial emisiones por provincia España",
+                "Residential heating fuel combustion emissions Catalonia Andalusia Madrid",
+                "Emisiones calefacción residencial Cataluña Andalucía Madrid Castilla"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 5,
+            "new_data_items": 5
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-11-07T10:54:20.997972",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 4,
+            "summary": "Reviewed 5 documents from Spanish energy and climate sources. Three documents show strong promise for GHGI data extraction: REE's electricity demand statistics (comprehensive energy data with tables and historical series), UNFCCC's national inventory submissions portal (direct access to Spain's official GHG inventories), and IDAE's energy statistics and balances (detailed sectoral energy data 1990-2023). MITECO's residential energy consumption statistics and ESIOS's generation/consumption portal are relevant but more narrowly focused. Overall, this is a high-quality batch with multiple authoritative sources.",
+            "reasoning": "Multiple authoritative Spanish government sources (REE, IDAE, MITECO) and the UNFCCC portal identified with clear evidence of structured energy and emissions data. REE provides electricity demand data with historical tables (2014-2024); IDAE offers comprehensive energy balances (1990-2023) covering primary and final energy by sector; MITECO provides residential consumption statistics; and UNFCCC is the official repository for Spain's national GHG inventory submissions. These sources directly support stationary_energy sector analysis. The ESIOS portal appears to be primarily operational/technical rather than data-focused, so excluded from extraction priority."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 5,
+            "new_data_items_extracted": 4,
+            "total_structured_items": 4
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-11-07T10:55:02.191131",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "Excellent collection of authoritative Spanish GHGI sources. The extracted data includes Spain's official UNFCCC National Inventory Submissions (NIR/CRF tables), government statistical data on residential energy consumption from MITECO, and real-time electricity system data from REE. All sources are credible government institutions or official UNFCCC submissions. The data covers multiple GHGI sectors (stationary energy, residential buildings) with national-level granularity appropriate for inventory purposes. Minor limitation: electricity generation data is more detailed than direct GHG emissions data in current extractions, but the UNFCCC NIR submission should contain comprehensive emissions factors and activity data.",
+            "reasoning": "This is a strong collection of official Spanish GHGI sources that meets all acceptance criteria: (1) Official national GHGI activity data is available through UNFCCC submissions; (2) Government statistical office data (MITECO) is available for the residential sector; (3) Key emission categories are covered (energy industries, residential buildings, electricity); (4) All sources are from credible government institutions with statutory responsibility for these data; (5) National-level data is appropriate for GHGI purposes and is available from authoritative sources. The search plan has successfully identified the primary sources needed for Spanish residential sector GHG emissions inventory work. No deep dive is needed as the sources are clearly identified and accessible. The UNFCCC NIR submission in particular is the definitive source for Spain's official GHGI.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "Spain residential sector GHG emissions inventory national",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Inventario de emisiones GHG sector residencial España nacional",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Household fuel consumption natural gas LPG firewood Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Consumo de combustibles residencial gas natural GLP leña España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Residential energy use CO₂ CH₄ N₂O by autonomous community",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Emisiones CO₂ CH₄ N₂O viviendas por comunidad autónoma",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Grid electricity consumption residential buildings provincial Spain emissions",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Consumo de electricidad residencial emisiones por provincia España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Residential heating fuel combustion emissions Catalonia Andalusia Madrid",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Emisiones calefacción residencial Cataluña Andalucía Madrid Castilla",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Household energy statistics subnational district-level Spain GHG",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Estadísticas energéticas hogares nivel municipal GHG España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo energético viviendas pérdidas red distribución por región",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Datos actividad combustión residencial desagregado gases invernadero",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones sector doméstico subnacional comarcas provincias España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Spain commercial institutional buildings GHG emissions inventory",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventario emisiones GHG edificios comerciales institucionales España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Office retail hospital school fuel consumption Spain emissions",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo combustibles oficinas hospitales escuelas retail España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Commercial sector CO₂ CH₄ N₂O by autonomous community",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones CO₂ CH₄ N₂O sector comercial por comunidad",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Grid electricity use commercial facilities provincial emissions Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo electricidad comercial institucional emisiones por provincia",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Commercial building energy combustion emissions Basque Country Valencia",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones energéticas edificios comerciales País Vasco Valencia",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Institutional facilities energy statistics district-level subnational Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Estadísticas energéticas instalaciones comerciales nivel municipal España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo combustible calefacción comercial pérdidas red distribución",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Datos actividad sector servicios emisiones desagregadas gases",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones comercial institucional subnacional comarcas distritos España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Spain manufacturing construction sector GHG emissions inventory",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventario emisiones GHG industria manufactura construcción España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Industrial fuel consumption coal natural gas LPG Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo combustibles industriales carbón gas natural GLP",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Manufacturing CO₂ CH₄ N₂O emissions by autonomous community",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones CO₂ CH₄ N₂O manufactura por comunidad autónoma",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Industrial grid electricity consumption provincial emissions Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo electricidad industrial emisiones por provincia España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Manufacturing combustion emissions Basque Country Catalonia Aragon",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones combustión industria País Vasco Cataluña Aragón",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Construction industry energy statistics subnational district Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Estadísticas energéticas industria construcción nivel municipal comarcal",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo combustible industrial pérdidas transmisión distribución energía",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Datos actividad sector industrial desagregado por gases",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones manufactura construcción subnacional distritos España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Spain energy industries power generation GHG emissions",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 46,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventario emisiones GHG industrias energéticas España nacional",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 47,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Thermal power plants fuel consumption coal natural gas",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 48,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo combustibles centrales térmicas carbón gas natural",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 49,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Energy sector CO₂ CH₄ N₂O emissions by region",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 50,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones CO₂ CH₄ N₂O sector energético por región",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 51,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Electricity generation grid losses provincial Spain emissions",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 52,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Pérdidas red distribución generación electricidad por provincia",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 53,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Power plant combustion emissions Galicia Castilla-La Mancha",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 54,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones combustión centrales térmicas Galicia Castilla-La Mancha",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 55,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Energy industry statistics subnational facility-level Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 56,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Estadísticas industria energética nivel instalación provincial España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 57,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo combustible generación eléctrica pérdidas transmisión red",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 58,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Datos actividad centrales generación desagregado gases invernadero",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 59,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones sector energético subnacional comarcas instalaciones España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 60,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Spain agriculture forestry fishing GHG emissions inventory",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 61,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventario emisiones GHG agricultura ganadería silvicultura pesca",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 62,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Agricultural fuel consumption diesel LPG firewood Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 63,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo combustibles agrícolas diésel GLP leña España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 64,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Agriculture sector CO₂ CH₄ N₂O emissions by region",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 65,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones CO₂ CH₄ N₂O sector agrario por región",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 66,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Agricultural energy use grid electricity provincial Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 67,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo electricidad agrícola emisiones por provincia España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 68,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Forestry fishing fuel combustion emissions Castilla León",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 69,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones combustión agricultura silvicultura Castilla y León",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 70,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Agricultural energy statistics subnational district-level Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 71,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Estadísticas energéticas sector agrario nivel municipal comarcal",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 72,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consumo combustible agrícola pérdidas red distribución energía",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 73,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Datos actividad agricultura ganadería desagregado por gases",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 74,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones sector agrario subnacional comarcas municipios España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 75,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Spain coal mining fugitive emissions GHG inventory",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 76,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventario emisiones fugitivas minería carbón España nacional",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 77,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Coal production processing extraction fugitive CH₄ emissions",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 78,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Producción procesamiento carbón emisiones fugitivas CH₄",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 79,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Coal sector CO₂ CH₄ N₂O by autonomous community",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 80,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones CO₂ CH₄ N₂O sector carbón por región",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 81,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Coal storage transportation fugitive emissions provincial Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 82,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Almacenamiento transporte carbón emisiones fugitivas por provincia",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 83,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Coal mining fugitive emissions Asturias León Teruel",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 84,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones minería carbón Asturias León Teruel España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 85,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Coal extraction processing statistics subnational Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 86,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Estadísticas extracción procesamiento carbón nivel municipal comarcal",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 87,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Datos producción carbón emisiones fugitivas desagregadas gases",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 88,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Cantidad carbón extraído procesado emisiones por instalación",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 89,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones fugitivas carbón subnacional comarcas distritos España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 90,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Spain oil natural gas fugitive emissions inventory",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 91,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventario emisiones fugitivas petróleo gas natural España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 92,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Oil gas production extraction fugitive CH₄ emissions",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 93,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Producción extracción petróleo gas emisiones fugitivas CH₄",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 94,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Oil gas sector CO₂ CH₄ N₂O by region",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 95,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones CO₂ CH₄ N₂O sector petróleo gas por región",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 96,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Natural gas storage transportation fugitive emissions Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 97,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Almacenamiento transporte gas natural emisiones fugitivas",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 98,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Oil gas extraction fugitive emissions Tarragona Huelva",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 99,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones extracción petróleo gas Tarragona Huelva España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 100,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Oil gas production statistics subnational facility Spain",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 101,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Estadísticas producción petróleo gas nivel instalación provincial",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 102,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Datos producción petróleo gas emisiones fugitivas desagregadas",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 103,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Cantidad petróleo gas extraído procesado emisiones fugitivas",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 104,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Emisiones fugitivas petróleo gas subnacional comarcas España",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 105,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

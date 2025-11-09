@@ -66,6 +66,16 @@ Configuration is managed through:
 2. `settings.toml` - Application settings
 3. `config.py` - Runtime configuration management
 
+## Region Mode (EU-only beta)
+
+You can now target supranational EU research directly from the CLI:
+
+```bash
+python main.py --region EU --sector stationary_energy
+```
+
+This flag enforces a sector selection and routes the planner through an EU-specific prompt that prioritizes EEA, Eurostat, DG CLIMA/ENER/MOVE portals, and other Union climate sources. Only one geography flag (`--city`, `--country`, or `--region EU`) may be set per run.
+
 ## State Management
 
 The agent system uses a central `AgentState` dataclass for maintaining context and information. This state is passed between agents and includes:

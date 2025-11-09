@@ -1,0 +1,845 @@
+{
+    "research_mode": "country",
+    "target_country": "France",
+    "target_country_locode": "FR",
+    "target_sector": "transportation",
+    "target_city": null,
+    "target_region": null,
+    "start_time": "2025-11-06T23:54:16.034824",
+    "end_time": "2025-11-07T00:02:04.555150",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 7,
+    "structured_data": [
+        {
+            "method_of_access": "Web redirect link to article",
+            "description": "The content provided is a redirect link to an article published in the Earth System Science Data (ESSD) journal (Volume 14, Article 1359). The actual dataset name, content details, provider information, time period covered, and update frequency cannot be determined from the redirect link alone.",
+            "url": "https://essd.copernicus.org/articles/14/1359/",
+            "country": "France",
+            "country_locode": "FR"
+        },
+        {
+            "name": "Immatriculation des véhicules routiers",
+            "method_of_access": "Web interface query on statistiques.developpement-durable.gouv.fr",
+            "sector": "transportation",
+            "subsector": "On-road Transportation",
+            "description": "French national dataset on road vehicle registrations covering new and used vehicle purchases (cars, utility vehicles, heavy goods vehicles, and coaches). Published by the Ministry of Sustainable Development (Ministère de la Transition Écologique et de la Cohésion des Territoires). The dataset tracks vehicle motorization types (thermal, hybrid, electric), CO2 emissions, ecological bonuses, and market trends. Updated monthly with the latest data from October 2025. Includes analysis of light vehicle fleet greening, motorization distribution, and vehicle age statistics.",
+            "granularity": "National (France)",
+            "url": "https://www.statistiques.developpement-durable.gouv.fr/immatriculation-des-vehicules-routiers",
+            "country": "France",
+            "country_locode": "FR"
+        },
+        {
+            "name": "Parc et circulation des véhicules routiers",
+            "method_of_access": "Web interface query with downloadable statistical data",
+            "sector": "transportation",
+            "subsector": "on-road_transportation",
+            "data_format": "Statistical database with downloadable datasets",
+            "description": "French national dataset on road vehicle fleet and circulation statistics published by the Statistical Service for Sustainable Development (SDES). Covers 39.7 million cars, 6.5 million light commercial vehicles, 621,500 heavy goods vehicles, and 94,600 buses and coaches in circulation as of January 1, 2025. Includes data on vehicle motorization types (diesel, petrol, electric, hybrid), Crit'Air classification, vehicle age, annual distances traveled, and geographic distribution by region and department. Updated regularly with latest statistics on vehicle fleet composition and traffic patterns. Time period: Current data as of January 1, 2025, with historical comparisons to 2023-2024.",
+            "granularity": "National (France metropolitan), regional, departmental, and municipal levels including specific agglomerations with Low Emission Zones (ZFE-m)",
+            "url": "https://www.statistiques.developpement-durable.gouv.fr/parc-et-circulation-des-vehicules-routiers",
+            "country": "France",
+            "country_locode": "FR"
+        },
+        {
+            "name": "Données locales de consommation d'énergie",
+            "method_of_access": "Web interface query and downloadable datasets",
+            "sector": "stationary_energy",
+            "subsector": [
+                "Residential Buildings",
+                "Commercial and Institutional Buildings and Facilities",
+                "Manufacturing Industries and Construction",
+                "Energy Industries",
+                "Agriculture, Forestry, and Fishing Activities"
+            ],
+            "data_format": "CSV, Excel, database",
+            "description": "Annual energy consumption data provided by SDES (Service des données et études statistiques) covering electricity, natural gas, heat and cold networks, and petroleum products. Data is designed to facilitate local climate, air, and energy planning and to model greenhouse gas emissions and atmospheric pollutants. The dataset includes consumption data and delivery points distributed across five sectors (agriculture, industry, tertiary, residential, and unallocated). Most recent data available is for 2024. Updated annually with last update on October 1, 2025. Data is provided in compliance with the Energy Transition Law (LTECV) of August 17, 2015, and related decrees.",
+            "granularity": [
+                "IRIS (Ilots Regroupés pour l'Information Statistique)",
+                "EPCI (Établissement Public de Coopération Intercommunale)",
+                "Regional",
+                "Departmental",
+                "Municipal",
+                "Address-level (for network operators with more than 50,000 customers)"
+            ],
+            "url": "https://www.statistiques.developpement-durable.gouv.fr/donnees-locales-de-consommation-denergie",
+            "country": "France",
+            "country_locode": "FR"
+        },
+        {
+            "name": "Inventaire des émissions",
+            "method_of_access": "Web interface query platform (TrACE Hauts-de-France), territorial emission sheets, and interactive atlas",
+            "sector": [
+                "stationary_energy",
+                "transportation",
+                "waste",
+                "ippu",
+                "afolu"
+            ],
+            "subsector": [
+                "Residential Buildings",
+                "Commercial and Institutional Buildings",
+                "Manufacturing Industries and Construction",
+                "Energy Industries",
+                "Agriculture, Forestry, and Fishing Activities",
+                "On-road Transportation",
+                "Waste Management"
+            ],
+            "data_format": "Interactive web platform, maps (cadastre), tables, and atlas format",
+            "description": "Comprehensive greenhouse gas and air pollutant emissions inventory for the Hauts-de-France region managed by Atmo Hauts-de-France. The inventory identifies and quantifies pollutants emitted by various sources across economic sectors including residential, tertiary, commercial, institutional, energy extraction and distribution, manufacturing, agriculture, and transportation. Data is presented through the TrACE platform (Trajectoire Air-Climat-Energie), territorial emission sheets for member territories, and an atmospheric emissions atlas. The inventory supports climate action planning, air quality monitoring, and regulatory compliance for Plans de Protection de l'Atmosphère and Plans Climat Air Energie Territoriaux (PCAET). Emissions are expressed in tonnes per year and can be spatially mapped as cadastres.",
+            "granularity": "Regional (Hauts-de-France region, France) with municipal-level territorial breakdown for member territories",
+            "url": "https://www.atmo-hdf.fr/article/inventaire-des-emissions",
+            "country": "France",
+            "country_locode": "FR"
+        },
+        {
+            "name": "39,3 millions de voitures en circulation en France au 1er janvier 2024",
+            "method_of_access": "Web interface with downloadable PDF infographic and data files mentioned in the article",
+            "sector": "transportation",
+            "subsector": "on-road_transportation",
+            "data_format": "PDF, JPG infographic, downloadable data files",
+            "description": "Statistical report on the French automobile fleet as of January 1, 2024, published by SDES (Service des données et études statistiques) on September 23, 2024. The dataset covers 39.3 million vehicles in circulation in France, including detailed breakdowns by fuel type (diesel 50.7%, petrol 44.5%, alternative energies 4.4%), Crit'Air classification, average vehicle age (11.2 years), average annual mileage (11,700 km), and vehicle weight trends. Data is provisional and sourced from RSVERO. Complete historical data available from 2012 onwards.",
+            "granularity": "national",
+            "url": "https://www.statistiques.developpement-durable.gouv.fr/393-millions-de-voitures-en-circulation-en-france-au-1er-janvier-2024",
+            "country": "France",
+            "country_locode": "FR"
+        },
+        {
+            "name": "IEA Greenhouse Gas Emissions from Energy Data Explorer",
+            "method_of_access": "Web-based interactive data explorer with export capabilities to Excel and CSV formats",
+            "sector": "stationary_energy",
+            "data_format": "Interactive web interface, Excel, CSV",
+            "description": "The IEA Greenhouse Gas Emissions from Energy dataset provides historical country-level greenhouse gas emissions stemming from energy use. It covers CO2, CH4, and N2O emissions from fuel combustion, as well as fugitive emissions. The database includes estimates of total GHG emissions from energy and related indicators for countries globally. Data is accessible through the .Stat Data Explorer platform. Historical data is available with 2021 being the most recent year highlighted in the content.",
+            "granularity": "National (country-level data globally, including France)",
+            "url": "https://www.iea.org/data-and-statistics/data-tools/greenhouse-gas-emissions-from-energy-data-explorer",
+            "country": "France",
+            "country_locode": "FR"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "country": "France",
+            "sector": "transportation",
+            "research_mode": "country",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "Plan for France with 75 structured queries.",
+            "target_country_locode": "FR",
+            "primary_languages": [
+                "FR",
+                "EN"
+            ],
+            "parsed_keywords_count": 75,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "France on-road fuel sales by type and distribution channel",
+                "Vehicle kilometres travelled by fuel type France emissions",
+                "Electricity consumption passenger cars France GHG inventory",
+                "Regional diesel and petrol consumption by department France",
+                "On-road transport CO₂ CH₄ N₂O emissions by region",
+                "Light-duty and heavy-duty vehicle fuel data France subnational",
+                "Ventes de carburants routiers par type et région France",
+                "Kilomètres parcourus véhicules essence diesel France inventaire GES",
+                "Consommation électricité transports routiers par département France",
+                "Émissions CO₂ CH₄ N₂O transports routiers Île-de-France"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 5,
+            "new_data_items": 4
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-11-06T23:59:40.320825",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 2,
+            "summary": "Reviewed 5 documents. Three documents from the French Ministry of Sustainable Development (statistiques.developpement-durable.gouv.fr) are highly relevant and contain structured transportation sector data including vehicle registrations, fleet composition, emissions data, and activity metrics. One Copernicus article appears to be a redirect with minimal content. One regional energy platform has no accessible content. The batch shows strong potential for transportation GHGI data extraction.",
+            "reasoning": "Two official French government statistical sources (SDES - Service des données et études statistiques) have been identified with clear relevance to transportation sector GHGI data. The snippets show detailed information on vehicle registrations, fleet composition by fuel type, CO2 emissions data, vehicle circulation statistics, and activity data (km traveled). These are authoritative sources for France's transportation emissions inventory. The Copernicus article may also be relevant but requires access to the full document. The energy consumption data page is less directly relevant to transportation emissions but could provide supporting fuel consumption data if needed in a secondary phase."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 5,
+            "new_data_items_extracted": 4,
+            "total_structured_items": 4
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-11-07T00:00:09.346110",
+            "action": "structured_review_completed",
+            "suggested_action": "deep_dive",
+            "overall_confidence": "Medium",
+            "summary": "Four data sources have been identified for France GHGI research, with three being highly credible government statistical datasets from SDES (Statistical Service for Sustainable Development) and one being a journal article redirect. The government sources directly address on-road transportation activity data (vehicle registrations, fleet composition, circulation statistics) and stationary energy consumption data. These are core datasets needed for GHGI Scope 1 emissions calculations. The sources are current (updated through October 2025, with data as of January 1, 2025) and come from the official French Ministry of Sustainable Development statistical portal. However, one source remains unverified (ESSD journal redirect), and deeper investigation is needed to confirm the exact datasets available within these portals and their specific applicability to GHGI methodologies (e.g., fuel consumption data, vehicle-kilometers traveled, emission factors).",
+            "reasoning": "The three government statistical sources are highly credible and appear to contain relevant GHGI activity data, but the extracted information is descriptive rather than confirmatory. A deep dive is warranted to: (1) Verify the exact datasets and tables available within each portal; (2) Confirm availability of fuel consumption data by type and vehicle-kilometers traveled; (3) Access the ESSD journal article to determine its relevance and dataset contributions; (4) Identify any downloadable datasets or direct data access points; (5) Confirm time series availability for GHGI reporting periods. This is a 1-2 attempt investigation with high probability of yielding usable data given the credible sources identified.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        },
+        {
+            "agent": "DeepDiveProcessor",
+            "action": "crawl",
+            "target": "https://statistiques.developpement-durable.gouv.fr",
+            "justification": "The refinement specifies exact page names within this portal ('Parc et circulation des véhicules routiers', 'Immatriculation des véhicules routiers', 'Données locales de consommation d'énergie'). A systematic crawl will discover the exact URLs for these sections and identify downloadable datasets, data tables, and related pages for vehicle and energy consumption data (2020-2024).",
+            "refinement_details_processed": "Conduct targeted deep dives on: (1) statistiques.developpement-durable.gouv.fr - Navigate to 'Parc et circulation des véhicules routiers' and 'Immatriculation des véhicules routiers' pages to locate downloadable datasets, data tables, and confirm availability of fuel consumption volumes (litres/tonnes by fuel type) and vehicle-kilometers traveled by vehicle category and fuel type for recent years (2020-2024). (2) statistiques.developpement-durable.gouv.fr - Access 'Données locales de consommation d'énergie' to verify sector-specific energy consumption data (MWh/GJ) by fuel type and confirm electricity consumption data for transport sector if available. (3) ESSD journal article (https://essd.copernicus.org/articles/14/1359/) - Retrieve full article to determine dataset name, scope, geographic coverage, and relevance to France GHGI. (4) Search for any linked National Inventory Report (NIR) or GHGI submission documents on the SDES portal that may reference these datasets and their GHGI application.",
+            "actions_this_cycle": 1,
+            "current_websites_considered": "www.orcae-auvergne-rhone-alpes.fr, www.statistiques.developpement-durable.gouv.fr, essd.copernicus.org",
+            "timestamp": "2025-11-07T00:00:19.002806"
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "Données carburant véhicules légers lourds Auvergne-Rhône-Alpes",
+                "Statistiques consommation carburant Provence-Alpes-Côte d'Azur transport routier",
+                "Émissions gaz à effet de serre transports routiers Hauts-de-France",
+                "Ventes GPL essence diesel par région France transport",
+                "Inventaire GES transports routiers Nouvelle-Aquitaine données détaillées",
+                "France railway diesel fuel sales and consumption statistics",
+                "Rail vehicle kilometres travelled by fuel type France",
+                "Electricity consumption railways France GHG emissions inventory",
+                "Regional railway fuel consumption and emissions by department",
+                "Railway transport CO₂ CH₄ N₂O emissions subnational France"
+            ],
+            "urls_collected": 100,
+            "relevant_urls_for_scraping": 5,
+            "new_data_items": 5
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-11-07T00:01:35.940108",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 7,
+            "summary": "Reviewed 10 documents targeting France's transportation sector GHGI data. Strong batch with multiple highly relevant sources from official French government statistics office (SDES/Développement Durable) containing detailed transportation data including vehicle registrations, fleet composition, emissions factors, and activity data. Also identified international sources (IEA, Copernicus) and regional air quality inventories. The French government sources are particularly promising for structured transportation emissions data.",
+            "reasoning": "Identified 7 highly promising documents for detailed data extraction. The French SDES sources contain specific, recent transportation activity data (vehicle registrations, fleet composition by fuel type, CO2 emissions, mileage data) directly relevant to transportation sector GHGI. The Copernicus article appears to be a peer-reviewed scientific publication likely containing emissions methodology or data. Regional air quality inventories (Atmo HDF) provide complementary emissions data. IEA tools offer international comparison data. These sources collectively should yield substantial structured GHGI data for France's transportation sector. Three documents (IEA general page, ORCAE regional page with no content, and the redirect-only Copernicus snippet) are lower priority but warrant investigation."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 9,
+            "new_data_items_extracted": 3,
+            "total_structured_items": 7
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-11-07T00:02:04.545014",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "The extracted structured data represents a strong collection of official French government statistical sources highly relevant to GHGI research for France. Seven data sources have been identified, with six being from credible national statistical offices (SDES, Atmo Hauts-de-France) and one from the IEA. The data covers key transportation and energy sectors essential for GHGI compilation. Sources include vehicle fleet composition, registration data, energy consumption, and emissions inventories. The data is current (updated through October 2025 for some sources, January 2025 for others) and comes from authoritative government institutions. While one source (ESSD redirect) lacks sufficient detail, the remaining six sources provide substantial, actionable GHGI-relevant data.",
+            "reasoning": "This extraction meets all ACCEPT criteria: (1) Official national GHGI activity data for France is available from government statistical offices (SDES); (2) Multiple government statistical office sources are present covering transportation and energy sectors; (3) Key emission categories are covered including vehicle fleet composition, fuel types, energy consumption by sector, and direct emissions inventories; (4) Sources are from credible, authoritative institutions with clear methodologies and regular updates; (5) National-level data is available from SDES, which is sufficient for GHGI purposes, supplemented by regional and municipal granularity where available. The data directly supports the search plan queries and provides the foundational activity data needed for GHGI compilation. No critical gaps prevent acceptance. The one incomplete source (ESSD redirect) does not undermine the overall quality of the collection.",
+            "final_decision_mode": true,
+            "consecutive_deep_dive_count": 1
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "France on-road fuel sales by type and distribution channel",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Vehicle kilometres travelled by fuel type France emissions",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Electricity consumption passenger cars France GHG inventory",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Regional diesel and petrol consumption by department France",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "On-road transport CO₂ CH₄ N₂O emissions by region",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Light-duty and heavy-duty vehicle fuel data France subnational",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Ventes de carburants routiers par type et région France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Kilomètres parcourus véhicules essence diesel France inventaire GES",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Consommation électricité transports routiers par département France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Émissions CO₂ CH₄ N₂O transports routiers Île-de-France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Données carburant véhicules légers lourds Auvergne-Rhône-Alpes",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Statistiques consommation carburant Provence-Alpes-Côte d'Azur transport routier",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Émissions gaz à effet de serre transports routiers Hauts-de-France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 13,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Ventes GPL essence diesel par région France transport",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 14,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Inventaire GES transports routiers Nouvelle-Aquitaine données détaillées",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 15,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "France railway diesel fuel sales and consumption statistics",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 16,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Rail vehicle kilometres travelled by fuel type France",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 17,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Electricity consumption railways France GHG emissions inventory",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 18,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Regional railway fuel consumption and emissions by department",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 19,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Railway transport CO₂ CH₄ N₂O emissions subnational France",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 20,
+            "target_type": "generic",
+            "status": "searched"
+        },
+        {
+            "query": "Diesel LPG fuel distribution railway operators France data",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 21,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consommation carburant diesel chemins de fer France national",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 22,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kilomètres parcourus trains électriques diesel par région France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 23,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Électricité consommée transports ferroviaires Île-de-France inventaire GES",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 24,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Émissions CO₂ CH₄ N₂O ferroviaires Auvergne-Rhône-Alpes",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 25,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Ventes carburant ferroviaire SNCF par département France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 26,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Données transports ferroviaires Provence-Alpes-Côte d'Azur émissions",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 27,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consommation énergie trains Hauts-de-France statistiques GES",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 28,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Carburant diesel ferroviaire Nouvelle-Aquitaine données régionales",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 29,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventaire gaz effet serre transports ferroviaires France détaillé",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 30,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "France maritime fuel sales by vessel type and region",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 31,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inland waterway fuel consumption and distance travelled France",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 32,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Electricity consumption waterborne transport France GHG inventory",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 33,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Regional maritime and inland navigation emissions by department",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 34,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Waterborne transport CO₂ CH₄ N₂O emissions subnational",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 35,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Diesel gasoline LPG fuel distribution shipping France data",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 36,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Ventes carburant maritime navigation fluviale France national",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 37,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consommation carburant navires par type Provence-Alpes-Côte d'Azur",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 38,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Émissions CO₂ CH₄ N₂O transports maritimes Île-de-France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 39,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kilomètres parcourus bateaux fluviaux Auvergne-Rhône-Alpes inventaire",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 40,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Électricité consommée navigation intérieure par département France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 41,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Données carburant diesel navires Hauts-de-France GES",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 42,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Émissions transports maritimes Nouvelle-Aquitaine statistiques détaillées",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 43,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consommation énergie bateaux fluviaux régions France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 44,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventaire gaz effet serre navigation intérieure France régional",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 45,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "France domestic and international aviation fuel sales data",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 46,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Jet fuel consumption by flight type France emissions",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 47,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Number of domestic international flights France GHG inventory",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 48,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Regional aviation emissions by airport and department France",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 49,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Aviation CO₂ CH₄ N₂O emissions subnational France",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 50,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Jet fuel distribution aviation operators France statistics",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 51,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Ventes carburant aviation vols domestiques internationaux France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 52,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consommation kérosène aérien par aéroport Île-de-France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 53,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Émissions CO₂ CH₄ N₂O aviation Provence-Alpes-Côte d'Azur",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 54,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Nombre vols domestiques internationaux Auvergne-Rhône-Alpes inventaire GES",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 55,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Données carburant aviation régions Hauts-de-France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 56,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Émissions transports aériens Nouvelle-Aquitaine statistiques détaillées",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 57,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consommation kérosène aéroports régionaux France GES",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 58,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventaire gaz effet serre aviation par département France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 59,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Statistiques vols aériens consommation carburant régions France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 60,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "France off-road fuel sales by equipment type and region",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 61,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Off-road vehicle fuel consumption and distance travelled France",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 62,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Electricity consumption off-road equipment France GHG inventory",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 63,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Regional off-road transport emissions by department France",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 64,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Off-road transport CO₂ CH₄ N₂O emissions subnational",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 65,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Diesel gasoline LPG off-road machinery fuel data France",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 66,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Ventes carburant engins hors route par type France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 67,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consommation carburant équipements agricoles Île-de-France inventaire",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 68,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Émissions CO₂ CH₄ N₂O transports hors route Auvergne-Rhône-Alpes",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 69,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Kilomètres parcourus engins construction foresterie Provence-Alpes-Côte d'Azur",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 70,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Électricité consommée équipements hors route par département France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 71,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Données carburant diesel engins agricoles Hauts-de-France GES",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 72,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Émissions transports hors route Nouvelle-Aquitaine statistiques",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 73,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Consommation énergie équipements construction régions France",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 74,
+            "target_type": "generic",
+            "status": "pending"
+        },
+        {
+            "query": "Inventaire gaz effet serre transports hors route France régional",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 75,
+            "target_type": "generic",
+            "status": "pending"
+        }
+    ]
+}

@@ -1,0 +1,215 @@
+{
+    "research_mode": "region",
+    "target_country": "European Union",
+    "target_country_locode": "EU",
+    "target_sector": "ippu",
+    "target_city": null,
+    "target_region": "European Union",
+    "start_time": "2025-11-06T16:42:45.386458",
+    "end_time": "2025-11-06T16:45:33.470354",
+    "total_iterations": 1,
+    "final_structured_review_action": "accept",
+    "final_confidence": null,
+    "structured_data_items_count": 2,
+    "structured_data": [
+        {
+            "name": "The PRIMAP-hist national historical emissions time series (1750-2022) v2.5.1",
+            "method_of_access": "Downloadable dataset from Zenodo repository (https://zenodo.org/records/10705513); available in CSV with YAML metadata and NetCDF formats",
+            "sector": [
+                "stationary_energy",
+                "ippu",
+                "afolu",
+                "waste"
+            ],
+            "subsector": [
+                "Energy",
+                "Industrial Processes and Product Use (IPPU)",
+                "Agriculture",
+                "Land Use, Land-Use Change, and Forestry (LULUCF)"
+            ],
+            "data_format": "CSV with YAML metadata files; NetCDF format; PRIMAP2 interchange format",
+            "description": "Comprehensive greenhouse gas emission dataset combining multiple published sources covering all Kyoto gases (CO2, CH4, N2O, and f-gases) for nearly all UNFCCC member states and non-UNFCCC territories. Covers historical period from 1750 to 2022 with main IPCC 2006 categories resolved. Prioritizes country-reported data from UNFCCC (CRF for Annex I countries, DI interface for non-Annex I countries) and fills gaps using third-party sources including CDIAC, EDGAR, FAOSTAT, and Andrew cement data. Created by Climate Resource (Gütschow, Pflüger, Busch). Updated annually with 1-year time lag; version 2.5.1 released February 27, 2024.",
+            "granularity": "National level for all UNFCCC member states and most non-UNFCCC territories; includes specific data for European Union member countries",
+            "url": "https://zenodo.org/records/10705513",
+            "country": "European Union",
+            "country_locode": "EU"
+        },
+        {
+            "name": "GHG data from UNFCCC",
+            "method_of_access": "Web interface with multiple query modules including Time Series, GHG Profiles, Detailed data by Party, Comparison by gas, Comparison by category, Global Map, Flexible Queries, User-defined Indicators, and Compilation and Accounting Data",
+            "data_format": "Web-based database interface",
+            "description": "National greenhouse gas inventory submissions from countries that are Parties to the UN Climate Change Convention. Data is submitted in accordance with UNFCCC reporting guidelines (decision 24/CP.19 for Annex I Parties and decision 17/CP.8 for non-Annex I Parties). The GHG data interface comprises nine modules and was upgraded on 8 November 2019. Data includes annual GHG inventory submissions from Annex I Parties and national communications and biennial update reports from non-Annex I Parties.",
+            "granularity": "National (by Party/country)",
+            "url": "https://unfccc.int/topics/mitigation/resources/registry-and-data/ghg-data-from-unfccc",
+            "country": "European Union",
+            "country_locode": "EU"
+        }
+    ],
+    "decision_log": [
+        {
+            "action": "init",
+            "region": "European Union",
+            "sector": "ippu",
+            "research_mode": "region",
+            "english_only_mode": false
+        },
+        {
+            "agent": "Planner",
+            "action": "plan_generated",
+            "summary": "Plan for European Union with 12 structured queries.",
+            "target_country_locode": "EU",
+            "primary_languages": [
+                "EN",
+                "FR",
+                "DE",
+                "ES"
+            ],
+            "parsed_keywords_count": 12,
+            "structured_parsing_successful": true
+        },
+        {
+            "agent": "Researcher",
+            "action": "research_iteration_completed",
+            "queries_processed": [
+                "EEA IPPU emissions data viewer greenhouse gas industrial processes",
+                "EU ETS Registry facility emissions cement steel chemicals IPPU",
+                "National Inventory Report IPPU Member State EEA ReportNet submission",
+                "Eurostat env_air_gge NACE IPPU emissions by activity",
+                "JRC EDGAR emissions database EU IPPU industrial processes product use",
+                "EU open data CKAN industrial production cement steel chemicals statistics",
+                "Agence Européenne pour l'Environnement IPPU émissions gaz à effet de serre procédés industriels",
+                "Eurostat Umweltluftqualität NACE Emissionen Industrieprozesse IPPU Deutschland",
+                "Unión Europea Inventario Nacional IPPU emisiones procesos industriales España Italia",
+                "EU ETS Directive 2003/87/EC IPPU compliance report verified emissions 2023 2024"
+            ],
+            "urls_collected": 57,
+            "relevant_urls_for_scraping": 2,
+            "new_data_items": 2
+        },
+        {
+            "agent": "Reviewer",
+            "timestamp": "2025-11-06T16:44:56.520492",
+            "action": "raw_review_completed",
+            "suggested_action": "proceed_to_extraction",
+            "documents_selected_for_extraction_count": 2,
+            "summary": "Reviewed 2 documents, both highly relevant to EU GHGI data discovery. The PRIMAP-hist dataset (Zenodo) is an exceptionally promising comprehensive emissions database covering 1750-2022 with explicit IPPU sector data for all countries including EU members. The UNFCCC GHG Data Interface page is an authoritative gateway to official national inventory submissions and multiple query tools. Both documents represent primary sources for structured GHGI data with strong institutional backing.",
+            "reasoning": "Both documents are from highly authoritative sources (Zenodo/Climate Resource and UNFCCC) and explicitly mention IPPU sector data availability. PRIMAP-hist provides a consolidated historical dataset with subsector resolution for IPPU, while the UNFCCC interface offers direct access to official country-reported CRF data. These are ideal starting points for extracting structured EU IPPU emissions data. Extraction should focus on identifying download links, data access methods, and specific IPPU category breakdowns."
+        },
+        {
+            "agent": "Extractor",
+            "action": "extraction_complete",
+            "documents_processed_in_batch": 2,
+            "new_data_items_extracted": 2,
+            "total_structured_items": 2
+        },
+        {
+            "agent": "StructuredReviewer",
+            "timestamp": "2025-11-06T16:45:33.441125",
+            "action": "structured_review_completed",
+            "suggested_action": "accept",
+            "overall_confidence": "High",
+            "summary": "Two high-quality, credible sources have been identified that provide comprehensive GHGI data for the European Union. PRIMAP-hist offers harmonized historical emissions data (1750-2022) covering all major sectors including IPPU, while UNFCCC GHG data provides official national inventory submissions. Both sources are well-established, regularly updated, and directly relevant to GHGI research for the EU. The data covers key emission categories and provides national-level granularity appropriate for GHGI purposes. No critical gaps identified at this stage.",
+            "reasoning": "Both extracted sources meet all ACCEPT criteria: (1) Official GHGI activity data is available from UNFCCC (primary authoritative source for national inventories); (2) PRIMAP-hist provides harmonized, peer-reviewed data from credible research organization; (3) Key emission categories for IPPU and other sectors are covered; (4) National-level granularity is appropriate and sufficient for GHGI purposes; (5) Strong indication that these sources contain desired data with demonstrated relevance to search plan. The search plan has successfully identified primary and secondary authoritative sources. No gaps requiring deep investigation are apparent. Proceeding with data extraction from these sources is warranted.",
+            "final_decision_mode": false,
+            "consecutive_deep_dive_count": 0
+        }
+    ],
+    "search_plan_summary": [
+        {
+            "query": "EEA IPPU emissions data viewer greenhouse gas industrial processes",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 1,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "EU ETS Registry facility emissions cement steel chemicals IPPU",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 2,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "National Inventory Report IPPU Member State EEA ReportNet submission",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 3,
+            "target_type": "member_state_feed",
+            "status": "searched"
+        },
+        {
+            "query": "Eurostat env_air_gge NACE IPPU emissions by activity",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 4,
+            "target_type": "dataset_catalog",
+            "status": "searched"
+        },
+        {
+            "query": "JRC EDGAR emissions database EU IPPU industrial processes product use",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 5,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "EU open data CKAN industrial production cement steel chemicals statistics",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 6,
+            "target_type": "dataset_catalog",
+            "status": "searched"
+        },
+        {
+            "query": "Agence Européenne pour l'Environnement IPPU émissions gaz à effet de serre procédés industriels",
+            "language": "FR",
+            "priority": "medium",
+            "rank": 7,
+            "target_type": "eu_portal",
+            "status": "searched"
+        },
+        {
+            "query": "Eurostat Umweltluftqualität NACE Emissionen Industrieprozesse IPPU Deutschland",
+            "language": "DE",
+            "priority": "medium",
+            "rank": 8,
+            "target_type": "dataset_catalog",
+            "status": "searched"
+        },
+        {
+            "query": "Unión Europea Inventario Nacional IPPU emisiones procesos industriales España Italia",
+            "language": "ES",
+            "priority": "medium",
+            "rank": 9,
+            "target_type": "member_state_feed",
+            "status": "searched"
+        },
+        {
+            "query": "EU ETS Directive 2003/87/EC IPPU compliance report verified emissions 2023 2024",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 10,
+            "target_type": "legislation_tracker",
+            "status": "searched"
+        },
+        {
+            "query": "Monitoring Mechanism Regulation EU 2018/1999 IPPU National Inventory Report methodology",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 11,
+            "target_type": "legislation_tracker",
+            "status": "pending"
+        },
+        {
+            "query": "Carbon Border Adjustment Mechanism CBAM IPPU cement steel aluminum embedded emissions factors",
+            "language": "EN",
+            "priority": "medium",
+            "rank": 12,
+            "target_type": "legislation_tracker",
+            "status": "pending"
+        }
+    ]
+}

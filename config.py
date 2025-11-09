@@ -45,11 +45,11 @@ MAX_TOTAL_SEARCHES: int = _toml_settings.get("search", {}).get("max_total_search
 MAX_GOOGLE_QUERIES_PER_RUN: int = int(_toml_settings.get("search", {}).get("max_google_queries_per_run", os.getenv("MAX_GOOGLE_QUERIES_PER_RUN", 50)))
 
 # --- Model Settings --- 
-THINKING_MODEL: str = _toml_settings.get("models", {}).get("thinking_model", "deepseek/deepseek-r1-0528:free")
-NORMAL_MODEL: str = _toml_settings.get("models", {}).get("normal_model", "deepseek/deepseek-r1-0528:free")
-STRUCTURED_MODEL: str = _toml_settings.get("models", {}).get("structured_model", "google/gemini-2.5-flash-preview-05-20")
-STRUCTURED_MODEL_THINKING: str = _toml_settings.get("models", {}).get("structured_model_for_review", "google/gemini-2.5-flash-preview-05-20:thinking")
-RELEVANCE_CHECK_MODEL: Optional[str] = _toml_settings.get("models", {}).get("relevance_check_model", "google/gemini-2.5-flash-preview-05-20:thinking")
+THINKING_MODEL: str = _toml_settings.get("models", {}).get("thinking_model", "anthropic/claude-haiku-4.5")
+NORMAL_MODEL: str = _toml_settings.get("models", {}).get("normal_model", "anthropic/claude-haiku-4.5")
+STRUCTURED_MODEL: str = _toml_settings.get("models", {}).get("structured_model", "anthropic/claude-haiku-4.5")
+STRUCTURED_MODEL_THINKING: str = _toml_settings.get("models", {}).get("structured_model_for_review", "anthropic/claude-haiku-4.5")
+RELEVANCE_CHECK_MODEL: Optional[str] = _toml_settings.get("models", {}).get("relevance_check_model", "anthropic/claude-haiku-4.5")
 DEFAULT_TEMPERATURE: float = _toml_settings.get("models", {}).get("default_temperature", 0.2)
 MAX_TOKENS: int = _toml_settings.get("models", {}).get("max_tokens", 100000)
 

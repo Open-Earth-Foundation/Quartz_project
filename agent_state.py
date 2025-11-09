@@ -43,9 +43,10 @@ class AgentState:
     # Metadata about the current state
     metadata: Dict[str, Any] = field(default_factory=dict)
     
-    # === Fields added for country generalization ===
+    # === Fields added for country/region generalization ===
     target_country: Optional[str] = None
     target_country_locode: Optional[str] = None
+    target_region: Optional[str] = None
 
     # === Field for tracking search limit ===
     searches_conducted_count: int = 0
@@ -143,7 +144,7 @@ def reduce_target_country_locode(state1: AgentState, state2: AgentState) -> Opti
     return state2.target_country_locode if state2.target_country_locode is not None else state1.target_country_locode
 
 # Utility function to create a new state with default values
-def create_initial_state(country_name: Optional[str] = None, sector_name: Optional[str] = None, city_name: Optional[str] = None, english_only_mode: bool = False) -> AgentState:
+def create_initial_state(country_name: Optional[str] = None, sector_name: Optional[str] = None, city_name: Optional[str] = None, region_name: Optional[str] = None, english_only_mode: bool = False) -> AgentState:
     """
     Create a new AgentState with default values, supporting city, country, and city+sector modes.
 
@@ -156,10 +157,16 @@ def create_initial_state(country_name: Optional[str] = None, sector_name: Option
     Returns:
         A new AgentState instance
     """
+    # Validate mutually exclusive geography inputs
+    if city_name and country_name:
+        raise ValueError("Cannot specify both city_name and country_name. Choose either city or country mode.")
+    if city_name and region_name:
+        raise ValueError("Cannot specify both city_name and region_name. Choose either city or region mode.")
+    if country_name and region_name:
+        raise ValueError("Cannot specify both country_name and region_name. Choose a single geography target.")
+
     # Determine research mode and validate inputs
     if city_name:
-        if country_name:
-            raise ValueError("Cannot specify both city_name and country_name. Choose either city or country mode.")
         research_mode = "city"
         if sector_name:
             prompt = f"City: {city_name}, Sector: {sector_name}"
@@ -167,10 +174,25 @@ def create_initial_state(country_name: Optional[str] = None, sector_name: Option
         else:
             prompt = f"City: {city_name}"
             decision_log_entry = {"action": "init", "city": city_name, "research_mode": "city", "english_only_mode": english_only_mode}
+        target_country_value = None
+        target_region_value = None
+        metadata = {"status": "initialized", "english_only_mode": english_only_mode, "research_mode": research_mode}
+    elif region_name:
+        research_mode = "region"
+        if not sector_name:
+            raise ValueError("Region mode requires sector_name to be specified.")
+        prompt = f"Region: {region_name}, Sector: {sector_name}"
+        decision_log_entry = {"action": "init", "region": region_name, "sector": sector_name, "research_mode": "region", "english_only_mode": english_only_mode}
+        target_country_value = region_name
+        target_region_value = region_name
+        metadata = {"status": "initialized", "english_only_mode": english_only_mode, "research_mode": research_mode, "region_name": region_name}
     elif country_name and sector_name:
         research_mode = "country"
         prompt = f"Country: {country_name}, Sector: {sector_name}"
         decision_log_entry = {"action": "init", "country": country_name, "sector": sector_name, "research_mode": "country", "english_only_mode": english_only_mode}
+        target_country_value = country_name
+        target_region_value = None
+        metadata = {"status": "initialized", "english_only_mode": english_only_mode, "research_mode": research_mode}
     else:
         raise ValueError("Must specify either city_name OR both country_name and sector_name")
 
@@ -186,11 +208,12 @@ def create_initial_state(country_name: Optional[str] = None, sector_name: Option
         decision_log=[decision_log_entry], # Log initialization with mode
         confidence_scores={},
         iteration_count=0, # Obsolete? Keep for now.
-        metadata={"status": "initialized", "english_only_mode": english_only_mode, "research_mode": research_mode}, # Store mode in metadata
-        target_country=country_name,
+        metadata=metadata, # Store mode and geography details in metadata
+        target_country=target_country_value,
         target_sector=sector_name, # Store the sector (can be used with city or country)
         target_city=city_name, # Store the city (None for country mode)
         research_mode=research_mode,
+        target_region=target_region_value,
         target_country_locode=target_locode,
         searches_conducted_count=0,
         current_iteration=0,
