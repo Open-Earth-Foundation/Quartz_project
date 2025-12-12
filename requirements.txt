@@ -5,6 +5,7 @@ langgraph==0.4.1
 langsmith
 firecrawl==2.5.3
 openai==1.77.0
+tiktoken>=0.7,<1.0  # satisfies langchain-openai
 pytest==8.3.5
 pytest-asyncio==0.26.0
 PyMuPDF==1.24.8
@@ -13,7 +14,6 @@ tomli
 pyyaml
 tenacity
 firecrawl-py
-google-api-python-client==2.169
+google-api-python-client==2.169.0
 toml
 supabase>=2.10.0
-python-dotenv>=1.0.1 

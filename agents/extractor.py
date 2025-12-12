@@ -13,7 +13,7 @@ from typing import Dict, List, Any, Optional, Union
 import re
 import os
 from pathlib import Path
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError
 from dataclasses import asdict
 from openai.types.chat import ChatCompletionMessageParam
 
@@ -222,28 +222,61 @@ def extract_with_llm(document: Dict[str, Any], target_country: Optional[str], ta
             logger.warning(f"LLM returned empty content after stripping fences for URL: {source_url}. Returning None.")
             return None
 
-        extraction_result_pydantic = ExtractorOutputSchema.model_validate_json(cleaned_llm_response_content)
+        # Parse JSON to check if it's a list or single object
+        try:
+            parsed_json = json.loads(cleaned_llm_response_content)
+        except json.JSONDecodeError as e:
+            logger.error(f"Failed to parse JSON response for {source_url}: {e}")
+            return None
         
-        # Convert Pydantic model to dict for consistent return type
-        extraction_result_dict = extraction_result_pydantic.model_dump(exclude_none=True)
+        # Handle both list and single object responses
+        extraction_items = []
+        if isinstance(parsed_json, list):
+            logger.info(f"LLM returned a list of {len(parsed_json)} items for {source_url}. Processing each item.")
+            extraction_items = parsed_json
+        elif isinstance(parsed_json, dict):
+            extraction_items = [parsed_json]
+        else:
+            logger.error(f"Unexpected JSON structure for {source_url}: expected list or dict, got {type(parsed_json)}")
+            return None
         
-        # Add/override fixed/known fields
-        extraction_result_dict["url"] = source_url 
-        extraction_result_dict["country"] = target_country
-        extraction_result_dict["country_locode"] = target_locode
+        # Validate and process each item
+        validated_results = []
+        for idx, item in enumerate(extraction_items):
+            try:
+                extraction_result_pydantic = ExtractorOutputSchema.model_validate(item)
+                extraction_result_dict = extraction_result_pydantic.model_dump(exclude_none=True)
+                
+                # Add/override fixed/known fields
+                extraction_result_dict["url"] = source_url 
+                extraction_result_dict["country"] = target_country
+                extraction_result_dict["country_locode"] = target_locode
+                
+                # Additional validation
+                if extraction_result_dict.get("country") and target_country and extraction_result_dict["country"] != target_country:
+                    logger.warning(f"Extracted country '{extraction_result_dict['country']}' does not match target country '{target_country}' for URL {source_url} (item {idx+1}). Overriding with target.")
+                    extraction_result_dict["country"] = target_country
+                if extraction_result_dict.get("country_locode") and target_locode and extraction_result_dict["country_locode"] != target_locode:
+                    logger.warning(f"Extracted LOCODE '{extraction_result_dict['country_locode']}' does not match target LOCODE '{target_locode}' for URL {source_url} (item {idx+1}). Overriding with target.")
+                    extraction_result_dict["country_locode"] = target_locode
+                
+                validated_results.append(extraction_result_dict)
+            except ValidationError as ve:
+                logger.warning(f"Failed to validate item {idx+1} from LLM response for {source_url}: {ve}. Skipping this item.")
+                continue
         
-        # Pydantic validation is already done by model_validate_json.
-        # Additional custom validation could be added here if needed.
-        # For example, ensuring extracted country matches target_country more explicitly if not handled by Pydantic.
-        if extraction_result_dict.get("country") and target_country and extraction_result_dict["country"] != target_country:
-             logger.warning(f"Extracted country '{extraction_result_dict['country']}' does not match target country '{target_country}' for URL {source_url}. Overriding with target.")
-             extraction_result_dict["country"] = target_country
-        if extraction_result_dict.get("country_locode") and target_locode and extraction_result_dict["country_locode"] != target_locode:
-             logger.warning(f"Extracted LOCODE '{extraction_result_dict['country_locode']}' does not match target LOCODE '{target_locode}' for URL {source_url}. Overriding with target.")
-             extraction_result_dict["country_locode"] = target_locode
-            
-        logger.info(f"Successfully extracted and validated structured data via LLM for {source_url} using {model_to_use_for_extraction}.")
-        return extraction_result_dict
+        if not validated_results:
+            logger.warning(f"No valid extraction results after processing LLM response for {source_url}.")
+            return None
+        
+        logger.info(f"Successfully extracted and validated {len(validated_results)} structured data item(s) via LLM for {source_url} using {model_to_use_for_extraction}.")
+        
+        # Return list if multiple items, single dict if one item (for backward compatibility)
+        if len(validated_results) == 1:
+            return validated_results[0]
+        else:
+            # Return list when multiple items found
+            return validated_results
 
     except Exception as e: # Catches Pydantic validation errors from model_validate_json or other errors
         logger.error(f"Failed during LLM extraction or validation for {source_url}: {type(e).__name__} - {e}. Response: {str(llm_response_content_str)[:500]}...", exc_info=True)
@@ -280,10 +313,19 @@ def extractor_node(state: AgentState) -> AgentState:
         extraction_result = extract_with_llm(document, target_country, target_locode)
         
         if extraction_result:
-            current_structured_data.append(extraction_result)
+            # Handle both single dict and list of dicts
+            if isinstance(extraction_result, list):
+                # Multiple items extracted from one document
+                for item in extraction_result:
+                    current_structured_data.append(item)
+                    newly_extracted_count += 1
+                logger.info(f"Successfully extracted and added {len(extraction_result)} structured data items for: {doc_url}")
+            else:
+                # Single item extracted
+                current_structured_data.append(extraction_result)
+                newly_extracted_count += 1
+                logger.info(f"Successfully extracted and added structured data for: {doc_url}")
             processed_urls.add(doc_url)
-            newly_extracted_count += 1
-            logger.info(f"Successfully extracted and added structured data for: {doc_url}")
         else:
             logger.warning(f"Failed to extract structured data for: {doc_url}")
 

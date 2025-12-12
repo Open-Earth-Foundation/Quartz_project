@@ -232,7 +232,7 @@ async def scrape_urls_async(urls: List[str], state: Optional[AgentState] = None)
     semaphore = asyncio.Semaphore(CONCURRENT_SCRAPE_LIMIT)
 
     # Pass tuple of exceptions including requests.exceptions.RequestException for broader network issues
-    @retry_with_backoff(catch_exceptions=HTTP_EXCEPTIONS + (requests.exceptions.RequestException, ValueError, Exception))
+    @retry_with_backoff(catch_exceptions=HTTP_EXCEPTIONS + (requests.exceptions.RequestException, ValueError, Exception, TimeoutError, asyncio.TimeoutError))
     async def scrape_single_url_with_retry(url_to_scrape: str, agent_state: Optional[AgentState]) -> Dict[str, Any]:
         async with semaphore: # Acquire semaphore before scraping
             for pattern in compiled_skip_patterns:
@@ -249,10 +249,22 @@ async def scrape_urls_async(urls: List[str], state: Optional[AgentState] = None)
             sync_firecrawl_client = FirecrawlApp(api_key=config.FIRECRAWL_API_KEY)
             
             current_timestamp = datetime.utcnow()
-            response: Optional[Any] = await loop.run_in_executor(
-                None, 
-                partial(sync_firecrawl_client.scrape_url, url_to_scrape, **scrape_kwargs)
-            )
+            # Add timeout to prevent indefinite hangs (default 60 seconds, configurable)
+            scrape_timeout = getattr(config, 'SCRAPE_TIMEOUT_SECONDS', 60)
+            try:
+                response: Optional[Any] = await asyncio.wait_for(
+                    loop.run_in_executor(
+                        None, 
+                        partial(sync_firecrawl_client.scrape_url, url_to_scrape, **scrape_kwargs)
+                    ),
+                    timeout=scrape_timeout
+                )
+            except asyncio.TimeoutError:
+                timeout_msg = f'Scrape timed out after {scrape_timeout} seconds'
+                logger.warning(f"[Async Scrape] {timeout_msg} for {url_to_scrape}")
+                if agent_state and hasattr(agent_state, 'api_calls_failed'):
+                    agent_state.api_calls_failed = getattr(agent_state, 'api_calls_failed', 0) + 1
+                raise TimeoutError(timeout_msg)
             
             if response: # Save raw response if successful
                 _save_scraped_data_to_log(url_to_scrape, response, current_timestamp.strftime("%Y%m%d%H%M%S%f"))
