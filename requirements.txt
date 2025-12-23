@@ -1,5 +1,5 @@
 python-dotenv==1.1.0
-langchain-core==0.3.58
+langchain-core==0.3.81
 langchain-openai==0.3.16
 langgraph==0.4.1
 langsmith
