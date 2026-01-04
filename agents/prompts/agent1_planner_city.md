@@ -7,7 +7,7 @@ Target City: {city_name_from_AgentState}
 Guidance:
 - Generate exactly 15 ranked queries in total: 6 for the city itself and 9 for different administrative regions that directly relate to the city (e.g., county/district, metro/region, and state/province level).
 - Use concise, information-seeking phrases a researcher would type into a search engine or document portal.
-- Favor phrases that surface greenhouse-gas inventory data, activity data, climate/energy reports, or official documents.
+- Favor phrases that surface funded or fully implemented city climate projects (last 20 years), funding sources/amounts, council approvals, tenders, bonds, grants, or implementation reports.
 - Avoid duplicate phrasing; vary terms to improve coverage.
 - Prefer English unless you have explicit instructions otherwise.
 

@@ -44,6 +44,11 @@ def create_agent_graph():
             'color': '#FFEAA7',
             'position': (6, 2)
         },
+        'Funding\nFilter': {
+            'description': 'Funded/Date\nGate',
+            'color': '#C0A9F7',
+            'position': (8, 4)
+        },
         'Deep Diver': {
             'description': 'Focused Research\n& Analysis',
             'color': '#DDA0DD',
@@ -61,7 +66,8 @@ def create_agent_graph():
         ('Researcher', 'Raw Content\nReviewer', 'scraped content'),
         ('Raw Content\nReviewer', 'Extractor', 'approved content'),
         ('Raw Content\nReviewer', 'Planner', 'refine plan'),
-        ('Extractor', 'Structured\nReviewer', 'structured data'),
+        ('Extractor', 'Funding\nFilter', 'funded scope gate'),
+        ('Funding\nFilter', 'Structured\nReviewer', 'in-scope data'),
         ('Structured\nReviewer', 'Deep Diver', 'deep dive request'),
         ('Structured\nReviewer', 'Planner', 'plan update'),
         ('Deep Diver', 'Researcher', 'new URLs')

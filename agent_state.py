@@ -75,6 +75,19 @@ class AgentState:
     target_city: Optional[str] = None
     research_mode: str = "country"  # "country" or "city"
 
+    # === ADDED: Staged extraction support ===
+    partial_project: Dict[str, Any] = field(default_factory=dict)
+    evidence_log: List[Dict[str, Any]] = field(default_factory=list)
+    missing_fields: List[str] = field(default_factory=list)
+
+    # === ADDED: Funded project extraction outputs ===
+    funded_projects: List[Dict[str, Any]] = field(default_factory=list)
+    funding_filter_log: List[Dict[str, Any]] = field(default_factory=list)
+    funded_followups: List[Dict[str, Any]] = field(default_factory=list)
+
+    # === ADDED: Search mode (ghgi_data or funded_projects) ===
+    search_mode: str = "ghgi_data"  # "ghgi_data" (default) or "funded_projects"
+
 # Define reducer functions for merging states
 def reduce_list_field(field_name: str):
     """
@@ -101,6 +114,9 @@ LIST_FIELD_REDUCERS = {
     "urls": reduce_list_field("urls"),
     "scraped_data": reduce_list_field("scraped_data"),
     "structured_data": reduce_list_field("structured_data"),
+    "funded_projects": reduce_list_field("funded_projects"),
+    "funding_filter_log": reduce_list_field("funding_filter_log"),
+    "funded_followups": reduce_list_field("funded_followups"),
     "decision_log": reduce_list_field("decision_log"),
     # === ADDED: Reducer for selected_for_extraction (if needed, otherwise defaults to state2) ===
     # If we want to concatenate lists from different branches, a reducer like others would be needed.
@@ -218,5 +234,6 @@ def create_initial_state(country_name: Optional[str] = None, sector_name: Option
         searches_conducted_count=0,
         current_iteration=0,
         consecutive_deep_dive_count=0,
-        selected_for_extraction=[] # Initialize as empty list
+        selected_for_extraction=[], # Initialize as empty list
+        search_mode="ghgi_data"  # Default to GHGI data discovery
     ) 

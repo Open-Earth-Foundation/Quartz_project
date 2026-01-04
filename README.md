@@ -1,167 +1,46 @@
-# LangGraph-Powered GHGI Dataset Discovery Agent
+# Quartz City Climate Projects Finder
 
-A sophisticated agent system for discovering and retrieving greenhouse gas inventory (GHGI) datasets from Polish government sources.
+LangGraph-powered agents to surface city climate projects that were funded or fully implemented in the last 20 years. Extraction is staged to stay token-efficient while filling the `extract_funded_project` schema and enforcing the default 20-year gate.
+
+## Scope & Defaults
+- Goal: use Quartz to find funded/implemented city climate projects within a rolling 20-year window.
+- Gate first: title, city/region/country, status, start/end dates, source URL, funded/implemented flag.
+- Configurable: `settings.toml` → `funding_scope.lookback_years` (default 20) and `funding_scope.accepted_statuses` (default: approved, in_implementation, completed, funded). Override via `--lookback-years` CLI.
+- Shared rule text (for prompts/agents): see `agents/funding_scope.py::FUNDING_RULE_TEXT`.
+- Export funded output: `--export-funded-report` writes CSV/JSON to `runs/funded_reports` with project summary, city, funding source/amount, dates, evidence URL.
+
+## Staged Extraction
+- Stage 1 (gate): lightweight extraction + in-scope check (funded/implemented + within lookback). If not in-scope, stop.
+- Stage 2: financing/funders.
+- Stage 3: technical/impact.
+- Stage 4: gap check; trigger search/scrape function calls for missing critical fields; emit final `extract_funded_project` with evidence.
+- Implementation: `agents/staged_project_extractor.py` orchestrates stages; `agents/funding_filter.py` enforces the funded/date gate before review; `agents/search_or_scrape.py` builds follow-up queries.
+- Details: `schema_extraction_stages.md`.
 
 ## Project Structure
-
-```
-automatic_research/
-├── .venv/                    # Python virtual environment
-├── knowledge_base/           # Static knowledge sources (data, prompts)
-├── agent_state.py            # Core state management for LangGraph
-├── config.py                 # Configuration and environment variables
-├── implementation_plan.md    # Detailed project plan with tasks
-├── requirements.txt          # Python dependencies
-├── settings.toml             # Configuration settings
-├── test_*.py                 # Various test scripts
-```
-
-## Current Implementation Status
-
-- ✅ Environment setup with Python venv
-- ✅ Configuration and API key management
-- ✅ Basic smoke tests for all dependencies (Firecrawl, LangGraph, OpenRouter)
-- ✅ AgentState definition with full fields and reducers
-- ✅ Settings management via TOML file
-- ✅ Researcher Agent with async search and prioritization of relevant domains
-- ✅ Data Extraction Agent with PDF processing and structured data output
-- ✅ Automated testing with pytest and mock objects
-
-## Next Steps
-
-1. Implement Agent 1 (Query Formulation & Strategic Planner)
-2. Build knowledge base YAML of Polish data sources
-3. Create prompt templates for agent interactions
-4. Implement remaining agent (Reviewer)
+- `agents/` – agent nodes, prompts, and funding scope helpers (`funding_scope.py`, `staged_project_extractor.py`, `funding_filter.py`).
+- `agent_state.py` – shared state dataclass.
+- `config.py` / `settings.toml` – configuration and funding scope defaults.
+- `data_schema.json` – `extract_funded_project` function schema.
+- `implementation_plan.md` – work plan and tickets.
+- `runs/`, `logs/`, `tests/` – outputs, logs, and test suites.
 
 ## Running Tests
-
-You can run all tests with a single command:
-
 ```bash
-python run_tests.py
-```
-
-Or use pytest directly:
-
-```bash
-pytest tests/
-```
-
-Individual test files can also be run directly:
-
-```bash
-python tests/test_keys.py     # Test API key loading
-python tests/test_firecrawl.py # Test Firecrawl integration
-python tests/test_langgraph.py # Test LangGraph functionality
-python tests/test_openrouter.py # Test OpenRouter/LLM access
-python tests/test_state.py     # Test state management
+python -m pytest tests/test_smoke.py -q
+# or all tests
+python -m pytest
 ```
 
 ## Configuration
+1) `.env` for API keys.  
+2) `settings.toml` for lookback years, accepted statuses, models, and search limits.  
+3) `config.py` reads `settings.toml` and exposes shared constants.  
+4) CLI overrides: `--lookback-years` to adjust funded filter; `--export-funded-report` to emit CSV/JSON; `--all-sectors` to run all sector prompts sequentially (country/region modes).
 
-Configuration is managed through:
-
-1. `.env` file - API keys and credentials
-2. `settings.toml` - Application settings
-3. `config.py` - Runtime configuration management
-
-## Region Mode (EU-only beta)
-
-You can now target supranational EU research directly from the CLI:
-
-```bash
-python main.py --region EU --sector stationary_energy
-```
-
-This flag enforces a sector selection and routes the planner through an EU-specific prompt that prioritizes EEA, Eurostat, DG CLIMA/ENER/MOVE portals, and other Union climate sources. Only one geography flag (`--city`, `--country`, or `--region EU`) may be set per run.
-
-## State Management
-
-The agent system uses a central `AgentState` dataclass for maintaining context and information. This state is passed between agents and includes:
-
-- User's original query (prompt)
-- Search plans and strategies
-- URLs discovered during research
-- Document content and extracted data
-- Decision logs and confidence scores
-
-## Components
-
-### Researcher Agent
-
-The Researcher Agent (Phase 5) handles iterative research and retrieval:
-
-- Performs broad searches based on the user's query
-- Prioritizes promising sources (gov.pl domains, KOBIZE, etc.)
-- Implements adaptive search strategies when initial results are poor
-- Uses specialized scraping methods for JS-heavy pages and documents
-- Enriches the agent state with discovered URLs and document content
-
-### Data Extraction Agent
-
-The Data Extraction Agent (Phase 6) processes and structures data:
-
-- Extracts text from various document formats (PDF, HTML)
-- Parses tables and structured data from documents
-- Organizes information according to the GHGI sector schema
-- Uses LLMs for intelligent extraction of key data points
-- Produces standardized JSON outputs with consistent schema
-
-## Testing
-
-This project includes both unit tests (with mocks) and integration tests (with real API calls).
-
-### Running Unit Tests
-
-Unit tests use mocks and stubs to avoid external API calls:
-
-```bash
-# Run all unit tests (excluding integration tests)
-python -m pytest -m "not integration"
-
-# Run specific test files
-python -m pytest tests/test_deep_diver.py -m "not integration"
-python -m pytest tests/test_researcher.py -m "not integration"
-```
-
-### Running Integration Tests
-
-Integration tests make real API calls with strict safety limits:
-
-- **Crawl tests**: Limited to 2 pages maximum
-- **Scrape tests**: Limited to 1 URL per test
-- **Timeout**: 1 minute maximum per test
-
-```bash
-# Set required environment variables
-export FIRECRAWL_API_KEY="your_key_here"  # Required for integration tests
-export OPENROUTER_API_KEY="your_key_here"  # Required for LLM tests (optional for some)
-
-# Run integration tests only
-python -m pytest -m integration
-
-# Run specific integration test
-python -m pytest tests/test_deep_diver.py::test_deep_diver_real_crawl_safety_limits -m integration
-```
-
-**Integration Test Safety Features:**
-
-- 🔒 **Hard limits**: Never exceeds 2 pages for crawl tests, 1 URL for scrape tests
-- ⏱️ **Timeouts**: 1-minute maximum per crawl operation
-- 🎯 **Safe targets**: Uses httpbin.org for testing (safe, lightweight)
-- 🚫 **Exclusions**: Automatically excludes heavy sections (admin, docs, status endpoints)
-- ⚡ **Quick skip**: Automatically skips if API keys not available
-
-### Running All Tests
-
-```bash
-# Run everything (unit + integration)
-python -m pytest
-
-# Run with verbose output
-python -m pytest -v
-
-# Run with coverage
-python -m pytest --cov=agents
-```
+## Runbook (funded projects)
+- Run researcher/agent: `python main.py --city "Paris" --sector stationary_energy --lookback-years 20`
+- Export funded outputs: add `--export-funded-report`
+- Rebuild vector exports/index: `python bin/reindex_vectors.py` (writes `logs/index_rebuild.json`)
+- Insert to Supabase: `python insert_data_to_supabase.py --country "France"`
+- Automation: schedule `bin/reindex_vectors.py` and `insert_data_to_supabase.py` via cron/GitHub Action after each ingestion run.

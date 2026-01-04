@@ -1,0 +1,399 @@
+[
+  {
+    "type": "function",
+    "name": "extract_funded_project",
+    "description": "Extract a single funded climate project from unstructured text into the Funded Project schema. Use null when a field is not stated or cannot be inferred. Dates must be YYYY-MM-DD when provided.",
+    "strict": true,
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ProjectTitle": {
+          "type": "string",
+          "description": "Name/title of the funded project."
+        },
+        "ProjectSummary": {
+          "type": ["string", "null"],
+          "description": "Short summary of what was delivered and why."
+        },
+        "ProjectStatus": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "approved",
+            "in_implementation",
+            "completed",
+            "cancelled"
+          ],
+          "description": "Current project status."
+        },
+        "StartDate": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Start date (YYYY-MM-DD)."
+        },
+        "EndDate": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "End date (YYYY-MM-DD)."
+        },
+        "Location": {
+          "type": ["object", "null"],
+          "description": "Geographic context of the funded project (used for 'similar projects' output).",
+          "additionalProperties": false,
+          "properties": {
+            "Country": {
+              "type": ["string", "null"],
+              "description": "Country name."
+            },
+            "Region": {
+              "type": ["string", "null"],
+              "description": "State/province/region."
+            },
+            "CityName": {
+              "type": ["string", "null"],
+              "description": "City name."
+            },
+            "CityID": {
+              "type": ["string", "null"],
+              "description": "UUID as string if linked to internal City table.",
+              "format": "uuid"
+            }
+          },
+          "required": ["Country", "Region", "CityName", "CityID"]
+        },
+        "TechnicalDescriptors": {
+          "type": ["object", "null"],
+          "description": "Scale, maturity and site conditions—used for benchmarking and technical summaries.",
+          "additionalProperties": false,
+          "properties": {
+            "TechnicalScope": {
+              "type": ["object", "null"],
+              "description": "Project scale/units/capacity.",
+              "additionalProperties": false,
+              "properties": {
+                "units": {
+                  "type": ["number", "null"],
+                  "description": "Numeric count of units (if applicable)."
+                },
+                "unit_type": {
+                  "type": ["string", "null"],
+                  "description": "Type of unit (e.g., buildings, buses, hectares)."
+                },
+                "capacity_mw": {
+                  "type": ["number", "null"],
+                  "description": "Capacity in megawatts, if applicable."
+                },
+                "capacity_tons_per_year": {
+                  "type": ["number", "null"],
+                  "description": "Capacity in tons/year, if applicable."
+                }
+              },
+              "required": [
+                "units",
+                "unit_type",
+                "capacity_mw",
+                "capacity_tons_per_year"
+              ]
+            },
+            "TechnologyMaturity": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": ["proven", "emerging", "experimental"]
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Technology maturity level."
+            },
+            "SiteConditions": {
+              "type": ["object", "null"],
+              "description": "Site constraints and enabling conditions.",
+              "additionalProperties": false,
+              "properties": {
+                "grid_capacity": {
+                  "type": ["string", "null"],
+                  "description": "Grid capacity constraints/notes."
+                },
+                "zoning": {
+                  "type": ["string", "null"],
+                  "description": "Zoning constraints/notes."
+                },
+                "land_available": {
+                  "type": ["boolean", "null"],
+                  "description": "Whether land is available."
+                },
+                "permitting_complexity": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": ["low", "medium", "high"]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Permitting complexity."
+                }
+              },
+              "required": [
+                "grid_capacity",
+                "zoning",
+                "land_available",
+                "permitting_complexity"
+              ]
+            }
+          },
+          "required": ["TechnicalScope", "TechnologyMaturity", "SiteConditions"]
+        },
+        "Impact": {
+          "type": ["object", "null"],
+          "description": "Impact evidence used for outputs (GHG, beneficiaries, co-benefits).",
+          "additionalProperties": false,
+          "properties": {
+            "BaselineEmissionsTco2ePerYear": {
+              "type": ["number", "null"],
+              "description": "Baseline emissions in tCO2e/year."
+            },
+            "ExpectedReductionTco2ePerYear": {
+              "type": ["number", "null"],
+              "description": "Expected absolute emissions reduction in tCO2e/year."
+            },
+            "ExpectedReductionPct": {
+              "type": ["number", "null"],
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Fraction between 0 and 1 (e.g., 0.25 = 25%)."
+            },
+            "PrimaryBeneficiaries": {
+              "type": ["string", "null"],
+              "description": "Primary beneficiaries (free text)."
+            },
+            "CoBenefits": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string"
+              },
+              "description": "List of co-benefit tags (e.g., air_quality, jobs, resilience)."
+            }
+          },
+          "required": [
+            "BaselineEmissionsTco2ePerYear",
+            "ExpectedReductionTco2ePerYear",
+            "ExpectedReductionPct",
+            "PrimaryBeneficiaries",
+            "CoBenefits"
+          ]
+        },
+        "Financing": {
+          "type": ["object", "null"],
+          "description": "Core of fundability logic: costs, savings/revenue, instruments, structure, indicators.",
+          "additionalProperties": false,
+          "properties": {
+            "CurrencyCode": {
+              "type": ["string", "null"],
+              "description": "Currency code for financial values if known (e.g., USD, EUR)."
+            },
+            "TotalProjectCost": {
+              "type": ["number", "null"],
+              "description": "Total project cost (CAPEX + any capitalized costs) in CurrencyCode."
+            },
+            "Capex": {
+              "type": ["number", "null"],
+              "description": "Capital expenditure in CurrencyCode."
+            },
+            "OpexPerYear": {
+              "type": ["number", "null"],
+              "description": "Operating expenditure per year in CurrencyCode."
+            },
+            "ExpectedAnnualSavings": {
+              "type": ["number", "null"],
+              "description": "Expected annual cost savings in CurrencyCode."
+            },
+            "ExpectedAnnualRevenue": {
+              "type": ["number", "null"],
+              "description": "Expected annual revenue in CurrencyCode."
+            },
+            "FundingGap": {
+              "type": ["number", "null"],
+              "description": "Unfunded amount / funding gap in CurrencyCode."
+            },
+            "FinancingStructure": {
+              "type": ["string", "null"],
+              "description": "Short description of the financing structure (e.g., grant + concessional loan; PPP)."
+            },
+            "FinancingInstruments": {
+              "type": ["array", "null"],
+              "description": "Financing instruments used (each entry is one instrument/commitment).",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "InstrumentType": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "grant",
+                          "loan",
+                          "equity",
+                          "bond",
+                          "guarantee",
+                          "subsidy",
+                          "blended",
+                          "other"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Type of instrument."
+                  },
+                  "Provider": {
+                    "type": ["string", "null"],
+                    "description": "Provider/funder for this instrument."
+                  },
+                  "Amount": {
+                    "type": ["number", "null"],
+                    "description": "Amount for this instrument in Currency (below)."
+                  },
+                  "Currency": {
+                    "type": ["string", "null"],
+                    "description": "Currency code for Amount if different from CurrencyCode."
+                  },
+                  "TenorYears": {
+                    "type": ["number", "null"],
+                    "description": "Loan/bond tenor in years if applicable."
+                  },
+                  "InterestRatePct": {
+                    "type": ["number", "null"],
+                    "description": "Interest rate percentage (e.g., 3.5 = 3.5%) if applicable."
+                  },
+                  "Notes": {
+                    "type": ["string", "null"],
+                    "description": "Any relevant terms/notes."
+                  }
+                },
+                "required": [
+                  "InstrumentType",
+                  "Provider",
+                  "Amount",
+                  "Currency",
+                  "TenorYears",
+                  "InterestRatePct",
+                  "Notes"
+                ]
+              }
+            },
+            "PaybackPeriodYears": {
+              "type": ["number", "null"],
+              "description": "Simple payback period in years (if stated)."
+            },
+            "IRR": {
+              "type": ["number", "null"],
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Internal Rate of Return as fraction 0-1 (e.g., 0.12 = 12%) if stated."
+            },
+            "NPV": {
+              "type": ["number", "null"],
+              "description": "Net Present Value in CurrencyCode if stated."
+            },
+            "Notes": {
+              "type": ["string", "null"],
+              "description": "Other financing notes (eligibility constraints, conditions, etc.)."
+            }
+          },
+          "required": [
+            "CurrencyCode",
+            "TotalProjectCost",
+            "Capex",
+            "OpexPerYear",
+            "ExpectedAnnualSavings",
+            "ExpectedAnnualRevenue",
+            "FundingGap",
+            "FinancingStructure",
+            "FinancingInstruments",
+            "PaybackPeriodYears",
+            "IRR",
+            "NPV",
+            "Notes"
+          ]
+        },
+        "Funders": {
+          "type": ["object", "null"],
+          "description": "Who funded it and under what program / eligibility constraints.",
+          "additionalProperties": false,
+          "properties": {
+            "PrimaryFunderName": {
+              "type": ["string", "null"],
+              "description": "Primary funder name."
+            },
+            "OtherFunders": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string"
+              },
+              "description": "Other funders (names)."
+            },
+            "FunderType": {
+              "type": ["string", "null"],
+              "description": "E.g., public, private, IFI, philanthropy."
+            },
+            "ProgramName": {
+              "type": ["string", "null"],
+              "description": "Funding program name if applicable."
+            }
+          },
+          "required": [
+            "PrimaryFunderName",
+            "OtherFunders",
+            "FunderType",
+            "ProgramName"
+          ]
+        },
+        "Traceability": {
+          "type": ["object", "null"],
+          "description": "Sources, documentation, and verification timestamps.",
+          "additionalProperties": false,
+          "properties": {
+            "DataSourceName": {
+              "type": ["string", "null"],
+              "description": "Name of the dataset/report/portal used as a source."
+            },
+            "SourceUrl": {
+              "type": ["string", "null"],
+              "description": "Primary source URL.",
+              "pattern": "^https?://.+"
+            },
+            "DocumentationUrls": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string",
+                "pattern": "^https?://.+"
+              },
+              "description": "Supporting documentation URLs."
+            }
+          },
+          "required": ["DataSourceName", "SourceUrl", "DocumentationUrls"]
+        }
+      },
+      "required": [
+        "ProjectTitle",
+        "ProjectSummary",
+        "ProjectStatus",
+        "StartDate",
+        "EndDate",
+        "Location",
+        "TechnicalDescriptors",
+        "Impact",
+        "Financing",
+        "Funders",
+        "Traceability"
+      ]
+    }
+  }
+]

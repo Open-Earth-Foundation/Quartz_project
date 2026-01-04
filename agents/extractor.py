@@ -24,6 +24,7 @@ logger = logging.getLogger(__name__)
 import config
 from agent_state import AgentState
 from agents.utils import needs_advanced_scraping
+from agents.staged_project_extractor import run_staged_extraction_over_scrapes
 
 # Define the data structure for extracted datasets using Pydantic
 class ExtractorOutputSchema(BaseModel):
@@ -184,28 +185,55 @@ def extract_with_llm(document: Dict[str, Any], target_country: Optional[str], ta
             {"role": "user", "content": current_prompt}
         ]
 
+        # Prepare response formats
+        schema_json = ExtractorOutputSchema.model_json_schema()
+        response_format_standard = {
+            "type": "json_schema",
+            "json_schema": {
+                "name": "ExtractorOutput",
+                "schema": schema_json,
+                "strict": True
+            }
+        }
+        response_format_legacy = {"type": "json_schema", "json_schema": schema_json}
+        
         try:
-            logger.info(f"Attempting extraction with {model_to_use_for_extraction} for URL {source_url} using json_schema mode.")
+            logger.info(f"Attempting extraction with {model_to_use_for_extraction} for URL {source_url} using OpenAI-compliant json_schema mode.")
             response = client.chat.completions.create(
                 model=model_to_use_for_extraction,
                 messages=llm_messages,
-                response_format={"type": "json_schema", "json_schema": ExtractorOutputSchema.model_json_schema()}, # type: ignore
+                response_format=response_format_standard,
                 temperature=config.DEFAULT_TEMPERATURE,
             )
             llm_response_content_str = response.choices[0].message.content
-        except Exception as e_schema:
-            logger.warning(f"json_schema mode failed for {model_to_use_for_extraction} on URL {source_url}: {e_schema}. Falling back to json_object mode.")
-            try:
-                response = client.chat.completions.create(
-                    model=model_to_use_for_extraction,
-                    messages=llm_messages, 
-                    response_format={"type": "json_object"},
-                    temperature=config.DEFAULT_TEMPERATURE,
-                )
-                llm_response_content_str = response.choices[0].message.content
-            except Exception as e_object:
-                logger.error(f"json_object mode also failed for {model_to_use_for_extraction} on URL {source_url}: {e_object}", exc_info=True)
-                return None # Both modes failed
+            logger.info(f"Successfully used OpenAI-compliant json_schema format for extractor on {source_url}.")
+        except Exception as e_standard:
+            if "BadRequestError" in str(type(e_standard).__name__) or "400" in str(e_standard) or "json_schema" in str(e_standard).lower():
+                logger.warning(f"OpenAI-compliant json_schema mode failed for {model_to_use_for_extraction} on URL {source_url}: {e_standard}. Trying legacy format.")
+                try:
+                    response = client.chat.completions.create(
+                        model=model_to_use_for_extraction,
+                        messages=llm_messages,
+                        response_format=response_format_legacy,
+                        temperature=config.DEFAULT_TEMPERATURE,
+                    )
+                    llm_response_content_str = response.choices[0].message.content
+                    logger.info(f"Successfully used legacy json_schema format for extractor on {source_url}.")
+                except Exception as e_legacy:
+                    logger.warning(f"Legacy json_schema mode also failed for {model_to_use_for_extraction} on URL {source_url}: {e_legacy}. Falling back to json_object mode.")
+                    try:
+                        response = client.chat.completions.create(
+                            model=model_to_use_for_extraction,
+                            messages=llm_messages, 
+                            response_format={"type": "json_object"},
+                            temperature=config.DEFAULT_TEMPERATURE,
+                        )
+                        llm_response_content_str = response.choices[0].message.content
+                    except Exception as e_object:
+                        logger.error(f"json_object mode also failed for {model_to_use_for_extraction} on URL {source_url}: {e_object}", exc_info=True)
+                        return None # All modes failed
+            else:
+                raise
 
         if not llm_response_content_str:
             logger.warning(f"LLM returned empty content for {source_url} using {model_to_use_for_extraction}.")
@@ -342,5 +370,16 @@ def extractor_node(state: AgentState) -> AgentState:
     })
     
     final_state = AgentState(**current_state_dict)
+
+    # === Funded project staged extraction (non-destructive to GHGI flow) ===
+    if config.ENABLE_FUNDED_PROJECT_FLOW:
+        try:
+            final_state = run_staged_extraction_over_scrapes(final_state)
+        except Exception as exc:
+            logger.error(f"Staged funded-project extraction failed: {exc}", exc_info=True)
+            final_state.decision_log.append(
+                {"agent": "StagedExtractor", "action": "error", "message": str(exc)}
+            )
+
     logger.info(f"EXTRACTOR_NODE: Exiting. Iteration in final_state: {final_state.current_iteration}")
     return final_state 

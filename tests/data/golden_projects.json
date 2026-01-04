@@ -1,0 +1,20 @@
+[
+  {
+    "ProjectTitle": "Solar Roofs Pilot",
+    "CityName": "Paris",
+    "StartDate": "2022-03-01",
+    "ProjectStatus": "completed",
+    "Traceability": {"SourceUrl": "https://example.org/paris-solar"},
+    "Funders": {"PrimaryFunderName": "City of Paris"},
+    "Financing": {"TotalProjectCost": 1500000, "CurrencyCode": "EUR"}
+  },
+  {
+    "ProjectTitle": "Zero-Emission Buses",
+    "CityName": "Berlin",
+    "StartDate": "2019-01-10",
+    "ProjectStatus": "in_implementation",
+    "Traceability": {"SourceUrl": "https://example.org/berlin-buses"},
+    "Funders": {"PrimaryFunderName": "Berlin Transit"},
+    "Financing": {"TotalProjectCost": 9000000, "CurrencyCode": "EUR"}
+  }
+]

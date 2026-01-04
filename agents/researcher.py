@@ -52,7 +52,8 @@ async def collect_search_results(
     # use_google: bool = True, # REMOVE - Always use Google
     google_quota: Optional[int] = None,
     save_raw_results: bool = True,
-    save_dir: str = "logs/search_api_outputs"
+    save_dir: str = "logs/search_api_outputs",
+    state: Optional[AgentState] = None  # Added for search_mode detection
 ) -> List[Dict[str, Any]]:
     """
     Collect search results for a query using Google Search.
@@ -65,6 +66,7 @@ async def collect_search_results(
         google_quota: Remaining Google queries allowed
         save_raw_results: Whether to save the raw search engine results.
         save_dir: Directory to save the raw results.
+        state: AgentState for detecting search_mode (ghgi_data or funded_projects)
     Returns:
         List of search result items (dictionaries)
     """
@@ -77,17 +79,28 @@ async def collect_search_results(
     raw_results_list: List[Dict[str, Any]] = []
     search_engine_used = "google" # Always Google
 
-    # MODIFIED: Prepare query for Google search
+    # MODIFIED: Dual-mode query construction (Option A & B Implementation)
+    # Exclude certain filetypes but NOT PDFs (they contain funding documents and activity data)
     exclusions = [
-        "-filetype:pdf",
         "-filetype:xlsx", "-filetype:xls",
         "-filetype:docx", "-filetype:doc",
         "-filetype:pptx", "-filetype:ppt",
         "-filetype:zip"
     ]
     exclusion_string = " ".join(exclusions)
-    current_query = f"{query} {exclusion_string}"
-    logger.info(f"Appended filetype exclusions to Google search query. New query: '{current_query}'")
+    
+    # Determine search mode and construct query appropriately
+    search_mode = getattr(state, 'search_mode', 'ghgi_data') if state else 'ghgi_data'
+    
+    if search_mode == "funded_projects":
+        # For funded projects: add funding keywords, allow PDFs
+        lookback_hint = f"funded OR funding OR grant OR approved OR implementation OR budget last {config.FUNDED_LOOKBACK_YEARS} years"
+        current_query = f"{query} {lookback_hint} {exclusion_string}"
+        logger.info(f"[FUNDED_PROJECTS MODE] Query modified with funding keywords. New query: '{current_query}'")
+    else:
+        # For GHGI data: no funding keywords, allow PDFs (activity data is often in PDFs)
+        current_query = f"{query} {exclusion_string}"
+        logger.info(f"[GHGI_DATA MODE] Query constructed without funding keywords. New query: '{current_query}'")
 
     try:
         if google_quota > 0: # Check quota before calling
@@ -175,7 +188,8 @@ async def researcher_node(state: AgentState) -> AgentState:
             max_results=config.MAX_RESULTS_PER_QUERY,
             # use_google=True, # REMOVED - no longer an option
             save_raw_results=True,
-            save_dir=SEARCH_API_OUTPUT_DIR
+            save_dir=SEARCH_API_OUTPUT_DIR,
+            state=state  # Pass state for search_mode detection
         )
         all_collected_search_results.extend(search_results_for_query)
         research_summary["queries_processed_this_cycle"].append(plan_item.query)
@@ -275,6 +289,7 @@ async def researcher_node(state: AgentState) -> AgentState:
                 state.target_country or "UnknownCountry",
                 state.target_sector or "Any",
                 client,
+                search_mode=state.search_mode  # NEW: Pass search_mode to relevance checker
             )
             for url in unique_urls_to_consider_filtered  # Use the filtered list
         ]

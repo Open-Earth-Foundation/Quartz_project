@@ -6,6 +6,13 @@ from pathlib import Path
 from typing import List, Dict, Any, Optional
 from supabase import create_client, Client
 from dotenv import load_dotenv
+from agents.normalization import normalize_currency_code, normalize_date
+from agents.funding_classifier import (
+    classify_funding_status,
+    classify_implementation_status,
+    dedupe_project_key,
+    summarize_unmapped_fields,
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -29,18 +36,21 @@ def create_supabase_client(url: str, key: str) -> Client:
     return create_client(url, key)
 
 def get_existing_records(supabase: Client, table_name: str) -> set:
-    """Get existing URL-country combinations from the database"""
+    """Get existing URL-country or project_key combinations from the database"""
     try:
-        response = supabase.table(table_name).select("url, country").execute()
-        existing_combinations = set()
+        response = supabase.table(table_name).select("url, country, project_key").execute()
+        existing = set()
         
         for record in response.data:
-            # Create a tuple of (url, country) for duplicate checking
-            combination = (record.get('url', ''), record.get('country', ''))
-            existing_combinations.add(combination)
+            url_country = (record.get('url', ''), record.get('country', ''))
+            if url_country[0] or url_country[1]:
+                existing.add(("url_country", url_country))
+            proj_key = record.get('project_key')
+            if proj_key:
+                existing.add(("project_key", proj_key))
         
-        logger.info(f"Found {len(existing_combinations)} existing URL-country combinations")
-        return existing_combinations
+        logger.info(f"Found {len(existing)} existing dedupe keys")
+        return existing
     
     except Exception as e:
         logger.error(f"Error fetching existing records: {e}")
@@ -165,10 +175,12 @@ def read_json_files_from_runs(runs_folder: str = "runs", target_country: Optiona
 
 def prepare_record_for_insertion(item: Dict[str, Any]) -> Dict[str, Any]:
     """Prepare a structured data item for database insertion"""
+    mapped_fields = set()
     # Handle sector field with multiple fallback strategies
     sector = item.get('sector')
     if isinstance(sector, list):
         sector = ', '.join(sector)
+    mapped_fields.update(['sector'])
     
     # Use multiple fallbacks if sector is empty or None
     if not sector:
@@ -189,19 +201,80 @@ def prepare_record_for_insertion(item: Dict[str, Any]) -> Dict[str, Any]:
     if isinstance(subsector, list):
         subsector = ', '.join(subsector)
     
+    # Project-level fields for funded city projects
+    project_title = item.get('ProjectTitle') or item.get('project_name') or item.get('name', '')
+    location = item.get('Location') or {}
+    project_city = location.get('CityName') if isinstance(location, dict) else item.get('city', '')
+    project_region = location.get('Region') if isinstance(location, dict) else item.get('region', '')
+    project_country = location.get('Country') if isinstance(location, dict) else item.get('country', '')
+    mapped_fields.update(['ProjectTitle', 'project_name', 'name', 'Location', 'city', 'region', 'country'])
+
+    # Funding fields
+    financing = item.get('Financing') or {}
+    funding_amount = financing.get('TotalProjectCost') if isinstance(financing, dict) else item.get('funding_amount')
+    funding_currency = normalize_currency_code(
+        financing.get('CurrencyCode') if isinstance(financing, dict) else item.get('funding_currency')
+    ) or ''
+    funding_status_raw = item.get('ProjectStatus') or item.get('funding_status')
+    funding_status = funding_status_raw or classify_funding_status(funding_status_raw)
+    funding_source = None
+    funders = item.get('Funders') or {}
+    if isinstance(funders, dict):
+        funding_source = funders.get('PrimaryFunderName') or None
+        funding_authority = funders.get('FunderType')
+    else:
+        funding_authority = item.get('funding_authority')
+    implementation_status = item.get('implementation_status') or classify_implementation_status(item.get('ProjectStatus'))
+    mapped_fields.update(['Financing', 'funding_amount', 'funding_currency', 'ProjectStatus', 'funding_status', 'Funders', 'implementation_status', 'funding_authority'])
+
+    # Dates
+    approval_date = normalize_date(item.get('approval_date') or item.get('StartDate'))
+    timeline_start = normalize_date(item.get('StartDate'))
+    timeline_end = normalize_date(item.get('EndDate'))
+    mapped_fields.update(['approval_date', 'StartDate', 'EndDate'])
+
+    evidence_snippet = item.get('evidence_snippet') or ''
+    inflation_note = item.get('inflation_note') or ''
+    source_url = item.get('Traceability', {}).get('SourceUrl') if isinstance(item.get('Traceability'), dict) else item.get('url', '')
+
+    # Build project_key for dedupe: title + city + year of start date
+    project_year = None
+    if timeline_start and isinstance(timeline_start, str) and len(timeline_start) >= 4:
+        project_year = timeline_start[:4]
+    project_key = dedupe_project_key(project_title, project_city or '', project_year)
+
     record = {
-        'name': item.get('name', ''),
-        'method_of_access': item.get('method_of_access', ''),
+        'project_key': project_key,
+        'project_name': project_title,
+        'city': project_city,
+        'region': project_region,
+        'country': project_country,
         'sector': sector or '',
+        'funding_status': funding_status or '',
+        'implementation_status': implementation_status or '',
+        'funding_amount': funding_amount if funding_amount is not None else '',
+        'funding_currency': funding_currency or '',
+        'funding_source': funding_source or '',
+        'funding_authority': funding_authority or '',
+        'approval_date': approval_date or '',
+        'timeline_start': timeline_start or '',
+        'timeline_end': timeline_end or '',
+        'evidence_snippet': evidence_snippet,
+        'source_url': source_url or item.get('url', ''),
+        'inflation_note': inflation_note,
+        # legacy fields for backward compatibility
+        'method_of_access': item.get('method_of_access', ''),
         'data_format': data_format or '',
         'description': item.get('description', ''),
         'granularity': item.get('granularity', ''),
-        'url': item.get('url', ''),
-        'country': item.get('country', ''),
         'country_locode': item.get('country_locode', ''),
         'human_eval': 0,
         'accepted': 0
     }
+
+    unmapped = summarize_unmapped_fields(item, mapped_fields)
+    if unmapped:
+        logger.debug(f"Unmapped fields for project {project_title}: {unmapped}")
     
     return record
 
@@ -211,13 +284,16 @@ def insert_records_to_supabase(supabase: Client, table_name: str, records: List[
     skipped_count = 0
     
     for record in records:
-        url = record.get('url', '')
+        url = record.get('source_url', '')
         country = record.get('country', '')
-        combination = (url, country)
-        
-        # Skip if this URL-country combination already exists
-        if combination in existing_combinations:
-            logger.debug(f"Skipping duplicate: {url} for {country}")
+        project_key = record.get('project_key')
+
+        if ("project_key", project_key) in existing_combinations:
+            logger.debug(f"Skipping duplicate by project_key: {project_key}")
+            skipped_count += 1
+            continue
+        if ("url_country", (url, country)) in existing_combinations:
+            logger.debug(f"Skipping duplicate by url/country: {url} for {country}")
             skipped_count += 1
             continue
         
@@ -229,7 +305,9 @@ def insert_records_to_supabase(supabase: Client, table_name: str, records: List[
                 logger.debug(f"Inserted record: {record.get('name', 'Unknown')} for {country}")
                 inserted_count += 1
                 # Add to existing combinations to avoid inserting duplicates in the same batch
-                existing_combinations.add(combination)
+                if project_key:
+                    existing_combinations.add(("project_key", project_key))
+                existing_combinations.add(("url_country", (url, country)))
             else:
                 logger.warning(f"No data returned for insertion: {record.get('name', 'Unknown')}")
                 

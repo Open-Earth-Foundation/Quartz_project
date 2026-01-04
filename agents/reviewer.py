@@ -136,7 +136,23 @@ def reviewer_node(state: AgentState) -> AgentState:
     llm_response_parsed: Optional[RawReviewerLLMResponse] = None
     llm_raw_output = ""
 
-    pydantic_response_format = {"type": "json_schema", "json_schema": RawReviewerLLMResponse.model_json_schema()}
+    # Try OpenAI-compliant format first (with "name" and "schema" fields)
+    schema_json = RawReviewerLLMResponse.model_json_schema()
+    pydantic_response_format_standard = {
+        "type": "json_schema",
+        "json_schema": {
+            "name": "RawReviewerResponse",
+            "schema": schema_json,
+            "strict": True
+        }
+    }
+    
+    # Legacy format as fallback (works for some providers)
+    pydantic_response_format_legacy = {
+        "type": "json_schema", 
+        "json_schema": schema_json
+    }
+    
     logger.info(f"Using json_schema mode with dynamically generated schema from RawReviewerLLMResponse for raw reviewer.")
 
     try:
@@ -157,13 +173,13 @@ def reviewer_node(state: AgentState) -> AgentState:
             before_sleep=tenacity.before_sleep_log(logger, logging.WARNING),
             reraise=True
         )
-        def attempt_raw_review_extraction():
+        def attempt_raw_review_extraction(response_format):
             nonlocal llm_raw_output, llm_response_parsed
 
             response = client.chat.completions.create(
                 model=config.STRUCTURED_MODEL,
                 messages=messages_for_llm,
-                response_format=pydantic_response_format,
+                response_format=response_format,
                 temperature=0.1
             )
             
@@ -181,8 +197,23 @@ def reviewer_node(state: AgentState) -> AgentState:
 
             llm_raw_output = current_llm_raw_output
             llm_response_parsed = current_llm_response_parsed
-           
-        attempt_raw_review_extraction()
+        
+        # Try standard format first
+        try:
+            logger.info("Attempting raw review with OpenAI-compliant json_schema format (with 'name' and 'schema' fields).")
+            attempt_raw_review_extraction(pydantic_response_format_standard)
+            logger.info("Successfully used OpenAI-compliant json_schema format for raw reviewer.")
+        except Exception as e:
+            # Check if it's a BadRequestError related to schema format
+            if "BadRequestError" in str(type(e).__name__) or "400" in str(e) or "json_schema" in str(e).lower():
+                logger.warning(f"OpenAI-compliant format failed: {e}. Falling back to legacy format.")
+                # Try legacy format
+                logger.info("Attempting raw review with legacy json_schema format (direct schema).")
+                attempt_raw_review_extraction(pydantic_response_format_legacy)
+                logger.info("Successfully used legacy json_schema format for raw reviewer.")
+            else:
+                # Re-raise if it's a different type of error
+                raise
         
         if llm_response_parsed:
             logger.info(f"Successfully parsed raw reviewer LLM response. Suggested next action: {llm_response_parsed.suggested_next_action}. Docs to extract: {len(llm_response_parsed.documents_to_extract)}")
@@ -399,11 +430,21 @@ def structured_data_reviewer_node(state: AgentState) -> AgentState:
             {"role": "user", "content": user_prompt}
         ]
         
+        # Prepare response formats (standard and legacy)
         if output_json_schema:
-            api_call_response_format = {"type": "json_schema", "json_schema": output_json_schema}
+            api_call_response_format_standard = {
+                "type": "json_schema", 
+                "json_schema": {
+                    "name": "ReviewerResponse",
+                    "schema": output_json_schema,
+                    "strict": True
+                }
+            }
+            api_call_response_format_legacy = {"type": "json_schema", "json_schema": output_json_schema}
             logger.info(f"Using json_schema mode with schema loaded from {schema_file_used} for {config.STRUCTURED_MODEL}. Final decision: {is_final_decision}")
         else:
-            api_call_response_format = {"type": "json_object"}
+            api_call_response_format_standard = {"type": "json_object"}
+            api_call_response_format_legacy = {"type": "json_object"}
             logger.warning(f"Schema from file {schema_file_used} not loaded. Defaulting to json_object mode for {config.STRUCTURED_MODEL}.")
 
         @tenacity.retry(
@@ -413,13 +454,13 @@ def structured_data_reviewer_node(state: AgentState) -> AgentState:
             before_sleep=tenacity.before_sleep_log(logger, logging.WARNING),
             reraise=True
         )
-        def attempt_structured_review_extraction():
+        def attempt_structured_review_extraction(response_format):
             nonlocal llm_raw_output, llm_response_parsed
             
             response = client.chat.completions.create(
                 model=config.STRUCTURED_MODEL, 
                 messages=messages_for_llm,
-                response_format=api_call_response_format,
+                response_format=response_format,
                 temperature=0.1
             )
             current_llm_raw_output = response.choices[0].message.content or ""
@@ -432,7 +473,21 @@ def structured_data_reviewer_node(state: AgentState) -> AgentState:
             llm_response_parsed = ReviewerLLMResponse.model_validate_json(cleaned_output)
             llm_raw_output = current_llm_raw_output
         
-        attempt_structured_review_extraction()
+        # Try standard format first, then fallback to legacy
+        try:
+            if output_json_schema:
+                logger.info("Attempting structured review with OpenAI-compliant json_schema format.")
+            attempt_structured_review_extraction(api_call_response_format_standard)
+            if output_json_schema:
+                logger.info("Successfully used OpenAI-compliant json_schema format for structured reviewer.")
+        except Exception as e:
+            if output_json_schema and ("BadRequestError" in str(type(e).__name__) or "400" in str(e) or "json_schema" in str(e).lower()):
+                logger.warning(f"OpenAI-compliant format failed for structured reviewer: {e}. Falling back to legacy format.")
+                logger.info("Attempting structured review with legacy json_schema format.")
+                attempt_structured_review_extraction(api_call_response_format_legacy)
+                logger.info("Successfully used legacy json_schema format for structured reviewer.")
+            else:
+                raise
         
         if llm_response_parsed:
             logger.info(f"Successfully parsed structured reviewer LLM response. Suggested action: {llm_response_parsed.suggested_action}")

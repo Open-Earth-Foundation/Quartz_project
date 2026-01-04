@@ -189,12 +189,21 @@ async def deep_dive_processor_node(state: AgentState) -> AgentState:
         
         logger.info(f"Sending text from {thinking_model_to_use} to {structured_model_to_use} for JSON extraction.")
 
-        # Determine response format
+        # Determine response format (standard and legacy)
         if output_json_schema:
-            api_call_response_format = {"type": "json_schema", "json_schema": output_json_schema}
+            api_call_response_format_standard = {
+                "type": "json_schema", 
+                "json_schema": {
+                    "name": "DeepDiverOutput",
+                    "schema": output_json_schema,
+                    "strict": True
+                }
+            }
+            api_call_response_format_legacy = {"type": "json_schema", "json_schema": output_json_schema}
             logger.info(f"Using json_schema mode with schema loaded from {DEEP_DIVER_OUTPUT_SCHEMA_PATH} for {structured_model_to_use}.")
         else:
-            api_call_response_format = {"type": "json_object"}
+            api_call_response_format_standard = {"type": "json_object"}
+            api_call_response_format_legacy = {"type": "json_object"}
             logger.warning(f"Schema from file {DEEP_DIVER_OUTPUT_SCHEMA_PATH} not loaded. Defaulting to json_object mode for {structured_model_to_use}.")
 
         @retry(
@@ -204,7 +213,7 @@ async def deep_dive_processor_node(state: AgentState) -> AgentState:
             before_sleep=before_sleep_log(logger, logging.WARNING),
             reraise=True
         )
-        def attempt_structured_extraction():
+        def attempt_structured_extraction(response_format):
             nonlocal structured_llm_output_str
             extraction_response = client.chat.completions.create(
                 model=structured_model_to_use,
@@ -212,7 +221,7 @@ async def deep_dive_processor_node(state: AgentState) -> AgentState:
                     {"role": "system", "content": extraction_system_prompt},
                     {"role": "user", "content": extraction_user_prompt}
                 ],
-                response_format=api_call_response_format,
+                response_format=response_format,
                 temperature=config.DEFAULT_TEMPERATURE 
             )
             current_structured_output = extraction_response.choices[0].message.content or ""
@@ -232,7 +241,21 @@ async def deep_dive_processor_node(state: AgentState) -> AgentState:
             action_model = DeepDiveAction.model_validate_json(structured_llm_output_str)
             return action_model.model_dump()
 
-        parsed_action_dict = attempt_structured_extraction()
+        # Try standard format first, then fallback to legacy
+        try:
+            if output_json_schema:
+                logger.info("Attempting deep diver extraction with OpenAI-compliant json_schema format.")
+            parsed_action_dict = attempt_structured_extraction(api_call_response_format_standard)
+            if output_json_schema:
+                logger.info("Successfully used OpenAI-compliant json_schema format for deep diver.")
+        except Exception as e:
+            if output_json_schema and ("BadRequestError" in str(type(e).__name__) or "400" in str(e) or "json_schema" in str(e).lower()):
+                logger.warning(f"OpenAI-compliant format failed for deep diver: {e}. Falling back to legacy format.")
+                logger.info("Attempting deep diver extraction with legacy json_schema format.")
+                parsed_action_dict = attempt_structured_extraction(api_call_response_format_legacy)
+                logger.info("Successfully used legacy json_schema format for deep diver.")
+            else:
+                raise
         
         # Validate the action - scrape, crawl, and terminate_deep_dive are allowed
         action_type = parsed_action_dict.get("action_type")

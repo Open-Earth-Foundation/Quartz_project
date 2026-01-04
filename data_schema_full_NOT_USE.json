@@ -1,0 +1,747 @@
+[
+  {
+    "type": "function",
+    "name": "extract_funded_project",
+    "description": "Extract a single funded climate project from unstructured text into the Funded Project record. Use null when a field is not stated or cannot be reliably inferred. Dates must be YYYY-MM-DD (date) or ISO 8601 (date-time) where applicable. Do not invent IDs; return null and let the system generate them.",
+    "strict": true,
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "FundedProjectID": {
+          "type": ["string", "null"],
+          "format": "uuid",
+          "description": "Unique identifier for the funded project (UUID). If not provided in the source, return null."
+        },
+        "ProjectTitle": {
+          "type": "string",
+          "description": "Name/title of the funded project."
+        },
+        "ProjectSummary": {
+          "type": ["string", "null"],
+          "description": "Short summary of what was delivered and why."
+        },
+        "ProjectStatus": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "approved",
+            "in_implementation",
+            "completed",
+            "cancelled"
+          ],
+          "description": "Current project status."
+        },
+        "StartDate": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Start date (YYYY-MM-DD)."
+        },
+        "EndDate": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "End date (YYYY-MM-DD)."
+        },
+        "Location": {
+          "type": ["object", "null"],
+          "description": "Geographic context of the funded project.",
+          "additionalProperties": false,
+          "properties": {
+            "Country": {
+              "type": ["string", "null"],
+              "description": "Country name."
+            },
+            "Region": {
+              "type": ["string", "null"],
+              "description": "State/province/region."
+            },
+            "CityName": {
+              "type": ["string", "null"],
+              "description": "City name."
+            },
+            "CityID": {
+              "type": ["string", "null"],
+              "format": "uuid",
+              "description": "UUID if linked to internal City table."
+            }
+          },
+          "required": ["Country", "Region", "CityName", "CityID"]
+        },
+        "HiapActionLink": {
+          "type": ["object", "null"],
+          "description": "Links a funded project to one HIAP action and stores sector/subsector convenience arrays.",
+          "additionalProperties": false,
+          "properties": {
+            "ActionID": {
+              "type": ["string", "null"],
+              "format": "uuid",
+              "description": "UUID, FK to HIAP action."
+            },
+            "SectorNames": {
+              "type": ["array", "null"],
+              "description": "Stored for query speed / convenience.",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "stationary_energy",
+                  "transportation",
+                  "waste",
+                  "ippu",
+                  "afolu"
+                ]
+              }
+            },
+            "SubsectorNames": {
+              "type": ["array", "null"],
+              "description": "Stored for query speed / convenience (aligned to subsector enum list).",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "residential_buildings",
+                  "commercial_and_institutional_buildings_and_facilities",
+                  "manufacturing_industries_and_construction",
+                  "energy_industries",
+                  "energy_generation_supplied_to_the_grid",
+                  "agriculture_forestry_and_fishing_activities",
+                  "non-specified_sources",
+                  "fugitive_emissions_from_mining_processing_storage_and_transportation_of_coal",
+                  "fugitive_emissions_from_oil_and_natural_gas_systems",
+                  "on-road",
+                  "railways",
+                  "waterborne_navigation",
+                  "aviation",
+                  "off-road",
+                  "disposal_of_solid_waste_generated_in_the_city",
+                  "disposal_of_solid_waste_generated_outside_the_city",
+                  "biological_treatment_of_waste_generated_in_the_city",
+                  "biological_treatment_of_waste_generated_outside_the_city",
+                  "incineration_and_open_burning_of_waste_generated_in_the_city",
+                  "incineration_and_open_burning_of_waste_generated_outside_the_city",
+                  "wastewater_generated_in_the_city",
+                  "wastewater_generated_outside_the_city",
+                  "industrial_processes",
+                  "product_use",
+                  "livestock",
+                  "land",
+                  "aggregate_sources_and_non-co2_emission_sources_on_land",
+                  "all"
+                ]
+              }
+            }
+          },
+          "required": ["ActionID", "SectorNames", "SubsectorNames"]
+        },
+        "TechnicalDescriptors": {
+          "type": ["object", "null"],
+          "description": "Scale, maturity and site conditions—used for benchmarking and technical summaries.",
+          "additionalProperties": false,
+          "properties": {
+            "TechnicalScope": {
+              "type": ["object", "null"],
+              "description": "Project scale/units/capacity.",
+              "additionalProperties": false,
+              "properties": {
+                "units": {
+                  "type": ["number", "null"]
+                },
+                "unit_type": {
+                  "type": ["string", "null"]
+                },
+                "capacity_mw": {
+                  "type": ["number", "null"]
+                },
+                "capacity_tons_per_year": {
+                  "type": ["number", "null"]
+                },
+                "OtherFields": {
+                  "type": ["array", "null"],
+                  "description": "Extra scope fields (key/value) if present in source.",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "Key": {
+                        "type": "string",
+                        "description": "Extension field name."
+                      },
+                      "Value": {
+                        "description": "Extension field value (primitive). If the source has complex structured data, stringify it.",
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": ["Key", "Value"]
+                  }
+                }
+              },
+              "required": [
+                "units",
+                "unit_type",
+                "capacity_mw",
+                "capacity_tons_per_year",
+                "OtherFields"
+              ]
+            },
+            "TechnologyMaturity": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": ["proven", "emerging", "experimental"]
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Technology maturity level."
+            },
+            "SiteConditions": {
+              "type": ["object", "null"],
+              "description": "Site constraints and enabling conditions.",
+              "additionalProperties": false,
+              "properties": {
+                "grid_capacity": {
+                  "type": ["string", "null"]
+                },
+                "zoning": {
+                  "type": ["string", "null"]
+                },
+                "land_available": {
+                  "type": ["boolean", "null"]
+                },
+                "permitting_complexity": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": ["low", "medium", "high"]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Permitting complexity."
+                },
+                "OtherFields": {
+                  "type": ["array", "null"],
+                  "description": "Extra site condition fields (key/value) if present in source.",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "Key": {
+                        "type": "string",
+                        "description": "Extension field name."
+                      },
+                      "Value": {
+                        "description": "Extension field value (primitive). If the source has complex structured data, stringify it.",
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": ["Key", "Value"]
+                  }
+                }
+              },
+              "required": [
+                "grid_capacity",
+                "zoning",
+                "land_available",
+                "permitting_complexity",
+                "OtherFields"
+              ]
+            }
+          },
+          "required": ["TechnicalScope", "TechnologyMaturity", "SiteConditions"]
+        },
+        "Impact": {
+          "type": ["object", "null"],
+          "description": "Impact evidence used for outputs (GHG, beneficiaries, co-benefits).",
+          "additionalProperties": false,
+          "properties": {
+            "BaselineEmissionsTco2ePerYear": {
+              "type": ["number", "null"]
+            },
+            "ExpectedReductionTco2ePerYear": {
+              "type": ["number", "null"]
+            },
+            "ExpectedReductionPct": {
+              "type": ["number", "null"],
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Fraction between 0 and 1 (e.g., 0.25 = 25%)."
+            },
+            "PrimaryBeneficiaries": {
+              "type": ["string", "null"]
+            },
+            "CoBenefits": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string"
+              },
+              "description": "List of co-benefit tags (e.g., air_quality, jobs, resilience)."
+            }
+          },
+          "required": [
+            "BaselineEmissionsTco2ePerYear",
+            "ExpectedReductionTco2ePerYear",
+            "ExpectedReductionPct",
+            "PrimaryBeneficiaries",
+            "CoBenefits"
+          ]
+        },
+        "Financing": {
+          "type": ["object", "null"],
+          "description": "Core of fundability logic: costs, savings/revenue, instruments, structure, indicators.",
+          "additionalProperties": false,
+          "properties": {
+            "CapexAmountUsd": {
+              "type": ["number", "null"]
+            },
+            "OpexAmountUsdPerYear": {
+              "type": ["number", "null"]
+            },
+            "SavingsAmountUsdPerYear": {
+              "type": ["number", "null"]
+            },
+            "RevenueAmountUsdPerYear": {
+              "type": ["number", "null"]
+            },
+            "CurrencyOriginal": {
+              "type": ["string", "null"]
+            },
+            "CapexAmountOriginal": {
+              "type": ["number", "null"]
+            },
+            "OpexAmountOriginalPerYear": {
+              "type": ["number", "null"]
+            },
+            "FinancingInstrument": {
+              "type": ["string", "null"],
+              "description": "E.g., grant, loan, PPP, blended, bond."
+            },
+            "FinancingStructure": {
+              "type": ["object", "null"],
+              "description": "Split of funding sources (fractions between 0 and 1).",
+              "additionalProperties": false,
+              "properties": {
+                "grant_pct": {
+                  "type": ["number", "null"],
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "loan_pct": {
+                  "type": ["number", "null"],
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "municipal_pct": {
+                  "type": ["number", "null"],
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "private_pct": {
+                  "type": ["number", "null"],
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "OtherFields": {
+                  "type": ["array", "null"],
+                  "description": "Extra structure fields (key/value) if present in source.",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "Key": {
+                        "type": "string",
+                        "description": "Extension field name."
+                      },
+                      "Value": {
+                        "description": "Extension field value (primitive). If the source has complex structured data, stringify it.",
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": ["Key", "Value"]
+                  }
+                }
+              },
+              "required": [
+                "grant_pct",
+                "loan_pct",
+                "municipal_pct",
+                "private_pct",
+                "OtherFields"
+              ]
+            },
+            "PaybackYears": {
+              "type": ["number", "null"]
+            },
+            "NpvUsd": {
+              "type": ["number", "null"]
+            },
+            "Irr": {
+              "type": ["number", "null"],
+              "minimum": -1,
+              "maximum": 5,
+              "description": "IRR bounds allow unusual cases; keep null if unknown."
+            },
+            "DiscountRate": {
+              "type": ["number", "null"]
+            }
+          },
+          "required": [
+            "CapexAmountUsd",
+            "OpexAmountUsdPerYear",
+            "SavingsAmountUsdPerYear",
+            "RevenueAmountUsdPerYear",
+            "CurrencyOriginal",
+            "CapexAmountOriginal",
+            "OpexAmountOriginalPerYear",
+            "FinancingInstrument",
+            "FinancingStructure",
+            "PaybackYears",
+            "NpvUsd",
+            "Irr",
+            "DiscountRate"
+          ]
+        },
+        "Funders": {
+          "type": ["object", "null"],
+          "description": "Who funded it and under what program / eligibility constraints.",
+          "additionalProperties": false,
+          "properties": {
+            "PrimaryFunderName": {
+              "type": ["string", "null"]
+            },
+            "OtherFunders": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string"
+              }
+            },
+            "FunderType": {
+              "type": ["string", "null"],
+              "description": "E.g., public, private, IFI, philanthropy."
+            },
+            "ProgramName": {
+              "type": ["string", "null"]
+            },
+            "EligibilityNotes": {
+              "type": ["string", "null"]
+            }
+          },
+          "required": [
+            "PrimaryFunderName",
+            "OtherFunders",
+            "FunderType",
+            "ProgramName",
+            "EligibilityNotes"
+          ]
+        },
+        "LegalAndPermitting": {
+          "type": ["object", "null"],
+          "description": "Legal / permitting evidence and known barriers.",
+          "additionalProperties": false,
+          "properties": {
+            "PermitsAndCompliance": {
+              "type": ["object", "null"],
+              "additionalProperties": false,
+              "properties": {
+                "permits": {
+                  "type": ["array", "null"],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "seia_applicable": {
+                  "type": ["boolean", "null"]
+                },
+                "OtherFields": {
+                  "type": ["array", "null"],
+                  "description": "Extra permitting/compliance fields (key/value) if present in source.",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "Key": {
+                        "type": "string",
+                        "description": "Extension field name."
+                      },
+                      "Value": {
+                        "description": "Extension field value (primitive). If the source has complex structured data, stringify it.",
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": ["Key", "Value"]
+                  }
+                }
+              },
+              "required": ["permits", "seia_applicable", "OtherFields"]
+            },
+            "RegulatoryBarriers": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["PermitsAndCompliance", "RegulatoryBarriers"]
+        },
+        "ImplementationEvidence": {
+          "type": ["object", "null"],
+          "description": "Implementation roadmap, risks, governance, lessons, and replicability notes.",
+          "additionalProperties": false,
+          "properties": {
+            "ImplementationRoadmap": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "phase": {
+                    "type": "string",
+                    "description": "Phase name (required)."
+                  },
+                  "months": {
+                    "type": ["number", "null"],
+                    "description": "Duration in months."
+                  },
+                  "notes": {
+                    "type": ["string", "null"],
+                    "description": "Notes for this phase."
+                  }
+                },
+                "required": ["phase", "months", "notes"]
+              }
+            },
+            "KeyRisks": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "Risk category/type (required)."
+                  },
+                  "risk": {
+                    "type": ["string", "null"],
+                    "description": "Risk description."
+                  },
+                  "mitigation": {
+                    "type": ["string", "null"],
+                    "description": "Mitigation approach."
+                  }
+                },
+                "required": ["type", "risk", "mitigation"]
+              }
+            },
+            "GovernanceStructure": {
+              "type": ["object", "null"],
+              "description": "Departments/roles/partners/operators encoded as key/value pairs.",
+              "additionalProperties": false,
+              "properties": {
+                "KV": {
+                  "type": ["array", "null"],
+                  "description": "Key/value pairs describing governance roles, partners, departments, operators, etc.",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "Key": {
+                        "type": "string",
+                        "description": "Extension field name."
+                      },
+                      "Value": {
+                        "description": "Extension field value (primitive). If the source has complex structured data, stringify it.",
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": ["Key", "Value"]
+                  }
+                }
+              },
+              "required": ["KV"]
+            },
+            "LessonsLearned": {
+              "type": ["string", "null"]
+            },
+            "ReplicabilityNotes": {
+              "type": ["string", "null"]
+            }
+          },
+          "required": [
+            "ImplementationRoadmap",
+            "KeyRisks",
+            "GovernanceStructure",
+            "LessonsLearned",
+            "ReplicabilityNotes"
+          ]
+        },
+        "Traceability": {
+          "type": ["object", "null"],
+          "description": "Sources, documentation, and verification timestamps.",
+          "additionalProperties": false,
+          "properties": {
+            "DataSourceName": {
+              "type": ["string", "null"]
+            },
+            "SourceUrl": {
+              "type": ["string", "null"],
+              "pattern": "^https?://.+",
+              "description": "Primary source URL (http/https)."
+            },
+            "DocumentationUrls": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string",
+                "pattern": "^https?://.+"
+              },
+              "description": "Supporting documentation URLs (http/https)."
+            },
+            "LastVerifiedAt": {
+              "type": ["string", "null"],
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "DataSourceName",
+            "SourceUrl",
+            "DocumentationUrls",
+            "LastVerifiedAt"
+          ]
+        },
+        "CreatedAt": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Record creation timestamp. Usually set by your system; return null if unknown."
+        },
+        "UpdatedAt": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Record last update timestamp. Usually set by your system; return null if unknown."
+        },
+        "Misc": {
+          "type": "object",
+          "description": "Free-form extension bucket encoded as key/value pairs to remain compatible with strict schema. Convert KV into a dict in post-processing if desired.",
+          "additionalProperties": false,
+          "properties": {
+            "KV": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "Key": {
+                    "type": "string",
+                    "description": "Extension field name."
+                  },
+                  "Value": {
+                    "description": "Extension field value (primitive). If the source has complex structured data, stringify it.",
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": ["Key", "Value"]
+              }
+            }
+          },
+          "required": ["KV"]
+        }
+      },
+      "required": [
+        "FundedProjectID",
+        "ProjectTitle",
+        "ProjectSummary",
+        "ProjectStatus",
+        "StartDate",
+        "EndDate",
+        "Location",
+        "HiapActionLink",
+        "TechnicalDescriptors",
+        "Impact",
+        "Financing",
+        "Funders",
+        "LegalAndPermitting",
+        "ImplementationEvidence",
+        "Traceability",
+        "CreatedAt",
+        "UpdatedAt",
+        "Misc"
+      ]
+    }
+  }
+]

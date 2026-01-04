@@ -87,6 +87,17 @@ from agents.reviewer import reviewer_node as raw_content_reviewer_node # RENAMED
 from agents.reviewer import structured_data_reviewer_node # ADDED
 from agents.extractor import extractor_node
 from agents.deep_diver import deep_dive_processor_node
+from agents.funding_filter import funding_filter_node
+from agents.reporting import export_funded_projects
+
+# Ensure langchain.debug exists for langchain_core compatibility.
+try:
+    import langchain
+
+    if not hasattr(langchain, "debug"):
+        langchain.debug = False
+except Exception:
+    pass
 
 # --- Setup Logging ---
 def setup_logging(log_level: str = "INFO", log_dir: str = "logs") -> None:
@@ -161,6 +172,8 @@ def setup_logging(log_level: str = "INFO", log_dir: str = "logs") -> None:
 # Initialize logger after setup function is defined
 logger = logging.getLogger(__name__)
 
+SECTOR_CHOICES = ["afolu", "ippu", "stationary_energy", "transportation", "waste"]
+
 # Reviewer stub is removed as we now use the actual reviewer_node
 
 # --- Graph Definition ---
@@ -173,12 +186,14 @@ workflow.add_node("raw_content_reviewer", raw_content_reviewer_node) # ADDED (us
 workflow.add_node("extractor", extractor_node)
 workflow.add_node("structured_reviewer", structured_data_reviewer_node) # ADDED
 workflow.add_node("deep_diver", deep_dive_processor_node)
+workflow.add_node("funding_filter", funding_filter_node)
 
 # Define edges
 workflow.set_entry_point("planner")
 workflow.add_edge("planner", "researcher")
 workflow.add_edge("researcher", "raw_content_reviewer") # MODIFIED: Researcher -> RawContentReviewer
-workflow.add_edge("extractor", "structured_reviewer") # MODIFIED: Extractor -> StructuredReviewer
+workflow.add_edge("extractor", "funding_filter") # MODIFIED: Extractor -> FundingFilter
+workflow.add_edge("funding_filter", "structured_reviewer")
 
 # --- Conditional routing after Raw Content Review ---
 def route_after_raw_content_review(state: AgentState) -> str:
@@ -364,7 +379,7 @@ def save_results_to_json(state: AgentState, output_dir: str = "runs") -> Optiona
         return None
 
 # --- Main Execution Logic ---
-async def run_agent(country_name: Optional[str] = None, sector_name: Optional[str] = None, city_name: Optional[str] = None, region_name: Optional[str] = None, english_only_mode: bool = False, cli_config_overrides: Optional[Dict[str, Any]] = None) -> AgentState:
+async def run_agent(country_name: Optional[str] = None, sector_name: Optional[str] = None, city_name: Optional[str] = None, region_name: Optional[str] = None, english_only_mode: bool = False, search_mode: str = "ghgi_data", cli_config_overrides: Optional[Dict[str, Any]] = None) -> AgentState:
     """
     Initializes and runs the agent for city, region, or country research.
     Applies temporary config overrides if provided either directly or from CLI.
@@ -383,16 +398,20 @@ async def run_agent(country_name: Optional[str] = None, sector_name: Optional[st
     if city_name:
         initial_state = create_initial_state(city_name=city_name, sector_name=sector_name, english_only_mode=english_only_mode)
         if sector_name:
-            logger.info(f"Starting agent for city: {city_name}, sector: {sector_name}, English-only mode: {english_only_mode}")
+            logger.info(f"Starting agent for city: {city_name}, sector: {sector_name}, English-only mode: {english_only_mode}, Search mode: {search_mode}")
         else:
-            logger.info(f"Starting agent for city: {city_name}, English-only mode: {english_only_mode}")
+            logger.info(f"Starting agent for city: {city_name}, English-only mode: {english_only_mode}, Search mode: {search_mode}")
     elif region_name:
         initial_state = create_initial_state(region_name=region_name, sector_name=sector_name, english_only_mode=english_only_mode)
-        logger.info(f"Starting agent for region: {region_name}, Sector: {sector_name}, English-only mode: {english_only_mode}")
+        logger.info(f"Starting agent for region: {region_name}, Sector: {sector_name}, English-only mode: {english_only_mode}, Search mode: {search_mode}")
     else:
         initial_state = create_initial_state(country_name=country_name, sector_name=sector_name, english_only_mode=english_only_mode)
-        logger.info(f"Starting agent for country: {country_name}, Sector: {sector_name}, English-only mode: {english_only_mode}")
+        logger.info(f"Starting agent for country: {country_name}, Sector: {sector_name}, English-only mode: {english_only_mode}, Search mode: {search_mode}")
     
+    # NEW: Set search_mode on initial state
+    initial_state.search_mode = search_mode
+    initial_state.metadata["search_mode"] = search_mode
+    initial_state.metadata["funded_lookback_years"] = config.FUNDED_LOOKBACK_YEARS
     logger.debug(f"Initial state passed to graph.ainvoke: {initial_state}")
     
     if not config.OPENROUTER_API_KEY or not config.FIRECRAWL_API_KEY:
@@ -464,20 +483,8 @@ async def run_agent(country_name: Optional[str] = None, sector_name: Optional[st
             logger.info(f"Restored config: {key} = {getattr(config, key)}")
     return final_state
 
-async def main_async(args, cli_config_overrides: Optional[Dict[str, Any]] = None):
-    """Asynchronous main function to run the agent and print summary."""
-    # Determine which mode to run in
-    if getattr(args, 'city', None):
-        # City mode (with optional sector)
-        sector_name = getattr(args, 'sector', None)
-        final_state = await run_agent(city_name=args.city, sector_name=sector_name, english_only_mode=args.english, cli_config_overrides=cli_config_overrides)
-    elif getattr(args, 'region', None):
-        final_state = await run_agent(region_name=args.region, sector_name=args.sector, english_only_mode=args.english, cli_config_overrides=cli_config_overrides)
-    else:
-        # Country mode (sector is required)
-        final_state = await run_agent(country_name=args.country, sector_name=args.sector, english_only_mode=args.english, cli_config_overrides=cli_config_overrides)
-    
-    # Print summary based on mode
+def print_run_summary(final_state: AgentState, args) -> None:
+    """Print a summary for a single agent run."""
     print("\n--- Agent Run Summary ---")
     research_mode = final_state.metadata.get("research_mode", "unknown")
     if research_mode == "city":
@@ -504,24 +511,20 @@ async def main_async(args, cli_config_overrides: Optional[Dict[str, Any]] = None
     print(f"Total Iterations:        {final_state.current_iteration}")
     print(f"Searches Conducted:      {final_state.searches_conducted_count}")
     
-    # Reviewer output
-    final_review_action = final_state.metadata.get("next_step_after_review", "N/A") # This is raw review
-    final_structured_review_action = final_state.metadata.get("next_step_after_structured_review", "N/A") # ADDED
-    final_confidence = final_state.metadata.get("final_review_confidence_assessment", "N/A") # This might be from structured
-    
-    # Get overall confidence from structured review details if available
+    final_review_action = final_state.metadata.get("next_step_after_review", "N/A")
+    final_structured_review_action = final_state.metadata.get("next_step_after_structured_review", "N/A")
     structured_review_details = final_state.metadata.get("last_structured_review_details", {})
     overall_confidence_structured = structured_review_details.get("overall_confidence", "N/A")
 
-    print(f"Final Raw Review Action:   {final_review_action}") # Clarify
-    print(f"Final Structured Review Action: {final_structured_review_action}") # ADDED
-    print(f"Final Structured Review Confidence: {overall_confidence_structured}") # Clarify
+    print(f"Final Raw Review Action:   {final_review_action}")
+    print(f"Final Structured Review Action: {final_structured_review_action}")
+    print(f"Final Structured Review Confidence: {overall_confidence_structured}")
 
-    # Data output
     num_structured_items = len(final_state.structured_data)
     print(f"Structured Items Found:  {num_structured_items}")
+    print(f"Funded Projects Found:   {len(final_state.funded_projects)}")
 
-    if final_structured_review_action == "accept" and num_structured_items > 0: # MODIFIED to check structured review
+    if final_structured_review_action == "accept" and num_structured_items > 0:
         output_file = save_results_to_json(final_state, config.OUTPUT_DIR)
         if output_file:
             print(f"Results Saved To:        {output_file}")
@@ -530,9 +533,44 @@ async def main_async(args, cli_config_overrides: Optional[Dict[str, Any]] = None
     else:
         print("Results Save Skipped:    Final action was not 'accept' or no structured data.")
 
+    if getattr(args, "export_funded_report", False) and final_state.funded_projects:
+        def _sanitize(value: str) -> str:
+            return re.sub(r"[^\w\-]+", "_", value).strip("_")
+
+        prefix_parts = ["funded_projects"]
+        if final_state.target_city:
+            prefix_parts.append(_sanitize(final_state.target_city))
+        if final_state.target_region:
+            prefix_parts.append(_sanitize(final_state.target_region))
+        if final_state.target_country:
+            prefix_parts.append(_sanitize(final_state.target_country))
+        if final_state.target_sector:
+            prefix_parts.append(_sanitize(final_state.target_sector))
+        prefix = "_".join([p for p in prefix_parts if p])
+        report_paths = export_funded_projects(final_state.funded_projects, filename_prefix=prefix)
+        print(f"Funded Projects Export:  {report_paths['json']} (json), {report_paths['csv']} (csv)")
+    elif getattr(args, "export_funded_report", False):
+        print("Funded Projects Export:  Skipped (no funded projects extracted).")
+
     print("\n--- Key Decision Log Entries ---")
     for log_entry in final_state.decision_log[-5:]:
         print(f"- {log_entry.get('timestamp', 'N/A')} [{log_entry.get('agent', 'System')}] {log_entry.get('action', 'log')}: {log_entry.get('message', '')[:100]}")
+
+async def main_async(args, cli_config_overrides: Optional[Dict[str, Any]] = None):
+    """Asynchronous main function to run the agent and print summary."""
+    if getattr(args, 'all_sectors', False):
+        sector_runs = SECTOR_CHOICES
+    else:
+        sector_runs = [getattr(args, 'sector', None)]
+
+    for sector_name in sector_runs:
+        if getattr(args, 'city', None):
+            final_state = await run_agent(city_name=args.city, sector_name=sector_name, english_only_mode=args.english, search_mode=getattr(args, 'search_mode', 'ghgi_data'), cli_config_overrides=cli_config_overrides)
+        elif getattr(args, 'region', None):
+            final_state = await run_agent(region_name=args.region, sector_name=sector_name, english_only_mode=args.english, search_mode=getattr(args, 'search_mode', 'ghgi_data'), cli_config_overrides=cli_config_overrides)
+        else:
+            final_state = await run_agent(country_name=args.country, sector_name=sector_name, english_only_mode=args.english, search_mode=getattr(args, 'search_mode', 'ghgi_data'), cli_config_overrides=cli_config_overrides)
+        print_run_summary(final_state, args)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the GHGI Dataset Discovery Agent.")
@@ -541,12 +579,16 @@ if __name__ == "__main__":
     parser.add_argument("--city", type=str, help="The target city name for research. Use quotes for multi-word names like 'San Francisco'. Can be combined with --sector for sector-specific city research.")
     parser.add_argument("--country", type=str, help="The target country name for the research. Use quotes for multi-word names or separate words will be joined automatically. Cannot be used with --city or --region.")
     parser.add_argument("--region", type=str, help="Target supranational region for research (currently only 'EU'). Requires --sector and cannot be combined with --city or --country.")
-    parser.add_argument("--sector", type=str, choices=['afolu', 'ippu', 'stationary_energy', 'transportation', 'waste'], help="The target GHGI sector. Required for --country and --region modes; optional for --city.")
+    parser.add_argument("--sector", type=str, choices=SECTOR_CHOICES, help="The target GHGI sector. Required for --country and --region modes; optional for --city.")
+    parser.add_argument("--all-sectors", action="store_true", help="Run all sectors sequentially (country/region modes only).")
     
     parser.add_argument("--english", action="store_true", help="Use English-only search mode. This will focus exclusively on English-language sources and documentation.")
+    parser.add_argument("--search-mode", type=str, choices=["ghgi_data", "funded_projects"], default="ghgi_data", help="Search mode: 'ghgi_data' for GHGI activity data discovery, 'funded_projects' for funded climate projects discovery.")
     parser.add_argument("--log-level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="Set the logging level.")
     parser.add_argument("--log-dir", type=str, default="logs", help="Directory to store log files.")
     parser.add_argument("--max-iterations", type=int, help="Override the maximum number of iterations for the agent run.")
+    parser.add_argument("--lookback-years", type=int, help="Override funded-project lookback window (years).")
+    parser.add_argument("--export-funded-report", action="store_true", help="Export funded project CSV/JSON after run.")
     
     # Parse known args first to handle multi-word geographic names
     known_args, unknown_args = parser.parse_known_args()
@@ -580,12 +622,18 @@ if __name__ == "__main__":
     if sum(1 for flag in [has_city, has_country, has_region] if flag) > 1:
         parser.error("Cannot combine --city, --country, or --region. Choose a single geography mode.")
 
-    if has_country and not known_args.sector:
+    if known_args.all_sectors and known_args.sector:
+        parser.error("--all-sectors cannot be combined with --sector.")
+
+    if known_args.all_sectors and has_city:
+        parser.error("--all-sectors is only supported with --country or --region.")
+
+    if has_country and not known_args.sector and not known_args.all_sectors:
         parser.error("--country requires --sector to be specified.")
 
     if has_region:
-        if not known_args.sector:
-            parser.error("--region requires --sector to be specified.")
+        if not known_args.sector and not known_args.all_sectors:
+            parser.error("--region requires --sector to be specified (or use --all-sectors).")
         normalized_region = known_args.region.strip()
         if normalized_region.lower() in ("eu", "european union"):
             known_args.region = "European Union"
@@ -616,6 +664,9 @@ if __name__ == "__main__":
     if args.max_iterations is not None:
         config_overrides["MAX_ITERATIONS"] = args.max_iterations
         logger.info(f"CLI override: MAX_ITERATIONS will be set to {args.max_iterations}")
+    if args.lookback_years is not None:
+        config_overrides["FUNDED_LOOKBACK_YEARS"] = args.lookback_years
+        logger.info(f"CLI override: FUNDED_LOOKBACK_YEARS will be set to {args.lookback_years}")
 
     # For CLI execution, we need to run the async function
     asyncio.run(main_async(args, config_overrides)) 

@@ -5,7 +5,7 @@ This script reads JSON files from the `runs` folder and inserts the structured d
 ## Prerequisites
 
 1. **Python 3.7+** installed on your system
-2. **Supabase project** with the `environmental_report` table created
+2. **Supabase project** with the `city_climate_projects` table created
 3. **Environment variables** set in your `.env` file
 
 ## Environment Variables
@@ -15,27 +15,41 @@ Make sure your `.env` file contains:
 ```
 VITE_SUPABASE_URL="https://gsktkvdfgmvavwxatlmn.supabase.co"
 VITE_SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdza3RrdmRmZ212YXZ3eGF0bG1uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU0MDE0NjQsImV4cCI6MjA2MDk3NzQ2NH0.0oZcjPiSG0pF0k2gGcM6bNRujOg251A6FRxuycT_nhI"
-SUPABASE_TABLE_NAME="environmental_report"
+SUPABASE_TABLE_NAME="city_climate_projects"
 ```
 
 ## Database Schema
 
-The script expects a table with this structure:
+The script expects a table with this structure (funded city projects):
 
 ```sql
-CREATE TABLE IF NOT EXISTS environmental_report (
-    id              INTEGER PRIMARY KEY AUTOINCREMENT,
-    name            TEXT,
-    method_of_access TEXT,
-    sector          TEXT,
-    data_format     TEXT,
-    description     TEXT,
-    granularity     TEXT,
-    url             TEXT,
-    country         TEXT,
-    country_locode  TEXT,
-    human_eval      INTEGER,
-    Accepted        INTEGER
+create table if not exists city_climate_projects (
+    id serial primary key,
+    project_key text unique,
+    project_name text,
+    city text,
+    region text,
+    country text,
+    sector text,
+    funding_status text,
+    funding_amount numeric,
+    funding_currency text,
+    funding_source text,
+    funding_authority text,
+    approval_date date,
+    implementation_status text,
+    timeline_start date,
+    timeline_end date,
+    evidence_snippet text,
+    source_url text,
+    inflation_note text,
+    method_of_access text,
+    data_format text,
+    description text,
+    granularity text,
+    country_locode text,
+    human_eval integer default 0,
+    accepted integer default 0
 );
 ```
 
@@ -67,16 +81,16 @@ python insert_data_to_supabase.py
 
 1. **Loads Environment Variables**: Reads Supabase credentials from `.env` file
 2. **Connects to Supabase**: Creates a client connection to your database
-3. **Checks for Duplicates**: Fetches existing URL-country combinations to avoid duplicates
+3. **Checks for Duplicates**: Fetches existing URL-country and project_key combinations to avoid duplicates
 4. **Reads JSON Files**: Scans the `runs` folder for all JSON files
 5. **Extracts Structured Data**: Pulls the `structured_data` arrays from each JSON file
-6. **Prepares Records**: Formats the data for database insertion (handles arrays by converting to comma-separated strings)
+6. **Prepares Records**: Formats the data for database insertion, mapping funded-project fields (title, location, funding, dates, source_url)
 7. **Inserts Data**: Adds new records to the database, skipping duplicates
 8. **Logs Progress**: Provides detailed logging of the insertion process
 
 ## Features
 
-- **Duplicate Prevention**: Checks URL + country combination to avoid inserting the same data twice
+- **Duplicate Prevention**: Checks project_key (title+city+year) and URL + country combination to avoid inserting the same data twice
 - **Batch Processing**: Handles all JSON files in the runs folder at once
 - **Error Handling**: Gracefully handles file reading errors and database insertion failures
 - **Detailed Logging**: Provides comprehensive logs of the process

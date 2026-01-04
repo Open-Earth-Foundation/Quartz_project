@@ -1,7 +1,8 @@
 [general]
 # Application name and version
-app_name = "GHGI Dataset Discovery Agent"
-version = "2.0.0"
+app_name = "Quartz City Climate Projects Finder"
+version = "2.1.0"
+project_goal = "Use Quartz to find city climate projects that are funded or fully implemented within the last 20 years."
 
 [search]
 # Maximum number of search results to process
@@ -13,13 +14,13 @@ max_searches_per_run = 5
 
 [models]
 # Model used for reasoning, planning, and complex tasks
-thinking_model = "anthropic/claude-haiku-4.5"
+thinking_model = "xiaomi/mimo-v2-flash:free"
 # Model used for regular tasks
-normal_model = "anthropic/claude-haiku-4.5"
+normal_model = "xiaomi/mimo-v2-flash:free"
 # Model used for relevance check / structured output
-structured_model = "anthropic/claude-haiku-4.5"
-structured_model_for_review = "anthropic/claude-haiku-4.5"
-relevance_check_model = "anthropic/claude-haiku-4.5"
+structured_model = "xiaomi/mimo-v2-flash:free"
+structured_model_for_review = "xiaomi/mimo-v2-flash:free"
+relevance_check_model = "xiaomi/mimo-v2-flash:free"
 # Default temperature for model calls
 default_temperature = 0.2
 # Maximum tokens to generate in responses
@@ -42,11 +43,16 @@ max_deep_dives = 10
 # Enable pre-scrape relevance check
 enable_pre_scrape_relevance_check = true
 
+[scraping]
+# Limit concurrent scrape requests to avoid rate limiting.
+concurrent_scrape_limit = 1
+
 [storage]
 # Directory for storing output files
 output_dir = "runs"
 # Format for filenames (%s will be replaced with timestamp)
 filename_format = "results_%s.json"
+funded_report_dir = "runs/funded_reports"
 
 # Maximum number of web searches the researcher agent can perform in a single run.
 # Set to 0 for unlimited searches.
@@ -56,3 +62,11 @@ MAX_SEARCHES_PER_RUN = 10
 MAX_ITERATIONS = 5
 
 # --- Tenacity Retry Settings --- (Example) 
+
+[funding_scope]
+# Default lookback window for funded city climate projects (years)
+lookback_years = 20
+# Status values treated as funded/implemented enough to be in scope for Stage 1 gate
+accepted_statuses = ["approved", "in_implementation", "completed", "funded"]
+enable_funded_project_flow = true
+enable_funding_filter_log = true
