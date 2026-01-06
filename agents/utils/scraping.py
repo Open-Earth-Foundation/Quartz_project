@@ -49,7 +49,8 @@ SCRAPED_DATA_LOG_DIR = Path(__file__).resolve().parent.parent.parent / "logs" / 
 os.makedirs(SCRAPED_DATA_LOG_DIR, exist_ok=True)
 
 # Default file patterns to skip (if not in config) for scraping
-DEFAULT_SKIP_FILE_URL_PATTERNS = [ r'\.docx?$', r'\.doc$', r'\.pptx?$', r'\.zip$', r'\.tar\.gz$' ]
+# PDFs are skipped entirely - save links but do NOT scrape content
+DEFAULT_SKIP_FILE_URL_PATTERNS = [ r'\.pdf$', r'\.docx?$', r'\.doc$', r'\.pptx?$', r'\.zip$', r'\.tar\.gz$' ]
 
 def _sanitize_url_for_filename(url: str) -> str:
     """Sanitizes a URL to be used as a filename."""
@@ -147,34 +148,6 @@ def scrape_urls_sync(urls: List[str], state: Optional[AgentState] = None) -> Lis
             logger.info(f"[Sync Scrape] Scraping URL: {url}")
             scrape_kwargs = {'only_main_content': True}
             
-            # Check PDF file size before attempting to scrape
-            if url.lower().endswith(".pdf"):
-                logger.info(f"[Sync Scrape] PDF URL detected. Checking file size for: {url}")
-                try:
-                    import requests
-                    head_response = requests.head(url, timeout=10, allow_redirects=True)
-                    content_length = head_response.headers.get('content-length')
-                    
-                    if content_length:
-                        file_size_mb = int(content_length) / (1024 * 1024)
-                        # Estimate pages: roughly 100KB per page average
-                        estimated_pages = int(content_length) / (100 * 1024)
-                        
-                        logger.info(f"[Sync Scrape] PDF file size: {file_size_mb:.2f} MB (~{estimated_pages:.0f} estimated pages)")
-                        
-                        # Skip if file is too large (>10MB or ~100+ pages)
-                        if file_size_mb > 10:
-                            skip_msg = f'PDF too large: {file_size_mb:.2f} MB (~{estimated_pages:.0f} pages). Skipping to avoid Firecrawl 10MB limit.'
-                            logger.warning(f"[Sync Scrape] {skip_msg}")
-                            documents.append({'url': url, 'success': False, 'error': skip_msg, 'skipped': True})
-                            continue
-                        
-                        logger.info(f"[Sync Scrape] PDF size acceptable. Proceeding with scrape.")
-                    else:
-                        logger.info(f"[Sync Scrape] Could not determine PDF file size. Proceeding with scrape attempt.")
-                except Exception as e_size_check:
-                    logger.warning(f"[Sync Scrape] Failed to check PDF file size for {url}: {e_size_check}. Proceeding with scrape attempt.")
-            
             current_timestamp = datetime.utcnow()
             response: Optional[Any] = client.scrape_url(url, **scrape_kwargs)
             
@@ -267,34 +240,6 @@ async def scrape_urls_async(urls: List[str], state: Optional[AgentState] = None)
 
             logger.info(f"[Async Scrape] Attempting to scrape URL: {url_to_scrape} (Concurrency: {CONCURRENT_SCRAPE_LIMIT - semaphore._value}/{CONCURRENT_SCRAPE_LIMIT})")
             scrape_kwargs = {'only_main_content': True}
-            
-            # Check PDF file size before attempting to scrape
-            if url_to_scrape.lower().endswith(".pdf"):
-                logger.info(f"[Async Scrape] PDF URL detected. Checking file size for: {url_to_scrape}")
-                try:
-                    import httpx
-                    async with httpx.AsyncClient(timeout=10.0, follow_redirects=True) as client:
-                        head_response = await client.head(url_to_scrape)
-                        content_length = head_response.headers.get('content-length')
-                        
-                        if content_length:
-                            file_size_mb = int(content_length) / (1024 * 1024)
-                            # Estimate pages: roughly 100KB per page average
-                            estimated_pages = int(content_length) / (100 * 1024)
-                            
-                            logger.info(f"[Async Scrape] PDF file size: {file_size_mb:.2f} MB (~{estimated_pages:.0f} estimated pages)")
-                            
-                            # Skip if file is too large (>10MB or ~100+ pages)
-                            if file_size_mb > 10:
-                                skip_msg = f'PDF too large: {file_size_mb:.2f} MB (~{estimated_pages:.0f} pages). Skipping to avoid Firecrawl 10MB limit.'
-                                logger.warning(f"[Async Scrape] {skip_msg}")
-                                return {'url': url_to_scrape, 'success': False, 'error': skip_msg, 'skipped': True}
-                            
-                            logger.info(f"[Async Scrape] PDF size acceptable. Proceeding with scrape.")
-                        else:
-                            logger.info(f"[Async Scrape] Could not determine PDF file size. Proceeding with scrape attempt.")
-                except Exception as e_size_check:
-                    logger.warning(f"[Async Scrape] Failed to check PDF file size for {url_to_scrape}: {e_size_check}. Proceeding with scrape attempt.")
             
             sync_firecrawl_client = FirecrawlApp(api_key=config.FIRECRAWL_API_KEY)
             

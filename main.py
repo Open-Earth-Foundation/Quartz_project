@@ -277,8 +277,14 @@ workflow.add_conditional_edges(
 
 # --- Conditional routing after Deep Dive Processor ---
 def route_after_deep_dive(state: AgentState) -> str:
-    action_info = state.metadata.get("deep_dive_action", {})
-    action_type = action_info.get("action_type") # This could be None if not set
+    action_queue = state.metadata.get("deep_dive_actions")
+    if isinstance(action_queue, list) and action_queue:
+        action_info = action_queue[0]
+        action_type = action_info.get("action_type")
+        logger.info(f"Deep diver returned {len(action_queue)} actions. Routing based on first action: {action_type}")
+    else:
+        action_info = state.metadata.get("deep_dive_action", {})
+        action_type = action_info.get("action_type") # This could be None if not set
 
     logger.debug(f"Routing after deep_dive_processor. Action type: '{action_type}', Details: {action_info}")
 

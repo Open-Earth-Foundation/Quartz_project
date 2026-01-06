@@ -66,7 +66,7 @@ ACCEPTED_FUNDED_STATUSES: List[str] = _toml_settings.get("funding_scope", {}).ge
 
 # --- Search Mode Settings ---
 DEFAULT_SEARCH_MODE: str = _toml_settings.get("search", {}).get(
-    "default_search_mode", "ghgi_data"
+    "default_search_mode", "funded_projects"
 )  # "ghgi_data" or "funded_projects"
 
 # --- Search Settings ---
@@ -77,7 +77,7 @@ MAX_PAGES_PER_DOMAIN: int = _toml_settings.get("search", {}).get(
     "max_pages_per_domain", 5
 )
 MAX_SEARCHES_PER_RUN: int = _toml_settings.get("agent", {}).get(
-    "max_searches_per_run", 5
+    "max_searches_per_run", 50
 )
 MAX_ADDITIONAL_EXPANSION_QUERIES: int = _toml_settings.get("search", {}).get(
     "max_additional_expansion_queries", 3
@@ -171,6 +171,6 @@ def validate_api_keys() -> dict[str, bool]:
 
 
 # Add new configuration for researcher cycles
-MAX_QUERIES_PER_RESEARCH_CYCLE = int(
-    os.getenv("MAX_QUERIES_PER_RESEARCH_CYCLE", 10)
-)  # Maximum queries processed by researcher in one go
+MAX_QUERIES_PER_RESEARCH_CYCLE = (
+    MAX_SEARCHES_PER_RUN  # Use same value as MAX_SEARCHES_PER_RUN
+)

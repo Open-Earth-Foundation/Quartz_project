@@ -6,6 +6,7 @@ from typing import Dict, List, Any, Optional
 from dataclasses import dataclass, field
 import operator
 from datetime import datetime
+import config
 
 @dataclass
 class AgentState:
@@ -235,5 +236,5 @@ def create_initial_state(country_name: Optional[str] = None, sector_name: Option
         current_iteration=0,
         consecutive_deep_dive_count=0,
         selected_for_extraction=[], # Initialize as empty list
-        search_mode="ghgi_data"  # Default to GHGI data discovery
+        search_mode=config.DEFAULT_SEARCH_MODE  # Use default from config (now funded_projects by default)
     ) 

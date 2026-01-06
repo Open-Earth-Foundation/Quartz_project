@@ -120,11 +120,25 @@ async def planner_node(state: AgentState) -> AgentState:
             )
             return AgentState(**current_state_dict)
 
-        # NEW: Check for search_mode for city
+        # NEW: Check for search_mode and sector for city mode
         if search_mode == "funded_projects":
-            # Use funded projects city prompt
-            base_prompt_path = PROMPT_DIR / "funded_projects_city.md"
-            logger.info(f"Using funded projects city prompt: {base_prompt_path}")
+            # Use sector-specific funded projects city prompt if available
+            if state.target_sector:
+                sector = state.target_sector.lower()
+                city_funded_sector_prompt_path = (
+                    PROMPT_DIR / f"funded_{sector}_city.md"
+                )
+                if city_funded_sector_prompt_path.exists():
+                    base_prompt_path = city_funded_sector_prompt_path
+                    logger.info(f"Using sector-specific funded projects city prompt: {base_prompt_path}")
+                else:
+                    # Fallback to generic funded projects city prompt
+                    base_prompt_path = PROMPT_DIR / "funded_projects_city.md"
+                    logger.info(f"Sector-specific funded city prompt not found, using generic: {base_prompt_path}")
+            else:
+                # Use generic funded projects city prompt
+                base_prompt_path = PROMPT_DIR / "funded_projects_city.md"
+                logger.info(f"Using generic funded projects city prompt: {base_prompt_path}")
         elif state.target_sector:
             # Use sector-specific city prompt: {sector}_city.md
             city_sector_prompt_path = (
@@ -201,8 +215,23 @@ async def planner_node(state: AgentState) -> AgentState:
         # Country mode - existing logic but with search_mode support
         # NEW: Check for funded_projects search mode first
         if search_mode == "funded_projects":
-            base_prompt_path = PROMPT_DIR / "funded_projects_country.md"
-            logger.info(f"Using funded projects country prompt: {base_prompt_path}")
+            # Use sector-specific funded projects country prompt if available
+            if state.target_sector:
+                sector = state.target_sector.lower()
+                country_funded_sector_prompt_path = (
+                    PROMPT_DIR / f"funded_{sector}_country.md"
+                )
+                if country_funded_sector_prompt_path.exists():
+                    base_prompt_path = country_funded_sector_prompt_path
+                    logger.info(f"Using sector-specific funded projects country prompt: {base_prompt_path}")
+                else:
+                    # Fallback to generic funded projects country prompt
+                    base_prompt_path = PROMPT_DIR / "funded_projects_country.md"
+                    logger.info(f"Sector-specific funded country prompt not found, using generic: {base_prompt_path}")
+            else:
+                # Use generic funded projects country prompt
+                base_prompt_path = PROMPT_DIR / "funded_projects_country.md"
+                logger.info(f"Using generic funded projects country prompt: {base_prompt_path}")
             placeholder = "{country_name_from_AgentState}"
             target_name = state.target_country
         else:

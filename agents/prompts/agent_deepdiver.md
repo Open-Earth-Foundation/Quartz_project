@@ -35,7 +35,7 @@ You are tasked with performing a deep dive into websites that have already been 
 
 ## Response Format:
 
-Provide your reasoning first, then output a JSON object with:
+Provide your reasoning first, then output a JSON object. If multiple actions are needed, return a JSON array of action objects in priority order.
 
 ### For Scrape:
 

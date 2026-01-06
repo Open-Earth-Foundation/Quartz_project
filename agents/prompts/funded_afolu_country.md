@@ -42,13 +42,13 @@ Return a bulleted block for each category like:
 
 ### AFOLU Project Categories to Target
 
-| Category                                  | Examples                                                                                                                                      |
-| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Sustainable Agriculture & Soil Carbon** | Regenerative agriculture projects, conservation agriculture, soil carbon sequestration, agroforestry initiatives, organic farming transitions |
-| **Reforestation & Forest Conservation**   | Community forestry programs, forest restoration projects, REDD+ projects, sustainable timber harvesting, forest protection funded programs    |
-| **Livestock Emissions Reduction**         | Improved grazing management, methane reduction in livestock, pasture intensification, animal waste management systems                         |
-| **Land Use & Degradation Restoration**    | Wetland restoration, grassland recovery, desertification reversal, peatland conservation, land rehabilitation projects                        |
-| **Climate-Smart Agriculture**             | Water-efficient irrigation, drought-resilient crops, precision agriculture technology deployment, agricultural adaptation programs            |
+|| Category                                  | Examples                                                                                                                                      |
+|| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+|| **Sustainable Agriculture & Soil Carbon** | Regenerative agriculture projects, conservation agriculture, soil carbon sequestration, agroforestry initiatives, organic farming transitions |
+|| **Reforestation & Forest Conservation**   | Community forestry programs, forest restoration projects, REDD+ projects, sustainable timber harvesting, forest protection funded programs    |
+|| **Livestock Emissions Reduction**         | Improved grazing management, methane reduction in livestock, pasture intensification, animal waste management systems                         |
+|| **Land Use & Degradation Restoration**    | Wetland restoration, grassland recovery, desertification reversal, peatland conservation, land rehabilitation projects                        |
+|| **Climate-Smart Agriculture**             | Water-efficient irrigation, drought-resilient crops, precision agriculture technology deployment, agricultural adaptation programs            |
 
 ### Key Search Guidance
 

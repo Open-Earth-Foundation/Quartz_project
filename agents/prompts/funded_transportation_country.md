@@ -41,14 +41,14 @@ Return a bulleted block for each category like:
 
 ### Transportation Project Categories to Target
 
-| Category | Examples |
-|----------|----------|
-| **Public Transit Electrification** | Electric bus deployment, BRT systems, electric train/metro projects, public transport fleet modernization |
-| **EV Infrastructure & Charging** | EV charging networks, electric vehicle purchase incentives, charging station deployment, EV bus/taxi projects |
-| **Urban Mobility & Active Transport** | Bicycle infrastructure, pedestrian paths, integrated transit systems, mobility hubs, car-free zones |
-| **Railway & Rail Transit** | Urban rail systems, commuter rail electrification, light rail deployment, rail modernization projects |
-| **Clean Fuel & Alternative Transport** | Hydrogen buses, natural gas vehicles, biofuel infrastructure, zero-emission vehicle adoption |
-| **Traffic Management & Congestion** | Congestion pricing, parking management, demand-responsive transport, intelligent transportation systems |
+|| Category | Examples |
+||----------|----------|
+|| **Public Transit Electrification** | Electric bus deployment, BRT systems, electric train/metro projects, public transport fleet modernization |
+|| **EV Infrastructure & Charging** | EV charging networks, electric vehicle purchase incentives, charging station deployment, EV bus/taxi projects |
+|| **Urban Mobility & Active Transport** | Bicycle infrastructure, pedestrian paths, integrated transit systems, mobility hubs, car-free zones |
+|| **Railway & Rail Transit** | Urban rail systems, commuter rail electrification, light rail deployment, rail modernization projects |
+|| **Clean Fuel & Alternative Transport** | Hydrogen buses, natural gas vehicles, biofuel infrastructure, zero-emission vehicle adoption |
+|| **Traffic Management & Congestion** | Congestion pricing, parking management, demand-responsive transport, intelligent transportation systems |
 
 ### Key Search Guidance
 
@@ -65,7 +65,31 @@ Return a bulleted block for each category like:
 - Mention municipalities with integrated public transport
 - Include regions with significant transportation emissions
 
+**Specific Database & Portal Searches to Include:**
+
+**CRITICAL: Prioritize searches on these specific funding platforms and sources:**
+
+- World Bank Projects database (projects.worldbank.org)
+- Inter-American Development Bank (IDB) projects
+- Green Climate Fund (GCF) approved projects portal
+- ADB (Asian Development Bank) project database
+- UNDP climate finance projects
+- New Development Bank (BRICS NDB) projects
+- National development banks
+- Government climate finance transparency portals
+- Transit authority official announcements
+
+**Example High-Value Search Patterns:**
+
+- "site:worldbank.org {country} public transit OR electric bus project approved"
+- "site:iadb.org {country} urban mobility climate finance"
+- "site:greenclimate.fund {country} transportation OR transit"
+- "{country} city electric bus project funded announcement"
+- "{country} metro OR BRT line funding approved"
+- "{country} development bank transport infrastructure project"
+
 **Document Types to Target:**
+
 - Development bank project announcements and lending documents
 - Government climate policies with transportation funding
 - Municipal/regional climate action plans with specific projects
@@ -75,6 +99,7 @@ Return a bulleted block for each category like:
 - City government investment plans
 
 **Do NOT include:**
+
 - Generic GHGI transportation statistics (we want funded projects, not fuel consumption data)
 - Research papers on sustainable transport (unless they reference funded projects)
 - Theoretical transport scenarios
@@ -85,6 +110,7 @@ Return a bulleted block for each category like:
 - Keep each phrase concise (6-12 words) and specific to **funded projects**
 - Vary wording to capture different database and search conventions
 - Use **funding-related and project status keywords**: "funded", "approved", "grant", "implementation", "timeline", "budget", "investment"
+- **Include site:domain operators** for direct searches on known funding platforms
 - Each phrase should independently yield project information when searched
 - Prioritize **recent funding announcements** (last 5 years)
 - Include specific city or regional names known for transportation climate initiatives

@@ -13,8 +13,8 @@ import config
 
 # Text token for prompts to keep definition consistent
 FUNDING_RULE_TEXT = (
-    "In scope if the project shows municipal or third-party funding commitment or is marked implemented "
-    f"and has a start/end decision within the last {config.FUNDED_LOOKBACK_YEARS} years. "
+    "In scope if the project shows evidence of funding commitment OR is marked as implemented/started/approved. "
+    "Specific dates and amounts are optional. Priority given to projects with at least a project title and status. "
     f"Accepted statuses: {', '.join(config.ACCEPTED_FUNDED_STATUSES)}."
 )
 
@@ -76,7 +76,12 @@ def gate_project_scope(
     years: int = config.FUNDED_LOOKBACK_YEARS,
     accepted_statuses: Iterable[str] = tuple(config.ACCEPTED_FUNDED_STATUSES),
 ) -> Dict[str, Any]:
-    """Decide if a project is likely in-scope (funded/implemented within lookback).
+    """Decide if a project is likely in-scope (funded/implemented).
+
+    RELAXED REQUIREMENTS: Accept projects if they have:
+    - A project status (any status suggesting project exists)
+    - No strict date requirements needed
+    - Funding or implementation hints are strong signals but not required
 
     Returns a dict with:
       - in_scope: bool
@@ -86,10 +91,19 @@ def gate_project_scope(
     funded = status_is_funded(status, accepted_statuses)
     within_window, anchor_date = date_is_in_window(start_date, end_date, years)
 
-    if funded and within_window:
-        return {"in_scope": True, "reason": "funded_status_and_recent_date", "anchor_date": anchor_date}
-    if not funded and within_window:
-        return {"in_scope": False, "reason": "recent_date_but_status_not_funded", "anchor_date": anchor_date}
-    if funded and not within_window:
-        return {"in_scope": False, "reason": "funded_status_but_too_old", "anchor_date": anchor_date}
-    return {"in_scope": False, "reason": "insufficient_data_for_gate", "anchor_date": anchor_date}
+    # RELAXED: Accept if status suggests project is funded/implemented (regardless of dates)
+    if funded:
+        return {"in_scope": True, "reason": "funded_or_implemented_status", "anchor_date": anchor_date}
+    
+    # RELAXED: Accept any project with status that's not explicitly negative
+    # (e.g., "planned", "proposed", "approved", etc all suggest something real)
+    if status and isinstance(status, str):
+        status_lower = status.lower().strip()
+        # Reject only if status explicitly says "rejected", "cancelled", "failed", "abandoned"
+        if any(reject_word in status_lower for reject_word in ["rejected", "cancelled", "canceled", "failed", "abandoned", "unknown"]):
+            return {"in_scope": False, "reason": "negative_or_unknown_status", "anchor_date": anchor_date}
+        # Accept anything else that has a status
+        return {"in_scope": True, "reason": "project_status_exists_relaxed", "anchor_date": anchor_date}
+    
+    # If no status at all, insufficient data
+    return {"in_scope": False, "reason": "no_project_status", "anchor_date": anchor_date}

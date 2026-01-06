@@ -37,7 +37,7 @@ max_delay = 60.0
 [agent]
 max_iterations = 5
 # Maximum number of search queries the researcher agent can perform in a single run.
-max_searches_per_run = 10
+max_searches_per_run = 50
 # Maximum number of deep dives (additional searches)
 max_deep_dives = 10
 # Enable pre-scrape relevance check
@@ -53,15 +53,6 @@ output_dir = "runs"
 # Format for filenames (%s will be replaced with timestamp)
 filename_format = "results_%s.json"
 funded_report_dir = "runs/funded_reports"
-
-# Maximum number of web searches the researcher agent can perform in a single run.
-# Set to 0 for unlimited searches.
-MAX_SEARCHES_PER_RUN = 10
-
-# Maximum number of iterations (loops) the graph can perform.
-MAX_ITERATIONS = 5
-
-# --- Tenacity Retry Settings --- (Example) 
 
 [funding_scope]
 # Default lookback window for funded city climate projects (years)

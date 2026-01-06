@@ -3,7 +3,7 @@ Agent responsible for processing deep dive requests from the reviewer.
 Decides on the next concrete action (scrape or terminate) to dive deeper into existing websites.
 """
 import logging
-from typing import Dict, Any, Set, Optional
+from typing import Dict, Any, Set, Optional, List
 from datetime import datetime
 from dataclasses import asdict
 import json # Added for cleaning potential markdown in structured output
@@ -141,7 +141,7 @@ async def deep_dive_processor_node(state: AgentState) -> AgentState:
         actions_performed=state.current_deep_dive_actions_count
     )
 
-    parsed_action_dict: Dict[str, Any]
+    parsed_actions: List[Dict[str, Any]]
     raw_thinking_output = ""
     structured_llm_output_str = ""
 
@@ -176,15 +176,15 @@ async def deep_dive_processor_node(state: AgentState) -> AgentState:
         if not structured_model_to_use:
             raise ValueError("No STRUCTURED_MODEL configured for Deep Dive Processor JSON extraction.")
 
-        extraction_system_prompt = "You are an AI assistant that extracts structured JSON data from text. Given a text that contains reasoning and a JSON object, extract *only* the JSON object. The JSON object must conform to the provided schema. Do not include any explanations or conversational text in your output, only the JSON object itself."
-        extraction_user_prompt = f"""Extract the JSON object from the following text. The JSON should represent a deep dive action with 'action_type' (either 'scrape', 'crawl', or 'terminate_deep_dive'), 'target' (URL for scrape/crawl, null for terminate), 'justification', and optional 'max_pages' and 'exclude_patterns' for crawl actions.
+        extraction_system_prompt = "You are an AI assistant that extracts structured JSON data from text. Given a text that contains reasoning and a JSON object or array, extract *only* the JSON object or array. The JSON must conform to the provided schema. Do not include any explanations or conversational text in your output, only the JSON itself."
+        extraction_user_prompt = f"""Extract the JSON object or JSON array from the following text. The JSON should represent a deep dive action (or list of actions) with 'action_type' (either 'scrape', 'crawl', or 'terminate_deep_dive'), 'target' (URL for scrape/crawl, null for terminate), 'justification', and optional 'max_pages' and 'exclude_patterns' for crawl actions.
 
             Text:
             ```
             {raw_thinking_output}
             ```
 
-            Output only the JSON object.
+            Output only the JSON object or array.
             """
         
         logger.info(f"Sending text from {thinking_model_to_use} to {structured_model_to_use} for JSON extraction.")
@@ -237,73 +237,156 @@ async def deep_dive_processor_node(state: AgentState) -> AgentState:
             if not structured_llm_output_str:
                 raise ValueError("Structured model returned empty content for JSON extraction.")
             
-            # Validate and parse
-            action_model = DeepDiveAction.model_validate_json(structured_llm_output_str)
-            return action_model.model_dump()
+            # Parse JSON and allow either a single object or a list of actions.
+            parsed_json = json.loads(structured_llm_output_str)
+            if isinstance(parsed_json, list):
+                if not parsed_json:
+                    raise ValueError("LLM returned an empty array.")
+                logger.warning("LLM returned an array of actions. Validating all entries.")
+                raw_actions = parsed_json
+            else:
+                raw_actions = [parsed_json]
+
+            validated_actions: List[Dict[str, Any]] = []
+            for raw_action in raw_actions:
+                action_model = DeepDiveAction.model_validate(raw_action)
+                validated_actions.append(action_model.model_dump())
+            return validated_actions
 
         # Try standard format first, then fallback to legacy
         try:
             if output_json_schema:
                 logger.info("Attempting deep diver extraction with OpenAI-compliant json_schema format.")
-            parsed_action_dict = attempt_structured_extraction(api_call_response_format_standard)
+            parsed_actions = attempt_structured_extraction(api_call_response_format_standard)
             if output_json_schema:
                 logger.info("Successfully used OpenAI-compliant json_schema format for deep diver.")
         except Exception as e:
             if output_json_schema and ("BadRequestError" in str(type(e).__name__) or "400" in str(e) or "json_schema" in str(e).lower()):
                 logger.warning(f"OpenAI-compliant format failed for deep diver: {e}. Falling back to legacy format.")
                 logger.info("Attempting deep diver extraction with legacy json_schema format.")
-                parsed_action_dict = attempt_structured_extraction(api_call_response_format_legacy)
+                parsed_actions = attempt_structured_extraction(api_call_response_format_legacy)
                 logger.info("Successfully used legacy json_schema format for deep diver.")
             else:
                 raise
         
-        # Validate the action - scrape, crawl, and terminate_deep_dive are allowed
-        action_type = parsed_action_dict.get("action_type")
-        if action_type not in ["scrape", "crawl", "terminate_deep_dive"]:
-            logger.warning(f"Invalid action type '{action_type}'. Forcing termination.")
-            parsed_action_dict = {"action_type": "terminate_deep_dive", "justification": f"Invalid action type '{action_type}' provided."}
-        
-        # Ensure target is None if action is terminate, and present otherwise
-        if parsed_action_dict.get("action_type") == "terminate_deep_dive":
-            parsed_action_dict["target"] = None
-        elif parsed_action_dict.get("action_type") in ["scrape", "crawl"] and not parsed_action_dict.get("target"):
-            logger.warning(f"{parsed_action_dict.get('action_type')} action chosen but no target URL provided. Forcing termination.")
-            parsed_action_dict = {"action_type": "terminate_deep_dive", "justification": f"{parsed_action_dict.get('action_type')} action requires a target URL."}
-        
-        # Validate crawl-specific parameters
-        if parsed_action_dict.get("action_type") == "crawl":
-            max_pages = parsed_action_dict.get("max_pages", 10)
-            if max_pages > 50:
-                logger.warning(f"Crawl max_pages ({max_pages}) exceeds safety limit. Capping at 50.")
-                parsed_action_dict["max_pages"] = 50
-
     except RetryError as e_retry: # Tenacity retry error
         logger.error(f"Failed to extract valid JSON for Deep Dive Action after multiple retries: {e_retry}. Last raw output from structured model: '{structured_llm_output_str}'. Terminating deep dive.")
-        parsed_action_dict = {"action_type": "terminate_deep_dive", "justification": f"JSON extraction failed after retries: {e_retry}"}
+        parsed_actions = [{"action_type": "terminate_deep_dive", "justification": f"JSON extraction failed after retries: {e_retry}"}]
     except (ValueError, ValidationError, json.JSONDecodeError) as e_val: # Catch errors from thinking model emptiness, or final validation if retry somehow bypassed
         logger.error(f"Failed to parse or validate Deep Dive Processor LLM JSON response: {e_val}. Raw structured output: '{structured_llm_output_str}'. Raw thinking output: '{raw_thinking_output[:500]}...'. Terminating deep dive.")
-        parsed_action_dict = {"action_type": "terminate_deep_dive", "justification": f"LLM response processing error: {e_val}"}
+        parsed_actions = [{"action_type": "terminate_deep_dive", "justification": f"LLM response processing error: {e_val}"}]
     except Exception as e: # Catch-all for other unexpected errors
         logger.error(f"Unexpected error in Deep Dive Processor node: {e}", exc_info=True)
-        parsed_action_dict = {"action_type": "terminate_deep_dive", "justification": f"Unhandled error in deep_dive_processor_node: {e}"}
+        parsed_actions = [{"action_type": "terminate_deep_dive", "justification": f"Unhandled error in deep_dive_processor_node: {e}"}]
 
-    state.metadata['deep_dive_action'] = parsed_action_dict
-    
-    if parsed_action_dict.get("action_type") != "terminate_deep_dive":
-        state.current_deep_dive_actions_count += 1
-        logger.info(f"Deep Dive action: {parsed_action_dict.get('action_type')}, Target: {parsed_action_dict.get('target')}. Actions taken this cycle: {state.current_deep_dive_actions_count}")
+    if isinstance(parsed_actions, dict):
+        parsed_actions_list = [parsed_actions]
     else:
-        logger.info(f"Deep Dive action: terminate_deep_dive. Justification: {parsed_action_dict.get('justification')}")
+        parsed_actions_list = parsed_actions or []
 
-    state.decision_log.append({
+    if not parsed_actions_list:
+        parsed_actions_list = [{
+            "action_type": "terminate_deep_dive",
+            "justification": "No deep dive actions were returned by the model."
+        }]
+
+    normalized_actions: List[Dict[str, Any]] = []
+    for action in parsed_actions_list:
+        if not isinstance(action, dict):
+            normalized_actions.append({
+                "action_type": "terminate_deep_dive",
+                "target": None,
+                "justification": "Invalid deep dive action format; expected object."
+            })
+            continue
+
+        action_type = action.get("action_type")
+        if action_type not in ["scrape", "crawl", "terminate_deep_dive"]:
+            logger.warning(f"Invalid action type '{action_type}'. Forcing termination.")
+            normalized_actions.append({
+                "action_type": "terminate_deep_dive",
+                "target": None,
+                "justification": f"Invalid action type '{action_type}' provided."
+            })
+            continue
+
+        normalized_action = dict(action)
+        if action_type == "terminate_deep_dive":
+            normalized_action["target"] = None
+        elif action_type in ["scrape", "crawl"] and not normalized_action.get("target"):
+            logger.warning(f"{action_type} action chosen but no target URL provided. Forcing termination.")
+            normalized_action = {
+                "action_type": "terminate_deep_dive",
+                "target": None,
+                "justification": f"{action_type} action requires a target URL."
+            }
+
+        if normalized_action.get("action_type") == "crawl":
+            max_pages = normalized_action.get("max_pages", 10)
+            if max_pages > 50:
+                logger.warning(f"Crawl max_pages ({max_pages}) exceeds safety limit. Capping at 50.")
+                normalized_action["max_pages"] = 50
+
+        normalized_actions.append(normalized_action)
+
+    actionable_actions = [
+        action for action in normalized_actions if action.get("action_type") in ["scrape", "crawl"]
+    ]
+
+    if actionable_actions:
+        remaining_budget = max(
+            0,
+            config.MAX_ACTIONS_PER_DEEP_DIVE_CYCLE - state.current_deep_dive_actions_count
+        )
+        if remaining_budget <= 0:
+            actionable_actions = []
+        elif len(actionable_actions) > remaining_budget:
+            logger.warning(
+                "Deep dive returned %s actions but only %s actions remain in the budget. Truncating.",
+                len(actionable_actions),
+                remaining_budget
+            )
+            actionable_actions = actionable_actions[:remaining_budget]
+
+    if actionable_actions:
+        state.metadata["deep_dive_actions"] = actionable_actions
+        state.metadata["deep_dive_action"] = actionable_actions[0]
+        state.current_deep_dive_actions_count += len(actionable_actions)
+        logger.info(
+            "Deep Dive actions enqueued: %s. Actions taken this cycle: %s",
+            len(actionable_actions),
+            state.current_deep_dive_actions_count
+        )
+        action_log_entry = actionable_actions[0]
+        log_action_type = "batch" if len(actionable_actions) > 1 else action_log_entry.get("action_type")
+        log_target = action_log_entry.get("target")
+        log_justification = action_log_entry.get("justification")
+    else:
+        terminate_action = {
+            "action_type": "terminate_deep_dive",
+            "target": None,
+            "justification": "No actionable deep dive actions after validation."
+        }
+        state.metadata.pop("deep_dive_actions", None)
+        state.metadata["deep_dive_action"] = terminate_action
+        logger.info("Deep Dive action: terminate_deep_dive. Justification: %s", terminate_action.get("justification"))
+        log_action_type = terminate_action.get("action_type")
+        log_target = terminate_action.get("target")
+        log_justification = terminate_action.get("justification")
+
+    decision_log_entry = {
         "agent": "DeepDiveProcessor",
-        "action": parsed_action_dict.get("action_type", "error"),
-        "target": parsed_action_dict.get("target"),
-        "justification": parsed_action_dict.get("justification"),
+        "action": log_action_type,
+        "target": log_target,
+        "justification": log_justification,
         "refinement_details_processed": refinement_details,
         "actions_this_cycle": state.current_deep_dive_actions_count,
         "current_websites_considered": websites_str,
         "timestamp": datetime.now().isoformat()
-    })
+    }
+    if actionable_actions and len(actionable_actions) > 1:
+        decision_log_entry["actions"] = actionable_actions
+
+    state.decision_log.append(decision_log_entry)
     
     return state 

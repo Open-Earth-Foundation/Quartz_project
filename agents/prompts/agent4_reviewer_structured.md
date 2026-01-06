@@ -21,9 +21,11 @@ Consider the data's relevance to the target country and funded project scope (ci
 
 **ACCEPT** if:
 
-- You have funded/implemented project records within the last 20 years with source URL, city/region/country, funding amount/currency/source, and a credible status (approved/funded/in_implementation/completed).
-- Evidence snippets or traceable sources are provided (budget portals, council minutes, tenders, bonds, grants).
-- There is a strong indication that the source contains verifiable funding details even if some amounts are missing.
+- You have project records with: (1) a project title/name, (2) a status indicating funded/started/approved/implemented, (3) and ideally a city/region/country location or funding source.
+- Dates are helpful but NOT required. Funding amounts are helpful but NOT required.
+- Accept partial project data (e.g., project name + status + city, even without dates/amounts).
+- Evidence from traceable sources (URLs, government portals, news articles, development bank announcements) is sufficient.
+- Look for ANY indication that the project exists and has been funded or started (not just planned/proposed).
 
 {deep_dive_section}
 
@@ -45,7 +47,7 @@ The schema requires fields such as:
 - `relevance_reasoning`: Justification.
 - `credibility_score`: High, Medium, or Low.
 - `credibility_reasoning`: Justification.
-- `completeness_score`: High, Medium, or Low.
+- `completeness_score`: High, Medium, or Low. (Note: High = has project title + status + location. Medium = has 2/3 of these. Low = has only 1 or none. Missing dates/amounts do NOT reduce completeness score.)
 - `completeness_reasoning`: Justification.
 - `overall_confidence`: High, Medium, or Low.
 - `suggested_action`: {available_actions}.

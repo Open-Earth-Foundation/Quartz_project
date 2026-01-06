@@ -41,14 +41,14 @@ Return a bulleted block for each category like:
 
 ### Stationary Energy Project Categories to Target
 
-| Category | Examples |
-|----------|----------|
-| **Building Energy Efficiency** | Building retrofits, insulation upgrades, HVAC efficiency projects, smart building systems, municipal building improvement programs |
-| **Renewable Energy Systems** | Solar PV installations, wind power projects, biomass facilities, geothermal systems, distributed renewable energy deployment |
-| **Grid Modernization & Smart Grid** | Smart meter deployment, grid infrastructure upgrades, microgrid projects, demand-side management, digital energy systems |
-| **District Energy & Heating/Cooling** | District heating networks, district cooling systems, combined heat and power projects, thermal energy storage |
-| **Energy Sector Decarbonization** | Coal power plant retirement, natural gas transition projects, fuel switching initiatives, power generation efficiency improvements |
-| **Industrial Energy Efficiency** | Factory efficiency upgrades, steam system improvements, motor efficiency projects, waste heat recovery systems |
+|| Category | Examples |
+||----------|----------|
+|| **Building Energy Efficiency** | Building retrofits, insulation upgrades, HVAC efficiency projects, smart building systems, municipal building improvement programs |
+|| **Renewable Energy Systems** | Solar PV installations, wind power projects, biomass facilities, geothermal systems, distributed renewable energy deployment |
+|| **Grid Modernization & Smart Grid** | Smart meter deployment, grid infrastructure upgrades, microgrid projects, demand-side management, digital energy systems |
+|| **District Energy & Heating/Cooling** | District heating networks, district cooling systems, combined heat and power projects, thermal energy storage |
+|| **Energy Sector Decarbonization** | Coal power plant retirement, natural gas transition projects, fuel switching initiatives, power generation efficiency improvements |
+|| **Industrial Energy Efficiency** | Factory efficiency upgrades, steam system improvements, motor efficiency projects, waste heat recovery systems |
 
 ### Key Search Guidance
 
@@ -65,7 +65,31 @@ Return a bulleted block for each category like:
 - Mention municipalities with climate action plans
 - Include industrial zones and regions
 
+**Specific Database & Portal Searches to Include:**
+
+**CRITICAL: Prioritize searches on these specific funding platforms and sources:**
+
+- World Bank Projects database (projects.worldbank.org)
+- Inter-American Development Bank (IDB) projects
+- Green Climate Fund (GCF) approved projects portal
+- ADB (Asian Development Bank) project database
+- UNDP climate finance projects
+- International Finance Corporation (IFC) projects
+- National development banks
+- Government climate finance transparency portals
+- Utility company investment announcements
+
+**Example High-Value Search Patterns:**
+
+- "site:worldbank.org {country} renewable energy project approved funding"
+- "site:iadb.org {country} energy efficiency climate finance"
+- "site:greenclimate.fund {country} sustainable energy OR renewable"
+- "{country} city solar OR wind project funded announcement"
+- "{country} building retrofit energy efficiency climate project"
+- "{country} development bank energy infrastructure investment"
+
 **Document Types to Target:**
+
 - Development bank project announcements and lending documents
 - Government climate policies with energy sector funding allocations
 - Municipal/regional climate action plans with specific projects
@@ -75,6 +99,7 @@ Return a bulleted block for each category like:
 - Utility company investment announcements
 
 **Do NOT include:**
+
 - Generic GHGI energy statistics (we want funded projects, not consumption data)
 - Research papers on energy efficiency (unless they reference funded projects)
 - Theoretical energy scenarios
@@ -85,6 +110,7 @@ Return a bulleted block for each category like:
 - Keep each phrase concise (6-12 words) and specific to **funded projects**
 - Vary wording to capture different database and search conventions
 - Use **funding-related and project status keywords**: "funded", "approved", "grant", "implementation", "timeline", "budget", "investment"
+- **Include site:domain operators** for direct searches on known funding platforms
 - Each phrase should independently yield project information when searched
 - Prioritize **recent funding announcements** (last 5 years)
 - Include specific city or regional names known for energy climate initiatives
