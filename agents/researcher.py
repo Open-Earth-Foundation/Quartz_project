@@ -345,7 +345,9 @@ async def researcher_node(state: AgentState) -> AgentState:
             return True
 
         if action_type == "terminate_deep_dive":
-            logger.info("Deep dive action is terminate_deep_dive. No additional URLs added.")
+            logger.info(
+                "Deep dive action is terminate_deep_dive. No additional URLs added."
+            )
             return False
 
         logger.warning(f"Unknown or incomplete deep dive action: {action}")
@@ -361,7 +363,9 @@ async def researcher_node(state: AgentState) -> AgentState:
                 logger.warning(f"Skipping invalid deep dive action entry: {action}")
         state.metadata.pop("deep_dive_actions", None)
         state.metadata.pop("deep_dive_action", None)
-        logger.info("Cleared deep_dive_actions and deep_dive_action from state metadata after processing.")
+        logger.info(
+            "Cleared deep_dive_actions and deep_dive_action from state metadata after processing."
+        )
     else:
         deep_dive_action = state.metadata.get("deep_dive_action", {})
         if isinstance(deep_dive_action, dict) and deep_dive_action:
@@ -385,6 +389,9 @@ async def researcher_node(state: AgentState) -> AgentState:
                 state.target_sector or "Any",
                 client,
                 search_mode=state.search_mode,  # NEW: Pass search_mode to relevance checker
+                primary_languages=state.metadata.get(
+                    "primary_languages", []
+                ),  # NEW: Pass primary languages
             )
             for url in unique_urls_to_consider_filtered  # Use the filtered list
         ]

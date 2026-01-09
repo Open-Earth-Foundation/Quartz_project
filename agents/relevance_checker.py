@@ -73,6 +73,7 @@ async def check_url_relevance_async(
     target_sector: str,
     client: AsyncOpenAI,
     search_mode: str = "ghgi_data",  # NEW: Added search_mode parameter
+    primary_languages: Optional[list] = None,  # NEW: Added primary_languages parameter
 ) -> RelevanceCheckOutput:
     """Check if a URL and its snippet are relevant using an LLM with structured JSON output. Returns a RelevanceCheckOutput object."""
     raw_content = "<not_yet_fetched>"  # Initialize for error logging
@@ -99,6 +100,12 @@ async def check_url_relevance_async(
                 reason="RELEVANCE_CHECK_MODEL not configured, assumed relevant",
             )
 
+        # NEW: Determine local language from primary_languages or default
+        if primary_languages and len(primary_languages) > 0:
+            target_country_local_language = primary_languages[0]
+        else:
+            target_country_local_language = "the local language"
+
         # NEW: Use search_mode to select appropriate prompt
         prompt_template = load_relevance_check_prompt_template(search_mode=search_mode)
         current_user_prompt = prompt_template.format(
@@ -108,6 +115,7 @@ async def check_url_relevance_async(
             title=title,
             snippet=snippet,
             lookback_years=config.FUNDED_LOOKBACK_YEARS,  # For funded_projects prompts
+            target_country_local_language=target_country_local_language,  # NEW: Add missing parameter
         )
 
         # NEW: Generate search_mode-aware system prompt
