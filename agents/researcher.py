@@ -388,7 +388,6 @@ async def researcher_node(state: AgentState) -> AgentState:
                 state.target_country or "UnknownCountry",
                 state.target_sector or "Any",
                 client,
-                search_mode=state.search_mode,  # NEW: Pass search_mode to relevance checker
             )
             for url in unique_urls_to_consider_filtered  # Use the filtered list
         ]
@@ -616,11 +615,9 @@ async def researcher_node(state: AgentState) -> AgentState:
         target_city=state.target_city,
         target_region=state.target_region,
         research_mode=state.research_mode,
-        search_mode=state.search_mode,  # CRITICAL: Pass through search_mode
         consecutive_deep_dive_count=state.consecutive_deep_dive_count,
         selected_for_extraction=state.selected_for_extraction,
         current_deep_dive_actions_count=state.current_deep_dive_actions_count,
-        partial_project=state.partial_project,
     )
 
 

@@ -64,3 +64,41 @@ For **each** waste subsector listed below, generate **exactly 15 search phrases*
 3. Use realistic researcher syntax—quotation marks, plus signs, local keywords (e.g., `emisje CH₄ składowisko odpadów Kraków powiat`).
 4. Vary key terms—“landfilled waste,” “composting tonnage,” “incinerator CO₂,” “wastewater CH₄”—to avoid repetitive stems within a subsector.
 5. Highlight **gas-level detail** (CH₄, N₂O, CO₂) whenever possible; avoid relying solely on aggregated CO₂-equivalent figures.
+
+---
+
+## WHAT ARE WE ACTUALLY SEARCHING FOR?
+
+**GHGI Waste ≠ General Waste Statistics**
+
+Waste GHGI measures **emissions FROM waste management** (CH₄ from landfills, N₂O from treatment), NOT waste volumes.
+
+### Key Data to Find (City-Level):
+
+- **Landfills**: City/district disposed waste, landfill gas capture rates, sludge management
+- **Composting/Digestion**: Municipal organic waste treatment facilities and throughput
+- **Incineration**: City waste-to-energy plants, waste incinerated, energy output
+- **Wastewater**: Municipal/district treatment plants, sludge disposal routes
+
+**Emissions must be**:
+
+- Disaggregated by gas (CH₄, N₂O, CO₂ separate, NOT CO₂-eq only)
+- By treatment method (landfill ≠ incineration ≠ composting)
+- City/district/county level (NOT just national or provincial average)
+- With time series (multiple years)
+
+### Source Ranking (Best to Worst):
+
+1. **Municipal/City GHGI reports** - City government official inventory
+2. **City waste/environment department** - Facility data, treatment statistics
+3. **Regional/Provincial data** - If city-level disaggregation shown
+4. **News/blogs/sustainability reports** - Unreliable, skip
+
+### City-Level Pitfalls:
+
+- ❌ "Berlin produces 5 Mt waste/year" (volume, not emissions)
+- ✅ "Berlin: 0.4 Mt CH₄ from landfills, 0.2 Mt CO₂ from incineration"
+- ❌ Using entire county data for city
+- ✅ Using city-boundary specific facility data
+- ❌ "0.5 Mt CO₂-eq" from wastewater (can't see breakdown)
+- ✅ "0.2 Mt CO₂ + 0.08 Mt CH₄ + 0.002 Mt N₂O"
