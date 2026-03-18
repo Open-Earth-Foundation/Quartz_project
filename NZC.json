@@ -1,0 +1,22 @@
+{
+  "cities": [
+    {
+      "city": "Krakow",
+      "country": "Poland",
+      "aliases": ["Kraków"],
+      "seed_domains": ["krakow.pl", "kegw.krakow.pl"]
+    },
+    {
+      "city": "Warsaw",
+      "country": "Poland",
+      "aliases": ["Warszawa"],
+      "seed_domains": ["um.warszawa.pl", "eko.um.warszawa.pl"]
+    },
+    {
+      "city": "Gdansk",
+      "country": "Poland",
+      "aliases": ["Gdańsk"],
+      "seed_domains": ["gdansk.pl"]
+    }
+  ]
+}
