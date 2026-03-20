@@ -11,10 +11,10 @@
       <header class="hero">
         <div>
           <p class="eyebrow">Quartz project monitor</p>
-          <h1>Latest runs, raw outputs, and next-step hints</h1>
+          <h1>City climate spend, project buys, and latest run output</h1>
           <p class="hero-copy">
-            This page reads directly from <code>runs/</code> and refreshes live from the newest
-            report, summary, registry, and hint files.
+            This page reads directly from <code>runs/</code> and surfaces which cities have priced
+            projects, how much money is attached, and what the funding is actually buying.
           </p>
         </div>
         <button id="refresh-button" class="refresh-button" type="button">Refresh data</button>
@@ -23,17 +23,25 @@
       <main class="layout">
         <section class="panel overview-panel">
           <div class="section-heading">
-            <h2>Run overview</h2>
+            <h2>Spend Overview</h2>
             <p id="overview-timestamp">Loading latest artifacts...</p>
           </div>
           <div id="overview-stats" class="stat-grid"></div>
           <div id="latest-summary" class="card-stack"></div>
         </section>
 
+        <section class="panel spend-panel">
+          <div class="section-heading">
+            <h2>Funding Radar</h2>
+            <p>Largest disclosed active projects and a city-by-city view of what the money is funding.</p>
+          </div>
+          <div id="funding-board" class="card-stack"></div>
+        </section>
+
         <section class="panel">
           <div class="section-heading">
             <h2>Recent reports</h2>
-            <p>Newest batch outputs with city-level counts and quick links.</p>
+            <p>Newest batch outputs with project amounts, funding sources, and quick links.</p>
           </div>
           <div id="reports-list" class="card-stack"></div>
         </section>
@@ -49,7 +57,7 @@
         <aside class="panel sidebar-panel">
           <div class="section-heading">
             <h2>Recent files</h2>
-            <p>Fast links into the latest artifacts.</p>
+            <p>Fast links plus the current registry pulse.</p>
           </div>
           <div id="artifact-feed" class="artifact-feed"></div>
           <div id="latest-registry" class="card-stack compact-stack"></div>

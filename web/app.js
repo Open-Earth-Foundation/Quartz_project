@@ -1,6 +1,7 @@
 const overviewTimestamp = document.querySelector("#overview-timestamp");
 const overviewStats = document.querySelector("#overview-stats");
 const latestSummary = document.querySelector("#latest-summary");
+const fundingBoard = document.querySelector("#funding-board");
 const reportsList = document.querySelector("#reports-list");
 const hintsList = document.querySelector("#hints-list");
 const artifactFeed = document.querySelector("#artifact-feed");
@@ -57,24 +58,59 @@ function formatNumber(value) {
   return new Intl.NumberFormat().format(value ?? 0);
 }
 
+function formatStatValue(value) {
+  if (typeof value === "number") {
+    return formatNumber(value);
+  }
+
+  return escapeHtml(value ?? "0");
+}
+
+function renderProjectSignals(project) {
+  const items = [];
+
+  if (project.funding_display) {
+    items.push(`<span class="pill money-pill">${escapeHtml(project.funding_display)}</span>`);
+  }
+
+  if (project.funding_source) {
+    items.push(`<span class="pill">${escapeHtml(project.funding_source)}</span>`);
+  }
+
+  if (project.funding_programme) {
+    items.push(`<span class="pill">${escapeHtml(project.funding_programme)}</span>`);
+  }
+
+  return items.join("");
+}
+
 function renderEmptyState(target) {
   target.innerHTML = "";
   target.appendChild(emptyStateTemplate.content.cloneNode(true));
 }
 
-function renderStatCards(counts) {
-  const items = [
-    ["reports", counts.reports],
-    ["summaries", counts.summaries],
-    ["registries", counts.registries],
-    ["hint files", counts.hints],
-  ];
+function renderStatCards(counts, registry, latestReport) {
+  const topFunded = (registry?.top_funded_projects || [])[0];
+  const items = registry
+    ? [
+        ["cities processed", latestReport?.city_count || 0],
+        ["active projects", registry.active_count],
+        ["priced projects", registry.funded_project_count],
+        ["cities with disclosed funding", registry.cities_with_funding_count],
+        ["largest disclosed", topFunded?.funding_display_short || "not priced"],
+      ]
+    : [
+        ["reports", counts.reports],
+        ["summaries", counts.summaries],
+        ["registries", counts.registries],
+        ["hint files", counts.hints],
+      ];
 
   overviewStats.innerHTML = items
     .map(
       ([label, value]) => `
         <div class="stat-card">
-          <div class="stat-value">${formatNumber(value)}</div>
+          <div class="stat-value">${formatStatValue(value)}</div>
           <div class="stat-label">${escapeHtml(label)}</div>
         </div>
       `,
@@ -145,6 +181,109 @@ function renderSummaryCard(summary) {
   `;
 }
 
+function renderFundingBoard(registry) {
+  if (!registry || !(registry.top_funded_projects || []).length) {
+    renderEmptyState(fundingBoard);
+    return;
+  }
+
+  const topProjects = (registry.top_funded_projects || [])
+    .slice(0, 8)
+    .map((project) => {
+      const title = project.source_url
+        ? `<a href="${safeUrl(project.source_url)}" target="_blank" rel="noreferrer">${escapeHtml(project.title)}</a>`
+        : escapeHtml(project.title);
+      const tags = (project.climate_tags || [])
+        .slice(0, 3)
+        .map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`)
+        .join("");
+
+      return `
+        <article class="funding-card">
+          <div class="funding-card-top">
+            <span class="amount-badge">${escapeHtml(project.funding_display_short || project.funding_display || "Amount undisclosed")}</span>
+            <span class="artifact-tag">${formatLocation(project.city, project.country)}</span>
+          </div>
+          <h3>${title}</h3>
+          <p class="buy-copy">${escapeHtml(project.what_city_is_buying || project.summary || project.title)}</p>
+          <div class="pill-row">${renderProjectSignals(project)}</div>
+          <div class="chip-row">${tags}</div>
+        </article>
+      `;
+    })
+    .join("");
+
+  const cityBuying = (registry.city_spend_focus || [])
+    .slice(0, 12)
+    .map((item) => {
+      const projectTitle = item.source_url
+        ? `<a href="${safeUrl(item.source_url)}" target="_blank" rel="noreferrer">${escapeHtml(item.headline_project)}</a>`
+        : escapeHtml(item.headline_project);
+      const tags = (item.climate_tags || [])
+        .slice(0, 3)
+        .map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`)
+        .join("");
+
+      return `
+        <div class="buying-row">
+          <div class="buying-main">
+            <strong>${formatLocation(item.city, item.country)}</strong>
+            <p>${projectTitle}</p>
+            <p class="meta-text">${escapeHtml(item.what_city_is_buying || "")}</p>
+            <div class="chip-row">${tags}</div>
+          </div>
+          <div class="buying-side">
+            <span class="amount-badge">${escapeHtml(item.headline_amount || "Undisclosed")}</span>
+            <p class="meta-text">${formatNumber(item.disclosed_project_count)} priced project${item.disclosed_project_count === 1 ? "" : "s"}</p>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  const currencyBreakdown = (registry.currency_breakdown || [])
+    .map((item) => `<span class="chip">${escapeHtml(item.currency)} ${formatNumber(item.count)}</span>`)
+    .join("");
+
+  fundingBoard.innerHTML = `
+    <article class="funding-shell">
+      <div class="funding-hero">
+        <div>
+          <h3>Disclosed money in the active registry</h3>
+          <p class="meta-text">Amounts stay in source currency. Rankings normalize million-unit labels but do not convert exchange rates.</p>
+        </div>
+        <div class="meta-grid funding-metrics">
+            <div class="meta-cell">
+              <div class="meta-label">priced projects</div>
+              <div class="meta-value">${formatNumber(registry.funded_project_count || 0)}</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">cities with disclosed funding</div>
+              <div class="meta-value">${formatNumber(registry.cities_with_funding_count || 0)}</div>
+            </div>
+          </div>
+      </div>
+      <div class="chip-row">${currencyBreakdown}</div>
+      <div class="funding-layout">
+        <div>
+          <div class="subsection-heading">
+            <h3>Largest Disclosed Projects</h3>
+            <p>Fast scan of the biggest active line items.</p>
+          </div>
+          <div class="funding-grid">${topProjects}</div>
+        </div>
+        <div>
+          <div class="subsection-heading">
+            <h3>What Cities Are Funding</h3>
+            <p>Largest disclosed project per city with the purchase focus.</p>
+          </div>
+          <div class="buying-list">${cityBuying}</div>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
 function renderReports(reports) {
   if (!reports.length) {
     renderEmptyState(reportsList);
@@ -171,10 +310,17 @@ function renderReports(reports) {
           const title = project.source_url
             ? `<a href="${safeUrl(project.source_url)}" target="_blank" rel="noreferrer">${escapeHtml(project.title)}</a>`
             : escapeHtml(project.title);
+          const tags = (project.climate_tags || [])
+            .slice(0, 3)
+            .map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`)
+            .join("");
           return `
             <div class="spotlight-item">
-              <strong>${escapeHtml(project.city)}</strong>
+              <strong>${formatLocation(project.city, project.country)}</strong>
               <p>${title}${project.status ? ` | ${escapeHtml(project.status)}` : ""}</p>
+              ${project.what_city_is_buying ? `<p>${escapeHtml(project.what_city_is_buying)}</p>` : ""}
+              <div class="pill-row">${renderProjectSignals(project)}</div>
+              <div class="chip-row">${tags}</div>
             </div>
           `;
         })
@@ -349,16 +495,23 @@ function renderRegistry(registry) {
     return;
   }
 
-  const breakdown = (registry.city_breakdown || [])
+  const breakdown = (registry.city_spend_focus || registry.city_breakdown || [])
     .slice(0, 8)
-    .map(
-      (city) => `
+    .map((city) => {
+      const projectLine = city.headline_project
+        ? `<p>${escapeHtml(city.headline_project)}</p>`
+        : `<p>${formatNumber(city.count)} records</p>`;
+      const amountLine = city.headline_amount
+        ? `<span class="pill money-pill">${escapeHtml(city.headline_amount)}</span>`
+        : "";
+      return `
         <div class="spotlight-item">
           <strong>${formatLocation(city.city, city.country)}</strong>
-          <p>${formatNumber(city.count)} records</p>
+          ${projectLine}
+          <div class="pill-row">${amountLine}</div>
         </div>
-      `,
-    )
+      `;
+    })
     .join("");
 
   latestRegistry.innerHTML = `
@@ -379,6 +532,14 @@ function renderRegistry(registry) {
           <div class="meta-label">active</div>
           <div class="meta-value">${formatNumber(registry.active_count)}</div>
         </div>
+        <div class="meta-cell">
+          <div class="meta-label">priced</div>
+          <div class="meta-value">${formatNumber(registry.funded_project_count || 0)}</div>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-label">cities with spend</div>
+          <div class="meta-value">${formatNumber(registry.cities_with_funding_count || 0)}</div>
+        </div>
       </div>
       <div class="spotlight-list">${breakdown}</div>
     </article>
@@ -397,15 +558,16 @@ async function loadDashboard() {
 
     const data = await response.json();
     overviewTimestamp.textContent = `Refreshed ${formatDate(data.generated_at)}`;
-    renderStatCards(data.artifact_counts || {});
+    renderStatCards(data.artifact_counts || {}, data.latest_registry, data.latest_report);
     renderSummaryCard(data.latest_summary);
+    renderFundingBoard(data.latest_registry);
     renderReports(data.latest_reports || []);
     renderHints(data.latest_hints || []);
     renderArtifactFeed(data.recent_artifacts || []);
     renderRegistry(data.latest_registry);
   } catch (error) {
     overviewTimestamp.textContent = "Unable to load dashboard data";
-    [latestSummary, reportsList, hintsList, artifactFeed, latestRegistry].forEach(renderEmptyState);
+    [latestSummary, fundingBoard, reportsList, hintsList, artifactFeed, latestRegistry].forEach(renderEmptyState);
     console.error(error);
   } finally {
     refreshButton.disabled = false;

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from urllib.parse import urlparse
 
+from text_safety import sanitize_display_title
+
 from .city_hints import CityHintEntry, path_matches_hints, resolve_city_hints
 from .runtime import now_utc_iso
 from .search import CITY_ECOSYSTEM_CLASSES, LOW_VALUE_TITLE_PATTERNS, LOW_VALUE_URL_PATTERNS, classify_source_class, normalize_domain
@@ -71,14 +73,14 @@ class ReviewAgent:
             lines.append("### Likely Omitted Official/Municipal Projects")
             if omissions:
                 for title, url, reason in omissions:
-                    lines.append(f"- {title} | {url} | {reason}")
+                    lines.append(f"- {sanitize_display_title(title, url)} | {url} | {reason}")
             else:
                 lines.append("- None")
             lines.append("")
             lines.append("### Suspicious Accepted Records")
             if suspicious:
                 for title, url, reason in suspicious:
-                    lines.append(f"- {title} | {url} | {reason}")
+                    lines.append(f"- {sanitize_display_title(title, url)} | {url} | {reason}")
             else:
                 lines.append("- None")
             lines.append("")

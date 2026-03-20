@@ -130,3 +130,36 @@ def test_review_agent_does_not_suggest_demoting_known_official_domains():
     markdown = agent.build_hints_markdown(report, [city])
 
     assert "domain: um.warszawa.pl" not in markdown
+
+
+def test_review_agent_sanitizes_pdf_blob_titles_in_hints():
+    agent = ReviewAgent()
+    city = CityTarget(city="Bologna", country="Italy", aliases=[], seed_domains=["comune.bologna.it"])
+    report = BatchRunReport(
+        generated_at="2026-03-18T00:00:00+00:00",
+        registry_path="runs/test_registry.json",
+        review_log_path="runs/test_review.md",
+        hints_log_path="runs/test_hints.md",
+        city_reports=[
+            CityRunReport(
+                city="Bologna",
+                country="Italy",
+                rejected_candidates=[
+                    RejectedCandidate(
+                        url="https://wssol.comune.bologna.it/downloadalfresco/documentale/download?project=feniks",
+                        title="%PDF-1.7 endobj endstream startxref %%EOF",
+                        source_class="city_subdomain",
+                        reason="missing funding signal",
+                        borderline=True,
+                    )
+                ],
+                summary=CityRunSummary(rejected=1),
+            )
+        ],
+        summary=CityRunSummary(rejected=1),
+    )
+
+    markdown = agent.build_hints_markdown(report, [city])
+
+    assert "PDF document from wssol.comune.bologna.it" in markdown
+    assert "%PDF-1.7" not in markdown

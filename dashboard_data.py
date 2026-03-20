@@ -8,7 +8,10 @@ from pathlib import Path
 from pathlib import PureWindowsPath
 from typing import Any
 
+from text_safety import sanitize_display_title
+
 SUMMARY_COUNTS_PATTERN = re.compile(r"([a-z_]+)=(\d+)")
+MILLION_UNIT_MARKERS = ("million", "mln", "m€", "mio.", "miljoner")
 
 
 def _parse_datetime(value: str | None) -> datetime | None:
@@ -93,6 +96,132 @@ def _summarize_counts(bullets: list[str]) -> dict[str, int]:
     return counts
 
 
+def _coerce_float(value: Any) -> float | None:
+    if value is None or value == "":
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _format_decimal(value: float) -> str:
+    if value.is_integer():
+        return f"{int(value):,}"
+    return f"{value:,.2f}".rstrip("0").rstrip(".")
+
+
+def _compact_number(value: float) -> str:
+    absolute = abs(value)
+    if absolute >= 1_000_000_000:
+        return f"{value / 1_000_000_000:.1f}".rstrip("0").rstrip(".") + "B"
+    if absolute >= 1_000_000:
+        return f"{value / 1_000_000:.1f}".rstrip("0").rstrip(".") + "M"
+    if absolute >= 1_000:
+        return f"{value / 1_000:.1f}".rstrip("0").rstrip(".") + "K"
+    return _format_decimal(value)
+
+
+def _currency_code(currency: str | None) -> str:
+    lowered = str(currency or "").casefold()
+    if "eur" in lowered or "m€" in lowered:
+        return "EUR"
+    if "pln" in lowered or "zł" in lowered:
+        return "PLN"
+    if "kr" in lowered or "kronor" in lowered:
+        return "KR"
+    return (currency or "").strip() or "Amount"
+
+
+def _is_million_unit(currency: str | None) -> bool:
+    lowered = str(currency or "").casefold()
+    return any(marker in lowered for marker in MILLION_UNIT_MARKERS)
+
+
+def _normalized_funding_amount(amount: Any, currency: str | None) -> float | None:
+    numeric = _coerce_float(amount)
+    if numeric is None:
+        return None
+    if _is_million_unit(currency):
+        return numeric * 1_000_000
+    return numeric
+
+
+def _format_funding_amount(amount: Any, currency: str | None, *, compact: bool = False) -> str | None:
+    numeric = _coerce_float(amount)
+    if numeric is None:
+        return None
+
+    if compact:
+        base_value = _normalized_funding_amount(numeric, currency) or numeric
+        return f"{_currency_code(currency)} {_compact_number(base_value)}"
+
+    formatted_number = _format_decimal(numeric)
+    raw_currency = (currency or "").strip()
+    lowered = raw_currency.casefold()
+    if raw_currency == "EUR":
+        return f"EUR {formatted_number}"
+    if lowered in {"eur million", "eur mln", "m€"}:
+        return f"EUR {formatted_number} million"
+    if raw_currency == "PLN":
+        return f"PLN {formatted_number}"
+    if raw_currency:
+        return f"{formatted_number} {raw_currency}"
+    return formatted_number
+
+
+def _truncate_text(value: str | None, limit: int = 180) -> str:
+    collapsed = re.sub(r"\s+", " ", str(value or "")).strip()
+    if len(collapsed) <= limit:
+        return collapsed
+    return collapsed[: limit - 1].rstrip() + "…"
+
+
+def _purchase_focus(summary: str, title: str) -> str:
+    cleaned_summary = re.sub(r"\s+", " ", summary).strip()
+    if not cleaned_summary:
+        return title
+    first_sentence = re.split(r"(?<=[.!?])\s+|;\s+", cleaned_summary, maxsplit=1)[0].strip()
+    return _truncate_text(first_sentence or cleaned_summary, 170)
+
+
+def _project_snapshot(record: dict[str, Any], *, default_city: str = "Unknown", default_country: str = "") -> dict[str, Any]:
+    source_urls = record.get("source_urls") or []
+    source_url = source_urls[0] if source_urls else None
+    summary = str(record.get("summary") or "").strip()
+    title = sanitize_display_title(record.get("project_title") or "Untitled project", source_url)
+    funding_display = _format_funding_amount(record.get("funding_amount"), record.get("currency"))
+    funding_display_short = _format_funding_amount(record.get("funding_amount"), record.get("currency"), compact=True)
+
+    return {
+        "city": record.get("city") or default_city,
+        "country": record.get("country") or default_country,
+        "title": title,
+        "summary": _truncate_text(summary, 240),
+        "what_city_is_buying": _purchase_focus(summary, title),
+        "status": record.get("status"),
+        "funding_amount": record.get("funding_amount"),
+        "currency": record.get("currency"),
+        "funding_display": funding_display,
+        "funding_display_short": funding_display_short,
+        "funding_source": record.get("funding_source"),
+        "funding_programme": record.get("funding_programme"),
+        "climate_tags": [str(tag) for tag in (record.get("climate_tags") or [])][:4],
+        "source_url": source_url,
+        "last_verified_at": record.get("last_verified_at"),
+        "_funding_sort": _normalized_funding_amount(record.get("funding_amount"), record.get("currency")) or -1.0,
+    }
+
+
+def _strip_project_internal_fields(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    cleaned: list[dict[str, Any]] = []
+    for item in items:
+        shallow_copy = dict(item)
+        shallow_copy.pop("_funding_sort", None)
+        cleaned.append(shallow_copy)
+    return cleaned
+
+
 def _parse_hint_candidate(item: str) -> dict[str, str]:
     kind, separator, value = item.partition(":")
     if separator:
@@ -104,11 +233,11 @@ def _parse_hint_reference(item: str) -> dict[str, str | None]:
     parts = [part.strip() for part in item.split(" | ")]
     if len(parts) >= 3 and parts[1].startswith(("http://", "https://")):
         return {
-            "title": parts[0],
+            "title": sanitize_display_title(parts[0], parts[1]),
             "url": parts[1],
             "notes": " | ".join(parts[2:]),
         }
-    return {"title": item.strip(), "url": None, "notes": None}
+    return {"title": sanitize_display_title(item.strip()), "url": None, "notes": None}
 
 
 def parse_hint_markdown(text: str) -> dict[str, Any]:
@@ -235,14 +364,12 @@ def _build_report_card(path: Path, runs_dir: Path) -> dict[str, Any]:
         for project in accepted_projects:
             if not isinstance(project, dict) or len(spotlight) >= 6:
                 continue
-            source_urls = project.get("source_urls") or []
             spotlight.append(
-                {
-                    "city": project.get("city") or city_report.get("city") or "Unknown",
-                    "title": project.get("project_title") or "Untitled project",
-                    "status": project.get("status"),
-                    "source_url": source_urls[0] if source_urls else None,
-                }
+                _project_snapshot(
+                    project,
+                    default_city=city_report.get("city") or "Unknown",
+                    default_country=city_report.get("country") or "",
+                )
             )
 
     review_path = _resolve_optional_path(payload.get("review_log_path"), project_root)
@@ -250,6 +377,7 @@ def _build_report_card(path: Path, runs_dir: Path) -> dict[str, Any]:
     registry_path = _resolve_optional_path(payload.get("registry_path"), project_root)
 
     cities.sort(key=lambda item: (-item["accepted"], item["city"]))
+    spotlight.sort(key=lambda item: item.get("_funding_sort", -1), reverse=True)
 
     return {
         "name": path.name,
@@ -259,7 +387,7 @@ def _build_report_card(path: Path, runs_dir: Path) -> dict[str, Any]:
         "summary": payload.get("summary") or {},
         "city_count": len(cities),
         "cities": cities,
-        "project_spotlight": spotlight,
+        "project_spotlight": _strip_project_internal_fields(spotlight),
         "registry": _run_link(registry_path, runs_dir),
         "review": _run_link(review_path, runs_dir),
         "hints": _run_link(hints_path if hints_path.exists() else None, runs_dir),
@@ -310,6 +438,7 @@ def _build_registry_card(path: Path, runs_dir: Path) -> dict[str, Any]:
     city_counts: Counter[tuple[str, str]] = Counter()
     recent_records: list[dict[str, str | None]] = []
     active_count = 0
+    active_records: list[dict[str, Any]] = []
 
     for record in records:
         if not isinstance(record, dict):
@@ -319,6 +448,7 @@ def _build_registry_card(path: Path, runs_dir: Path) -> dict[str, Any]:
         city_counts[(city, country)] += 1
         if record.get("is_active"):
             active_count += 1
+            active_records.append(record)
         recent_records.append(
             {
                 "city": city,
@@ -339,6 +469,60 @@ def _build_registry_card(path: Path, runs_dir: Path) -> dict[str, Any]:
         for (city, country), count in city_counts.most_common(12)
     ]
 
+    funded_projects = [
+        _project_snapshot(record)
+        for record in active_records
+        if _coerce_float(record.get("funding_amount")) is not None
+    ]
+    funded_projects.sort(key=lambda item: item.get("_funding_sort", -1), reverse=True)
+
+    city_spend_focus_map: dict[tuple[str, str], dict[str, Any]] = {}
+    currency_breakdown: Counter[str] = Counter()
+    for item in funded_projects:
+        currency_breakdown[item.get("currency") or "Unspecified"] += 1
+        key = (str(item.get("city") or "Unknown"), str(item.get("country") or ""))
+        current = city_spend_focus_map.get(key)
+        if current is None:
+            city_spend_focus_map[key] = {
+                "city": item["city"],
+                "country": item["country"],
+                "disclosed_project_count": 1,
+                "headline_amount": item.get("funding_display_short"),
+                "headline_amount_full": item.get("funding_display"),
+                "headline_project": item["title"],
+                "what_city_is_buying": item["what_city_is_buying"],
+                "funding_source": item.get("funding_source"),
+                "funding_programme": item.get("funding_programme"),
+                "climate_tags": item.get("climate_tags") or [],
+                "source_url": item.get("source_url"),
+                "_funding_sort": item.get("_funding_sort", -1),
+            }
+            continue
+
+        current["disclosed_project_count"] += 1
+        if item.get("_funding_sort", -1) > current.get("_funding_sort", -1):
+            current.update(
+                {
+                    "headline_amount": item.get("funding_display_short"),
+                    "headline_amount_full": item.get("funding_display"),
+                    "headline_project": item["title"],
+                    "what_city_is_buying": item["what_city_is_buying"],
+                    "funding_source": item.get("funding_source"),
+                    "funding_programme": item.get("funding_programme"),
+                    "climate_tags": item.get("climate_tags") or [],
+                    "source_url": item.get("source_url"),
+                    "_funding_sort": item.get("_funding_sort", -1),
+                }
+            )
+
+    city_spend_focus = sorted(
+        city_spend_focus_map.values(),
+        key=lambda item: item.get("_funding_sort", -1),
+        reverse=True,
+    )
+    for item in city_spend_focus:
+        item.pop("_funding_sort", None)
+
     return {
         "name": path.name,
         "path": _run_relative_path(path, runs_dir),
@@ -346,8 +530,16 @@ def _build_registry_card(path: Path, runs_dir: Path) -> dict[str, Any]:
         "generated_at": timestamp.isoformat(),
         "record_count": payload.get("record_count") or len(records),
         "active_count": active_count,
+        "funded_project_count": len(funded_projects),
+        "cities_with_funding_count": len(city_spend_focus),
         "city_breakdown": city_breakdown,
         "recent_records": recent_records[:8],
+        "currency_breakdown": [
+            {"currency": currency, "count": count}
+            for currency, count in currency_breakdown.most_common(6)
+        ],
+        "top_funded_projects": _strip_project_internal_fields(funded_projects[:8]),
+        "city_spend_focus": city_spend_focus[:12],
         "_sort_key": timestamp.timestamp(),
     }
 

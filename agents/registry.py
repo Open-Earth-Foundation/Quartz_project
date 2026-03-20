@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from text_safety import sanitize_display_title
+
 from .runtime import dump_json, ensure_runs_dir, now_utc_iso
 from .types import BatchRunReport, CityRunReport, CityRunSummary, VerifiedProject
 
@@ -62,7 +64,8 @@ def write_review_log(path: Path, report: BatchRunReport) -> None:
         if city_report.accepted_projects:
             for project in city_report.accepted_projects:
                 lines.append(
-                    f"- {project.project_title} | status={project.status} | source_class={project.source_class} | source={project.source_urls[0]}"
+                    f"- {sanitize_display_title(project.project_title, project.source_urls[0])} | "
+                    f"status={project.status} | source_class={project.source_class} | source={project.source_urls[0]}"
                 )
         else:
             lines.append("- None")
@@ -71,7 +74,7 @@ def write_review_log(path: Path, report: BatchRunReport) -> None:
         borderlines = [item for item in city_report.rejected_candidates if item.borderline]
         if borderlines:
             for item in borderlines:
-                lines.append(f"- {item.title or item.url} | {item.reason}")
+                lines.append(f"- {sanitize_display_title(item.title or item.url, item.url)} | {item.reason}")
         else:
             lines.append("- None")
         lines.append("")

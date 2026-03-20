@@ -5,17 +5,19 @@ import logging
 import re
 from io import BytesIO
 from typing import Any
-from urllib.parse import urljoin
+from urllib.parse import unquote, urljoin
 
 import fitz
 import requests
 
 import config
+from text_safety import looks_like_binary_document_text
 from .runtime import ensure_runtime_paths
 from .search import is_pdf_url, select_internal_links
 from .types import CityTarget, ScrapedSource, SearchHit
 
 logger = logging.getLogger(__name__)
+PDF_MAGIC_BYTES = b"%PDF-"
 
 
 class FirecrawlScraper:
@@ -64,6 +66,8 @@ class FirecrawlScraper:
                 metadata = dict(document.metadata)
             title = metadata.get("title") or self._title_from_text(markdown)
             content = markdown or re.sub(r"\s+", " ", html)
+            if looks_like_binary_document_text(content):
+                return self._scrape_pdf(url)
             was_truncated = len(content) > config.MAX_INPUT_CHARS_PER_SOURCE
             return ScrapedSource(
                 url=url,
@@ -82,7 +86,11 @@ class FirecrawlScraper:
     def _scrape_pdf(self, url: str) -> ScrapedSource:
         response = requests.get(url, timeout=config.SCRAPE_TIMEOUT_SECONDS)
         response.raise_for_status()
+        return self._scrape_pdf_response(url, response)
+
+    def _scrape_pdf_response(self, url: str, response: requests.Response) -> ScrapedSource:
         document = fitz.open(stream=BytesIO(response.content), filetype="pdf")
+        filename = self._filename_from_response(response)
 
         text_chunks: list[str] = []
         approx_tokens = 0
@@ -99,7 +107,7 @@ class FirecrawlScraper:
         was_truncated = approx_tokens >= config.PDF_TOKEN_LIMIT
         return ScrapedSource(
             url=url,
-            title=self._title_from_text(joined) or url.rsplit("/", 1)[-1],
+            title=self._title_from_text(joined) or filename or url.rsplit("/", 1)[-1],
             content=joined[: config.MAX_INPUT_CHARS_PER_SOURCE],
             source_kind="pdf",
             internal_links=[],
@@ -116,6 +124,8 @@ class FirecrawlScraper:
             headers={"User-Agent": "Quartz/1.0"},
         )
         response.raise_for_status()
+        if self._response_is_pdf(response):
+            return self._scrape_pdf_response(url, response)
         html = response.text
         title_match = re.search(r"<title[^>]*>(.*?)</title>", html, flags=re.IGNORECASE | re.DOTALL)
         title = unescape(re.sub(r"\s+", " ", title_match.group(1))).strip() if title_match else ""
@@ -165,6 +175,24 @@ class FirecrawlScraper:
             if len(clean) >= 5:
                 return clean
         return ""
+
+    @staticmethod
+    def _response_is_pdf(response: requests.Response) -> bool:
+        content_type = response.headers.get("Content-Type", "").split(";", 1)[0].strip().lower()
+        disposition = response.headers.get("Content-Disposition", "")
+        return (
+            content_type == "application/pdf"
+            or ".pdf" in disposition.casefold()
+            or response.content.startswith(PDF_MAGIC_BYTES)
+        )
+
+    @staticmethod
+    def _filename_from_response(response: requests.Response) -> str:
+        disposition = response.headers.get("Content-Disposition", "")
+        match = re.search(r"""filename\*?=(?:UTF-8''|")?([^";]+)""", disposition, flags=re.IGNORECASE)
+        if not match:
+            return ""
+        return unquote(match.group(1)).strip()
 
     def collect_sources(self, city_target: CityTarget, hits: list[SearchHit]) -> list[ScrapedSource]:
         collected: list[ScrapedSource] = []

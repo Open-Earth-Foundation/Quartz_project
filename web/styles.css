@@ -133,15 +133,13 @@ code {
   box-shadow: var(--shadow);
 }
 
-.overview-panel,
-.panel:nth-child(2),
-.panel:nth-child(3) {
+.layout > .panel:not(.sidebar-panel) {
   grid-column: 1 / 2;
 }
 
 .sidebar-panel {
   grid-column: 2 / 3;
-  grid-row: 1 / span 3;
+  grid-row: 1 / span 4;
 }
 
 .section-heading {
@@ -245,6 +243,21 @@ code {
   color: var(--ink);
 }
 
+.pill.warning {
+  border-color: rgba(166, 90, 34, 0.24);
+  background: rgba(166, 90, 34, 0.12);
+  color: var(--warning);
+}
+
+.money-pill,
+.amount-badge {
+  border-color: rgba(15, 109, 83, 0.26);
+  background: rgba(15, 109, 83, 0.16);
+  color: var(--accent);
+  font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+  font-weight: 700;
+}
+
 .chip.warning {
   border-color: rgba(166, 90, 34, 0.24);
   background: rgba(166, 90, 34, 0.12);
@@ -266,6 +279,19 @@ code {
   display: grid;
   gap: 10px;
   margin-top: 14px;
+}
+
+.subsection-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  margin: 4px 0 12px;
+}
+
+.subsection-heading p {
+  margin: 0;
+  color: var(--muted);
 }
 
 .city-card,
@@ -332,6 +358,98 @@ code {
   border-color: rgba(15, 109, 83, 0.28);
 }
 
+.funding-shell {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background:
+    linear-gradient(160deg, rgba(255, 251, 246, 0.95), rgba(238, 248, 242, 0.85)),
+    rgba(255, 255, 255, 0.72);
+}
+
+.funding-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.funding-metrics {
+  margin-top: 0;
+  min-width: min(100%, 280px);
+}
+
+.funding-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 18px;
+  margin-top: 14px;
+}
+
+.funding-grid,
+.buying-list {
+  display: grid;
+  gap: 12px;
+}
+
+.funding-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.funding-card {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.funding-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.amount-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 999px;
+}
+
+.buy-copy {
+  min-height: 3.8em;
+}
+
+.buying-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.buying-main,
+.buying-side {
+  display: grid;
+  gap: 8px;
+}
+
+.buying-main p,
+.buying-side p {
+  margin: 0;
+}
+
+.buying-side {
+  justify-items: end;
+  text-align: right;
+}
+
 .artifact-tag {
   padding: 4px 8px;
   border-radius: 999px;
@@ -379,9 +497,11 @@ code {
     grid-template-columns: 1fr;
   }
 
-  .overview-panel,
-  .panel:nth-child(2),
-  .panel:nth-child(3),
+  .funding-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .layout > .panel:not(.sidebar-panel),
   .sidebar-panel {
     grid-column: auto;
     grid-row: auto;
@@ -396,6 +516,17 @@ code {
   .hero,
   .section-heading {
     flex-direction: column;
+  }
+
+  .funding-hero,
+  .subsection-heading,
+  .buying-row {
+    flex-direction: column;
+  }
+
+  .buying-side {
+    justify-items: start;
+    text-align: left;
   }
 
   .hero {
