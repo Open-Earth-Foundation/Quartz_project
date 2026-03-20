@@ -1,22 +1,1104 @@
 {
   "cities": [
     {
-      "city": "Krakow",
+      "city": "Aachen",
+      "country": "Germany",
+      "aliases": [],
+      "seed_domains": [
+        "aachen.de"
+      ]
+    },
+    {
+      "city": "Aarhus",
+      "country": "Denmark",
+      "aliases": [],
+      "seed_domains": [
+        "aarhus.dk"
+      ]
+    },
+    {
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "aliases": [],
+      "seed_domains": [
+        "amsterdam.nl"
+      ]
+    },
+    {
+      "city": "Angers Loire Metropole",
+      "country": "France",
+      "aliases": [],
+      "seed_domains": [
+        "angers.fr"
+      ]
+    },
+    {
+      "city": "Antwerp",
+      "country": "Belgium",
+      "aliases": [],
+      "seed_domains": [
+        "antwerpen.be"
+      ]
+    },
+    {
+      "city": "Athens",
+      "country": "Greece",
+      "aliases": [],
+      "seed_domains": [
+        "cityofathens.gr"
+      ]
+    },
+    {
+      "city": "Barcelona",
+      "country": "Spain",
+      "aliases": [],
+      "seed_domains": [
+        "barcelona.cat",
+        "seuelectronica.ajuntament.barcelona.cat",
+        "guia.barcelona.cat",
+        "comunica.barcelona.cat",
+        "geoportal.barcelona.cat",
+        "ajuntament.barcelona.cat",
+        "com-shi-va.barcelona.cat"
+      ]
+    },
+    {
+      "city": "Bergamo",
+      "country": "Italy",
+      "aliases": [],
+      "seed_domains": [
+        "comune.bergamo.it"
+      ]
+    },
+    {
+      "city": "Bologna",
+      "country": "Italy",
+      "aliases": [],
+      "seed_domains": [
+        "comune.bologna.it",
+        "atti.comune.bologna.it",
+        "dati.comune.bologna.it",
+        "atti9.comune.bologna.it",
+        "partecipa.comune.bologna.it"
+      ]
+    },
+    {
+      "city": "Bordeaux Metropole",
+      "country": "France",
+      "aliases": [],
+      "seed_domains": [
+        "bordeaux.fr"
+      ]
+    },
+    {
+      "city": "Bratislava",
+      "country": "Slovakia",
+      "aliases": [],
+      "seed_domains": [
+        "bratislava.sk"
+      ]
+    },
+    {
+      "city": "Bristol",
+      "country": "United Kingdom",
+      "aliases": [],
+      "seed_domains": [
+        "bristolonecity.com"
+      ]
+    },
+    {
+      "city": "Brussels Capital Region",
+      "country": "Belgium",
+      "aliases": [],
+      "seed_domains": [
+        "be.brussels"
+      ]
+    },
+    {
+      "city": "2nd District of Bucharest Municipality",
+      "country": "Romania",
+      "aliases": [
+        "Bucharest"
+      ],
+      "seed_domains": [
+        "ps2.ro",
+        "cl.ps2.ro",
+        "harti.ps2.ro",
+        "dpepsc.ps2.ro",
+        "salubrizare.ps2.ro"
+      ]
+    },
+    {
+      "city": "Budapest",
+      "country": "Hungary",
+      "aliases": [],
+      "seed_domains": [
+        "budapest.hu"
+      ]
+    },
+    {
+      "city": "Cluj-Napoca",
+      "country": "Romania",
+      "aliases": [
+        "Cluj",
+        "Cluj Napoca"
+      ],
+      "seed_domains": [
+        "primariaclujnapoca.ro"
+      ]
+    },
+    {
+      "city": "Copenhagen",
+      "country": "Denmark",
+      "aliases": [],
+      "seed_domains": [
+        "kk.dk",
+        "ihcph.kk.dk",
+        "brugbyen.kk.dk",
+        "groenland.kk.dk"
+      ]
+    },
+    {
+      "city": "Cork",
+      "country": "Ireland",
+      "aliases": [],
+      "seed_domains": [
+        "corkcity.ie",
+        "cbl.corkcity.ie",
+        "payparking.corkcity.ie"
+      ]
+    },
+    {
+      "city": "Differdange",
+      "country": "Luxembourg",
+      "aliases": [],
+      "seed_domains": [
+        "differdange.lu"
+      ]
+    },
+    {
+      "city": "Dijon Metropole",
+      "country": "France",
+      "aliases": [],
+      "seed_domains": [
+        "dijon.fr",
+        "lalalib.dijon.fr",
+        "eservices.dijon.fr"
+      ]
+    },
+    {
+      "city": "Dortmund",
+      "country": "Germany",
+      "aliases": [],
+      "seed_domains": [
+        "dortmund.de",
+        "open-data.dortmund.de"
+      ]
+    },
+    {
+      "city": "Dresden",
+      "country": "Germany",
+      "aliases": [],
+      "seed_domains": [
+        "dresden.de",
+        "stadtplan.dresden.de"
+      ]
+    },
+    {
+      "city": "Dublin",
+      "country": "Ireland",
+      "aliases": [],
+      "seed_domains": [
+        "dublin.ie"
+      ]
+    },
+    {
+      "city": "Dunkerque",
+      "country": "France",
+      "aliases": [],
+      "seed_domains": [
+        "ville-dunkerque.fr"
+      ]
+    },
+    {
+      "city": "Eilat",
+      "country": "Israel",
+      "aliases": [],
+      "seed_domains": [
+        "eilat.city"
+      ]
+    },
+    {
+      "city": "Eindhoven & Helmond",
+      "country": "Netherlands",
+      "aliases": [
+        "Eindhoven and Helmond"
+      ],
+      "seed_domains": [
+        "eindhoven.nl",
+        "helmond.nl"
+      ]
+    },
+    {
+      "city": "Elbasan",
+      "country": "Albania",
+      "aliases": [],
+      "seed_domains": [
+        "elbasani.gov.al",
+        "kqz.gov.al",
+        "virtualtour.elbasani.gov.al"
+      ]
+    },
+    {
+      "city": "Espoo",
+      "country": "Finland",
+      "aliases": [],
+      "seed_domains": [
+        "espoo.fi",
+        "www-api.espoo.fi",
+        "easiointi.espoo.fi"
+      ]
+    },
+    {
+      "city": "Florence",
+      "country": "Italy",
+      "aliases": [],
+      "seed_domains": [
+        "comune.fi.it",
+        "cultura.comune.fi.it",
+        "sociale.comune.fi.it",
+        "opendata.comune.fi.it",
+        "quartieri.comune.fi.it"
+      ]
+    },
+    {
+      "city": "Gabrovo",
+      "country": "Bulgaria",
+      "aliases": [],
+      "seed_domains": [
+        "gabrovo.bg"
+      ]
+    },
+    {
+      "city": "Gävle",
+      "country": "Sweden",
+      "aliases": [
+        "Gavle"
+      ],
+      "seed_domains": [
+        "gavle.se"
+      ]
+    },
+    {
+      "city": "Glasgow",
+      "country": "United Kingdom",
+      "aliases": [],
+      "seed_domains": [
+        "glasgow.gov.uk"
+      ]
+    },
+    {
+      "city": "Gothenburg",
+      "country": "Sweden",
+      "aliases": [],
+      "seed_domains": [
+        "goteborg.se",
+        "politiker.goteborg.se",
+        "microservices.goteborg.se"
+      ]
+    },
+    {
+      "city": "Gozo",
+      "country": "Malta",
+      "aliases": [],
+      "seed_domains": [
+        "mgoz.gov.mt"
+      ]
+    },
+    {
+      "city": "Grenoble-Alpes Metropole",
+      "country": "France",
+      "aliases": [
+        "Grenoble Alpes Metropole"
+      ],
+      "seed_domains": [
+        "grenoblealpesmetropole.fr",
+        "recrutement.grenoblealpesmetropole.fr"
+      ]
+    },
+    {
+      "city": "Groningen",
+      "country": "Netherlands",
+      "aliases": [],
+      "seed_domains": [
+        "gemeente.groningen.nl"
+      ]
+    },
+    {
+      "city": "Guimarães",
+      "country": "Portugal",
+      "aliases": [
+        "Guimaraes"
+      ],
+      "seed_domains": [
+        "cm-guimaraes.pt",
+        "atlas.cm-guimaraes.pt"
+      ]
+    },
+    {
+      "city": "Heidelberg",
+      "country": "Germany",
+      "aliases": [],
+      "seed_domains": [
+        "heidelberg.de"
+      ]
+    },
+    {
+      "city": "Helsingborg",
+      "country": "Sweden",
+      "aliases": [
+        "Helsinborg"
+      ],
+      "seed_domains": [
+        "helsingborg.se",
+        "media.helsingborg.se",
+        "foretagare.helsingborg.se",
+        "anslagstavla.helsingborg.se"
+      ]
+    },
+    {
+      "city": "Helsinki",
+      "country": "Finland",
+      "aliases": [],
+      "seed_domains": [
+        "hel.fi",
+        "kartta.hel.fi",
+        "nuorten.hel.fi",
+        "digituki.hel.fi",
+        "paatokset.hel.fi",
+        "palautteet.hel.fi",
+        "selkokieli.hel.fi"
+      ]
+    },
+    {
+      "city": "Ioannina",
+      "country": "Greece",
+      "aliases": [],
+      "seed_domains": [
+        "ioannina.gr",
+        "2030.ioannina.gr",
+        "archives.ioannina.gr"
+      ]
+    },
+    {
+      "city": "Istanbul",
+      "country": "Turkey",
+      "aliases": [],
+      "seed_domains": [
+        "ibb.istanbul"
+      ]
+    },
+    {
+      "city": "Izmir",
+      "country": "Turkey",
+      "aliases": [],
+      "seed_domains": [
+        "izmir.bel.tr",
+        "izum.izmir.bel.tr",
+        "skpo.izmir.bel.tr",
+        "eislem.izmir.bel.tr",
+        "izmirim.izmir.bel.tr"
+      ]
+    },
+    {
+      "city": "Kalamata",
+      "country": "Greece",
+      "aliases": [],
+      "seed_domains": [
+        "kalamata.gr"
+      ]
+    },
+    {
+      "city": "Klagenfurt",
+      "country": "Austria",
+      "aliases": [],
+      "seed_domains": [
+        "klagenfurt.at"
+      ]
+    },
+    {
+      "city": "Košice",
+      "country": "Slovakia",
+      "aliases": [
+        "Kosice"
+      ],
+      "seed_domains": [
+        "kosice.sk",
+        "psc.kosice.sk",
+        "gisplan.kosice.sk",
+        "opendata.kosice.sk"
+      ]
+    },
+    {
+      "city": "Kozani",
+      "country": "Greece",
+      "aliases": [],
+      "seed_domains": [
+        "cityofkozani.gov.gr",
+        "gov.gr",
+        "diavgeia.gov.gr",
+        "polsxedia.ypen.gov.gr"
+      ]
+    },
+    {
+      "city": "Kraków",
       "country": "Poland",
-      "aliases": ["Kraków"],
-      "seed_domains": ["krakow.pl", "kegw.krakow.pl"]
+      "aliases": [
+        "Krakow"
+      ],
+      "seed_domains": [
+        "krakow.pl",
+        "bip.krakow.pl",
+        "ue.krakow.pl",
+        "ziw.krakow.pl",
+        "kegw.krakow.pl",
+        "convention.krakow.pl",
+        "dlabiznesu.krakow.pl"
+      ]
+    },
+    {
+      "city": "Kranj",
+      "country": "Slovenia",
+      "aliases": [],
+      "seed_domains": [
+        "kranj.si",
+        "arhiv.kranj.si"
+      ]
+    },
+    {
+      "city": "La Louvière",
+      "country": "Belgium",
+      "aliases": [
+        "La Louviere"
+      ],
+      "seed_domains": [
+        "lalouviere.be"
+      ]
+    },
+    {
+      "city": "Lahti",
+      "country": "Finland",
+      "aliases": [
+        "Lathi"
+      ],
+      "seed_domains": [
+        "lahti.fi",
+        "kartta.lahti.fi"
+      ]
+    },
+    {
+      "city": "Lappeenranta",
+      "country": "Finland",
+      "aliases": [],
+      "seed_domains": [
+        "lappeenranta.fi",
+        "kartta.lappeenranta.fi",
+        "epalvelu.lappeenranta.fi"
+      ]
+    },
+    {
+      "city": "Leipzig",
+      "country": "Germany",
+      "aliases": [],
+      "seed_domains": [
+        "leipzig.de",
+        "stadtplan.leipzig.de"
+      ]
+    },
+    {
+      "city": "Leuven",
+      "country": "Belgium",
+      "aliases": [],
+      "seed_domains": [
+        "leuven.be"
+      ]
+    },
+    {
+      "city": "Liberec",
+      "country": "Czech Republic",
+      "aliases": [],
+      "seed_domains": [
+        "liberec.cz"
+      ]
+    },
+    {
+      "city": "Liepāja",
+      "country": "Latvia",
+      "aliases": [
+        "Liepaja"
+      ],
+      "seed_domains": [
+        "liepaja.lv"
+      ]
+    },
+    {
+      "city": "Limassol",
+      "country": "Cyprus",
+      "aliases": [],
+      "seed_domains": [
+        "limassol.org.cy"
+      ]
+    },
+    {
+      "city": "Lisbon",
+      "country": "Portugal",
+      "aliases": [],
+      "seed_domains": [
+        "lisboa.pt",
+        "65mais.lisboa.pt",
+        "revelar.lisboa.pt",
+        "cidadania.lisboa.pt",
+        "estufafria.lisboa.pt",
+        "informacao.lisboa.pt",
+        "planodrenagem.lisboa.pt"
+      ]
+    },
+    {
+      "city": "Ljubljana",
+      "country": "Slovenia",
+      "aliases": [],
+      "seed_domains": [
+        "ljubljana.si",
+        "pobude.ljubljana.si",
+        "solstvo.ljubljana.si",
+        "urbinfo.ljubljana.si",
+        "3dportal.ljubljana.si",
+        "zemljevid.ljubljana.si",
+        "dovolilnice.ljubljana.si"
+      ]
+    },
+    {
+      "city": "Łódź",
+      "country": "Poland",
+      "aliases": [
+        "Lodz"
+      ],
+      "seed_domains": [
+        "uml.lodz.pl",
+        "bip.uml.lodz.pl",
+        "lodz.pl",
+        "mci.uml.lodz.pl"
+      ]
+    },
+    {
+      "city": "Lund",
+      "country": "Sweden",
+      "aliases": [],
+      "seed_domains": [
+        "lund.se",
+        "intranatet.lund.se",
+        "geoportalen.lund.se",
+        "folkbiblioteken.lund.se"
+      ]
+    },
+    {
+      "city": "Lyon",
+      "country": "France",
+      "aliases": [],
+      "seed_domains": [
+        "lyon.fr",
+        "mairie1.lyon.fr",
+        "mairie2.lyon.fr",
+        "mairie3.lyon.fr",
+        "mairie4.lyon.fr",
+        "mairie5.lyon.fr",
+        "mairie6.lyon.fr"
+      ]
+    },
+    {
+      "city": "Madrid",
+      "country": "Spain",
+      "aliases": [],
+      "seed_domains": [
+        "madrid.es"
+      ]
+    },
+    {
+      "city": "Malmö",
+      "country": "Sweden",
+      "aliases": [
+        "Malmo"
+      ],
+      "seed_domains": [
+        "malmo.se"
+      ]
+    },
+    {
+      "city": "Mannheim",
+      "country": "Germany",
+      "aliases": [],
+      "seed_domains": [
+        "mannheim.de"
+      ]
+    },
+    {
+      "city": "Marseille",
+      "country": "France",
+      "aliases": [
+        "Marseilles"
+      ],
+      "seed_domains": [
+        "marseille.fr",
+        "carto.marseille.fr",
+        "cinema.marseille.fr",
+        "marius.marseille.fr"
+      ]
+    },
+    {
+      "city": "Milan",
+      "country": "Italy",
+      "aliases": [],
+      "seed_domains": [
+        "comune.milano.it"
+      ]
+    },
+    {
+      "city": "Miskolc",
+      "country": "Hungary",
+      "aliases": [],
+      "seed_domains": [
+        "miskolc.hu"
+      ]
+    },
+    {
+      "city": "Munich",
+      "country": "Germany",
+      "aliases": [],
+      "seed_domains": [
+        "muenchen.de",
+        "app.muenchen.de",
+        "stadt.muenchen.de"
+      ]
+    },
+    {
+      "city": "Münster",
+      "country": "Germany",
+      "aliases": [
+        "Munster"
+      ],
+      "seed_domains": [
+        "stadt-muenster.de"
+      ]
+    },
+    {
+      "city": "Nantes Metropole",
+      "country": "France",
+      "aliases": [],
+      "seed_domains": [
+        "metropole.nantes.fr",
+        "medias-metropole.nantes.fr",
+        "formulaires.eservices-metropole.nantes.fr"
+      ]
+    },
+    {
+      "city": "Oslo",
+      "country": "Norway",
+      "aliases": [],
+      "seed_domains": [
+        "oslo.kommune.no"
+      ]
+    },
+    {
+      "city": "Padova",
+      "country": "Italy",
+      "aliases": [],
+      "seed_domains": [
+        "padovanet.it"
+      ]
+    },
+    {
+      "city": "Paris",
+      "country": "France",
+      "aliases": [],
+      "seed_domains": [
+        "paris.fr",
+        "presse.paris.fr",
+        "opendata.paris.fr"
+      ]
+    },
+    {
+      "city": "Parma",
+      "country": "Italy",
+      "aliases": [],
+      "seed_domains": [
+        "parmawelcome.it"
+      ]
+    },
+    {
+      "city": "Pécs",
+      "country": "Hungary",
+      "aliases": [
+        "Pecs"
+      ],
+      "seed_domains": [
+        "pecs.hu",
+        "gov.pecs.hu"
+      ]
+    },
+    {
+      "city": "Podgorica",
+      "country": "Montenegro",
+      "aliases": [],
+      "seed_domains": [
+        "podgorica.me"
+      ]
+    },
+    {
+      "city": "Porto",
+      "country": "Portugal",
+      "aliases": [],
+      "seed_domains": [
+        "porto.pt"
+      ]
+    },
+    {
+      "city": "Prato",
+      "country": "Italy",
+      "aliases": [],
+      "seed_domains": [
+        "cittadiprato.it"
+      ]
+    },
+    {
+      "city": "Reykjavík",
+      "country": "Iceland",
+      "aliases": [
+        "Reykjavik"
+      ],
+      "seed_domains": [
+        "reykjavik.is",
+        "info.reykjavik.is",
+        "skjalasafn.reykjavik.is",
+        "borgarvefsja.reykjavik.is"
+      ]
+    },
+    {
+      "city": "Riga",
+      "country": "Latvia",
+      "aliases": [],
+      "seed_domains": [
+        "riga.lv",
+        "pip.riga.lv"
+      ]
+    },
+    {
+      "city": "Rome",
+      "country": "Italy",
+      "aliases": [],
+      "seed_domains": [
+        "comune.roma.it",
+        "julia.comune.roma.it",
+        "mappacittaeducante.roma.it",
+        "marcoaurelio.comune.roma.it",
+        "inforomawebtv.comune.roma.it"
+      ]
+    },
+    {
+      "city": "Rotterdam",
+      "country": "Netherlands",
+      "aliases": [],
+      "seed_domains": [
+        "rotterdam.nl",
+        "kaartlaag.rotterdam.nl",
+        "concern.ir.rotterdam.nl"
+      ]
+    },
+    {
+      "city": "Rzeszów",
+      "country": "Poland",
+      "aliases": [
+        "Rzeszow"
+      ],
+      "seed_domains": [
+        "erzeszow.pl"
+      ]
+    },
+    {
+      "city": "Sarajevo",
+      "country": "Bosnia and Herzegovina",
+      "aliases": [],
+      "seed_domains": [
+        "sarajevo.ba",
+        "consul.sarajevo.ba",
+        "gradskovijece.sarajevo.ba"
+      ]
+    },
+    {
+      "city": "Seville",
+      "country": "Spain",
+      "aliases": [],
+      "seed_domains": [
+        "sevilla.org"
+      ]
+    },
+    {
+      "city": "Sofia",
+      "country": "Bulgaria",
+      "aliases": [],
+      "seed_domains": [
+        "sofia.bg"
+      ]
+    },
+    {
+      "city": "Sønderborg",
+      "country": "Denmark",
+      "aliases": [
+        "Sonderborg"
+      ],
+      "seed_domains": [
+        "sonderborgkommune.dk"
+      ]
+    },
+    {
+      "city": "Stavanger",
+      "country": "Norway",
+      "aliases": [],
+      "seed_domains": [
+        "stavanger.kommune.no",
+        "minside.stavanger.kommune.no"
+      ]
+    },
+    {
+      "city": "Stockholm",
+      "country": "Sweden",
+      "aliases": [],
+      "seed_domains": [
+        "stockholm.se"
+      ]
+    },
+    {
+      "city": "Suceava",
+      "country": "Romania",
+      "aliases": [],
+      "seed_domains": [
+        "primariasv.ro",
+        "ciic.primariasv.ro",
+        "eportal.primariasv.ro",
+        "implicat.primariasv.ro"
+      ]
+    },
+    {
+      "city": "Tampere",
+      "country": "Finland",
+      "aliases": [],
+      "seed_domains": [
+        "tampere.fi",
+        "internationalhouse.tampere.fi",
+        "newsletter-tamperecity.up.tampere.fi"
+      ]
+    },
+    {
+      "city": "Tartu",
+      "country": "Estonia",
+      "aliases": [],
+      "seed_domains": [
+        "tartu.ee",
+        "kultuuriaken.tartu.ee"
+      ]
+    },
+    {
+      "city": "Tauragė",
+      "country": "Lithuania",
+      "aliases": [
+        "Taurage"
+      ],
+      "seed_domains": [
+        "taurage.lt"
+      ]
+    },
+    {
+      "city": "The Hague",
+      "country": "Netherlands",
+      "aliases": [],
+      "seed_domains": [
+        "denhaag.nl",
+        "mijn.denhaag.nl",
+        "werkenvoor.denhaag.nl",
+        "formulieren.denhaag.nl"
+      ]
+    },
+    {
+      "city": "Thessaloniki",
+      "country": "Greece",
+      "aliases": [],
+      "seed_domains": [
+        "thessaloniki.gr",
+        "imc.thessaloniki.gr",
+        "maps.thessaloniki.gr",
+        "culture.thessaloniki.gr",
+        "opengov.thessaloniki.gr",
+        "politis.thessaloniki.gr",
+        "discover.thessaloniki.gr"
+      ]
+    },
+    {
+      "city": "Trikala",
+      "country": "Greece",
+      "aliases": [],
+      "seed_domains": [
+        "trikalacity.gr",
+        "20000.trikalacity.gr"
+      ]
+    },
+    {
+      "city": "Trondheim",
+      "country": "Norway",
+      "aliases": [],
+      "seed_domains": [
+        "trondheim.no"
+      ]
+    },
+    {
+      "city": "Torino",
+      "country": "Italy",
+      "aliases": [],
+      "seed_domains": [
+        "comune.torino.it",
+        "decentramento.comune.torino.it",
+        "soris.torino.it",
+        "bct.comune.torino.it",
+        "bandi.comune.torino.it",
+        "stilo.comune.torino.it",
+        "aperto.comune.torino.it"
+      ]
+    },
+    {
+      "city": "Turku",
+      "country": "Finland",
+      "aliases": [],
+      "seed_domains": [
+        "turku.fi",
+        "blog.edu.turku.fi",
+        "kalenteri.turku.fi",
+        "opaskartta.turku.fi",
+        "harrastukset.turku.fi",
+        "kerrokantasi.turku.fi"
+      ]
+    },
+    {
+      "city": "Umeå",
+      "country": "Sweden",
+      "aliases": [
+        "Umea"
+      ],
+      "seed_domains": [
+        "umea.se"
+      ]
+    },
+    {
+      "city": "Utrecht",
+      "country": "Netherlands",
+      "aliases": [],
+      "seed_domains": [
+        "utrecht.nl",
+        "healthyurbanliving.utrecht.nl",
+        "formulieren.digitaal.utrecht.nl"
+      ]
+    },
+    {
+      "city": "Valencia",
+      "country": "Spain",
+      "aliases": [],
+      "seed_domains": [
+        "valencia.es",
+        "sede.valencia.es"
+      ]
+    },
+    {
+      "city": "Valladolid",
+      "country": "Spain",
+      "aliases": [],
+      "seed_domains": [
+        "valladolid.es",
+        "zbe.valladolid.es",
+        "info.valladolid.es",
+        "sede.valladolid.es",
+        "gisava.valladolid.es"
+      ]
+    },
+    {
+      "city": "Velenje",
+      "country": "Slovenia",
+      "aliases": [],
+      "seed_domains": [
+        "velenje.si"
+      ]
+    },
+    {
+      "city": "Vilnius",
+      "country": "Lithuania",
+      "aliases": [],
+      "seed_domains": [
+        "vilnius.lt"
+      ]
+    },
+    {
+      "city": "Vitoria-Gasteiz",
+      "country": "Spain",
+      "aliases": [
+        "Vitoria Gasteiz"
+      ],
+      "seed_domains": [
+        "vitoria-gasteiz.org"
+      ]
     },
     {
       "city": "Warsaw",
       "country": "Poland",
-      "aliases": ["Warszawa"],
-      "seed_domains": ["um.warszawa.pl", "eko.um.warszawa.pl"]
+      "aliases": [
+        "Warszawa"
+      ],
+      "seed_domains": [
+        "um.warszawa.pl",
+        "transport.warszawa.pl",
+        "eko.um.warszawa.pl",
+        "targowek.um.warszawa.pl"
+      ]
     },
     {
-      "city": "Gdansk",
+      "city": "Wrocław",
       "country": "Poland",
-      "aliases": ["Gdańsk"],
-      "seed_domains": ["gdansk.pl"]
+      "aliases": [
+        "Wroclaw"
+      ],
+      "seed_domains": [
+        "wroclaw.pl",
+        "geoportal.wroclaw.pl",
+        "zielony-wroclaw.wroclaw.pl"
+      ]
+    },
+    {
+      "city": "Zagreb",
+      "country": "Croatia",
+      "aliases": [],
+      "seed_domains": [
+        "zagreb.hr",
+        "eko.zagreb.hr",
+        "web.zagreb.hr",
+        "www1.zagreb.hr",
+        "vrtici.zagreb.hr",
+        "geoportal.zagreb.hr"
+      ]
+    },
+    {
+      "city": "Zaragoza",
+      "country": "Spain",
+      "aliases": [],
+      "seed_domains": [
+        "zaragoza.es",
+        "tributos.zaragoza.es",
+        "idezar-sig.zaragoza.es"
+      ]
     }
   ]
 }

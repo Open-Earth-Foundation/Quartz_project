@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quartz Run Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Quartz project monitor</p>
+          <h1>Latest runs, raw outputs, and next-step hints</h1>
+          <p class="hero-copy">
+            This page reads directly from <code>runs/</code> and refreshes live from the newest
+            report, summary, registry, and hint files.
+          </p>
+        </div>
+        <button id="refresh-button" class="refresh-button" type="button">Refresh data</button>
+      </header>
+
+      <main class="layout">
+        <section class="panel overview-panel">
+          <div class="section-heading">
+            <h2>Run overview</h2>
+            <p id="overview-timestamp">Loading latest artifacts...</p>
+          </div>
+          <div id="overview-stats" class="stat-grid"></div>
+          <div id="latest-summary" class="card-stack"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <h2>Recent reports</h2>
+            <p>Newest batch outputs with city-level counts and quick links.</p>
+          </div>
+          <div id="reports-list" class="card-stack"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <h2>Improvement hints</h2>
+            <p>Candidate paths, domains, query fragments, and likely missed projects.</p>
+          </div>
+          <div id="hints-list" class="card-stack"></div>
+        </section>
+
+        <aside class="panel sidebar-panel">
+          <div class="section-heading">
+            <h2>Recent files</h2>
+            <p>Fast links into the latest artifacts.</p>
+          </div>
+          <div id="artifact-feed" class="artifact-feed"></div>
+          <div id="latest-registry" class="card-stack compact-stack"></div>
+        </aside>
+      </main>
+    </div>
+
+    <template id="empty-state-template">
+      <div class="empty-state">
+        <p>No matching artifacts were found in <code>runs/</code>.</p>
+      </div>
+    </template>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

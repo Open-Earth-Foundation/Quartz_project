@@ -71,12 +71,12 @@ def classify_source_class(
 
     if domain in municipal_domains or any(domain.endswith(f".{municipal}") for municipal in municipal_domains):
         return "municipal_entity"
+    if domain in preferred_domains:
+        return "municipal_entity"
     if domain in root_domains:
         return "city_root"
     if any(domain.endswith(f".{root}") for root in root_domains):
         return "city_subdomain"
-    if domain in preferred_domains:
-        return "municipal_entity"
     if any(domain.endswith(f".{preferred}") for preferred in preferred_domains):
         return "municipal_entity"
 
@@ -180,7 +180,15 @@ def dedupe_and_rank_hits(hits: list[SearchHit], city_target: CityTarget) -> list
     for hit in hits:
         hit.rank_score = rank_hit(hit, city_target)
         current = best_by_url.get(hit.url)
-        if current is None or hit.rank_score > current.rank_score:
+        if (
+            current is None
+            or hit.rank_score > current.rank_score
+            or (
+                hit.rank_score == current.rank_score
+                and hit.query_scope == "bounded"
+                and current.query_scope != "bounded"
+            )
+        ):
             best_by_url[hit.url] = hit
     ranked = sorted(best_by_url.values(), key=lambda item: item.rank_score, reverse=True)
     return ranked[: config.MAX_SOURCE_URLS_PER_CITY]

@@ -22,11 +22,19 @@ class FirecrawlScraper:
     def __init__(self) -> None:
         ensure_runtime_paths()
         try:
-            from firecrawl import Firecrawl  # type: ignore
-        except Exception as exc:  # pragma: no cover - only used in live runs
-            raise RuntimeError(f"Firecrawl import failed: {exc}") from exc
+            self.client = self._build_firecrawl_client()
+            self.firecrawl_error = ""
+        except Exception as exc:  # pragma: no cover - exercised in live runs
+            self.client = None
+            self.firecrawl_error = str(exc)
+            logger.warning("Firecrawl unavailable, using raw fetch fallback: %s", exc)
 
-        self.client = Firecrawl(api_key=config.FIRECRAWL_API_KEY, api_url=config.FIRECRAWL_API_URL)
+    def _build_firecrawl_client(self) -> Any:
+        if not config.FIRECRAWL_API_KEY:
+            raise RuntimeError("FIRECRAWL_API_KEY is not configured")
+        from firecrawl import Firecrawl  # type: ignore
+
+        return Firecrawl(api_key=config.FIRECRAWL_API_KEY, api_url=config.FIRECRAWL_API_URL)
 
     def scrape_url(self, url: str) -> ScrapedSource | None:
         if is_pdf_url(url):
@@ -34,6 +42,8 @@ class FirecrawlScraper:
         return self._scrape_html(url)
 
     def _scrape_html(self, url: str) -> ScrapedSource | None:
+        if self.client is None:
+            return self._scrape_html_fallback(url)
         try:
             document = self.client.scrape(
                 url,
@@ -159,7 +169,7 @@ class FirecrawlScraper:
     def collect_sources(self, city_target: CityTarget, hits: list[SearchHit]) -> list[ScrapedSource]:
         collected: list[ScrapedSource] = []
         seen_urls: set[str] = set()
-        queue = [hit.url for hit in hits]
+        queue = [hit.url for hit in hits if hit.scrape_decision != "skip"]
 
         while queue and len(collected) < config.MAX_DOCUMENTS_PER_CITY:
             url = queue.pop(0)

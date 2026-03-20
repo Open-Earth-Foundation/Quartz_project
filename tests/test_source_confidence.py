@@ -12,9 +12,29 @@ CITY = CityTarget(
 )
 
 
-def test_seed_domain_is_city_root():
+def test_city_root_domain_is_city_root():
     confidence = classify_source_confidence("https://um.warszawa.pl/green-project", CITY, "Green Project", "")
     assert confidence == "city_root"
+
+
+def test_extra_seed_domain_is_municipal_entity_not_city_root():
+    confidence = classify_source_confidence(
+        "https://eko.um.warszawa.pl/projekty/zielone-enklawy",
+        CITY,
+        "Green enclaves",
+        "Municipal climate adaptation project.",
+    )
+    assert confidence == "municipal_entity"
+
+
+def test_root_subdomain_is_city_subdomain():
+    confidence = classify_source_confidence(
+        "https://bip.um.warszawa.pl/waw/bip/projekty",
+        CITY,
+        "City projects",
+        "Official municipal publication.",
+    )
+    assert confidence == "city_subdomain"
 
 
 def test_non_seed_municipal_domain_is_municipal_entity():

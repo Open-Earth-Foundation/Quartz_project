@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import json
 from functools import lru_cache
+from pathlib import Path
 from urllib.parse import urlparse
 
 from pydantic import BaseModel, Field
 
-from .types import CityTarget
+import config
+
+from .types import CityBatchInput, CityTarget, normalize_city_key
 
 
 class CityHintEntry(BaseModel):
@@ -18,7 +22,7 @@ class CityHintEntry(BaseModel):
     demoted_url_patterns: list[str] = Field(default_factory=list)
 
 
-DEFAULT_CITY_HINTS: dict[str, CityHintEntry] = {
+CURATED_CITY_HINTS: dict[str, CityHintEntry] = {
     "krakow": CityHintEntry(
         city_root_domains=["krakow.pl"],
         preferred_domains=["kegw.krakow.pl", "ue.krakow.pl", "convention.krakow.pl", "ziw.krakow.pl"],
@@ -115,16 +119,55 @@ def _unique(items: list[str]) -> list[str]:
     return deduped
 
 
+@lru_cache(maxsize=1)
+def _seed_backed_hints() -> dict[str, CityHintEntry]:
+    payload = json.loads(Path(config.DEFAULT_CITIES_FILE).read_text(encoding="utf-8"))
+    batch = CityBatchInput.model_validate(payload)
+    hints: dict[str, CityHintEntry] = {}
+    for city in batch.cities:
+        seed_domains = _unique(city.seed_domains)
+        hints[normalize_city_key(city.city)] = CityHintEntry(
+            city_root_domains=seed_domains[:1],
+            preferred_domains=seed_domains[1:],
+        )
+    return hints
+
+
+def _merge_hint_entries(base: CityHintEntry, override: CityHintEntry) -> CityHintEntry:
+    return CityHintEntry(
+        city_root_domains=_unique(override.city_root_domains or base.city_root_domains),
+        preferred_domains=_unique(base.preferred_domains + override.preferred_domains),
+        municipal_domains=_unique(base.municipal_domains + override.municipal_domains),
+        preferred_path_prefixes=_unique(base.preferred_path_prefixes + override.preferred_path_prefixes),
+        preferred_query_fragments=_unique(base.preferred_query_fragments + override.preferred_query_fragments),
+        demoted_domains=_unique(base.demoted_domains + override.demoted_domains),
+        demoted_url_patterns=_unique(base.demoted_url_patterns + override.demoted_url_patterns),
+    )
+
+
+@lru_cache(maxsize=1)
+def _default_city_hints() -> dict[str, CityHintEntry]:
+    hints = dict(_seed_backed_hints())
+    for city_key, override in CURATED_CITY_HINTS.items():
+        hints[city_key] = _merge_hint_entries(hints.get(city_key, CityHintEntry()), override)
+    return hints
+
+
 @lru_cache(maxsize=None)
 def get_city_hints(city_key: str) -> CityHintEntry:
-    return DEFAULT_CITY_HINTS.get(city_key.casefold(), CityHintEntry())
+    return _default_city_hints().get(normalize_city_key(city_key), CityHintEntry())
 
 
 def resolve_city_hints(city_target: CityTarget) -> CityHintEntry:
     base = get_city_hints(city_target.city)
+    seed_domains = _unique(city_target.seed_domains)
+    root_domains = _unique(base.city_root_domains or seed_domains[:1])
+    preferred_domains = _unique(
+        [domain for domain in base.preferred_domains + seed_domains if domain not in set(root_domains)]
+    )
     return CityHintEntry(
-        city_root_domains=_unique(base.city_root_domains + city_target.seed_domains),
-        preferred_domains=_unique(base.preferred_domains + city_target.seed_domains),
+        city_root_domains=root_domains,
+        preferred_domains=preferred_domains,
         municipal_domains=_unique(base.municipal_domains),
         preferred_path_prefixes=_unique(base.preferred_path_prefixes),
         preferred_query_fragments=_unique(base.preferred_query_fragments),

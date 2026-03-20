@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 from .city_hints import CityHintEntry, path_matches_hints, resolve_city_hints
 from .runtime import now_utc_iso
 from .search import CITY_ECOSYSTEM_CLASSES, LOW_VALUE_TITLE_PATTERNS, LOW_VALUE_URL_PATTERNS, classify_source_class, normalize_domain
-from .types import BatchRunReport, CityTarget, RejectedCandidate, SearchHit, VerifiedProject
+from .types import BatchRunReport, CityTarget, RejectedCandidate, SearchHit, VerifiedProject, normalize_city_key
 
 PROJECT_KEYWORDS = (
     "feniks",
@@ -31,7 +31,7 @@ PROJECT_KEYWORDS = (
 
 class ReviewAgent:
     def build_hints_markdown(self, batch_report: BatchRunReport, city_targets: list[CityTarget]) -> str:
-        target_by_city = {target.city.casefold(): target for target in city_targets}
+        target_by_city = {normalize_city_key(target.city): target for target in city_targets}
         lines = ["# Hint Suggestions", ""]
         lines.append(f"Generated at: {now_utc_iso()}")
         lines.append("")
@@ -44,7 +44,7 @@ class ReviewAgent:
         lines.append("")
 
         for city_report in batch_report.city_reports:
-            target = target_by_city[city_report.city.casefold()]
+            target = target_by_city[normalize_city_key(city_report.city)]
             hints = resolve_city_hints(target)
             accepted_urls = {url for project in city_report.accepted_projects for url in project.source_urls}
             suspicious = self._suspicious_accepted(city_report.accepted_projects, target, hints)

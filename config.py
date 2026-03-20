@@ -15,7 +15,7 @@ DEFAULT_RUN_REPORT_FILE = RUNS_DIR / "last_run_report.json"
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
-OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "openai/gpt-4.1-mini")
+OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "openai/gpt-5.4-mini")
 HTTP_REFERER = os.getenv("HTTP_REFERER", "https://github.com/piotr/Quartz_project")
 SITE_NAME = os.getenv("SITE_NAME", "Quartz City Climate Registry")
 
@@ -27,20 +27,35 @@ FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY", "")
 FIRECRAWL_API_URL = os.getenv("FIRECRAWL_API_URL", "https://api.firecrawl.dev")
 
 DEFAULT_TIMEOUT_SECONDS = int(os.getenv("QUARTZ_TIMEOUT_SECONDS", "45"))
-SCRAPE_TIMEOUT_SECONDS = int(os.getenv("QUARTZ_SCRAPE_TIMEOUT_SECONDS", "15"))
-MAX_DISCOVERY_QUERIES = int(os.getenv("QUARTZ_MAX_DISCOVERY_QUERIES", "6"))
+SCRAPE_TIMEOUT_SECONDS = 45
+MAX_DISCOVERY_QUERIES = int(os.getenv("QUARTZ_MAX_DISCOVERY_QUERIES", "16"))
 MAX_RESULTS_PER_QUERY = int(os.getenv("QUARTZ_MAX_RESULTS_PER_QUERY", "5"))
-MAX_SOURCE_URLS_PER_CITY = int(os.getenv("QUARTZ_MAX_SOURCE_URLS_PER_CITY", "6"))
-MAX_INTERNAL_LINKS_PER_SOURCE = int(os.getenv("QUARTZ_MAX_INTERNAL_LINKS_PER_SOURCE", "6"))
-MAX_DOCUMENTS_PER_CITY = int(os.getenv("QUARTZ_MAX_DOCUMENTS_PER_CITY", "8"))
-MAX_INPUT_CHARS_PER_SOURCE = int(os.getenv("QUARTZ_MAX_INPUT_CHARS_PER_SOURCE", "22000"))
+MAX_SOURCE_URLS_PER_CITY = int(os.getenv("QUARTZ_MAX_SOURCE_URLS_PER_CITY", "12"))
+MAX_INTERNAL_LINKS_PER_SOURCE = int(
+    os.getenv("QUARTZ_MAX_INTERNAL_LINKS_PER_SOURCE", "6")
+)
+MAX_DOCUMENTS_PER_CITY = int(os.getenv("QUARTZ_MAX_DOCUMENTS_PER_CITY", "16"))
+MAX_INPUT_CHARS_PER_SOURCE = int(
+    os.getenv("QUARTZ_MAX_INPUT_CHARS_PER_SOURCE", "22000")
+)
+MAX_EXPLORATORY_TRIAGE_HITS = int(os.getenv("QUARTZ_MAX_EXPLORATORY_TRIAGE_HITS", "4"))
 PDF_TOKEN_LIMIT = int(os.getenv("QUARTZ_PDF_TOKEN_LIMIT", "100000"))
 
 DISCOVERY_AGENT_TEMPERATURE = float(os.getenv("QUARTZ_DISCOVERY_TEMPERATURE", "0.1"))
-VERIFICATION_AGENT_TEMPERATURE = float(os.getenv("QUARTZ_VERIFICATION_TEMPERATURE", "0.0"))
+VERIFICATION_AGENT_TEMPERATURE = float(
+    os.getenv("QUARTZ_VERIFICATION_TEMPERATURE", "0.0")
+)
 
-ENABLE_SDK = os.getenv("QUARTZ_DISABLE_SDK", "").strip().lower() not in {"1", "true", "yes"}
-ENABLE_LIVE_CANARY = os.getenv("QUARTZ_ENABLE_LIVE_CANARY", "").strip().lower() in {"1", "true", "yes"}
+ENABLE_SDK = os.getenv("QUARTZ_DISABLE_SDK", "").strip().lower() not in {
+    "1",
+    "true",
+    "yes",
+}
+ENABLE_LIVE_CANARY = os.getenv("QUARTZ_ENABLE_LIVE_CANARY", "").strip().lower() in {
+    "1",
+    "true",
+    "yes",
+}
 
 OFFICIAL_DOMAIN_MARKERS = (
     ".gov",

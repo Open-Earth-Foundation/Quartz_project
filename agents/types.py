@@ -1,11 +1,35 @@
 from __future__ import annotations
 
+import unicodedata
 from typing import Any, Literal
 
 from pydantic import AliasChoices, BaseModel, ConfigDict, Field, field_validator
 
 
 SourceClass = Literal["city_root", "city_subdomain", "municipal_entity", "supporting_external", "reject_external"]
+QueryScope = Literal["bounded", "exploratory"]
+ScrapeDecision = Literal["scrape", "skip"]
+
+
+def normalize_city_key(value: str) -> str:
+    transliterated = (
+        value.replace("ł", "l")
+        .replace("Ł", "L")
+        .replace("ø", "o")
+        .replace("Ø", "O")
+        .replace("đ", "d")
+        .replace("Đ", "D")
+        .replace("ß", "ss")
+        .replace("æ", "ae")
+        .replace("Æ", "Ae")
+        .replace("œ", "oe")
+        .replace("Œ", "Oe")
+    )
+    normalized = unicodedata.normalize("NFKD", transliterated).encode("ascii", "ignore").decode("ascii")
+    clean = "".join(ch.lower() if ch.isalnum() else "-" for ch in normalized.strip())
+    while "--" in clean:
+        clean = clean.replace("--", "-")
+    return clean.strip("-")
 
 
 class CityTarget(BaseModel):
@@ -40,13 +64,21 @@ class CityBatchInput(BaseModel):
     cities: list[CityTarget]
 
 
+class DiscoveryQuery(BaseModel):
+    query: str
+    scope: QueryScope = "bounded"
+
+
 class SearchHit(BaseModel):
     query: str
+    query_scope: QueryScope = "bounded"
     url: str
     title: str
     snippet: str = ""
     rank_score: float = 0.0
     source_class: SourceClass = "supporting_external"
+    scrape_decision: ScrapeDecision | None = None
+    scrape_reason: str = ""
 
 
 class ScrapedSource(BaseModel):

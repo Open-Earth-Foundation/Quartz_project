@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import logging
 from pathlib import Path
 
 import config
@@ -10,6 +11,10 @@ from bootstrap_local_agents import load_local_agents_package
 load_local_agents_package()
 
 from quartz_agents.pipeline import CityProjectPipeline  # type: ignore  # noqa: E402
+
+
+def configure_logging() -> None:
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -48,6 +53,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 async def main_async() -> None:
+    configure_logging()
     args = build_parser().parse_args()
     pipeline = CityProjectPipeline()
     result = await pipeline.run_batch(

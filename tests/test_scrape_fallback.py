@@ -34,3 +34,16 @@ def test_html_fallback_extracts_text_and_links(monkeypatch):
     assert "https://city.example.org/projects/tram-extension" in source.internal_links
     assert source.supporting_pdf_urls == ["https://example.org/files/award.pdf"]
     assert source.metadata["fetched_via"] == "raw_html_fallback"
+
+
+def test_scraper_init_falls_back_when_firecrawl_is_unavailable(monkeypatch):
+    monkeypatch.setattr(
+        FirecrawlScraper,
+        "_build_firecrawl_client",
+        lambda self: (_ for _ in ()).throw(RuntimeError("No module named 'websockets'")),
+    )
+
+    scraper = FirecrawlScraper()
+
+    assert scraper.client is None
+    assert "websockets" in scraper.firecrawl_error
